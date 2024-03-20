@@ -6,3 +6,6 @@ https://trello.com/b/RvijUP3N/http
 
 ## Technical report ✍🏻
 Decisions made, challenges overcome, droup tasks distribution and work methodology.
+
+## Teacher's Github
+https://github.com/pitazzo/usj-http-project
