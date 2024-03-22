@@ -6,7 +6,7 @@ package app.src.main.java.http.project.networks.ii;
 public class App {
     
     public static void main(String[] args) {
-        System.out.println("Hello Github!"
+        System.out.println("Hello Github!");
     }
     
 }
