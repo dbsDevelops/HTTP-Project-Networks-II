@@ -1,3 +1,5 @@
+package ProjectCode;
+
 public enum DictionaryHeaders {
     ACCEPT("Accept"),
     //ACCEPT_CHARSET("Accept-Charset"),
@@ -28,7 +30,17 @@ public enum DictionaryHeaders {
     //RANGE("Range"),
     //REFERER("Referer"),
     //TE("TE"),
-    USER_AGENT("User-Agent")
+    USER_AGENT("User-Agent"); // Importante poner un punto y coma al final del enum
     //UPGRADE("Upgrade"),
     //VIA("Via"),
+
+    private String header;
+
+    DictionaryHeaders(String header) {
+        this.header = header;
+    }
+
+    public String getHeader() {
+        return this.header;
+    }
 }
