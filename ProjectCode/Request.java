@@ -15,6 +15,10 @@ public class Request {
         this.body = body;
     }
 
+    public void addHeader(String header) {
+        this.headers += header + "\r\n"; // Cambio temporal 
+    }
+
     public String toString() {
         return method.toString() + this.url + this.protocolVersion + "\r\n" + this.headers + "\r\n" + this.body + "\r\n";
     }
