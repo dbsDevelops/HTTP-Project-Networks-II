@@ -1,0 +1,1 @@
+Para indicar el body de una request http la unica condicion es que sea lo ultimo en dicha request, sin etiqueta tras el \r\n y terminando con \r\n\r\n
