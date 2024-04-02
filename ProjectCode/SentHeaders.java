@@ -9,7 +9,8 @@ public class SentHeaders {
         this.headers = new ArrayList<>();
     }
 
-    public void addHeader(String header) {
+    public void addHeader(Enum headerType, String headerValue) {
+        String header = headerType.toString() + ": " + headerValue;
         this.headers.add(header);
     }
 }
