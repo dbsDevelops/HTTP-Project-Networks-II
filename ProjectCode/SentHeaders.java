@@ -10,9 +10,16 @@ public class SentHeaders {
         for (DictionaryHeaders headerType : DictionaryHeaders.values()) {
             addHeader(headerType, "");
         }
+        setValue(DictionaryHeaders.ACCEPT, "*/*");
+        setValue(DictionaryHeaders.ACCEPT_LANGUAGE, "en-US,en;q=0.5");
+        setValue(DictionaryHeaders.CONNECTION, "keep-alive");
+        setValue(DictionaryHeaders.CONTENT_LENGTH, "0");
+        setValue(DictionaryHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded");
+        setValue(DictionaryHeaders.USER_AGENT, "Mozilla/5.0");
+        setValue(DictionaryHeaders.DATE, getCurrentTime());
     }
 
-    public void addHeader(Enum headerType, String headerValue) {
+    public void addHeaderToHeaders(Enum headerType, String headerValue) {
         String header = headerType.toString() + ": " + headerValue;
         this.headers.add(header);
     }
@@ -32,6 +39,12 @@ public class SentHeaders {
                 this.headers.set(i, headerType.toString() + ": " + headerValue);
             }
         }
+    }
+
+    private String getCurrentTime() {
+        SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return format.format(new Date());
     }
 
     public String toString() {
