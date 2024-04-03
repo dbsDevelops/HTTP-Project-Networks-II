@@ -13,8 +13,8 @@ public class SentHeaders {
         setValue(DictionaryHeaders.ACCEPT, "*/*");
         setValue(DictionaryHeaders.ACCEPT_LANGUAGE, "en-US,en;q=0.5");
         setValue(DictionaryHeaders.CONNECTION, "keep-alive");
-        setValue(DictionaryHeaders.CONTENT_LENGTH, "0");
-        setValue(DictionaryHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded");
+        setValue(DictionaryHeaders.CONTENT_LENGTH, "0"); //Used for POST requests
+        setValue(DictionaryHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded"); //Used for POST requests
         setValue(DictionaryHeaders.USER_AGENT, "Mozilla/5.0");
         setValue(DictionaryHeaders.DATE, getCurrentTime());
     }
