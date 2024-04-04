@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SentHeaders {
     List<String> headers;
-    public SentHeaders(Enum method) {
+    public SentHeaders(Verbs method) {
         this.headers = new ArrayList<>();
         //DIVIDE THE HEADERS IN VERBS AND THE VALUE OF THE HEADER WILL CHAGE DEPENDING ON THE VERB
         for (DictionaryHeaders headerType : DictionaryHeaders.values()) {
