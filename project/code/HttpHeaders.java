@@ -1,6 +1,6 @@
-package ProjectCode;
+package project.code;
 
-public enum DictionaryHeaders {
+public enum HttpHeaders {
     ACCEPT("Accept"),
     //ACCEPT_CHARSET("Accept-Charset"),
     //ACCEPT_ENCODING("Accept-Encoding"),
@@ -36,7 +36,7 @@ public enum DictionaryHeaders {
 
     private String header;
 
-    DictionaryHeaders(String header) {
+    HttpHeaders(String header) {
         this.header = header;
     }
 

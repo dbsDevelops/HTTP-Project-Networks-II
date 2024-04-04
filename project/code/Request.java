@@ -1,4 +1,4 @@
-package ProjectCode;
+package project.code;
 
 public class Request {
     public Verbs method;
