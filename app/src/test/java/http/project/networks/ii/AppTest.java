@@ -5,16 +5,15 @@ package http.project.networks.ii;
 
 import org.junit.jupiter.api.Test;
 
-// import project.code.HttpClient;
-
 import static org.junit.jupiter.api.Assertions.*;
+import http.project.networks.ii.GreetClient;
 
 class AppTest {
     @Test 
     public void givenGreetingClient_whenServerRespondsWhenStarted_thenCorrect() {
-        // HttpClient client = new HttpClient();
-        // client.startConnection("127.0.0.1", 6666);
-        // String response = client.sendMessage("hello server");
-        // assertEquals("hello client", response);
+        GreetClient client = new GreetClient();
+        client.startConnection("127.0.0.1", 6666);
+        String response = client.sendMessage("hello server");
+        assertEquals("hello client", response);
     }
 }
