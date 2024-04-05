@@ -43,6 +43,6 @@ public class GreetServer {
     
     public static void main(String[] args) {
         GreetServer server = new GreetServer();
-        server.start(6666);
+        server.start(80);
     }
 }

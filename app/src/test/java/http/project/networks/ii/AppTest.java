@@ -12,7 +12,7 @@ class AppTest {
     @Test 
     public void givenGreetingClient_whenServerRespondsWhenStarted_thenCorrect() {
         GreetClient client = new GreetClient();
-        client.startConnection("127.0.0.1", 6666);
+        client.startConnection("http://pruebahttpusj.free.beeceptor.com/", 80);
         String response = client.sendMessage("hello server");
         assertEquals("hello client", response);
     }
