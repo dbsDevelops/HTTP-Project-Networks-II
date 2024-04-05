@@ -3,10 +3,27 @@
  */
 package http.project.networks.ii;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class App {
     
     public static void main(String[] args) {
-        System.out.println("Hello Github!");
+        
+        GreetClient client = new GreetClient();
+
+        try {
+
+            URL beeceptor = new URL("http://redestest.free.beeceptor.com/cat.jpg");
+            Request request = new Request(Verbs.GET, beeceptor, "HTTP/1.1");
+            System.out.println(request.toString());
+            client.sendRequest(beeceptor, request);
+
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
     
 }

@@ -1,25 +1,26 @@
 package http.project.networks.ii;
 
+import java.net.URL;
+
 public class Request {
     public Verbs method;
-    public String url;
+    public URL url;
     public String protocolVersion;
-    public String headers; //Cambio a Headers headers (GERMAN)
-    public String body; //Posible cambio a Body body (GERMAN)
+    public SentHeaders headers; //Cambio a Headers headers (GERMAN)
+    //public String body; //Posible cambio a Body body (GERMAN)
 
-    public Request(Verbs method,String url, String protocolVersion, String headers, String body) {
+    public Request(Verbs method,URL url, String protocolVersion) {
         this.method = method;
         this.url = url;
         this.protocolVersion = protocolVersion;
-        this.headers = headers;
-        this.body = body;
-    }
-
-    public void addHeader(String header) {
-        this.headers += header + "\r\n"; // Cambio temporal 
+        this.headers = new SentHeaders(method, url);
+        //this.body = body;
     }
 
     public String toString() {
-        return method.toString() + this.url + this.protocolVersion + "\r\n" + this.headers + "\r\n" + this.body + "\r\n";
+        StringBuilder request = new StringBuilder();
+        request.append(this.method.toString() + " " + url.getPath() + " " + this.protocolVersion + "\r\n");
+        request.append(this.headers.toString());
+        return request.toString();
     }
 }

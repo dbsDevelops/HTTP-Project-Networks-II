@@ -17,7 +17,7 @@ public enum HttpHeaders {
     //EXPECT("Expect"),
     //FORWARDED("Forwarded"),
     //FROM("From"),
-    //HOST("Host"), !!!
+    HOST("Host"),
     //IF_MATCH("If-Match"),
     //IF_MODIFIED_SINCE("If-Modified-Since"),
     //IF_NONE_MATCH("If-None-Match"),

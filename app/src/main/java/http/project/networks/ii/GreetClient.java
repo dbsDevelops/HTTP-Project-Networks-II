@@ -3,37 +3,36 @@ import java.net.*;
 import java.io.*;   
 
 public class GreetClient {
-    private Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
 
-    public void startConnection(String ip, int port) {
-        try {
-            clientSocket = new Socket(ip, port);
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public void sendRequest(URL url, Request request) {
 
-    public String sendMessage(String msg) {
-        try {
-            out.println(msg);
-            return in.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+        String host = url.getHost();
+        int puerto = 80; //
 
-    public void stopConnection() {
-        try {
-            in.close();
-            out.close();
-            clientSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        try(Socket socket = new Socket(host, puerto)){
+
+            OutputStream os = socket.getOutputStream();
+            PrintWriter pw = new PrintWriter(os, true);
+
+            pw.println(request.toString());
+            pw.println();
+
+            // Handling the server response:
+            InputStream is = socket.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            String linea;
+            linea = br.readLine();
+            while (linea != null){
+                System.out.println(linea);
+                linea = br.readLine();
+            }
+
+        } catch(UnknownHostException e){
+            System.err.println("Server not found: " + e.getMessage());
+
+        } catch(IOException e){
+            System.err.println("I/O error: " + e.getMessage());
         }
     }
 }
