@@ -9,7 +9,7 @@ public class GreetServer {
     private BufferedReader in;
 
     public GreetServer() {
-
+        // empty constructor
     }
 
     public void start(int port) {
