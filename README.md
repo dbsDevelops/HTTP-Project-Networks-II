@@ -1,6 +1,6 @@
 # 📘 HTTP-Project-Networks-II
 This is a repository for our project, creating an HTTP server and client from scratch. 
-Group composed of: Daniel Buxton, Juan Ariza, Iván Royo, German Aguilar and Raquel Pérez.
+Group composed of: Daniel Buxton, Juan Ariza, Iván Royo and German Aguilar.
 
 ## ✅ Trello Board
 https://trello.com/b/RvijUP3N/http
