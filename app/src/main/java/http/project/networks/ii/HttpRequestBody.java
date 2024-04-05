@@ -20,6 +20,7 @@ public class HttpRequestBody {
         } else if (type == HttpBodyType.XML) {
             System.out.println("Please enter the XML body: ");
         }
+        
     }
 
     public void buildRawBody(String content) {
