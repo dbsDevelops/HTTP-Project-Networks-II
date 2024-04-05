@@ -11,6 +11,8 @@ public class GreetClient {
 
         try(Socket socket = new Socket(host, puerto)){
 
+            socket.setSoTimeout(5000); //TODO: manage this through our GreetServer class
+
             OutputStream os = socket.getOutputStream();
             PrintWriter pw = new PrintWriter(os, true);
 
@@ -27,12 +29,11 @@ public class GreetClient {
                 System.out.println(linea);
                 linea = br.readLine();
             }
-
         } catch(UnknownHostException e){
             System.err.println("Server not found: " + e.getMessage());
 
         } catch(IOException e){
             System.err.println("I/O error: " + e.getMessage());
-        }
+        } 
     }
 }
