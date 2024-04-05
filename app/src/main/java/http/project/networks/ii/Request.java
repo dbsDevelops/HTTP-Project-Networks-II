@@ -9,12 +9,12 @@ public class Request {
     public SentHeaders headers; //Cambio a Headers headers (GERMAN)
     public HttpRequestBody body; 
 
-    public Request(Verbs method,URL url, String protocolVersion, HttpBodyType bodyType) {
+    public Request(Verbs method,URL url, String protocolVersion, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
         this.url = url;
         this.protocolVersion = protocolVersion;
         this.headers = new SentHeaders(method, url);
-        this.body = new HttpRequestBody(bodyType);
+        this.body = new HttpRequestBody(bodyType, bodyContent);
     }
 
     public String toString() {
