@@ -1,4 +1,4 @@
-package project.code;
+package http.project.networks.ii;
 
 public enum HttpHeaders {
     ACCEPT("Accept"),
