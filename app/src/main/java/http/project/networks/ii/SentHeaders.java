@@ -62,10 +62,10 @@ public class SentHeaders {
     }
 
     public String toString() {
-        String headers = "";
+        StringBuilder headersString = new StringBuilder();
         for (String header : this.headers) {
-            headers += header + "\r\n";
+            headersString.append(header).append("\r\n");
         }
-        return headers;
+        return headersString.toString();
     }
 }
