@@ -15,7 +15,7 @@ public class App {
         try {
 
             URL beeceptor = new URL("http://redestest.free.beeceptor.com/cat.jpg");
-            Request request = new Request(Verbs.GET, beeceptor, "HTTP/1.1");
+            Request request = new Request(Verbs.PUT, beeceptor, "HTTP/1.1", HttpBodyType.RAW, "Franciscord Packet Tracer");
             System.out.println(request.toString());
             client.sendRequest(beeceptor, request);
 

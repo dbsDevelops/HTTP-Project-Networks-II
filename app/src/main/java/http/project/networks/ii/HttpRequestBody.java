@@ -10,21 +10,40 @@ public class HttpRequestBody {
         if (type == HttpBodyType.RAW) {
             buildRawBody(this.content);
         } else if (type == HttpBodyType.FORM) {
-            System.out.println("Please enter the form body: ");
+            buildFormBody(this.content);
         } else if (type == HttpBodyType.JSON) {
-            System.out.println("Please enter the JSON body: ");
+            buildJsonBody(this.content);
         } else if (type == HttpBodyType.FILE) {
-            System.out.println("Please enter the file body: ");
+            buildFileBody(this.content);
         } else if (type == HttpBodyType.GRAPHQL) {
-            System.out.println("Please enter the GraphQL body: ");
+            buildGraphQLBody(this.content);
         } else if (type == HttpBodyType.XML) {
-            System.out.println("Please enter the XML body: ");
+            buildXmlBody(this.content);
         }
-        
     }
 
     public void buildRawBody(String content) {
         System.out.println("Raw body: " + content);
+    }
+
+    public void buildFormBody(String content) {
+        System.out.println("Form body: " + content);
+    }
+
+    public void buildJsonBody(String content) {
+        System.out.println("JSON body: " + content);
+    }
+
+    public void buildFileBody(String content) {
+        System.out.println("File body: " + content);
+    }
+
+    public void buildGraphQLBody(String content) {
+        System.out.println("GraphQL body: " + content);
+    }
+
+    public void buildXmlBody(String content) {
+        System.out.println("XML body: " + content);
     }
 
     public void setType(HttpBodyType type) {
