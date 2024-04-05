@@ -11,13 +11,16 @@ public class SentHeaders {
         for (HttpHeaders headerType : HttpHeaders.values()) {
             addHeader(headerType, "");
         }
-        setValue(HttpHeaders.ACCEPT, "*/*");
-        setValue(HttpHeaders.ACCEPT_LANGUAGE, "en-US,en;q=0.5");
-        setValue(HttpHeaders.CONNECTION, "keep-alive");
-        setValue(HttpHeaders.CONTENT_LENGTH, "0"); //Used for POST requests
-        setValue(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded"); //Used for POST requests
-        setValue(HttpHeaders.USER_AGENT, "Mozilla/5.0");
-        setValue(HttpHeaders.DATE, getCurrentTime());
+        setValue(DictionaryHeaders.ACCEPT, "/");
+        setValue(DictionaryHeaders.ACCEPT_LANGUAGE, "en-US,en;q=0.5");
+        setValue(DictionaryHeaders.CONNECTION, "keep-alive");
+        setValue(DictionaryHeaders.USER_AGENT, "Mozilla/5.0");
+        setValue(DictionaryHeaders.DATE, getCurrentTime());
+    
+        if (verb == Verb.POST || verb == Verb.PUT) {
+            setValue(DictionaryHeaders.CONTENT_LENGTH, "0"); //Used for POST and PUT requests
+            setValue(DictionaryHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded"); //Used for POST and PUT requests
+        }
     }
 
     public void addHeaderToHeaders(Enum headerType, String headerValue) {
