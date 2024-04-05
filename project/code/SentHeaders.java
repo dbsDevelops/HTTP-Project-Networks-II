@@ -28,21 +28,25 @@ public class SentHeaders {
         this.headers.add(header);
     }
 
-    public String getValue(Enum headerType) {
+    public String getValue(HttpHeaders headerType) {
         for (String header : this.headers) {
-            if (header.contains(headerType.toString())) {
-                return header.split(": ")[1];
+            String[] parts = header.split(": ", 2);
+            if (parts[0].equals(headerType.toString())) {
+                return parts[1]; // Value of the header type found
             }
         }
-        return null;
+        throw new IllegalArgumentException("The header "+ headerType + " is not found in HttpHeaders: ");
     }
     
-    public void setValue(Enum headerType, String headerValue) {
+    public void setValue(HttpHeaders headerType, String headerValue) {
         for (int i = 0; i < this.headers.size(); i++) {
-            if (this.headers.get(i).contains(headerType.toString())) {
+            String[] parts = this.headers.get(i).split(": ", 2);
+            if (parts[0].equals(headerType.toString())) {
                 this.headers.set(i, headerType.toString() + ": " + headerValue);
+                return;
             }
         }
+        throw new IllegalArgumentException("The header "+ headerType + " is not found in HttpHeaders: ");
     }
 
     private String getCurrentTime() {
