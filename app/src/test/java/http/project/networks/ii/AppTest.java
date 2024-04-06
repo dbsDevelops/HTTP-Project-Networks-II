@@ -6,14 +6,58 @@ package http.project.networks.ii;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import http.project.networks.ii.GreetClient;
 
 class AppTest {
+
+    @Test
+    public void testUrlSelection() {
+        // Mock the necessary parts to simulate URL selection.
+        // Assert that the selected URL is the one expected.
+    }
+
+    @Test
+    public void testGetVerbUsage() {
+        // Mock a GET request and assert correct behavior.
+    }
+
+    @Test
+    public void testHeadVerbUsage() {
+        // Mock a HEAD request and assert correct behavior.
+    }
+
+    @Test
+    public void testPutVerbUsage() {
+        // Mock a PUT request and assert correct behavior.
+    }
+
     @Test 
-    public void givenGreetingClient_whenServerRespondsWhenStarted_thenCorrect() {
-        // GreetClient client = new GreetClient();
-        // client.startConnection("http://pruebahttpusj.free.beeceptor.com/", 80);
-        // String response = client.sendMessage("hello server");
-        // assertEquals("hello client", response);
+    public void testPostVerbUsage() {
+        // Mock a POST request and assert correct behavior.
+    }
+
+    @Test
+    public void testDeleteVerbUsage() {
+        // Mock a DELETE request and assert correct behavior.
+    }
+
+    @Test
+    void testArbitraryHeaderAddition() {
+        // Mock a request adding an arbitrary header and assert its presence.
+    }
+
+    @Test
+    void testRequestBodySpecification() {
+        // Mock sending a request with a body and verify the body content.
+        //TODO: Add the necessary tests for all body types: RAW, FORM, JSON, FILE, GRAPHQL, XML, etc.
+    }
+
+    @Test
+    void testSuccessiveRequests() {
+        // Ensure the application can send successive requests without needing a restart.
     }
 }
