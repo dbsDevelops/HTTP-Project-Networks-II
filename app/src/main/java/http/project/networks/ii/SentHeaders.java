@@ -13,19 +13,23 @@ public class SentHeaders {
     public SentHeaders(Verbs method, URL url) {
         this.headers = new ArrayList<>();
         //DIVIDE THE HEADERS IN VERBS AND THE VALUE OF THE HEADER WILL CHAGE DEPENDING ON THE VERB
+        /* 
         for (HttpHeaders headerType : HttpHeaders.values()) {
             addHeaderToHeaders(headerType, "");
         }
-        setValue(HttpHeaders.HOST, url.getHost());
-        setValue(HttpHeaders.ACCEPT, "/");
-        setValue(HttpHeaders.ACCEPT_LANGUAGE, "en-US,en;q=0.5");
-        setValue(HttpHeaders.CONNECTION, "keep-alive");
-        setValue(HttpHeaders.USER_AGENT, "Mozilla/5.0");
-        setValue(HttpHeaders.DATE, getCurrentTime());
+        */
+
+        // ADDING BASIC HEADERS FOR THE REQUEST MANUALLY
+        addHeaderToHeaders(HttpHeaders.HOST, url.getHost());
+        addHeaderToHeaders(HttpHeaders.ACCEPT, "/");
+        addHeaderToHeaders(HttpHeaders.ACCEPT_LANGUAGE, "en-US,en;q=0.5");
+        addHeaderToHeaders(HttpHeaders.CONNECTION, "keep-alive");
+        addHeaderToHeaders(HttpHeaders.USER_AGENT, "Mozilla/5.0");
+        addHeaderToHeaders(HttpHeaders.DATE, getCurrentTime());
     
         if (method == Verbs.POST || method == Verbs.PUT) {
-            setValue(HttpHeaders.CONTENT_LENGTH, "0"); //Used for POST and PUT requests
-            setValue(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded"); //Used for POST and PUT requests
+            addHeaderToHeaders(HttpHeaders.CONTENT_LENGTH, "0"); //Used for POST and PUT requests
+            addHeaderToHeaders(HttpHeaders.CONTENT_TYPE, ""); //Used for POST and PUT requests
         }
     }
 
