@@ -9,7 +9,7 @@ public class Request {
     public SentHeaders headers; 
     public HttpRequestBody body; 
 
-    public Request(Verbs method,URL url, String protocolVersion, SentHeaders headers, HttpBodyType bodyType, String bodyContent) {
+    public Request(Verbs method,URL url, String protocolVersion, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
         this.url = url;
         this.protocolVersion = protocolVersion;
@@ -25,9 +25,10 @@ public class Request {
     }
 
     public String toString() {
-        StringBuilder request = new StringBuilder();
-        request.append(this.method.toString() + " " + url.getPath() + " " + this.protocolVersion + "\r\n");
-        request.append(this.headers.toString());
-        return request.toString();
+        String request = new String();
+        request += this.method.toString() + " " + url.getPath() + " " + this.protocolVersion + "\r\n";
+        request += this.headers.toString() + "\r\n";
+        request += this.body.getContent() + "\r\n";
+        return request;
     }
 }

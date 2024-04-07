@@ -14,20 +14,14 @@ public class App {
 
         try {
             //Create a new request
-            Verbs method = Verbs.PUT;                                                           //Method to send the request
-            URL url = new URL("http://redestest.free.beeceptor.com/cat.jpg");              //URL to send the request
-            String protocolVersion = "HTTP/1.1";                                                //Protocol version
-            SentHeaders headers = new SentHeaders(method, url);                                 //Headers to send the request
-            headers.setValue(HttpHeaders.HOST, url.getHost());                                  
-            headers.setValue(HttpHeaders.ACCEPT, "text/html");                      
-            headers.setValue(HttpHeaders.USER_AGENT, "Mozilla/5.0");                
-            headers.setValue(HttpHeaders.CONNECTION, "keep-alive");                 
-            headers.setValue(HttpHeaders.ACCEPT_LANGUAGE, "en-US,en;q=0.9");        
+            Verbs method = Verbs.POST;                                                           //Method to send the request
+            URL url = new URL("http://redestest.free.beeceptor.com/");              //URL to send the request
+            String protocolVersion = "HTTP/1.1";                                                //Protocol version     
             HttpBodyType bodyType = HttpBodyType.RAW;                                           //Body type
-            String bodyContent = "This is the body content";                                    //Body content
+            String bodyContent = "Hola";                                   //Body content
 
             //Send the request
-            Request request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
+            Request request = new Request(method, url, protocolVersion, bodyType, bodyContent);
             System.out.println(request.toString());
             client.sendRequest(url, request);
 

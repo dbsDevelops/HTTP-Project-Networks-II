@@ -17,7 +17,6 @@ public class GreetClient {
             PrintWriter pw = new PrintWriter(os, true);
 
             pw.println(request.toString());
-            pw.println();
 
             // Handling the server response:
             InputStream is = socket.getInputStream();
