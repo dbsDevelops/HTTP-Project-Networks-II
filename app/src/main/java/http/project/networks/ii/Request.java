@@ -6,14 +6,14 @@ public class Request {
     public Verbs method;
     public URL url;
     public String protocolVersion;
-    public SentHeaders headers; //Cambio a Headers headers (GERMAN)
+    public SentHeaders headers; 
     public HttpRequestBody body; 
 
-    public Request(Verbs method,URL url, String protocolVersion, HttpBodyType bodyType, String bodyContent) {
+    public Request(Verbs method,URL url, String protocolVersion, SentHeaders headers, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
         this.url = url;
         this.protocolVersion = protocolVersion;
-        this.headers = new SentHeaders(method, url);
+        this.headers = headers;
         if(this.method == Verbs.GET || this.method == Verbs.DELETE) {
             this.body = new HttpRequestBody(HttpBodyType.RAW, "");
         } else { //POST, PUT, HEAD
