@@ -15,7 +15,8 @@ public class GreetClient {
 
             OutputStream os = socket.getOutputStream();
             PrintWriter pw = new PrintWriter(os, true);
-
+            // DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+            // out.writeUTF(request.toString());
             pw.println(request.toString());
 
             // Handling the server response:
