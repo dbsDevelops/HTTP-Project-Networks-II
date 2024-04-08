@@ -3,6 +3,7 @@ package http.project.networks.ii;
 import java.net.URL;
 
 public class Request {
+    public static final String END_LINE = "\r\n";
     public Verbs method;
     public URL url;
     public String protocolVersion;
@@ -25,10 +26,16 @@ public class Request {
     }
 
     public String toString() {
-        String request = new String();
-        request += this.method.toString() + " " + url.getPath() + " " + this.protocolVersion + "\r\n";
-        request += this.headers.toString() + "\r\n";
-        request += this.body.getContent() + "\r\n";
-        return request;
+        StringBuilder request = new StringBuilder();
+        request.append(this.method.toString());
+        request.append(" ");
+        request.append(url.getPath());
+        request.append(" ");
+        request.append(this.protocolVersion);
+        request.append(END_LINE);
+        request.append(this.headers.toString());
+        request.append(this.body.getContent());
+        request.append(END_LINE);
+        return request.toString();
     }
 }
