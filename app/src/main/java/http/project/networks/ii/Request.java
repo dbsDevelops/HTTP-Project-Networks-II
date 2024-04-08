@@ -14,14 +14,14 @@ public class Request {
         this.method = method;
         this.url = url;
         this.protocolVersion = protocolVersion;
-        this.headers = new SentHeaders(method, url);
+        this.headers = new SentHeaders(url);
         if(this.method == Verbs.GET || this.method == Verbs.HEAD) {
             this.body = new HttpRequestBody(HttpBodyType.RAW, "");
         } else { //POST, PUT, DELETE
             this.body = new HttpRequestBody(bodyType, bodyContent);
             //Set the new values for the headers content-length and content-type
-            this.headers.setValue(HttpHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
-            this.headers.setValue(HttpHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
+            this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
+            this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
         }
     }
 
@@ -34,6 +34,7 @@ public class Request {
         request.append(this.protocolVersion);
         request.append(END_LINE);
         request.append(this.headers.toString());
+        request.append(END_LINE);
         request.append(this.body.getContent());
         request.append(END_LINE);
         return request.toString();

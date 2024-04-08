@@ -15,10 +15,10 @@ public class App {
         try {
             //Create a new request
             Verbs method = Verbs.POST;                                                           //Method to send the request
-            URL url = new URL("http://redestest.free.beeceptor.com/");              //URL to send the request
+            URL url = new URL("http://redestest3.free.beeceptor.com/");              //URL to send the request
             String protocolVersion = "HTTP/1.1";                                                //Protocol version     
             HttpBodyType bodyType = HttpBodyType.RAW;                                           //Body type
-            String bodyContent = "Hola";                                   //Body content
+            String bodyContent = "Hola esto es un ejemplo";                                   //Body content
 
             //Send the request
             Request request = new Request(method, url, protocolVersion, bodyType, bodyContent);

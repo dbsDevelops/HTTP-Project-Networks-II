@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SentHeaders {
     List<String> headers;
-    public SentHeaders(Verbs method, URL url) {
+    public SentHeaders(URL url) {
         this.headers = new ArrayList<>();
         //DIVIDE THE HEADERS IN VERBS AND THE VALUE OF THE HEADER WILL CHAGE DEPENDING ON THE VERB
         /* 
@@ -26,15 +26,10 @@ public class SentHeaders {
         addHeaderToHeaders(HttpHeaders.CONNECTION, "keep-alive");
         addHeaderToHeaders(HttpHeaders.USER_AGENT, "Mozilla/5.0");
         addHeaderToHeaders(HttpHeaders.DATE, getCurrentTime());
-    
-        if (method == Verbs.POST || method == Verbs.PUT) {
-            addHeaderToHeaders(HttpHeaders.CONTENT_LENGTH, "0"); //Used for POST and PUT requests
-            addHeaderToHeaders(HttpHeaders.CONTENT_TYPE, ""); //Used for POST and PUT requests
-        }
     }
 
     public void addHeaderToHeaders(HttpHeaders headerType, String headerValue) {
-        String header = headerType.toString() + ": " + headerValue;
+        String header = headerType.getHeader() + ": " + headerValue;
         this.headers.add(header);
     }
 

@@ -59,7 +59,7 @@ public class HttpRequestBody {
     }
 
     public int getContentLength() {
-        return this.content.length() + 3;
+        return this.content.length();
     }
 
     public String toString() {
