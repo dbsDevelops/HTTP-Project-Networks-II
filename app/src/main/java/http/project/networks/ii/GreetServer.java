@@ -6,6 +6,7 @@ public class GreetServer {
     
     public GreetServer() {
         // empty constructor
+        
     }
 
 }

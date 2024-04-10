@@ -6,7 +6,7 @@ package http.project.networks.ii;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class App {
+public class ClientApp {
     
     public static void main(String[] args) {
         
