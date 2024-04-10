@@ -7,7 +7,7 @@ public class GreetClient {
     public void sendRequest(URL url, Request request) {
 
         String host = url.getHost();
-        int puerto = 80; //
+        int puerto = 8081; //
 
         try(Socket socket = new Socket(host, puerto)){
 
