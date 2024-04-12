@@ -48,8 +48,11 @@ public class ServerApp {
                 String[] urlParts = request.url.getPath().split("/");
                 
 
-                if (urlParts[1].equals("teachers")) {
-                    response = apiTeachers.readRequest(request);
+                if (urlParts.length > 1) {
+                    if(urlParts[1].equals("teachers")){
+                        response = apiTeachers.readRequest(request);
+                    }
+                    
                 }
                 else {
                     // teapod response
