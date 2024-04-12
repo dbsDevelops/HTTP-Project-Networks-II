@@ -29,4 +29,13 @@ public enum HttpBodyType {
     public String getBodyType() {
         return this.bodyType;
     }
+
+    public static HttpBodyType parse(String bodyType) {
+        for (HttpBodyType type : HttpBodyType.values()) {
+            if (type.getBodyType().equals(bodyType)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("The body type " + bodyType + " is not supported");
+    }
 }

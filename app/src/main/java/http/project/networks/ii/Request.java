@@ -94,7 +94,7 @@ public class Request {
         SentHeaders sentHeaders = SentHeaders.parse(headers);
 
         String bodyTypeStr = sentHeaders.getValue(HttpHeaders.CONTENT_TYPE); //Error al leer el CONTENT_TYPE
-        HttpBodyType bodyType = HttpBodyType.RAW;
+        HttpBodyType bodyType = HttpBodyType.parse(bodyTypeStr);
         // RAW("text/plain"), 
         // FORM("application/x-www-form-urlencoded"), 
         // JSON("application/json"), 

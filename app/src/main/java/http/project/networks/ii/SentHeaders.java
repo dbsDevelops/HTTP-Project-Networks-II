@@ -36,7 +36,7 @@ public class SentHeaders {
     public String getValue(HttpHeaders headerType) {
         for (String header : this.headers) {
             String[] parts = header.split(": ", 2);
-            if (parts[0].equals(headerType.toString())) {
+            if (parts[0].equals(headerType.getHeader())) {
                 return parts[1]; // Value of the header type found
             }
         }
