@@ -67,4 +67,22 @@ public class SentHeaders {
         }
         return headersString.toString();
     }
+
+    public static SentHeaders parse(String string) {
+        String[] headers = string.split("\r\n");
+        URL url = null;
+        try {
+            url = new URL("http://" + headers[1].split(" ")[1]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        SentHeaders sentHeaders = new SentHeaders(url);
+        for (String header : headers) {
+            String[] parts = header.split(": ", 2);
+            HttpHeaders headerType = HttpHeaders.parse(parts[0]);
+            sentHeaders.addHeaderToHeaders(headerType, parts[1]);
+        }
+        return sentHeaders;
+    }
 }
