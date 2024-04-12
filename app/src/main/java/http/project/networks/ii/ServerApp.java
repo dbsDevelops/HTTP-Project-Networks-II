@@ -35,14 +35,26 @@ public class ServerApp {
                     
                 }
                 OutputStream clientOutput = clientSocket.getOutputStream();
-                // clientOutput.write("HTTP/1.1 200 OK\r\n".getBytes());
-                // clientOutput.write("\r\n".getBytes());
-                // clientOutput.write("<b>Welcome To Asim Code!</b>".getBytes());
-                // clientOutput.write("\r\n\r\n".getBytes());
-
                 Request request = Request.parse(requeststr);
-                
-                String response = apiTeachers.readRequest(request);
+
+                String response = "";
+
+                String[] urlParts = request.url.getPath().split("/");
+                String path = "";
+                for (String part : urlParts) {
+                    if (part.isEmpty()) {
+                    continue;
+                    }
+                    path += "/" + part;
+                }
+
+                if (path.equals("/teachers")) {
+                    response = apiTeachers.readRequest(request);
+                }
+                else {
+                    // teapod response
+                    response = new Response(418, "I'm a teapot", "I'm a teapot").toString();
+                }
                 
                 System.out.println("Response: \n" + response);
 

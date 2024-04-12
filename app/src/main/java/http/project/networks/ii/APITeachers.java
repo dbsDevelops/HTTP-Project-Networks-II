@@ -31,10 +31,11 @@ public class APITeachers {
             }
             path += "/" + part;
         }
-
-        System.out.println("Path: " + path);
         
         switch (request.method) {
+            case HEAD:
+                response = new Response(200, "OK", "Estimate response size: " + teachers.toString().getBytes().length);
+                break;
             case GET:
                 if (path.equals("/teachers")) {
                     response = new Response(200, "OK", teachers.toString());
