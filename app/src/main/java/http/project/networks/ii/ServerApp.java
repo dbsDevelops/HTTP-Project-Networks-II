@@ -37,18 +37,18 @@ public class ServerApp {
                 OutputStream clientOutput = clientSocket.getOutputStream();
                 Request request = Request.parse(requeststr);
 
+                System.out.println("Request: \n" + requeststr + "\n-----------");
+
+                System.out.println("Request bodytype: " + request.body.getType().getBodyType());
+                System.out.println("Request bodycontent: " + request.body.getContent());
+                System.out.println("-------");
+
                 String response = "";
 
                 String[] urlParts = request.url.getPath().split("/");
-                String path = "";
-                for (String part : urlParts) {
-                    if (part.isEmpty()) {
-                    continue;
-                    }
-                    path += "/" + part;
-                }
+                
 
-                if (path.equals("/teachers")) {
+                if (urlParts[1].equals("teachers")) {
                     response = apiTeachers.readRequest(request);
                 }
                 else {

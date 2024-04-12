@@ -79,20 +79,57 @@ public class Request {
         String protocolVersion = firstLine[2];
 
         String headers = "";
+        int headersCount = 0;
         for (int k = 1; k < lines.length; k++) {
             if (lines[k].equals("")) {
                 break;
             }
             else {
                 headers += lines[k] + "\r\n";
+                headersCount++;
             }
         }
         headers = headers.substring(0, headers.length() - 2);
 
         SentHeaders sentHeaders = SentHeaders.parse(headers);
 
+        String bodyTypeStr = sentHeaders.getValue(HttpHeaders.CONTENT_TYPE); //Error al leer el CONTENT_TYPE
         HttpBodyType bodyType = HttpBodyType.RAW;
+        // RAW("text/plain"), 
+        // FORM("application/x-www-form-urlencoded"), 
+        // JSON("application/json"), 
+        // FILE("multipart/form-data"), 
+        // GRAPHQL("application/graphql"),
+        // XML("application/xml");
+
+        switch (bodyTypeStr) {
+            case "text/plain":
+                bodyType = HttpBodyType.RAW;
+                break;
+            case "application/x-www-form-urlencoded":
+                bodyType = HttpBodyType.FORM;
+                break;
+            case "application/json":
+                bodyType = HttpBodyType.JSON;
+                break;
+            case "multipart/form-data":
+                bodyType = HttpBodyType.FILE;
+                break;
+            case "application/graphql":
+                bodyType = HttpBodyType.GRAPHQL;
+                break;
+            case "application/xml":
+                bodyType = HttpBodyType.XML;
+                break;
+            default:
+                throw new IllegalArgumentException("The body type " + bodyType + " is not supported");
+        }
+
+        
         String bodyContent = "";
+        for (int k = headersCount + 2; k < lines.length; k++) {
+            bodyContent += lines[k] + "\r\n";
+        }
         
 
 

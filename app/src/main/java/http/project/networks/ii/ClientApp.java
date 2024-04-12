@@ -14,8 +14,8 @@ public class ClientApp {
 
         try {
             //Create a new request
-            Verbs method = Verbs.GET;                                                           //Method to send the request
-            URL url = new URL("http://localhost/teachers");                     //URL to send the request
+            Verbs method = Verbs.POST;                                                           //Method to send the request
+            URL url = new URL("http://localhost");                     //URL to send the request
             String protocolVersion = "HTTP/1.1";                                                 //Protocol version  
             SentHeaders headers = new SentHeaders(url);                                          //Headers
             HttpBodyType bodyType = HttpBodyType.RAW;                                            //Body type
