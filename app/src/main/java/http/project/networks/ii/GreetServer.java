@@ -14,7 +14,7 @@ public class GreetServer {
 
     public void initServer() {
 
-        int port = HTTPUtils.HTTP_PORT;
+        int port = HttpUtils.HTTP_PORT;
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.err.println("Server is running on port: "+port);
