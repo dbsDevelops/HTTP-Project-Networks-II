@@ -1,4 +1,6 @@
+package http.project.networks.ii;
 public enum ServerStatusCodes {
+    
     CONTINUE_100("100 Continue"), 
     SWITCHING_PROTOCOLS_101("101 Switching Protocols"), 
     PROCESSING_102("102 Processing"), 
@@ -74,4 +76,14 @@ public enum ServerStatusCodes {
     SITE_IS_FROZEN_530("530 Site is frozen"),
     NETWORK_READ_TIMEOUT_ERROR_598("598 Network read timeout error"),
     NETWORK_CONNECT_TIMEOUT_ERROR_599("599 Network connect timeout error");
+
+    private String statusString;
+
+    ServerStatusCodes(String string) {
+        this.statusString = string;
+    }
+
+    public String getStatusString() {
+        return this.statusString;
+    }
 }
