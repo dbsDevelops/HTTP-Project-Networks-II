@@ -3,8 +3,11 @@ import java.net.*;
 import java.io.*;
 
 public class GreetServer {
-    
+
+    private static final int MAXIMUM_NUMBER_OF_REQUEST_PARTS = 2;
+
     APITeachers apiTeachers;
+    
     //List<Socket> connections;
     public GreetServer() {
         this.apiTeachers = new APITeachers();
@@ -17,10 +20,10 @@ public class GreetServer {
         int port = HttpUtils.HTTP_PORT;
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.err.println("Server is running on port: "+port);
+            System.out.println(HttpUtils.SERVER_IS_RUNNING_ON_PORT + port);
             while(true){
                 Socket clientSocket = serverSocket.accept();
-                System.err.println("Client connected");
+                System.out.println(HttpUtils.CLIENT_CONNECTED);
                 new Thread(new Runnable(){
                     @Override
                     public void run() {   
@@ -39,7 +42,7 @@ public class GreetServer {
                 }).start();
             }
         } catch (IOException e) {
-            System.err.println("Could not listen on port " + port);
+            System.err.println(HttpUtils.COULD_NOT_LISTEN_ON_PORT + port);
             System.exit(-1);
         }
 
@@ -58,7 +61,7 @@ public class GreetServer {
                     requestParts++;
                 }
 
-                if(requestParts >= 2){
+                if(requestParts >= MAXIMUM_NUMBER_OF_REQUEST_PARTS){
                     break;
                 }
                     
@@ -80,10 +83,10 @@ public class GreetServer {
         }
         else {
             // teapot response
-            response = new Response(ServerStatusCodes.IM_A_TEAPOT_418.toString(), "I'm a teapot").toString();
+            response = new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), "I'm a teapot").toString();
         }
         
-        System.out.println("Response: \n" + response);
+        System.out.println(HttpUtils.RESPONSE + response);
 
         clientOutput.write(response.getBytes());
     

@@ -1,14 +1,7 @@
 package http.project.networks.ii;
+import http.project.networks.ii.HttpUtils;
 
 public class APITeachers {
-
-    private static final String SLASH_CHARACTER = "/";
-    private static final String TEACHERS_PATH = "/teachers";
-    private static final String RESOURCE_NOT_FOUND = "Resource not found";
-    private static final String RESOURCE_CREATED = "Resource created";
-    private static final String RESOURCE_UPDATED = "Resource updated";
-    private static final String RESOURCE_DELETED = "Resource deleted";
-    private static final String METHOD_NOT_ALLOWED = "Method not allowed";
 
     TeachersClass teachers;
 
@@ -31,49 +24,51 @@ public class APITeachers {
     public String readRequest(Request request) {
         Response response = null;
         String url = request.url.getPath();
-        String[] urlParts = url.split(SLASH_CHARACTER);
+        String[] urlParts = url.split(HttpUtils.SLASH_CHARACTER);
         StringBuilder path = new StringBuilder();
+        // ...
+
         for (String part : urlParts) {
             if (part.isEmpty()) {
                 continue;
             }
-            path.append(SLASH_CHARACTER).append(part);
+            path.append(HttpUtils.SLASH_CHARACTER).append(part);
         }
         
         switch (request.method) {
             case HEAD:
-                response = new Response(ServerStatusCodes.OK_200.toString(), "Estimate response size: " + teachers.toString().getBytes().length);
+                response = new Response(ServerStatusCodes.OK_200.getStatusString(), HttpUtils.ESTIMATED_RESPONSE_SIZE + teachers.toString().getBytes().length);
                 break;
             case GET:
-                if (path.toString().equals(TEACHERS_PATH)) {
-                    response = new Response(ServerStatusCodes.OK_200.toString(), teachers.toString());
+                if (path.toString().equals(HttpUtils.TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.OK_200.getStatusString(), teachers.toString());
                 } else {
-                    response = new Response(ServerStatusCodes.NOT_FOUND_404.toString(), RESOURCE_NOT_FOUND);
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HttpUtils.RESOURCE_NOT_FOUND);
                 }
                 break;
             case POST:
-                if (path.toString().equals(TEACHERS_PATH)) {
-                    response = new Response(ServerStatusCodes.CREATED_201.toString(), RESOURCE_CREATED);
+                if (path.toString().equals(HttpUtils.TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.CREATED_201.getStatusString(), HttpUtils.RESOURCE_CREATED);
                 } else {
-                    response = new Response(ServerStatusCodes.NOT_FOUND_404.toString(), RESOURCE_NOT_FOUND);
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HttpUtils.RESOURCE_NOT_FOUND);
                 }
                 break;
             case PUT:
-                if (path.toString().equals(TEACHERS_PATH)) {
-                    response = new Response(ServerStatusCodes.OK_200.toString(), RESOURCE_UPDATED);
+                if (path.toString().equals(HttpUtils.TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.OK_200.getStatusString(), HttpUtils.RESOURCE_UPDATED);
                 } else {
-                    response = new Response(ServerStatusCodes.NOT_FOUND_404.toString(), RESOURCE_NOT_FOUND);
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HttpUtils.RESOURCE_NOT_FOUND);
                 }
                 break;
             case DELETE:
-                if (path.toString().equals(TEACHERS_PATH)) {
-                    response = new Response(ServerStatusCodes.OK_200.toString(), RESOURCE_DELETED);
+                if (path.toString().equals(HttpUtils.TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.OK_200.getStatusString(), HttpUtils.RESOURCE_DELETED);
                 } else {
-                    response = new Response(ServerStatusCodes.NOT_FOUND_404.toString(), RESOURCE_NOT_FOUND);
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HttpUtils.RESOURCE_NOT_FOUND);
                 }
                 break;
             default:
-                response = new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.toString(), METHOD_NOT_ALLOWED);
+                response = new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.getStatusString(), HttpUtils.METHOD_NOT_ALLOWED);
                 break;
         }
 

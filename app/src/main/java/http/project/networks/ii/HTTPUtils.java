@@ -14,8 +14,34 @@ public class HttpUtils {
     // Protocol strings
     public static final String HTTP_STRING = "http";
     public static final String HTTPS_STRING = "https";
-    public static final String URL_SPLIT_CHARACTER = ":";
 
+    // Splitting characters
+    public static final String URL_SPLIT_CHARACTER = ":";
+    public static final String SLASH_CHARACTER = "/";
+
+    // Paths
+    public static final String TEACHERS_PATH = "/teachers";
+
+    // Resources
+    public static final String RESOURCE_NOT_FOUND = "Resource not found";
+    public static final String RESOURCE_CREATED = "Resource created";
+    public static final String RESOURCE_UPDATED = "Resource updated";
+    public static final String RESOURCE_DELETED = "Resource deleted";
+
+    // Methods
+    public static final String METHOD_NOT_ALLOWED = "Method not allowed";
+
+    // Clients
+    public static final String CLIENT_CONNECTED = "Client connected";
+
+    // Servers
+    public static final String SERVER_IS_RUNNING_ON_PORT = "Server is running on port: ";
+    public static final String COULD_NOT_LISTEN_ON_PORT = "Could not listen on port: ";
+
+    // Responses
+    public static final String RESPONSE = "Response: \n";
+    public static final String ESTIMATED_RESPONSE_SIZE = "Estimated response size: ";
+    
     /**
      * This method is used to automatically select with the desired url the port where the client wants to communicate
      * @param url the url where the information is going to be sent by the client

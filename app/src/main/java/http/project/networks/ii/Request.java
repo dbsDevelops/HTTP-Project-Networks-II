@@ -6,11 +6,11 @@ import java.net.URL;
 public class Request {
     public static final String END_LINE = "\r\n";
     public static final String WHITE_SPACE = " ";
-    public Verbs method;
-    public URL url;
-    public String protocolVersion;
-    public SentHeaders headers; 
-    public HttpRequestBody body; 
+    protected Verbs method;
+    protected URL url;
+    protected String protocolVersion;
+    protected SentHeaders headers; 
+    protected HttpRequestBody body; 
 
     public Request(Verbs method,URL url, String protocolVersion,SentHeaders headers, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
