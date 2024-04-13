@@ -51,38 +51,4 @@ class GreetClientTest {
     }
 
     @Test
-    public void testHeadVerbUsage() {
-        // Mock a HEAD request and assert correct behavior.
-    }
-
-    @Test
-    public void testPutVerbUsage() {
-        // Mock a PUT request and assert correct behavior.
-    }
-
-    @Test 
-    public void testPostVerbUsage() {
-        // Mock a POST request and assert correct behavior.
-    }
-
-    @Test
-    public void testDeleteVerbUsage() {
-        // Mock a DELETE request and assert correct behavior.
-    }
-
-    @Test
-    void testArbitraryHeaderAddition() {
-        // Mock a request adding an arbitrary header and assert its presence.
-    }
-
-    @Test
-    void testRequestBodySpecification() {
-        // Mock sending a request with a body and verify the body content.
-        //TODO: Add the necessary tests for all body types: RAW, FORM, JSON, FILE, GRAPHQL, XML, etc.
-    }
-
-    @Test
-    void testSuccessiveRequests() {
-        // Ensure the application can send successive requests without needing a restart.
-    }
-}
+    public vo

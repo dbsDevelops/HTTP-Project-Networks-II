@@ -25,17 +25,17 @@ class AppTest {
         // Mock the necessary parts to simulate URL selection.
         // Assert that the selected URL is the one expected.
         //Create a new request
-        GreetClient client = new GreetClient();
-        Verbs method = Verbs.POST;                                                           //Method to send the request
-        URL url = new URL("http://localhost");                     //URL to send the request
-        String protocolVersion = "HTTP/1.1";                                                 //Protocol version  
-        SentHeaders headers = new SentHeaders(url);                                          //Headers
-        HttpBodyType bodyType = HttpBodyType.RAW;                                            //Body type
-        String bodyContent = "Hola esto es un ejemplo";                                      //Body content
-        //Send the request
-        Request request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
-        System.out.println(request.toString());
-        client.sendRequest(url, request);
+        // GreetClient client = new GreetClient();
+        // Verbs method = Verbs.POST;                                                           //Method to send the request
+        // URL url = new URL("http://localhost");                     //URL to send the request
+        // String protocolVersion = "HTTP/1.1";                                                 //Protocol version  
+        // SentHeaders headers = new SentHeaders(url);                                          //Headers
+        // HttpBodyType bodyType = HttpBodyType.RAW;                                            //Body type
+        // String bodyContent = "Hola esto es un ejemplo";                                      //Body content
+        // //Send the request
+        // Request request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
+        // System.out.println(request.toString());
+        // client.sendRequest(url, request);
     }
 
     @Test

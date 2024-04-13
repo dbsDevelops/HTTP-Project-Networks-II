@@ -55,12 +55,4 @@ public enum HttpHeaders {
         return headers;
     }
 
-    public static HttpHeaders parse(String header) {
-        for (HttpHeaders headerType : HttpHeaders.values()) {
-            if (headerType.getHeader().equals(header)) {
-                return headerType;
-            }
-        }
-        throw new IllegalArgumentException("The header "+ header + " is not found in HttpHeaders: ");
-    }
-}
+    public static HttpHeaders parse(String header

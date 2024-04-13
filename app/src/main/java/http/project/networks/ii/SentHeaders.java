@@ -88,12 +88,4 @@ public class SentHeaders {
             e.printStackTrace();
         }
 
-        SentHeaders sentHeaders = new SentHeaders(url);
-        for (String header : headers) {
-            String[] parts = header.split(": ", 2);
-            HttpHeaders headerType = HttpHeaders.parse(parts[0]);
-            sentHeaders.addHeaderToHeaders(headerType, parts[1]);
-        }
-        return sentHeaders;
-    }
-}
+        SentHeaders sentHea

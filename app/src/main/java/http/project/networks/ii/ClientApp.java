@@ -13,14 +13,14 @@ public class ClientApp {
         try {
             //Create a new request
             Verbs method = Verbs.POST;                                                           //Method to send the request
-            URL url = new URL("https://testredes.free.beeceptor.com");                     //URL to send the request
+            URL url = new URL("http://localhost/");                     //URL to send the request
             String protocolVersion = "HTTP/1.1";                                                 //Protocol version  
             SentHeaders headers = new SentHeaders(url);                                          //Headers
             HttpBodyType bodyType = HttpBodyType.RAW;                                            //Body type
             String bodyContent = "Hola esto es un ejemplo";                                      //Body content
 
             //Send the request
-            GreetClient client = new GreetClient(HTTPUtils.selectOperatingPort(url));
+            GreetClient client = new GreetClient(HTTPUtils.HTTP_PORT);
             Request request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
             for(int i = 0; i < 10; i++) {
