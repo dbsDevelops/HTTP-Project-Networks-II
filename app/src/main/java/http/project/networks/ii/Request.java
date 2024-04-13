@@ -5,6 +5,7 @@ import java.net.URL;
 
 public class Request {
     public static final String END_LINE = "\r\n";
+    public static final String WHITE_SPACE = " ";
     public Verbs method;
     public URL url;
     public String protocolVersion;
@@ -28,17 +29,37 @@ public class Request {
 
     public String toString() {
         StringBuilder request = new StringBuilder();
-        request.append(this.method.toString());
-        request.append(" ");
+        request.append(getMethod());
+        request.append(WHITE_SPACE);
         request.append(url.getPath());
-        request.append(" ");
-        request.append(this.protocolVersion);
+        request.append(WHITE_SPACE);
+        request.append(getProtocolVersion());
         request.append(END_LINE);     
-        request.append(this.headers.toString());
+        request.append(getHeaders());
         request.append(END_LINE);
-        request.append(this.body.getContent());
+        request.append(getBody());
         request.append(END_LINE);
         return request.toString();
+    }
+
+    public String getMethod() {
+        return this.method.toString();
+    }
+
+    public URL getUrl() {
+        return this.url;
+    }
+
+    public String getProtocolVersion() {
+        return this.protocolVersion;
+    }
+
+    public String getHeaders() {
+        return this.headers.toString();
+    }
+
+    public String getBody() {
+        return this.body.getContent();
     }
 
     public static Request parse(String request) {
@@ -131,8 +152,6 @@ public class Request {
             bodyContent += lines[k] + "\r\n";
         }
         
-
-
         return new Request(method, url, protocolVersion, sentHeaders, bodyType, bodyContent);
     }
 }

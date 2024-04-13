@@ -4,12 +4,20 @@ import java.io.*;
 
 public class GreetClient {
 
+    private String host;
+    private int port;
+
+    public GreetClient(int port) {
+        this.host = "";
+        this.port = port;
+    }
+
     public void sendRequest(URL url, Request request) {
 
-        String host = url.getHost();
-        int puerto = 8081; //
+        this.host = url.getHost();
+        //int puerto = 80; 
 
-        try(Socket socket = new Socket(host, puerto)){
+        try(Socket socket = new Socket(this.host, this.port)){
 
             socket.setSoTimeout(5000); //TODO: manage this through our GreetServer class
 

@@ -14,28 +14,35 @@ import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import http.project.networks.ii.GreetClient;
 
-class AppTest {
+class GreetClientTest {
+
+    private GreetClient client;
+    private GreetServer server;
+
+    @BeforeEach
+    public void init() {
+        // Initialise the client and server.
+        client = new GreetClient(8081);
+        server = new GreetServer();
+    }
 
     @Test
-    public void testUrlSelection() throws MalformedURLException {
+    public void shouldRequestSpecifiedUrl() throws MalformedURLException {
         // Mock the necessary parts to simulate URL selection.
         // Assert that the selected URL is the one expected.
         //Create a new request
-        GreetClient client = new GreetClient();
-        Verbs method = Verbs.POST;                                                           //Method to send the request
-        URL url = new URL("http://localhost");                     //URL to send the request
-        String protocolVersion = "HTTP/1.1";                                                 //Protocol version  
-        SentHeaders headers = new SentHeaders(url);                                          //Headers
-        HttpBodyType bodyType = HttpBodyType.RAW;                                            //Body type
-        String bodyContent = "Hola esto es un ejemplo";                                      //Body content
-        //Send the request
-        Request request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
-        System.out.println(request.toString());
-        client.sendRequest(url, request);
+        String urlAddress = "http://localhost";          //URL to send the request
+        Verbs method = Verbs.GET;                        //Method to send the request
+        URL url = new URL(urlAddress);                   //URL to send the request
+        String protocolVersion = "HTTP/1.1";             //Protocol version  
+        SentHeaders headers = new SentHeaders(url);      //Headers
+        Request request = new Request(method, url, protocolVersion, headers, null, null);
+        assertEquals(url, request.getUrl().toString());
     }
 
     @Test

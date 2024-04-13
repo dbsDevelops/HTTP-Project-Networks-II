@@ -1,5 +1,8 @@
 package http.project.networks.ii;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum HttpHeaders {
     ACCEPT("Accept"),
     //ACCEPT_CHARSET("Accept-Charset"),
@@ -42,6 +45,14 @@ public enum HttpHeaders {
 
     public String getHeader() {
         return this.header;
+    }
+
+    public static List<String> getHeaders() {
+        List<String> headers = new ArrayList<>();
+        for (HttpHeaders header : HttpHeaders.values()) {
+            headers.add(header.getHeader());
+        }
+        return headers;
     }
 
     public static HttpHeaders parse(String header) {

@@ -60,6 +60,17 @@ public class SentHeaders {
         return format.format(new Date());
     }
 
+/*
+    public boolean isValidHeaderType(String header) {
+        String [] parts = header.split(": ", 2);
+        for (String headerType : HttpHeaders.getHeaders()) {
+            if (headerType.equals(parts[0])) {
+                return true;
+            }
+        }
+        return false;
+    }
+*/
     public String toString() {
         StringBuilder headersString = new StringBuilder();
         for (String header : this.headers) {
