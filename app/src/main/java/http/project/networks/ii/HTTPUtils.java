@@ -18,6 +18,8 @@ public class HttpUtils {
     // Splitting characters
     public static final String URL_SPLIT_CHARACTER = ":";
     public static final String SLASH_CHARACTER = "/";
+    public static final String SPACE_CHARACTER = " ";
+    public static final String NEW_LINE_CHARACTER = "\n";
 
     // Paths
     public static final String TEACHERS_PATH = "/teachers";
