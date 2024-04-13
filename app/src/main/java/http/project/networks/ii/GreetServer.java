@@ -16,7 +16,6 @@ public class GreetServer {
     }
 
     public void initServer() {
-
         int port = HttpUtils.HTTP_PORT;
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
@@ -31,35 +30,18 @@ public class GreetServer {
             System.err.println(HttpUtils.COULD_NOT_LISTEN_ON_PORT + port);
             System.exit(-1);
         }
-
     }
 
-    protected String handleRequest(BufferedReader in) throws IOException {
-        String s;
-        StringBuilder requeststr = new StringBuilder();
+    protected String handleRequest(BufferedReader br) throws IOException {
+        StringBuilder receivedRequest = new StringBuilder();
         int requestParts = 0;
-
-        while((s = in.readLine())!=null){
-            requeststr.append(s);
-            requeststr.append(HttpUtils.NEW_LINE_CHARACTER);
-
-            if(s.isEmpty()){
-                requestParts++;
-            }
-
-            if(requestParts >= MAXIMUM_NUMBER_OF_REQUEST_PARTS){
-                break;
-            }
-        }
-        
-        return requeststr.toString();
+        return readRequest(br, receivedRequest, requestParts);
     }
 
     protected void response(OutputStream clientOutput, Request request) throws IOException {
 
         String response = "";
-
-        String[] urlParts = request.url.getPath().split("/");
+        String[] urlParts = request.url.getPath().split(HttpUtils.SLASH_CHARACTER);
                 
         if (urlParts.length > 1) {
             if(urlParts[1].equals("teachers")){
@@ -76,9 +58,24 @@ public class GreetServer {
     
         clientOutput.flush();
         clientOutput.close();
-        System.err.println("Client connection closed!");
+
+        System.err.println(HttpUtils.CLIENT_CONNECTION_CLOSED);
     }
 
-    //public String getUrlString
+    protected String readRequest(BufferedReader br, StringBuilder receivedRequest, int requestParts) throws IOException {
+        String requestLine;
+        while ((requestLine = br.readLine()) != null) {
+            receivedRequest.append(requestLine);
+            receivedRequest.append(HttpUtils.NEW_LINE_CHARACTER);
+
+            if (requestLine.isEmpty()) {
+                requestParts++;
+            }
+            if (requestParts >= MAXIMUM_NUMBER_OF_REQUEST_PARTS) {
+                break;
+            }
+        }
+        return receivedRequest.toString();
+    }
 }
 

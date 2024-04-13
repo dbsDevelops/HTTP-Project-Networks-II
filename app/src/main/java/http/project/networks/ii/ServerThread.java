@@ -16,10 +16,10 @@ public class ServerThread extends Thread {
     public void run() {
         //System.out.println("Runnable");                 
         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))){
-            String requeststr = server.handleRequest(in);
+            String requestString = server.handleRequest(in);
             //SEND RESPONSE
             OutputStream clientOutput = clientSocket.getOutputStream();
-            Request request = Request.parse(requeststr);
+            Request request = Request.parse(requestString);
             server.response(clientOutput, request);
             in.close(); 
         } catch (IOException e) {

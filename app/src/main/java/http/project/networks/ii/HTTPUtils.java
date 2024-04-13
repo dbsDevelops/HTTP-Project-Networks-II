@@ -35,6 +35,7 @@ public class HttpUtils {
 
     // Clients
     public static final String CLIENT_CONNECTED = "Client connected";
+    public static final String CLIENT_CONNECTION_CLOSED = "Client connection closed!";
 
     // Servers
     public static final String SERVER_IS_RUNNING_ON_PORT = "Server is running on port: ";
