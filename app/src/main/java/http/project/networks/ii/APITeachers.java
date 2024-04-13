@@ -32,7 +32,6 @@ public class APITeachers {
         Response response = null;
         String url = request.url.getPath();
         String[] urlParts = url.split(SLASH_CHARACTER);
-        //String path = "";
         StringBuilder path = new StringBuilder();
         for (String part : urlParts) {
             if (part.isEmpty()) {
