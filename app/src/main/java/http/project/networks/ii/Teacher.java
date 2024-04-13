@@ -1,8 +1,10 @@
 package http.project.networks.ii;
 
+import java.util.Objects;
+
 public class Teacher {
-    public String name;
-    public float passRate;
+    protected String name;
+    protected float passRate;
 
     public Teacher(String name, float passRate) {
         this.name = name;
@@ -29,8 +31,21 @@ public class Teacher {
         return this.name + " " + this.passRate;
     }
 
-    public boolean equals(Teacher teacher) {
+    @Override 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Teacher)) {
+            return false;
+        }
+        Teacher teacher = (Teacher) obj;
         return this.name.equals(teacher.getName()) && this.passRate == teacher.getPassRate();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, passRate);
     }
 
     public boolean equals(String name, float passRate) {

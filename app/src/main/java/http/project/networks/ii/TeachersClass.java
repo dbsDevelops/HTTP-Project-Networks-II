@@ -3,7 +3,7 @@ package http.project.networks.ii;
 import java.util.List;
 
 public class TeachersClass {
-    public List<Teacher> teachers;
+    protected List<Teacher> teachers;
 
     public TeachersClass(List<Teacher> teachers) {
         this.teachers = teachers;
@@ -52,10 +52,4 @@ public class TeachersClass {
     public boolean equals(List<Teacher> teachers) {
         return this.teachers.equals(teachers);
     }
-
-    
-
-
-
-    
 }
