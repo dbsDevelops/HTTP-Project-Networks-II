@@ -2,6 +2,14 @@ package http.project.networks.ii;
 
 public class APITeachers {
 
+    private static final String SLASH_CHARACTER = "/";
+    private static final String TEACHERS_PATH = "/teachers";
+    private static final String RESOURCE_NOT_FOUND = "Resource not found";
+    private static final String RESOURCE_CREATED = "Resource created";
+    private static final String RESOURCE_UPDATED = "Resource updated";
+    private static final String RESOURCE_DELETED = "Resource deleted";
+    private static final String METHOD_NOT_ALLOWED = "Method not allowed";
+
     TeachersClass teachers;
 
     public APITeachers(TeachersClass teachers) {
@@ -23,49 +31,50 @@ public class APITeachers {
     public String readRequest(Request request) {
         Response response = null;
         String url = request.url.getPath();
-        String[] urlParts = url.split("/");
-        String path = "";
+        String[] urlParts = url.split(SLASH_CHARACTER);
+        //String path = "";
+        StringBuilder path = new StringBuilder();
         for (String part : urlParts) {
             if (part.isEmpty()) {
                 continue;
             }
-            path += "/" + part;
+            path.append(SLASH_CHARACTER).append(part);
         }
         
         switch (request.method) {
             case HEAD:
-                response = new Response(200, "OK", "Estimate response size: " + teachers.toString().getBytes().length);
+                response = new Response(ServerStatusCodes.OK_200.toString(), "Estimate response size: " + teachers.toString().getBytes().length);
                 break;
             case GET:
-                if (path.equals("/teachers")) {
-                    response = new Response(200, "OK", teachers.toString());
+                if (path.toString().equals(TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.OK_200.toString(), teachers.toString());
                 } else {
-                    response = new Response(404, "Not Found", "Resource not found");
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.toString(), RESOURCE_NOT_FOUND);
                 }
                 break;
             case POST:
-                if (path.equals("/teachers")) {
-                    response = new Response(201, "Created", "Resource created");
+                if (path.toString().equals(TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.CREATED_201.toString(), RESOURCE_CREATED);
                 } else {
-                    response = new Response(404, "Not Found", "Resource not found");
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.toString(), RESOURCE_NOT_FOUND);
                 }
                 break;
             case PUT:
-                if (path.equals("/teachers")) {
-                    response = new Response(200, "OK", "Resource updated");
+                if (path.toString().equals(TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.OK_200.toString(), RESOURCE_UPDATED);
                 } else {
-                    response = new Response(404, "Not Found", "Resource not found");
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.toString(), RESOURCE_NOT_FOUND);
                 }
                 break;
             case DELETE:
-                if (path.equals("/teachers")) {
-                    response = new Response(200, "OK", "Resource deleted");
+                if (path.toString().equals(TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.OK_200.toString(), RESOURCE_DELETED);
                 } else {
-                    response = new Response(404, "Not Found", "Resource not found");
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.toString(), RESOURCE_NOT_FOUND);
                 }
                 break;
             default:
-                response = new Response(405, "Method Not Allowed", "Method not allowed");
+                response = new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.toString(), METHOD_NOT_ALLOWED);
                 break;
         }
 

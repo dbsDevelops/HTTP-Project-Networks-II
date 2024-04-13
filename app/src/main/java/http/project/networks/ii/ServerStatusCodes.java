@@ -1,6 +1,6 @@
 package http.project.networks.ii;
+
 public enum ServerStatusCodes {
-    
     CONTINUE_100("100 Continue"), 
     SWITCHING_PROTOCOLS_101("101 Switching Protocols"), 
     PROCESSING_102("102 Processing"), 

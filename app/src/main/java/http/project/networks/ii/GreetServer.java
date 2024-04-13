@@ -80,7 +80,7 @@ public class GreetServer {
         }
         else {
             // teapot response
-            response = new Response(418, "I'm a teapot", "I'm a teapot").toString();
+            response = new Response(ServerStatusCodes.IM_A_TEAPOT_418.toString(), "I'm a teapot").toString();
         }
         
         System.out.println("Response: \n" + response);

@@ -1,22 +1,16 @@
 package http.project.networks.ii;
 
 public class Response {
-    private int statusCode;
-    private String status;
+    private String statusCodeAndDescription;
     private String content;
 
-    public Response(int statusCode, String status, String content) {
-        this.statusCode = statusCode;
-        this.status = status;
+    public Response(String statusCodeAndDescription, String content) {
+        this.statusCodeAndDescription = statusCodeAndDescription;
         this.content = content;
     }
 
-    public int getStatusCode() {
-        return this.statusCode;
-    }
-
-    public String getStatus() {
-        return this.status;
+    public String getStatusCodeAndDescription() {
+        return this.statusCodeAndDescription;
     }
 
     public String getContent() {
@@ -24,11 +18,7 @@ public class Response {
     }
 
     public String toString() {
-        return "HTTP/1.1 " + this.statusCode + " " + this.status + "\r\n" + this.content + "\r\n";
-    }
-    
-    public void send() {
-        System.out.println(this.toString());
+        return "HTTP/1.1 " + this.statusCodeAndDescription + "\r\n" + this.content + "\r\n";
     }
 
 }
