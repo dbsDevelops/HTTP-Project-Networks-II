@@ -142,4 +142,16 @@ public class Request {
             case "application/xml":
                 bodyType = HttpBodyType.XML;
                 break;
- 
+            default:
+                throw new IllegalArgumentException("The body type " + bodyType + " is not supported");
+        }
+
+        
+        String bodyContent = "";
+        for (int k = headersCount + 2; k < lines.length; k++) {
+            bodyContent += lines[k] + "\r\n";
+        }
+        
+        return new Request(method, url, protocolVersion, sentHeaders, bodyType, bodyContent);
+    }
+}

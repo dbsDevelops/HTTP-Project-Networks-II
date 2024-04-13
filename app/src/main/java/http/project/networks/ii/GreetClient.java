@@ -38,4 +38,10 @@ public class GreetClient {
                 linea = br.readLine();
             }
         } catch(UnknownHostException e){
-            System.err.println("Server not
+            System.err.println("Server not found: " + e.getMessage());
+
+        } catch(IOException e){
+            System.err.println("I/O error: " + e.getMessage());
+        } 
+    }
+}
