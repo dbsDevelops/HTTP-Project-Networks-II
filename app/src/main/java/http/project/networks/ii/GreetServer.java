@@ -39,26 +39,18 @@ public class GreetServer {
     }
 
     protected void response(OutputStream clientOutput, Request request) throws IOException {
-
-        String response = "";
         String[] urlParts = request.url.getPath().split(HttpUtils.SLASH_CHARACTER);
-                
-        if (urlParts.length > 1) {
-            if(urlParts[1].equals("teachers")){
-                response = apiTeachers.readRequest(request);
-            }
-        } else {
-            // teapot response
-            response = new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), "I'm a teapot").toString();
-        }
+        String response = handleUrlParts(urlParts, request);
         
+        // Output the response
         System.out.println(HttpUtils.RESPONSE + response);
 
+        // Write the output to the client
         clientOutput.write(response.getBytes());
     
+        // Clean the output and close the stream
         clientOutput.flush();
         clientOutput.close();
-
         System.err.println(HttpUtils.CLIENT_CONNECTION_CLOSED);
     }
 
@@ -76,6 +68,19 @@ public class GreetServer {
             }
         }
         return receivedRequest.toString();
+    }
+
+    protected String handleUrlParts(String[] urlParts, Request request) {
+        if (urlParts.length > 1) {
+            if(urlParts[1].equals("teachers")){
+                return apiTeachers.readRequest(request);
+            } else {
+                return null; //TODO: Handle this case more optimally
+            }
+        } else {
+            // teapot response
+            return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), "I'm a teapot").toString();
+        }
     }
 }
 
