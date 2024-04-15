@@ -2,7 +2,7 @@ package http.project.networks.ii;
 
 import java.net.URL;
 
-public class HttpUtils {
+public class HTTPUtils {
     // Port numbers
     public static final int HTTP_PORT = 80;
     public static final int HTTPS_PORT = 443;
@@ -60,10 +60,10 @@ public class HttpUtils {
         String host = url.getHost(); //Returns an IP of the form http/s://whatever
         String[] split = host.split(URL_SPLIT_CHARACTER);
         if(split[URL_PROTOCOL].equals(HTTP_STRING)) {
-            port = HttpUtils.HTTP_PORT;
+            port = HTTPUtils.HTTP_PORT;
         }
         else if(split[URL_PROTOCOL].equals(HTTPS_STRING)) {
-            port = HttpUtils.HTTPS_PORT;
+            port = HTTPUtils.HTTPS_PORT;
         }
         return port;
 

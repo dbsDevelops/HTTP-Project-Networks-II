@@ -1,5 +1,4 @@
 package http.project.networks.ii;
-import http.project.networks.ii.HttpUtils;
 
 public class APITeachers {
 
@@ -24,7 +23,7 @@ public class APITeachers {
     public String readRequest(Request request) {
         Response response = null;
         String url = request.url.getPath();
-        String[] urlParts = url.split(HttpUtils.SLASH_CHARACTER);
+        String[] urlParts = url.split(HTTPUtils.SLASH_CHARACTER);
         StringBuilder path = new StringBuilder();
         // ...
 
@@ -32,43 +31,43 @@ public class APITeachers {
             if (part.isEmpty()) {
                 continue;
             }
-            path.append(HttpUtils.SLASH_CHARACTER).append(part);
+            path.append(HTTPUtils.SLASH_CHARACTER).append(part);
         }
         
         switch (request.method) {
             case HEAD:
-                response = new Response(ServerStatusCodes.OK_200.getStatusString(), HttpUtils.ESTIMATED_RESPONSE_SIZE + teachers.toString().getBytes().length);
+                response = new Response(ServerStatusCodes.OK_200.getStatusString(), HTTPUtils.ESTIMATED_RESPONSE_SIZE + teachers.toString().getBytes().length);
                 break;
             case GET:
-                if (path.toString().equals(HttpUtils.TEACHERS_PATH)) {
+                if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
                     response = new Response(ServerStatusCodes.OK_200.getStatusString(), teachers.toString());
                 } else {
-                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HttpUtils.RESOURCE_NOT_FOUND);
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND);
                 }
                 break;
             case POST:
-                if (path.toString().equals(HttpUtils.TEACHERS_PATH)) {
-                    response = new Response(ServerStatusCodes.CREATED_201.getStatusString(), HttpUtils.RESOURCE_CREATED);
+                if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.CREATED_201.getStatusString(), HTTPUtils.RESOURCE_CREATED);
                 } else {
-                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HttpUtils.RESOURCE_NOT_FOUND);
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND);
                 }
                 break;
             case PUT:
-                if (path.toString().equals(HttpUtils.TEACHERS_PATH)) {
-                    response = new Response(ServerStatusCodes.OK_200.getStatusString(), HttpUtils.RESOURCE_UPDATED);
+                if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.OK_200.getStatusString(), HTTPUtils.RESOURCE_UPDATED);
                 } else {
-                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HttpUtils.RESOURCE_NOT_FOUND);
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND);
                 }
                 break;
             case DELETE:
-                if (path.toString().equals(HttpUtils.TEACHERS_PATH)) {
-                    response = new Response(ServerStatusCodes.OK_200.getStatusString(), HttpUtils.RESOURCE_DELETED);
+                if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
+                    response = new Response(ServerStatusCodes.OK_200.getStatusString(), HTTPUtils.RESOURCE_DELETED);
                 } else {
-                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HttpUtils.RESOURCE_NOT_FOUND);
+                    response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND);
                 }
                 break;
             default:
-                response = new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.getStatusString(), HttpUtils.METHOD_NOT_ALLOWED);
+                response = new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.getStatusString(), HTTPUtils.METHOD_NOT_ALLOWED);
                 break;
         }
 

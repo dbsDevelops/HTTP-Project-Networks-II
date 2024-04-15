@@ -20,7 +20,7 @@ public class ClientApp {
             String bodyContent = "Hola esto es un ejemplo";                                      //Body content
 
             //Send the request
-            GreetClient client = new GreetClient(HttpUtils.HTTP_PORT);
+            GreetClient client = new GreetClient(HTTPUtils.HTTP_PORT);
             Request request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
             for(int i = 0; i < 10; i++) {

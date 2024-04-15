@@ -16,18 +16,18 @@ public class GreetServer {
     }
 
     public void initServer() {
-        int port = HttpUtils.HTTP_PORT;
+        int port = HTTPUtils.HTTP_PORT;
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println(HttpUtils.SERVER_IS_RUNNING_ON_PORT + port);
+            System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                System.out.println(HttpUtils.CLIENT_CONNECTED);
+                System.out.println(HTTPUtils.CLIENT_CONNECTED);
                 ServerThread serverThread = new ServerThread(this, clientSocket);
                 serverThread.start();
             }
         } catch (IOException e) {
-            System.err.println(HttpUtils.COULD_NOT_LISTEN_ON_PORT + port);
+            System.err.println(HTTPUtils.COULD_NOT_LISTEN_ON_PORT + port);
             System.exit(-1);
         }
     }
@@ -39,11 +39,11 @@ public class GreetServer {
     }
 
     protected void response(OutputStream clientOutput, Request request) throws IOException {
-        String[] urlParts = request.url.getPath().split(HttpUtils.SLASH_CHARACTER);
+        String[] urlParts = request.url.getPath().split(HTTPUtils.SLASH_CHARACTER);
         String response = handleUrlParts(urlParts, request);
         
         // Output the response
-        System.out.println(HttpUtils.RESPONSE + response);
+        System.out.println(HTTPUtils.RESPONSE + response);
 
         // Write the output to the client
         clientOutput.write(response.getBytes());
@@ -51,14 +51,14 @@ public class GreetServer {
         // Clean the output and close the stream
         clientOutput.flush();
         clientOutput.close();
-        System.err.println(HttpUtils.CLIENT_CONNECTION_CLOSED);
+        System.err.println(HTTPUtils.CLIENT_CONNECTION_CLOSED);
     }
 
     protected String readRequest(BufferedReader br, StringBuilder receivedRequest, int requestParts) throws IOException {
         String requestLine;
         while ((requestLine = br.readLine()) != null) {
             receivedRequest.append(requestLine);
-            receivedRequest.append(HttpUtils.NEW_LINE_CHARACTER);
+            receivedRequest.append(HTTPUtils.NEW_LINE_CHARACTER);
 
             if (requestLine.isEmpty()) {
                 requestParts++;
