@@ -1,5 +1,9 @@
 package http.project.networks.ii;
 
+import java.util.List;
+
+
+
 public class APITeachers {
 
     TeachersClass teachers;
@@ -25,7 +29,8 @@ public class APITeachers {
         String url = request.url.getPath();
         String[] urlParts = url.split(HTTPUtils.SLASH_CHARACTER);
         StringBuilder path = new StringBuilder();
-        // ...
+
+        
 
         for (String part : urlParts) {
             if (part.isEmpty()) {
@@ -47,6 +52,24 @@ public class APITeachers {
                 break;
             case POST:
                 if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
+                    HttpRequestBody body = request.body;
+                    if (body == null) {
+                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND).toString();
+                    }
+                    if (body.getType() != HttpBodyType.RAW) {
+                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , "Invalid content type").toString();
+                    }
+                    String content = body.getContent();
+                    String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
+                    for (String part : contentParts) {
+                        String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
+                        if (teacherParts.length != 2) {
+                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), "Invalid teacher format").toString();
+                        }
+                        int avg = Integer.parseInt(teacherParts[1].trim());
+                        teachers.addTeacher(new Teacher(teacherParts[0], avg));
+                    }
+
                     response = new Response(ServerStatusCodes.CREATED_201.getStatusString(), HTTPUtils.RESOURCE_CREATED);
                 } else {
                     response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND);
@@ -54,6 +77,26 @@ public class APITeachers {
                 break;
             case PUT:
                 if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
+
+                    HttpRequestBody body = request.body;
+                    if (body == null) {
+                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND).toString();
+                    }
+                    if (body.getType() != HttpBodyType.RAW) {
+                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , "Invalid content type").toString();
+                    }
+                    String content = body.getContent();
+                    String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
+                    for (String part : contentParts) {
+                        String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
+                        if (teacherParts.length != 2) {
+                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), "Invalid teacher format").toString();
+                        }
+                        int avg = Integer.parseInt(teacherParts[1].trim());
+                        teachers.updateTeacher(new Teacher(teacherParts[0], avg));
+                    }
+
+
                     response = new Response(ServerStatusCodes.OK_200.getStatusString(), HTTPUtils.RESOURCE_UPDATED);
                 } else {
                     response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND);
@@ -61,6 +104,24 @@ public class APITeachers {
                 break;
             case DELETE:
                 if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
+                    HttpRequestBody body = request.body;
+                    if (body == null) {
+                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND).toString();
+                    }
+                    if (body.getType() != HttpBodyType.RAW) {
+                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , "Invalid content type").toString();
+                    }
+                    String content = body.getContent();
+                    String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
+                    for (String part : contentParts) {
+                        String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
+                        if (teacherParts.length != 1) {
+                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), "Invalid teacher format").toString();
+                        }
+                        teachers.removeTeacher(teacherParts[0]);
+                    }
+
+
                     response = new Response(ServerStatusCodes.OK_200.getStatusString(), HTTPUtils.RESOURCE_DELETED);
                 } else {
                     response = new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), HTTPUtils.RESOURCE_NOT_FOUND);

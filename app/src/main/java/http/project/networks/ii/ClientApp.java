@@ -13,19 +13,36 @@ public class ClientApp {
         try {
             //Create a new request
             Verbs method = Verbs.POST;                                                           //Method to send the request
-            URL url = new URL("http://localhost/");                     //URL to send the request
+            URL url = new URL("http://localhost/teachers/");                     //URL to send the request
             String protocolVersion = "HTTP/1.1";                                                 //Protocol version  
             SentHeaders headers = new SentHeaders(url);                                          //Headers
             HttpBodyType bodyType = HttpBodyType.RAW;                                            //Body type
-            String bodyContent = "Hola esto es un ejemplo";                                      //Body content
+            String bodyContent = "postedTeacher 3";                                      //Body content
 
             //Send the request
             GreetClient client = new GreetClient(HTTPUtils.HTTP_PORT);
             Request request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
-            for(int i = 0; i < 10; i++) {
-                client.sendRequest(url, request);
-            }
+            // for(int i = 0; i < 10; i++) {
+            //     client.sendRequest(url, request);
+            // }
+            client.sendRequest(url, request);
+
+            method = Verbs.GET;                                                           //Method to send the request
+            url = new URL("http://localhost/teachers/");                     //URL to send the request
+            protocolVersion = "HTTP/1.1";                                                 //Protocol version
+            headers = new SentHeaders(url);                                          //Headers
+            bodyType = HttpBodyType.RAW;                                            //Body type
+            bodyContent = "";                                      //Body content
+            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            //Send the request
+            request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
+            System.out.println(request.toString());
+            client.sendRequest(url, request);
+
+
+
+
 
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block

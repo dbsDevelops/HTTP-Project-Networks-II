@@ -114,6 +114,9 @@ public class Request {
 
         SentHeaders sentHeaders = SentHeaders.parse(headers);
 
+        if (method == Verbs.GET || method == Verbs.HEAD) {
+            return new Request(method, url, protocolVersion, sentHeaders, HttpBodyType.RAW, "");
+        }
         String bodyTypeStr = sentHeaders.getValue(HttpHeaders.CONTENT_TYPE); //Error al leer el CONTENT_TYPE
         HttpBodyType bodyType = HttpBodyType.parse(bodyTypeStr);
         // RAW("text/plain"), 

@@ -4,7 +4,7 @@ import java.net.URL;
 
 public class HTTPUtils {
     // Port numbers
-    public static final int HTTP_PORT = 80;
+    public static final int HTTP_PORT = 8081;
     public static final int HTTPS_PORT = 443;
     
     // Control values

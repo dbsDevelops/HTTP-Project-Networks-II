@@ -75,7 +75,7 @@ public class GreetServer {
             if(urlParts[1].equals("teachers")){
                 return apiTeachers.readRequest(request);
             } else {
-                return null; //TODO: Handle this case more optimally
+                return new Response( ServerStatusCodes.NOT_FOUND_404.getStatusString(), "Not Found").toString();
             }
         } else {
             // teapot response

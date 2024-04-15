@@ -25,8 +25,21 @@ public class TeachersClass {
         this.teachers.add(teacher);
     }
 
-    public void removeTeacher(Teacher teacher) {
-        this.teachers.remove(teacher);
+    public void updateTeacher(Teacher teacher) {
+        teachers.set(teachers.indexOf(teacher), teacher);
+    }
+
+    public void removeTeacher(String teacher) {
+        Teacher teacherToRemove = null;
+        for (Teacher t : teachers) {
+            if (t.getName().equals(teacher)) {
+                teacherToRemove = t;
+                break;
+            }
+        }
+        if (teacherToRemove != null) {
+            teachers.remove(teacherToRemove);
+        }
     }
 
     public void removeTeacher(int index) {
