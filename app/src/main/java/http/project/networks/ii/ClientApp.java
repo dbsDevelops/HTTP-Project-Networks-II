@@ -5,23 +5,23 @@ package http.project.networks.ii;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 
 public class ClientApp {
     
     public static void main(String[] args) {
 
         try {
-            //Create a new request
-            Verbs method = Verbs.POST;                                                           //Method to send the request
-            URL url = new URL("http://localhost/teachers/");                     //URL to send the request
-            String protocolVersion = "HTTP/1.1";                                                 //Protocol version  
-            RequestHeaders headers = new RequestHeaders(url);                                          //Headers
-            HttpBodyType bodyType = HttpBodyType.RAW;                                            //Body type
-            String bodyContent = "postedTeacher 3";                                      //Body content
-
+            Verbs method = null;                                                           //Method to send the request
+            URL url = null;                     //URL to send the request
+            String protocolVersion = null;                                                 //Protocol version  
+            RequestHeaders headers = null;                                          //Headers
+            HttpBodyType bodyType = null;                                            //Body type
+            String bodyContent = null;  
+            GreetClient client = null;
+            Request request = null;                                //Body content
+/* 
             //Send the request
-            GreetClient client = new GreetClient(HTTPUtils.HTTP_PORT);
-            Request request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
             // for(int i = 0; i < 10; i++) {
             //     client.sendRequest(url, request);
@@ -31,7 +31,7 @@ public class ClientApp {
             method = Verbs.GET;                                                           //Method to send the request
             url = new URL("http://localhost/teachers/");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
-            headers = new RequestHeaders(url);                                          //Headers
+            headers = new SentHeaders(url);                                          //Headers
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
             client = new GreetClient(HTTPUtils.HTTP_PORT);
@@ -39,10 +39,37 @@ public class ClientApp {
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
             client.sendRequest(url, request);
+*/
 
+            //Create new requests with random values
+            Verbs [] methods = {Verbs.GET, Verbs.POST, Verbs.PUT, Verbs.DELETE};
+            String [] urls = {"http://localhost/teachers/", "http://localhost"};
+            String [] protocolVersions = {"HTTP/1.1", "HTTP/1.0"};
+            String [] bodyContents = {
+                "", 
+                "postedTeacher 3", //text
+                "<html><body><h1>Hello, World!</h1></body></html>", // HTML
+                "<note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>", // XML
+                "{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}" // JSON
+            };
+            HttpBodyType [] bodyTypes = {HttpBodyType.RAW, HttpBodyType.JSON, HttpBodyType.XML, HttpBodyType.FORM};
+            Random random = new Random();
 
+            for (int i = 0; i < 17; i++) {
+                method = methods[random.nextInt(methods.length)]; 
+                
+                url = new URL(urls[random.nextInt(urls.length)]); 
+                protocolVersion = protocolVersions[random.nextInt(protocolVersions.length)]; 
+                headers = new RequestHeaders(url); //Headers
+                bodyType = bodyTypes[random.nextInt(bodyTypes.length)]; 
+                bodyContent = bodyContents[random.nextInt(bodyContents.length)]; 
+                client = new GreetClient(HTTPUtils.HTTP_PORT);
 
-
+                //Send the request
+                request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
+                System.out.println("\nREQUEST "+(i+1)+":\n"+request.toString());
+                client.sendRequest(url, request);
+            }
 
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
