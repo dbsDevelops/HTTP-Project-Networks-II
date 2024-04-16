@@ -14,6 +14,11 @@ public abstract class Headers {
         this.headers.add(header);
     }
 
+    public void addHeaderToHeaders(String headerType, String headerValue) {
+        String header = headerType + ": " + headerValue;
+        this.headers.add(header);
+    }
+
     public String getValue(HttpHeaders headerType) {
         for (String header : this.headers) {
             String[] parts = header.split(": ", 2);

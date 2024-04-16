@@ -47,14 +47,18 @@ public class GreetServer {
     }
 
     protected void response(OutputStream clientOutput, Request request) throws IOException {
-        String[] urlParts = request.url.getPath().split(HTTPUtils.SLASH_CHARACTER);
-        String response = handleUrlParts(urlParts, request);
+        String urlPath = request.url.getPath();
+        Response response = handleUrl(urlPath, request);
         
         // Output the response
         System.out.println(HTTPUtils.RESPONSE + response);
 
         // Write the output to the client
-        clientOutput.write(response.getBytes());
+        clientOutput.write(response.toString().getBytes());
+        //If the body has binary content, we sent it directly
+        if(response.getStringContent() == null && response.getBinaryContent() != null) {
+            clientOutput.write(response.getBinaryContent());
+        }
     
         // Clean the output and close the stream
         clientOutput.flush();
@@ -78,16 +82,31 @@ public class GreetServer {
         return receivedRequest.toString();
     }
 
-    protected String handleUrlParts(String[] urlParts, Request request) {
+    protected Response handleUrl(String urlPath, Request request) {
+        String[] urlParts = urlPath.split(HTTPUtils.SLASH_CHARACTER);
         if (urlParts.length > 1) {
             if(urlParts[1].equals("teachers")){
                 return apiTeachers.readRequest(request);
             } else {
-                return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Not Found")).toString();
+                String filePathString = staticFiles.toString() + urlPath;
+                //System.out.println(filePathString);
+                try {
+                    HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(filePathString);
+                    if(!body.equals(null)) {
+                        return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
+                    } else {
+                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Not found"));
+                    }
+                    
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Internal Server Error"));
             }
         } else {
-            // teapot response
-            return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "I'm a teapot")).toString();
+            // teapot response, later will be the main page of the server
+            return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "I'm a teapot"));
         }
     }
 }

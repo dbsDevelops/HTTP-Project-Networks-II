@@ -21,7 +21,7 @@ public class APITeachers {
         teachers.addTeacher(new Teacher("Teacher 5", 0));
     }
 
-    public String readRequest(Request request) {
+    public Response readRequest(Request request) {
         Response response = null;
         String url = request.url.getPath();
         String[] urlParts = url.split(HTTPUtils.SLASH_CHARACTER);
@@ -51,17 +51,17 @@ public class APITeachers {
                 if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
                     HttpRequestBody body = request.body;
                     if (body == null) {
-                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND)).toString();
+                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
                     }
                     if (body.getType() != HttpBodyType.RAW) {
-                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , new HttpRequestBody(HttpBodyType.RAW, "Invalid content type")).toString();
+                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , new HttpRequestBody(HttpBodyType.RAW, "Invalid content type"));
                     }
-                    String content = body.getContent();
+                    String content = body.getStringContent();
                     String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
                     for (String part : contentParts) {
                         String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
                         if (teacherParts.length != 2) {
-                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Invalid teacher format")).toString();
+                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Invalid teacher format"));
                         }
                         int avg = Integer.parseInt(teacherParts[1].trim());
                         teachers.addTeacher(new Teacher(teacherParts[0], avg));
@@ -77,17 +77,17 @@ public class APITeachers {
 
                     HttpRequestBody body = request.body;
                     if (body == null) {
-                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND)).toString();
+                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
                     }
                     if (body.getType() != HttpBodyType.RAW) {
-                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , new HttpRequestBody(HttpBodyType.RAW, "Invalid content type")).toString();
+                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , new HttpRequestBody(HttpBodyType.RAW, "Invalid content type"));
                     }
-                    String content = body.getContent();
+                    String content = body.getStringContent();
                     String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
                     for (String part : contentParts) {
                         String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
                         if (teacherParts.length != 2) {
-                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Invalid teacher format")).toString();
+                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Invalid teacher format"));
                         }
                         int avg = Integer.parseInt(teacherParts[1].trim());
                         teachers.updateTeacher(new Teacher(teacherParts[0], avg));
@@ -103,17 +103,17 @@ public class APITeachers {
                 if (path.toString().equals(HTTPUtils.TEACHERS_PATH)) {
                     HttpRequestBody body = request.body;
                     if (body == null) {
-                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND)).toString();
+                        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
                     }
                     if (body.getType() != HttpBodyType.RAW) {
-                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , new HttpRequestBody(HttpBodyType.RAW, "Invalid content type")).toString();
+                        return new Response( ServerStatusCodes.BAD_REQUEST_400.getStatusString() , new HttpRequestBody(HttpBodyType.RAW, "Invalid content type"));
                     }
-                    String content = body.getContent();
+                    String content = body.getStringContent();
                     String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
                     for (String part : contentParts) {
                         String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
                         if (teacherParts.length != 1) {
-                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Invalid teacher format")).toString();
+                            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Invalid teacher format"));
                         }
                         teachers.removeTeacher(teacherParts[0]);
                     }
@@ -129,7 +129,7 @@ public class APITeachers {
                 break;
         }
 
-        return response.toString();
+        return response;
 
     }
     

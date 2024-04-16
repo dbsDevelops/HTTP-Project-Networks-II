@@ -20,21 +20,28 @@ public class Response {
         return this.statusCodeAndDescription;
     }
 
-    public String getContent() {
-        return this.body.getContent();
+    public String getStringContent() {
+        return this.body.getStringContent();
+    }
+
+    public byte[] getBinaryContent() {
+        return this.body.getBinaryContent();
     }
 
     public String toString() {
-        StringBuilder request = new StringBuilder();
-        request.append("HTTP/1.1 " + statusCodeAndDescription);
-        request.append("\r\n");
-        request.append(responseHeaders.toString());
-        request.append("\r\n");
+        StringBuilder response = new StringBuilder();
+        response.append("HTTP/1.1 " + statusCodeAndDescription);
+        response.append("\r\n");
+        response.append(responseHeaders.toString());
+        response.append("\r\n");
         if(!this.body.equals(null)) {
-            request.append(getContent());
-            request.append("\r\n");  
+            //If the string content is not null, write it there, else we will manage with the server to send the bytes from the body
+            if(this.body.getStringContent() != null) {
+                response.append(getStringContent());
+                response.append("\r\n");  
+            }
         }   
-        return request.toString();
+        return response.toString();
     }
 
 }

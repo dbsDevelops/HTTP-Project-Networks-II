@@ -59,7 +59,7 @@ public class Request {
     }
 
     public String getBody() {
-        return this.body.getContent();
+        return this.body.getStringContent();
     }
 
     public static Request parse(String request) {

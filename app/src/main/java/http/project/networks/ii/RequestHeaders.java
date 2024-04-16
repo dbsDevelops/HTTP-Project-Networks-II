@@ -35,7 +35,7 @@ public class RequestHeaders extends Headers {
         RequestHeaders sentHeaders = new RequestHeaders(url);
         for (String header : headers) {
             String[] parts = header.split(": ", 2);
-            HttpHeaders headerType = HttpHeaders.parse(parts[0]);
+            String headerType = parts[0];
             sentHeaders.addHeaderToHeaders(headerType, parts[1]);
         }
         return sentHeaders;

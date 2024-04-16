@@ -97,15 +97,30 @@ public class HTTPUtils {
 
     }
 
-    public static HttpRequestBody createBodyFromFile(String filePath) throws IOException {
-
+    public static HttpRequestBody createRequestBodyFromFile(String filePath) throws IOException {
         Path path = Paths.get(filePath);
-        String content = Files.readString(path);
-        String fileExtension = getFileExtension(path);
+        if(!path.toFile().exists() || path.toFile().isDirectory()) {
+            return null;
+        }
+        HttpBodyType type = determineBodyType(path);
+        if (isBinaryType(type)) {
+            byte[] data = Files.readAllBytes(path);
+            return new HttpRequestBody(type, data);
+        } else {
+            String content = Files.readString(path);
+            return new HttpRequestBody(type, content);
+        }
+    }
 
-        HttpBodyType type = extensionToTypeMap.getOrDefault(fileExtension, HttpBodyType.RAW); // Default to RAW if unknown
-        return new HttpRequestBody(type, content);
-        
+    private static HttpBodyType determineBodyType(Path path) {
+        String extension = getFileExtension(path);
+        return extensionToTypeMap.getOrDefault(extension, HttpBodyType.RAW);
+    }
+
+    private static boolean isBinaryType(HttpBodyType type) {
+        return type == HttpBodyType.PNG || type == HttpBodyType.JPEG || type == HttpBodyType.GIF ||
+               type == HttpBodyType.SVG || type == HttpBodyType.PDF || type == HttpBodyType.ZIP ||
+               type == HttpBodyType.TAR || type == HttpBodyType.GZIP || type == HttpBodyType.BZIP2;
     }
 
     private static String getFileExtension(Path path) {
