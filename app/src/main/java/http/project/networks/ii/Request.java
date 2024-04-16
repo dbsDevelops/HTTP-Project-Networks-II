@@ -9,10 +9,10 @@ public class Request {
     protected Verbs method;
     protected URL url;
     protected String protocolVersion;
-    protected SentHeaders headers; 
+    protected Headers headers; 
     protected HttpRequestBody body; 
 
-    public Request(Verbs method,URL url, String protocolVersion,SentHeaders headers, HttpBodyType bodyType, String bodyContent) {
+    public Request(Verbs method,URL url, String protocolVersion,Headers headers, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
         this.url = url;
         this.protocolVersion = protocolVersion;
@@ -112,7 +112,7 @@ public class Request {
         }
         headers = headers.substring(0, headers.length() - 2);
 
-        SentHeaders sentHeaders = SentHeaders.parse(headers);
+        RequestHeaders sentHeaders = RequestHeaders.parse(headers);
 
         if (method == Verbs.GET || method == Verbs.HEAD) {
             return new Request(method, url, protocolVersion, sentHeaders, HttpBodyType.RAW, "");

@@ -6,19 +6,19 @@ public enum HttpBodyType {
     JSON("application/json"), 
     FILE("multipart/form-data"), 
     GRAPHQL("application/graphql"),
-    XML("application/xml");
-    // HTML("text/html"),
-    // JAVASCRIPT("application/javascript"),
-    // CSS("text/css"),
-    // PNG("image/png"),
-    // JPEG("image/jpeg"),
-    // GIF("image/gif"),
-    // SVG("image/svg+xml"),
-    // PDF("application/pdf"),
-    // ZIP("application/zip"),
-    // TAR("application/x-tar"),
-    // GZIP("application/gzip"),
-    // BZIP2("application/x-bzip2"),
+    XML("application/xml"),
+    HTML("text/html"),
+    JAVASCRIPT("application/javascript"),
+    CSS("text/css"),
+    PNG("image/png"),
+    JPEG("image/jpeg"),
+    GIF("image/gif"),
+    SVG("image/svg+xml"),
+    PDF("application/pdf"),
+    ZIP("application/zip"),
+    TAR("application/x-tar"),
+    GZIP("application/gzip"),
+    BZIP2("application/x-bzip2");
 
     private String bodyType;
 

@@ -15,7 +15,7 @@ public class ClientApp {
             Verbs method = Verbs.POST;                                                           //Method to send the request
             URL url = new URL("http://localhost/teachers/");                     //URL to send the request
             String protocolVersion = "HTTP/1.1";                                                 //Protocol version  
-            SentHeaders headers = new SentHeaders(url);                                          //Headers
+            RequestHeaders headers = new RequestHeaders(url);                                          //Headers
             HttpBodyType bodyType = HttpBodyType.RAW;                                            //Body type
             String bodyContent = "postedTeacher 3";                                      //Body content
 
@@ -31,7 +31,7 @@ public class ClientApp {
             method = Verbs.GET;                                                           //Method to send the request
             url = new URL("http://localhost/teachers/");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
-            headers = new SentHeaders(url);                                          //Headers
+            headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
             client = new GreetClient(HTTPUtils.HTTP_PORT);

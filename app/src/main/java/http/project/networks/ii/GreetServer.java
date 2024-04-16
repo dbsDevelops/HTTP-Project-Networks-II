@@ -1,5 +1,7 @@
 package http.project.networks.ii;
 import java.net.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.*;
 
 public class GreetServer {
@@ -7,12 +9,18 @@ public class GreetServer {
     private static final int MAXIMUM_NUMBER_OF_REQUEST_PARTS = 2;
 
     APITeachers apiTeachers;
+    Path staticFiles;
     
     //List<Socket> connections;
-    public GreetServer() {
+    public GreetServer(String staticFilesPath) {
         this.apiTeachers = new APITeachers();
         this.apiTeachers.teachersMockData();
-        //this.connections = new ArrayList<>();
+        this.staticFiles = Paths.get(staticFilesPath);
+        //If the path is not absolute, we convert it into absolute, to avoid problems of relative routes
+        if(!this.staticFiles.isAbsolute()) {
+            this.staticFiles = this.staticFiles.toAbsolutePath();
+        }
+        System.out.println(this.staticFiles.toString());
     }
 
     public void initServer() {

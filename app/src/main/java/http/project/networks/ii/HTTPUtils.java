@@ -1,10 +1,18 @@
 package http.project.networks.ii;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+import java.nio.file.Files;
 
 public class HTTPUtils {
     // Port numbers
-    public static final int HTTP_PORT = 8081;
+    public static final int HTTP_PORT = 80;
     public static final int HTTPS_PORT = 443;
     
     // Control values
@@ -44,6 +52,28 @@ public class HTTPUtils {
     // Responses
     public static final String RESPONSE = "Response: \n";
     public static final String ESTIMATED_RESPONSE_SIZE = "Estimated response size: ";
+
+    //To map extensions and create a new body depending on the extension that the file has
+    private static final Map<String, HttpBodyType> extensionToTypeMap = new HashMap<String, HttpBodyType>();
+    
+    static {
+        extensionToTypeMap.put("txt", HttpBodyType.RAW);
+        extensionToTypeMap.put("json", HttpBodyType.JSON);
+        extensionToTypeMap.put("xml", HttpBodyType.XML);
+        extensionToTypeMap.put("html", HttpBodyType.HTML);
+        extensionToTypeMap.put("js", HttpBodyType.JAVASCRIPT);
+        extensionToTypeMap.put("css", HttpBodyType.CSS);
+        extensionToTypeMap.put("png", HttpBodyType.PNG);
+        extensionToTypeMap.put("jpeg", HttpBodyType.JPEG);
+        extensionToTypeMap.put("jpg", HttpBodyType.JPEG);
+        extensionToTypeMap.put("gif", HttpBodyType.GIF);
+        extensionToTypeMap.put("svg", HttpBodyType.SVG);
+        extensionToTypeMap.put("pdf", HttpBodyType.PDF);
+        extensionToTypeMap.put("zip", HttpBodyType.ZIP);
+        extensionToTypeMap.put("tar", HttpBodyType.TAR);
+        extensionToTypeMap.put("gz", HttpBodyType.GZIP);
+        extensionToTypeMap.put("bz2", HttpBodyType.BZIP2);
+    }
     
     /**
      * This method is used to automatically select with the desired url the port where the client wants to communicate
@@ -67,6 +97,24 @@ public class HTTPUtils {
         }
         return port;
 
+    }
+
+    public static HttpRequestBody createBodyFromFile(String filePath) throws IOException {
+
+        Path path = Paths.get(filePath);
+        String content = Files.readString(path);
+        String fileExtension = getFileExtension(path);
+
+        HttpBodyType type = extensionToTypeMap.getOrDefault(fileExtension, HttpBodyType.RAW); // Default to RAW if unknown
+        return new HttpRequestBody(type, content);
+        
+    }
+
+    private static String getFileExtension(Path path) {
+        String fileName = path.getFileName().toString();
+        int dotIndex = fileName.lastIndexOf('.');
+        if (dotIndex == -1) return "";
+        return fileName.substring(dotIndex + 1).toLowerCase();
     }
 
 }

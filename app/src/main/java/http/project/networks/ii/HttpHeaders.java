@@ -32,6 +32,7 @@ public enum HttpHeaders {
     //PROXY_AUTHORIZATION("Proxy-Author)
     //RANGE("Range"),
     //REFERER("Referer"),
+    SERVER("Server"),
     //TE("TE"),
     USER_AGENT("User-Agent"); // Importante poner un punto y coma al final del enum
     //UPGRADE("Upgrade"),
