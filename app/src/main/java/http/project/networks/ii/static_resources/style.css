@@ -1,0 +1,61 @@
+body {
+    font-family: 'Papyrus', fantasy; /* Playful and fantasy-like font */
+    background-color: #ffccf9; /* Light, whimsical background color */
+    color: #5d3a9b; /* Deep purple for text, adding to the whimsy */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4aedc4; /* Bright, welcoming color */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px dashed #ff69b4; /* Adds a playful dash underline */
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #ff69b4; /* Playful pink */
+    padding: 0;
+    text-align: center;
+    border-bottom: 3px dotted #333; /* Dotted underline for a whimsical touch */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #34befa; /* Bright blue for contrast */
+}
+
+nav ul li a:hover {
+    background-color: #fa8334; /* A warm, playful hover color */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff0f5; /* Light and airy background for sections */
+    padding: 10px;
+    border-radius: 15px; /* Soft, rounded corners for a gentle look */
+}
+
+footer {
+    background-color: #5d3a9b; /* Ties in with the text color for consistency */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px dashed #ff69b4; /* Echoes the playful dash from the header */
+}
