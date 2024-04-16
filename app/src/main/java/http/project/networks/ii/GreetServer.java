@@ -41,7 +41,7 @@ public class GreetServer {
     }
 
     protected String handleRequest(BufferedReader br) throws IOException {
-        StringBuilder receivedRequest = new StringBuilder();
+        String receivedRequest = new String();
         int requestParts = 0;
         return readRequest(br, receivedRequest, requestParts);
     }
@@ -66,16 +66,15 @@ public class GreetServer {
         System.err.println(HTTPUtils.CLIENT_CONNECTION_CLOSED);
     }
 
-    protected String readRequest(BufferedReader br, StringBuilder receivedRequest, int requestParts) throws IOException {
+    protected String readRequest(BufferedReader br, String receivedRequest, int requestParts) throws IOException {
         String requestLine;
         while ((requestLine = br.readLine()) != null) {
-            receivedRequest.append(requestLine);
-            receivedRequest.append(HTTPUtils.NEW_LINE_CHARACTER);
+            System.out.println(requestLine); // Debugging output
+            receivedRequest += requestLine;
+            receivedRequest += HTTPUtils.NEW_LINE_CHARACTER;
 
+            // Check for the end of the HTTP headers (blank line)
             if (requestLine.isEmpty()) {
-                requestParts++;
-            }
-            if (requestParts >= MAXIMUM_NUMBER_OF_REQUEST_PARTS) {
                 break;
             }
         }

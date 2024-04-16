@@ -28,12 +28,12 @@ public class ClientApp {
             // }
             //client.sendRequest(url, request);
 
-            method = Verbs.GET;                                                           //Method to send the request
+            method = Verbs.POST;                                                           //Method to send the request
             url = new URL("http://localhost/index.html");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.RAW;                                            //Body type
-            bodyContent = "";                                      //Body content
+            bodyContent = "Hola esto es un ejemplo de cuerpo";                                      //Body content
             client = new GreetClient(HTTPUtils.HTTP_PORT);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
