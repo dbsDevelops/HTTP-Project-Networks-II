@@ -1,0 +1,58 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #08f; /* Bright blue, very 90s */
+    color: #ff0; /* Bright yellow text */
+    /* Placeholder for a repeating cat GIF background. Replace the URL with your actual cat GIF location */
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.foroparalelo.com%2Fdeportes%2Ffernando-alonso-983449%2F&psig=AOvVaw1QM0RMm642AB9EYLhxE8Gu&ust=1709226062734000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCAm7TBzoQDFQAAAAAdAAAAABAJ');
+    background-repeat: repeat; /* Ensure the GIF repeats across the page */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f; /* Bright purple */
+    color: #0ff; /* Cyan text for maximum clash */
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #f00; /* Bright red */
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #00f; /* Blue links */
+    padding: 5px 20px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #ff0; /* Bright yellow on hover */
+}
+
+main {
+    padding: 20px;
+    background-color: rgba(0, 255, 0, 0.5); /* Bright green for sections with transparency */
+    color: #f00; /* Red text inside */
+}
+
+section {
+    border: 2px solid #ff0; /* Yellow borders */
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #f0f; /* Matching the header */
+    color: #0ff;
+    text-align: center;
+    padding: 10px;
+}
