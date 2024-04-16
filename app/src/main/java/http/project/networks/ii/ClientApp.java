@@ -29,7 +29,7 @@ public class ClientApp {
             //client.sendRequest(url, request);
 
             method = Verbs.POST;                                                           //Method to send the request
-            url = new URL("http://localhost/index.html");                     //URL to send the request
+            url = new URL("http://localhost/teachers");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.RAW;                                            //Body type
