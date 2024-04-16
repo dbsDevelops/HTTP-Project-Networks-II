@@ -12,7 +12,7 @@ public class Request {
     protected Headers headers; 
     protected HttpRequestBody body; 
 
-    public Request(Verbs method,URL url, String protocolVersion,Headers headers, HttpBodyType bodyType, String bodyContent) {
+    public Request(Verbs method,URL url, String protocolVersion ,Headers headers, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
         this.url = url;
         this.protocolVersion = protocolVersion;

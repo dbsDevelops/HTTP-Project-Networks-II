@@ -83,11 +83,11 @@ public class GreetServer {
             if(urlParts[1].equals("teachers")){
                 return apiTeachers.readRequest(request);
             } else {
-                return new Response( ServerStatusCodes.NOT_FOUND_404.getStatusString(), "Not Found").toString();
+                return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Not Found")).toString();
             }
         } else {
             // teapot response
-            return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), "I'm a teapot").toString();
+            return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "I'm a teapot")).toString();
         }
     }
 }
