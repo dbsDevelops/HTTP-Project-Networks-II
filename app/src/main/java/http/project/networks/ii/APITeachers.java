@@ -3,7 +3,7 @@ package http.project.networks.ii;
 
 public class APITeachers {
 
-    TeachersClass teachers;
+    private TeachersClass teachers;
 
     public APITeachers(TeachersClass teachers) {
         this.teachers = teachers;
@@ -13,29 +13,28 @@ public class APITeachers {
         this.teachers = new TeachersClass();
     }
 
-    public void teachersMockData() {
-        teachers.addTeacher(new Teacher("Teacher 1", 0));
-        teachers.addTeacher(new Teacher("Teacher 2", 0));
-        teachers.addTeacher(new Teacher("Teacher 3", 0));
-        teachers.addTeacher(new Teacher("Teacher 4", 0));
-        teachers.addTeacher(new Teacher("Teacher 5", 0));
+    public void initialiseTeachersMockData() {
+        String[] teacherNames = {"Teacher 1", "Teacher 2", "Teacher 3", "Teacher 4", "Teacher 5"};
+        for (String name : teacherNames) {
+            teachers.addTeacher(new Teacher(name, 0));
+        }
     }
 
     public Response readRequest(Request request) {
         String path = extractPath(request.url.getPath());
         switch (request.method) {
             case HEAD:
-                return handleHead();
+                return handleHeadRequest();
             case GET:
-                return handleGet(path);
+                return handleGetRequest(path);
             case POST:
-                return handlePost(path, request.body);
+                return handlePostRequest(path, request.body);
             case PUT:
-                return handlePut(path, request.body);
+                return handlePutRequest(path, request.body);
             case DELETE:
-                return handleDelete(path, request.body);
+                return handleDeleteRequest(path, request.body);
             default:
-                return new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.METHOD_NOT_ALLOWED));
+                return methodNotAllowedResponse();
         }
     }
 
@@ -50,11 +49,11 @@ public class APITeachers {
         return path.toString();
     }
 
-    private Response handleHead() {
+    private Response handleHeadRequest() {
         return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.ESTIMATED_RESPONSE_SIZE + teachers.toString().getBytes().length));
     }
 
-    private Response handleGet(String path) {
+    private Response handleGetRequest(String path) {
         if (path.equals(HTTPUtils.TEACHERS_PATH)) {
             return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, teachers.toString()));
         } else {
@@ -62,21 +61,21 @@ public class APITeachers {
         }
     }
 
-    private Response handlePost(String path, HttpRequestBody body) {
+    private Response handlePostRequest(String path, HttpRequestBody body) {
         if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
         return processBody(body, true);
     }
 
-    private Response handlePut(String path, HttpRequestBody body) {
+    private Response handlePutRequest(String path, HttpRequestBody body) {
         if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
         return processBody(body, false); 
     }
 
-    private Response handleDelete(String path, HttpRequestBody body) {
+    private Response handleDeleteRequest(String path, HttpRequestBody body) {
         if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
@@ -109,5 +108,9 @@ public class APITeachers {
         }
         return add ? new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED))
                    : new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_UPDATED));
+    }
+
+    private Response methodNotAllowedResponse() {
+        return new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.METHOD_NOT_ALLOWED));
     }
 }

@@ -11,10 +11,9 @@ public class GreetServer {
     APITeachers apiTeachers;
     Path staticFiles;
     
-    //List<Socket> connections;
     public GreetServer(String staticFilesPath) {
         this.apiTeachers = new APITeachers();
-        this.apiTeachers.teachersMockData();
+        this.apiTeachers.initialiseTeachersMockData();
         this.staticFiles = Paths.get(staticFilesPath);
         //If the path is not absolute, we convert it into absolute, to avoid problems of relative routes
         if(!this.staticFiles.isAbsolute()) {
@@ -78,7 +77,7 @@ public class GreetServer {
                 break;
             }
         }
-        return receivedRequest.toString();
+        return receivedRequest;
     }
 
     protected Response handleUrl(String urlPath, Request request) {
@@ -88,7 +87,6 @@ public class GreetServer {
                 return apiTeachers.readRequest(request);
             } else {
                 String filePathString = staticFiles.toString() + urlPath;
-                //System.out.println(filePathString);
                 try {
                     HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(filePathString);
                     if(!body.equals(null)) {

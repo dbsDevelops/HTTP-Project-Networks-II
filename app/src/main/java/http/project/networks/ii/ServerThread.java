@@ -21,7 +21,7 @@ public class ServerThread extends Thread {
             OutputStream clientOutput = clientSocket.getOutputStream();
             Request request = Request.parse(requestString);
             server.response(clientOutput, request);
-            in.close(); 
+            //in.close(); 
         } catch (IOException e) {
             e.printStackTrace();
         }    
