@@ -65,8 +65,14 @@ public class Request {
     }
 
     public boolean isConnectionAlive() {
-        System.out.println(this.headers.getValue(HttpHeaders.CONNECTION));
-        return this.headers.getValue(HttpHeaders.CONNECTION).equals("keep-alive");
+        if(this.headers.getValue(HttpHeaders.CONNECTION) == null) { //We first check if null, to avoid conflicts with equals
+            return true;
+        } else if (this.headers.getValue(HttpHeaders.CONNECTION).equals("keep-alive")) { //If is not null, we check if the connection needs to keep alive
+            return true;
+        } else { //If not keep-alive, we supose that the connection does not need to keep alive
+            return false;
+        }
+        
     }
 
     public static Request parse(String request) {
