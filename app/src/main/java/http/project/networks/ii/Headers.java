@@ -26,7 +26,7 @@ public abstract class Headers {
                 return parts[1]; // Value of the header type found
             }
         }
-        throw new IllegalArgumentException("The header "+ headerType + " is not found in HttpHeaders: ");
+        return null;
     }
     
     public void setValue(HttpHeaders headerType, String headerValue) {

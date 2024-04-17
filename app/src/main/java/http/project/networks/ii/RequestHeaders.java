@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 public class RequestHeaders extends Headers {
 
+    //Empty constructor for the Server parse
+    public RequestHeaders() {
+        this.headers = new ArrayList<>();
+    }
+
     public RequestHeaders(URL url) {
         this.headers = new ArrayList<>();
         //DIVIDE THE HEADERS IN VERBS AND THE VALUE OF THE HEADER WILL CHAGE DEPENDING ON THE VERB
@@ -23,22 +28,16 @@ public class RequestHeaders extends Headers {
         addHeaderToHeaders(HttpHeaders.DATE, getCurrentTime());
     }
 
-    public static RequestHeaders parse(String string) {
-        String[] headers = string.split("\r\n");
-        URL url = null;
-        try {
-            url = new URL("http://" + headers[1].split(" ")[1]);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        RequestHeaders sentHeaders = new RequestHeaders(url);
+    public static RequestHeaders parse(String headersString, URL url) {
+        String[] headers = headersString.split("\r\n");
+        RequestHeaders requestHeaders = new RequestHeaders();
         for (String header : headers) {
             String[] parts = header.split(": ", 2);
-            String headerType = parts[0];
-            sentHeaders.addHeaderToHeaders(headerType, parts[1]);
+            if (parts.length == 2) {
+                requestHeaders.addHeaderToHeaders(parts[0], parts[1]);
+            }
         }
-        return sentHeaders;
+        return requestHeaders;
     }
 
 }

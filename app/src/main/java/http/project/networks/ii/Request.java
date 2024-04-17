@@ -22,8 +22,10 @@ public class Request {
         } else { //POST, PUT
             this.body = new HttpRequestBody(bodyType, bodyContent);
             //Set the new values for the headers content-length and content-type
-            this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
-            this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
+            if(this.headers.getValue(HttpHeaders.CONTENT_LENGTH) == null) { //If the header does not exists, we add it, else we didn't add it
+                this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
+                this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
+            }
         }
     }
 
@@ -98,7 +100,7 @@ public class Request {
         }
         headers = headers.substring(0, headers.length() - 2);
 
-        RequestHeaders sentHeaders = RequestHeaders.parse(headers);
+        RequestHeaders sentHeaders = RequestHeaders.parse(headers, url);
 
         if (method == Verbs.GET || method == Verbs.HEAD) {
             return new Request(method, url, protocolVersion, sentHeaders, HttpBodyType.RAW, "");

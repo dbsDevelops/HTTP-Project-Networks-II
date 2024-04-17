@@ -30,6 +30,7 @@ public class ServerThread extends Thread {
                 //SEND RESPONSE
                 OutputStream clientOutput = clientSocket.getOutputStream();
                 Request request = Request.parse(requestString);
+                System.out.println("Request without parse: \n" + requestString);
                 System.out.println("Request: \n" + request.toString());
                 keepAlive = request.isConnectionAlive();
                 //System.out.println("This is the current keep-alive: " + keepAlive);
