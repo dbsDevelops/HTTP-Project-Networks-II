@@ -130,30 +130,6 @@ public class Request {
         // FILE("multipart/form-data"), 
         // GRAPHQL("application/graphql"),
         // XML("application/xml");
-
-        switch (bodyTypeStr) {
-            case "text/plain":
-                bodyType = HttpBodyType.RAW;
-                break;
-            case "application/x-www-form-urlencoded":
-                bodyType = HttpBodyType.FORM;
-                break;
-            case "application/json":
-                bodyType = HttpBodyType.JSON;
-                break;
-            case "multipart/form-data":
-                bodyType = HttpBodyType.FILE;
-                break;
-            case "application/graphql":
-                bodyType = HttpBodyType.GRAPHQL;
-                break;
-            case "application/xml":
-                bodyType = HttpBodyType.XML;
-                break;
-            default:
-                throw new IllegalArgumentException("The body type " + bodyType + " is not supported");
-        }
-
         
         String bodyContent = "";
         for (int k = headersCount + 2; k < lines.length; k++) {
