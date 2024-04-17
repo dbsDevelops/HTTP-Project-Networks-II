@@ -4,8 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class HTTPUtils {
@@ -57,6 +63,9 @@ public class HTTPUtils {
 
     //To map extensions and create a new body depending on the extension that the file has
     private static final Map<String, HttpBodyType> extensionToTypeMap = new HashMap<String, HttpBodyType>();
+
+    // Encrypts a message using AES encryption
+    private static final String SYMETRIC_KEY = "PEDRO_MALO_PERISE";
     
     static {
         extensionToTypeMap.put("txt", HttpBodyType.RAW);
@@ -114,6 +123,14 @@ public class HTTPUtils {
             String content = Files.readString(path);
             return new HttpRequestBody(type, content);
         }
+    }
+
+    public static String EncryptMessage(String cookie) throws Exception{
+        SecretKeySpec secretKey = new SecretKeySpec(SYMETRIC_KEY.getBytes(), "AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        byte[] encryptedBytes = cipher.doFinal(cookie.toString().getBytes(StandardCharsets.UTF_8));
+        return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
     private static HttpBodyType determineBodyType(Path path) {
