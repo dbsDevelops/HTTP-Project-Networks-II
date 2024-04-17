@@ -70,31 +70,12 @@ public class Request {
     public static Request parse(String request) {
         String[] lines = request.split("\n");
         String[] firstLine = lines[0].split(" ");
-        Verbs method;
 
         for (String firslineElement : firstLine) {
             firslineElement = firslineElement.split("\n")[0];
         }
 
-        switch (firstLine[0]) {
-            case "GET":
-                method = Verbs.GET;
-                break;
-            case "HEAD":
-                method = Verbs.HEAD;
-                break;
-            case "POST":
-                method = Verbs.POST;
-                break;
-            case "PUT":
-                method = Verbs.PUT;
-                break;
-            case "DELETE":
-                method = Verbs.DELETE;
-                break;
-            default:
-                throw new IllegalArgumentException("The method " + firstLine[0] + " is not supported");
-        }
+        Verbs method = Verbs.valueOf(firstLine[0]);
 
         URL url = null;
         try {
@@ -124,18 +105,12 @@ public class Request {
         }
         String bodyTypeStr = sentHeaders.getValue(HttpHeaders.CONTENT_TYPE); //Error al leer el CONTENT_TYPE
         HttpBodyType bodyType = HttpBodyType.parse(bodyTypeStr);
-        // RAW("text/plain"), 
-        // FORM("application/x-www-form-urlencoded"), 
-        // JSON("application/json"), 
-        // FILE("multipart/form-data"), 
-        // GRAPHQL("application/graphql"),
-        // XML("application/xml");
         
-        String bodyContent = "";
+        StringBuilder bodyContent = new StringBuilder();
         for (int k = headersCount + 2; k < lines.length; k++) {
-            bodyContent += lines[k] + "\r\n";
+            bodyContent.append(lines[k]).append("\r\n");
         }
         
-        return new Request(method, url, protocolVersion, sentHeaders, bodyType, bodyContent);
+        return new Request(method, url, protocolVersion, sentHeaders, bodyType, bodyContent.toString());
     }
 }
