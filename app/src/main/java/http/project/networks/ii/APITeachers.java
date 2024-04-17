@@ -90,14 +90,14 @@ public class APITeachers {
     // false indica actualizar y true indica agregar
     private Response processBody(HttpRequestBody body, boolean add) {
         if (body == null || body.getType() != HttpBodyType.RAW) {
-            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Invalid request body"));
+            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
         }
         String content = body.getStringContent();
         String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
         for (String part : contentParts) {
             String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
             if (teacherParts.length != 2) {
-                return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Invalid teacher format"));
+                return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_TEACHER_FORMAT));
             }
             int avg = Integer.parseInt(teacherParts[1].trim());
             if (add) {

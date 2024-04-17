@@ -6,11 +6,12 @@ import java.io.*;
 
 public class GreetServer {
 
-    private static final int MAXIMUM_NUMBER_OF_REQUEST_PARTS = 2;
+    private volatile boolean running = true; // Used to check if server is running and warn rest of the threads
 
-    APITeachers apiTeachers;
-    Path staticFiles;
-    
+    private APITeachers apiTeachers;
+    private Path staticFiles;
+    private ServerSocket serverSocket;
+
     public GreetServer(String staticFilesPath) {
         this.apiTeachers = new APITeachers();
         this.apiTeachers.initialiseTeachersMockData();
@@ -22,27 +23,58 @@ public class GreetServer {
         System.out.println(this.staticFiles.toString());
     }
 
-    public void initServer() {
-        int port = HTTPUtils.HTTP_PORT;
-
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
-            while (true) {
-                Socket clientSocket = serverSocket.accept();
-                System.out.println(HTTPUtils.CLIENT_CONNECTED);
-                ServerThread serverThread = new ServerThread(this, clientSocket);
-                serverThread.start();
+    public void initServer(int port) {
+        // try (ServerSocket serverSocket = new ServerSocket(port)) {
+        //     System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
+        //     while (running) {
+        //         Socket clientSocket = serverSocket.accept();
+        //         System.out.println(HTTPUtils.CLIENT_CONNECTED);
+        //         ServerThread serverThread = new ServerThread(this, clientSocket);
+        //         serverThread.start();
+        //     }
+        // } catch (IOException e) {
+        //     if (!running) break; // Break the loop if server is supposed to stop
+        //     System.err.println(HTTPUtils.COULD_NOT_LISTEN_ON_PORT + port);
+        //     System.exit(-1);
+        // }
+        try {
+            serverSocket = new ServerSocket(port);
+            while (running) {
+                System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
+                handleClientConnection();
             }
         } catch (IOException e) {
-            System.err.println(HTTPUtils.COULD_NOT_LISTEN_ON_PORT + port);
-            System.exit(-1);
+            System.err.println("Could not listen on port " + port + ": " + e.getMessage());
+        } finally {
+            stopServer();
+        }
+    }
+
+    public void handleClientConnection() {
+        try {
+            Socket clientSocket = serverSocket.accept();
+            System.out.println(HTTPUtils.CLIENT_CONNECTED);
+            ServerThread serverThread = new ServerThread(this, clientSocket);
+            serverThread.start();
+        } catch (IOException e) {// Break the loop if server is supposed to stop
+            System.err.println("Error accepting connection: " + e.getMessage());
+        }
+    }
+
+    public void stopServer() {
+        running = false;
+        try {
+            if (serverSocket != null) {
+                serverSocket.close();
+            }
+        } catch (IOException e) {
+            System.err.println("Error closing server: " + e.getMessage());
         }
     }
 
     protected String handleRequest(BufferedReader br) throws IOException {
-        String receivedRequest = new String();
-        int requestParts = 0;
-        return readRequest(br, receivedRequest, requestParts);
+        StringBuilder receivedRequest = new StringBuilder();
+        return readRequest(br, receivedRequest);
     }
 
     protected void response(OutputStream clientOutput, Request request) throws IOException {
@@ -65,19 +97,19 @@ public class GreetServer {
         System.err.println(HTTPUtils.CLIENT_CONNECTION_CLOSED);
     }
 
-    protected String readRequest(BufferedReader br, String receivedRequest, int requestParts) throws IOException {
+    protected String readRequest(BufferedReader br, StringBuilder receivedRequest) throws IOException {
         String requestLine;
         while ((requestLine = br.readLine()) != null) {
             System.out.println(requestLine); // Debugging output
-            receivedRequest += requestLine;
-            receivedRequest += HTTPUtils.NEW_LINE_CHARACTER;
+            receivedRequest.append(requestLine);
+            receivedRequest.append(HTTPUtils.NEW_LINE_CHARACTER);
 
             // Check for the end of the HTTP headers (blank line)
             if (requestLine.isEmpty()) {
                 break;
             }
         }
-        return receivedRequest;
+        return receivedRequest.toString();
     }
 
     protected Response handleUrl(String urlPath, Request request) {
@@ -92,18 +124,17 @@ public class GreetServer {
                     if(!body.equals(null)) {
                         return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                     } else {
-                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Not found"));
+                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.NOT_FOUND));
                     }
                     
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Internal Server Error"));
+                return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
             }
         } else {
             // teapot response, later will be the main page of the server
-            return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "I'm a teapot"));
+            return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, ServerStatusCodes.IM_A_TEAPOT_418.getMessageString()));
         }
     }
 }

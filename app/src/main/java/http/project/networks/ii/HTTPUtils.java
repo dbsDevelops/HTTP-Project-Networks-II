@@ -36,8 +36,12 @@ public class HTTPUtils {
     public static final String RESOURCE_UPDATED = "Resource updated";
     public static final String RESOURCE_DELETED = "Resource deleted";
 
-    // Methods
+    // Responses
     public static final String METHOD_NOT_ALLOWED = "Method not allowed";
+    public static final String NOT_FOUND = "Not found";
+    public static final String INTERNAL_SERVER_ERROR = "Internal server error";
+    public static final String INVALID_REQUEST_BODY = "Invalid request body";
+    public static final String INVALID_TEACHER_FORMAT = "Invalid teacher format";
 
     // Clients
     public static final String CLIENT_CONNECTED = "Client connected";

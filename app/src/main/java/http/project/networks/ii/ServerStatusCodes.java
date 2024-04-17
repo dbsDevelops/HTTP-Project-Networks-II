@@ -86,4 +86,8 @@ public enum ServerStatusCodes {
     public String getStatusString() {
         return this.statusString;
     }
+
+    public String getMessageString() {
+        return this.statusString.split(" ")[1];
+    }
 }
