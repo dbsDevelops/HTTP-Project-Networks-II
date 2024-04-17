@@ -73,8 +73,7 @@ public class GreetServer {
     }
 
     protected String handleRequest(BufferedReader br) throws IOException {
-        StringBuilder receivedRequest = new StringBuilder();
-        return readRequest(br, receivedRequest);
+        return readRequest(br);
     }
 
     protected void response(OutputStream clientOutput, Request request) throws IOException {
@@ -97,25 +96,33 @@ public class GreetServer {
         //System.err.println(HTTPUtils.CLIENT_CONNECTION_CLOSED);
     }
 
-    protected String readRequest(BufferedReader br, StringBuilder receivedRequest) throws IOException {
-        String requestLine;
-        boolean isBody = false;
-        while ((requestLine = br.readLine()) != null) {
-            System.out.println(requestLine); // Debugging output
-            receivedRequest.append(requestLine);
-            receivedRequest.append(HTTPUtils.NEW_LINE_CHARACTER);
-
-            // Check for the end of the HTTP headers (blank line)
-            if (requestLine.isEmpty()) {
-                if (isBody) {
-                    isBody = false;
-                    break;
-                }
-                isBody = true; // Exit if the request is empty or null
+    protected String readRequest(BufferedReader br) throws IOException {
+        StringBuilder requestBuilder = new StringBuilder();
+        String line;
+        int contentLength = 0;
+    
+        // Read headers
+        while ((line = br.readLine()) != null && !line.isEmpty()) {
+            requestBuilder.append(line).append(HTTPUtils.NEW_LINE_CHARACTER);
+            // Check for Content-Length header
+            if (line.startsWith("Content-Length: ")) {
+                contentLength = Integer.parseInt(line.substring(16).trim());
             }
         }
-        return receivedRequest.toString();
+    
+        // Read the blank line following the headers
+        requestBuilder.append(HTTPUtils.NEW_LINE_CHARACTER);
+    
+        // If there's content to read, read it
+        if (contentLength > 0) {
+            char[] body = new char[contentLength];
+            int bytesRead = br.read(body, 0, contentLength);
+            requestBuilder.append(body, 0, bytesRead);
+        }
+    
+        return requestBuilder.toString();
     }
+    
 
     protected Response handleUrl(String urlPath, Request request) {
         String[] urlParts = urlPath.split(HTTPUtils.SLASH_CHARACTER);
