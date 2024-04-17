@@ -33,7 +33,7 @@ public class ClientApp {
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.RAW;                                            //Body type
-            bodyContent = "Hola esto es un ejemplo de cuerpo";                                      //Body content
+            bodyContent = "Pedro 9";                                      //Body content
             client = new GreetClient(HTTPUtils.HTTP_PORT);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);

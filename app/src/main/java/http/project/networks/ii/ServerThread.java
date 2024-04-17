@@ -7,11 +7,13 @@ public class ServerThread extends Thread {
     private GreetServer server;
     private Socket clientSocket;
     private boolean keepAlive;
+    private boolean isBody;
 
     public ServerThread(GreetServer server, Socket clientSocket) {
         this.server = server;
         this.clientSocket = clientSocket;
         this.keepAlive = true;
+        this.isBody = false;
     }
 
     @Override 
@@ -23,8 +25,12 @@ public class ServerThread extends Thread {
                     requestString = server.handleRequest(in);
                 }
                 if (requestString.isEmpty()) {
-                    break; // Exit if the request is empty or null
-                }
+                    if (isBody) {
+                        isBody = false;
+                        break;
+                    }
+                    this.isBody = true; // Exit if the request is empty or null
+                } 
                 //SEND RESPONSE
                 OutputStream clientOutput = clientSocket.getOutputStream();
                 Request request = Request.parse(requestString);
