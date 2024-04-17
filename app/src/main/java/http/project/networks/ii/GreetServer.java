@@ -99,6 +99,7 @@ public class GreetServer {
 
     protected String readRequest(BufferedReader br, StringBuilder receivedRequest) throws IOException {
         String requestLine;
+        boolean isBody = false;
         while ((requestLine = br.readLine()) != null) {
             System.out.println(requestLine); // Debugging output
             receivedRequest.append(requestLine);
@@ -106,7 +107,11 @@ public class GreetServer {
 
             // Check for the end of the HTTP headers (blank line)
             if (requestLine.isEmpty()) {
-                break;
+                if (isBody) {
+                    isBody = false;
+                    break;
+                }
+                isBody = true; // Exit if the request is empty or null
             }
         }
         return receivedRequest.toString();

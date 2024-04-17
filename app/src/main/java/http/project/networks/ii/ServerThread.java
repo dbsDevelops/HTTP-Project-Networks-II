@@ -25,11 +25,7 @@ public class ServerThread extends Thread {
                     requestString = server.handleRequest(in);
                 }
                 if (requestString.isEmpty()) {
-                    if (isBody) {
-                        isBody = false;
-                        break;
-                    }
-                    this.isBody = true; // Exit if the request is empty or null
+                    break;
                 } 
                 //SEND RESPONSE
                 OutputStream clientOutput = clientSocket.getOutputStream();
