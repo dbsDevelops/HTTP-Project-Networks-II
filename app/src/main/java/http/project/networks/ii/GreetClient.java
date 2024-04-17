@@ -10,9 +10,12 @@ public class GreetClient {
     private String host;
     private int port;
 
+    private Cookie cookie;
+
     public GreetClient(int port) {
         this.host = "";
         this.port = port;
+        this.cookie = null;
     }
 
     public void sendRequest(URL url, Request request) {

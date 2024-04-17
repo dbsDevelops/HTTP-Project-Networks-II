@@ -4,11 +4,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
 import java.nio.charset.StandardCharsets;
@@ -125,12 +132,11 @@ public class HTTPUtils {
         }
     }
 
-    public static String EncryptMessage(String cookie) throws Exception{
-        SecretKeySpec secretKey = new SecretKeySpec(SYMETRIC_KEY.getBytes(), "AES");
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        byte[] encryptedBytes = cipher.doFinal(cookie.toString().getBytes(StandardCharsets.UTF_8));
-        return Base64.getEncoder().encodeToString(encryptedBytes);
+    public static Boolean isExpiredCookie(Cookie cookie){
+        if(Duration.between(cookie.getTimeStartCookie(), LocalDateTime.now()).getSeconds() > cookie.getMaxAge()){
+            return true;
+        }
+        return false;
     }
 
     private static HttpBodyType determineBodyType(Path path) {

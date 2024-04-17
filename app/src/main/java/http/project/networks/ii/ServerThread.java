@@ -7,13 +7,15 @@ public class ServerThread extends Thread {
     private GreetServer server;
     private Socket clientSocket;
     private boolean keepAlive;
-    private boolean isBody;
+    private Cookie cookie;
+    private boolean firstTimeCookie;
 
     public ServerThread(GreetServer server, Socket clientSocket) {
         this.server = server;
         this.clientSocket = clientSocket;
         this.keepAlive = true;
-        this.isBody = false;
+        this.cookie = new Cookie(); //Server adds a cookie to the client
+        this.firstTimeCookie = true;
     }
 
     @Override 
@@ -30,6 +32,14 @@ public class ServerThread extends Thread {
                 //SEND RESPONSE
                 OutputStream clientOutput = clientSocket.getOutputStream();
                 Request request = Request.parse(requestString);
+
+                if(this.cookie.buildCookie() == null || firstTimeCookie){
+                    request.headers.addCookie(new Cookie()); //Cookie is expired
+                    if(firstTimeCookie) {
+                        firstTimeCookie = false;
+                    }
+                }
+
                 System.out.println("Request without parse: \n" + requestString);
                 System.out.println("Request: \n" + request.toString());
                 keepAlive = request.isConnectionAlive();
@@ -41,6 +51,9 @@ public class ServerThread extends Thread {
             }
             //in.close();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }    
     }

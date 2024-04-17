@@ -46,6 +46,19 @@ public abstract class Headers {
         return format.format(new Date());
     }
 
+    public void addCookie(Cookie cookie) {
+        try {
+            if(getValue(HttpHeaders.SET_COOKIE) != null){
+                setValue(HttpHeaders.SET_COOKIE, cookie.buildCookie());
+            } else {
+                addHeaderToHeaders(HttpHeaders.SET_COOKIE, cookie.buildCookie());   
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     public String toString() {
         StringBuilder headersString = new StringBuilder();
         for (String header : this.headers) {

@@ -36,7 +36,8 @@ public enum HttpHeaders {
     TE("TE"),
     USER_AGENT("User-Agent"), // Importante poner un punto y coma al final del enum
     UPGRADE("Upgrade"),
-    VIA("Via");
+    VIA("Via"),
+    SET_COOKIE("Set-Cookie");
 
     private String header;
 
