@@ -88,6 +88,12 @@ public enum ServerStatusCodes {
     }
 
     public String getMessageString() {
-        return this.statusString.split(" ")[1];
+        StringBuilder message = new StringBuilder();
+        String[] parts = this.statusString.split(" ");
+        for (int part = 1; part < parts.length; part++) {
+            message.append(parts[part]);
+            message.append(" ");
+        }
+        return message.toString();
     }
 }

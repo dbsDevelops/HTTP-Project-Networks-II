@@ -9,17 +9,17 @@ public class Request {
     protected Verbs method;
     protected URL url;
     protected String protocolVersion;
-    protected Headers headers; 
+    protected RequestHeaders headers; 
     protected HttpRequestBody body; 
 
-    public Request(Verbs method,URL url, String protocolVersion ,Headers headers, HttpBodyType bodyType, String bodyContent) {
+    public Request(Verbs method,URL url, String protocolVersion , RequestHeaders headers, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
         this.url = url;
         this.protocolVersion = protocolVersion;
         this.headers = headers;
-        if(this.method == Verbs.GET || this.method == Verbs.HEAD) {
+        if(this.method == Verbs.GET || this.method == Verbs.HEAD || this.method == Verbs.DELETE) {
             this.body = new HttpRequestBody(HttpBodyType.RAW, "");
-        } else { //POST, PUT, DELETE
+        } else { //POST, PUT
             this.body = new HttpRequestBody(bodyType, bodyContent);
             //Set the new values for the headers content-length and content-type
             this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
@@ -60,6 +60,11 @@ public class Request {
 
     public String getBody() {
         return this.body.getStringContent();
+    }
+
+    public boolean isConnectionAlive() {
+        System.out.println(this.headers.getValue(HttpHeaders.CONNECTION));
+        return this.headers.getValue(HttpHeaders.CONNECTION).equals("keep-alive");
     }
 
     public static Request parse(String request) {

@@ -39,23 +39,23 @@ public class GreetServer {
         // }
         try {
             serverSocket = new ServerSocket(port);
+            System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
             while (running) {
-                System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
                 handleClientConnection();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + port + ": " + e.getMessage());
-        } finally {
-            stopServer();
-        }
+        } 
     }
 
     public void handleClientConnection() {
         try {
             Socket clientSocket = serverSocket.accept();
-            System.out.println(HTTPUtils.CLIENT_CONNECTED);
+            clientSocket.setKeepAlive(true);
+            System.out.println(HTTPUtils.CLIENT_CONNECTED + " from " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
             ServerThread serverThread = new ServerThread(this, clientSocket);
             serverThread.start();
+            
         } catch (IOException e) {// Break the loop if server is supposed to stop
             System.err.println("Error accepting connection: " + e.getMessage());
         }
@@ -94,7 +94,7 @@ public class GreetServer {
         // Clean the output and close the stream
         clientOutput.flush();
         clientOutput.close();
-        System.err.println(HTTPUtils.CLIENT_CONNECTION_CLOSED);
+        //System.err.println(HTTPUtils.CLIENT_CONNECTION_CLOSED);
     }
 
     protected String readRequest(BufferedReader br, StringBuilder receivedRequest) throws IOException {
@@ -121,7 +121,7 @@ public class GreetServer {
                 String filePathString = staticFiles.toString() + urlPath;
                 try {
                     HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(filePathString);
-                    if(!body.equals(null)) {
+                    if(body != null) {
                         return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                     } else {
                         return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.NOT_FOUND));
