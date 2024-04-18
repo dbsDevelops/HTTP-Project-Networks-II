@@ -75,6 +75,10 @@ public class Request {
         
     }
 
+    public void addCookies(String cookiesClient) {
+        this.headers.headers.add(cookiesClient);
+    }
+
     public static Request parse(String request) {
         String[] lines = request.split("\n");
         String[] firstLine = lines[0].split(" ");

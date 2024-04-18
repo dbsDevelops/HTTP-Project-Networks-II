@@ -3,6 +3,7 @@ import java.net.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.*;
+import java.util.*;
 
 public class GreetServer {
 
@@ -11,6 +12,7 @@ public class GreetServer {
     private APITeachers apiTeachers;
     private Path staticFiles;
     private ServerSocket serverSocket;
+    private List<Cookie> cookies;
 
     public GreetServer(String staticFilesPath) {
         this.apiTeachers = new APITeachers();
@@ -21,6 +23,18 @@ public class GreetServer {
             this.staticFiles = this.staticFiles.toAbsolutePath();
         }
         System.out.println(this.staticFiles.toString());
+        this.cookies = new ArrayList<>();
+        for(int i=0; i<4; i++) {
+            cookies.add(new Cookie());
+            /* 
+            try {
+                Thread.sleep((i+1)*1000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            */
+        }
     }
 
     public void initServer(int port) {
@@ -80,6 +94,8 @@ public class GreetServer {
         String urlPath = request.url.getPath();
         Response response = handleUrl(urlPath, request);
         
+        handleCookies(request,response);
+
         // Output the response
         System.out.println(HTTPUtils.RESPONSE + response);
 
@@ -147,6 +163,20 @@ public class GreetServer {
         } else {
             // teapot response, later will be the main page of the server
             return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, ServerStatusCodes.IM_A_TEAPOT_418.getMessageString()));
+        }
+    }
+
+    //Guarantees that the cookies are updated and the client will always have cookies
+    public void handleCookies(Request request, Response response) {
+        for(Cookie cookie : this.cookies) {
+            if(HTTPUtils.isExpiredCookie(cookie)) { //Cookie is expired
+                Cookie newCookie = new Cookie();
+                this.cookies.remove(cookie);
+                response.responseHeaders.setValue(HttpHeaders.SET_COOKIE, newCookie.toString());
+                this.cookies.add(newCookie);
+            } else if(!HTTPUtils.existServerCookie(request, cookie)) { //Cookie is not expired and doesn´t exist in the request
+                response.responseHeaders.addHeaderToHeaders(HttpHeaders.SET_COOKIE, cookie.toString());
+            }
         }
     }
 }

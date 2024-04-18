@@ -20,6 +20,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.*;
 
 public class HTTPUtils {
     // Port numbers
@@ -135,6 +136,17 @@ public class HTTPUtils {
     public static Boolean isExpiredCookie(Cookie cookie){
         if(Duration.between(cookie.getTimeStartCookie(), LocalDateTime.now()).getSeconds() > cookie.getMaxAge()){
             return true;
+        }
+        return false;
+    }
+
+    public static boolean existServerCookie(Request request, Cookie cookie) {
+        for(String header: request.headers.headers) {
+            if(header.startsWith(HttpHeaders.SET_COOKIE.getHeader())) {
+                if(Cookie.parse(header).equals(cookie)){
+                    return true;
+                }
+            }
         }
         return false;
     }

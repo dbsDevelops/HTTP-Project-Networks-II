@@ -9,13 +9,12 @@ public class GreetClient {
 
     private String host;
     private int port;
-
-    private Cookie cookie;
+    private String clientCookies;
 
     public GreetClient(int port) {
         this.host = "";
         this.port = port;
-        this.cookie = null;
+        this.clientCookies = null;
     }
 
     public void sendRequest(URL url, Request request) {
@@ -29,6 +28,12 @@ public class GreetClient {
             // Handling the client request:
             OutputStream os = socket.getOutputStream();
             PrintWriter pw = new PrintWriter(os, true);
+
+            //Add cookies in the new request (if there are any)
+            if(this.clientCookies != null) {
+                request.addCookies(this.clientCookies);
+            }
+
             pw.println(request.toString());
 
             // Handling the server response:
@@ -44,11 +49,38 @@ public class GreetClient {
 
     public void readResponse(InputStream is) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        Boolean firstCookieField = true;
         String responseLine = "";
         responseLine = br.readLine();
-        while (responseLine != null){
+
+        while (responseLine != null) {
             System.out.println(responseLine);
             responseLine = br.readLine();
+            if(isCookieField(responseLine)) {
+                if(firstCookieField) {
+                    this.clientCookies = HttpHeaders.COOKIE.getHeader() + ": "; //Initialize the client cookies
+                    firstCookieField = false;
+                }
+                addServerCookiesToClient(responseLine); //Put all cookies sent by the server in the client
+            }
         }
+
+        this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "
+        System.out.println(this.clientCookies);
     }
+
+    private boolean isCookieField(String field) {
+        if(field != null) {
+            return field.startsWith(HttpHeaders.SET_COOKIE.getHeader());
+        }
+        return false;
+    }
+
+    private void addServerCookiesToClient(String cookieLine) {
+        StringBuilder cookiesValue = new StringBuilder();
+        Cookie cookie = Cookie.parse(cookieLine);
+        cookiesValue.append(cookie.getName()+"="+cookie.getValue()+"; "); //Add the cookie to the client
+        this.clientCookies += cookiesValue.toString();
+    }
+
 }

@@ -2,7 +2,7 @@ package http.project.networks.ii;
 
 public class Response {
     private String statusCodeAndDescription;
-    private ResponseHeaders responseHeaders;
+    protected ResponseHeaders responseHeaders;
     private HttpRequestBody body;
 
     public Response(String statusCodeAndDescription, HttpRequestBody body) {
