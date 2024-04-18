@@ -4,52 +4,63 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Container;
 
-public class ClientRequestPanel extends JPanel implements ActionListener {
+public class ClientRequestPanel extends JPanel {
 
     protected static final String HOST_STRING = "Host ";
     protected static final String PORT_STRING = "Port ";
     
-    JLabel hostLabel;
-    JLabel portLabel;
-    JTextField hostField;
-    JTextField portField;
+    // Lay out the text controls and labels
+    JLabel hostLabel = new JLabel(HOST_STRING);
+    JLabel portLabel = new JLabel(PORT_STRING);
+    JTextField hostField = new JTextField(40);
+    JTextField portField = new JTextField(3);
+
+    JPanel requestControlsPanel = new JPanel();
+    GridBagLayout gridbag = new GridBagLayout();
+    GridBagConstraints c; 
+
+    JPanel responseControlsPanel = new JPanel();
 
     public ClientRequestPanel() {
-        // Set up layout
-        setLayout(new BorderLayout());
         // Add components
-        addHostAndPortLabels();
-        addHostAndPortFields();
-        
+
+        // Set up left panel (requests)
+        JLabel[] labels = {hostLabel, portLabel};
+        JTextField[] textFields = {hostField, portField};
+        addLabelTextRows(labels, textFields, requestControlsPanel);
+        requestControlsPanel.setLayout(gridbag);
+        add(requestControlsPanel);
+
+        // Set up right panel (resoponses)
+        responseControlsPanel.setLayout(gridbag);
     }
 
-    public void addHostAndPortLabels() {
-        hostLabel = new JLabel(HOST_STRING);
-        portLabel = new JLabel(PORT_STRING);
-        add(hostLabel);
-        add(portLabel);
+    private void addLabelTextRows(JLabel[] labels, JTextField[] textFields, Container container) {
+        c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.EAST;
+        int numLabels = labels.length;
+
+        addLabelsToContainer(numLabels, labels, textFields, container);
     }
 
-    public void addHostAndPortFields() {
-        hostField = new JTextField();
-        portField = new JTextField();
-        add(hostField);
-        add(portField);
-    }
+    private void addLabelsToContainer(int numLabels, 
+                                        JLabel[] labels, 
+                                        JTextField[] textFields, 
+                                        Container container) {
+        for (int currentLabelIndex = 0; currentLabelIndex < numLabels; currentLabelIndex++) {
+            c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last
+            c.fill = GridBagConstraints.NONE;      //reset to default
+            c.weightx = 0.0;                       //reset to default
+            container.add(labels[currentLabelIndex], c);
 
-    public void attachHostAndPortLabelsToFields() {
-        hostLabel.setLabelFor(hostField);
-        portLabel.setLabelFor(portField);
+            c.gridwidth = GridBagConstraints.REMAINDER;     //end row
+            c.fill = GridBagConstraints.HORIZONTAL;
+            c.weightx = 1.0;
+            container.add(textFields[currentLabelIndex], c);
+        }
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
-
 }
