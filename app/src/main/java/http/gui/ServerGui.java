@@ -3,7 +3,7 @@ package http.gui;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class ServerGui extends JFrame{
+public class ServerGui extends JFrame {
 
     public ServerGui(){
         super("Server");

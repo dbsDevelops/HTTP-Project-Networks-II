@@ -3,7 +3,7 @@ package http.gui;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class ClientGui extends JFrame{
+public class ClientGui extends JFrame {
     public ClientGui(){
         super("Client");
         setSize(400, 300);
