@@ -19,14 +19,16 @@ import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.CheckboxGroup;
 
 public class ClientRequestPanel extends JPanel {
 
     protected static final String HOST_STRING = "Host ";
     protected static final String PORT_STRING = "Port ";
     protected static final String HEADERS_STRING = "Headers";
+    protected static final String ADD_HEADERS_STRING = "Add headers";
+    protected static final String SEND_STRING = "Send";
     protected static final int ROWS_AND_COLUMNS = 4;
+
     
     // Lay out the text controls and labels
     JLabel hostLabel = new JLabel(HOST_STRING);
@@ -35,9 +37,9 @@ public class ClientRequestPanel extends JPanel {
     JTextField hostField = new JTextField(40);
     JTextField portField = new JTextField(3);
     ArrayList<Checkbox> headerCheckboxes = new ArrayList<>();
-    JButton addHeadersButton = new JButton("Add Headers");
+    JButton addHeadersButton = new JButton(ADD_HEADERS_STRING);
     JDialog addHeadersDialog = new JDialog();
-    JButton sendButton = new JButton("Send");
+    JButton sendButton = new JButton(SEND_STRING);
 
     JPanel requestControlsPanel = new JPanel();
     GridLayout gridLayout = new GridLayout(ROWS_AND_COLUMNS, ROWS_AND_COLUMNS);
@@ -54,12 +56,16 @@ public class ClientRequestPanel extends JPanel {
         requestControlsPanel.setLayout(gridLayout);
         addLabelTextRows(labels, textFields, requestControlsPanel);
 
+        addHeaderCheckboxes();
+
+        addHeadersDialog.setTitle("Extra Headers");
+        addHeadersButton.setSize(getPreferredSize());
+        addHeaderCheckboxesToDialog();
         addHeadersButton.addActionListener(new ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent e) {
-               addHeaderCheckboxes();
-               addHeadersDialog.setTitle("Extra Headers");
-               
-               addHeadersDialog.setVisible(true);
+            if (!addHeadersDialog.isVisible()){
+                addHeadersDialog.setVisible(true);
+            }
            }
         });
 
@@ -115,6 +121,12 @@ public class ClientRequestPanel extends JPanel {
         for (String header: HttpHeaders.getHeaders()) {
             Checkbox headerCheckbox = new Checkbox(header);
             headerCheckboxes.add(headerCheckbox);
+        }
+    }
+
+    public void addHeaderCheckboxesToDialog() {
+        for (Checkbox headerCheckbox: headerCheckboxes) {
+            addHeadersDialog.add(headerCheckbox);
         }
     }
 }
