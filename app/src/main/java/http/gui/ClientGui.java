@@ -2,17 +2,43 @@ package http.gui;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class ClientGui extends JFrame {
+
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 300;
+
+    ClientRequestPanel clientRequestPanel;
+
     public ClientGui(){
-        super("Client");
-        setSize(400, 300);
+        // Create and set up the window
+        super("Http Client");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        // Add content to the window
+        initComponenets();
+
+        // Display the window
+        setSize(WIDTH, HEIGHT);
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        new ClientGui();
+        //Schedule a job for the event dispatching thread:
+        //creating and showing this application's GUI.
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                //Turn off metal's use of bold fonts
+		        UIManager.put("swing.boldMetal", Boolean.FALSE);
+		        new ClientGui();
+            }
+        });
     }
     
+    public void initComponenets() {
+        clientRequestPanel = new ClientRequestPanel();
+        this.add(clientRequestPanel);
+    }
 }
