@@ -7,9 +7,6 @@ import javax.swing.UIManager;
 
 public class ClientGui extends JFrame {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 700;
-
     ClientRequestPanel clientRequestPanel;
 
     public ClientGui(){
