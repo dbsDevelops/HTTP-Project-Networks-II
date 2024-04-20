@@ -26,14 +26,14 @@ public class GreetServer {
         this.cookies = new ArrayList<>();
         for(int i=0; i<4; i++) {
             cookies.add(new Cookie());
-            /* 
+            
             try {
-                Thread.sleep((i+1)*1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            */
+            
         }
     }
 
@@ -168,15 +168,26 @@ public class GreetServer {
 
     //Guarantees that the cookies are updated and the client will always have cookies
     public void handleCookies(Request request, Response response) {
+        List<Cookie> cookiesToRemove = new ArrayList<>();
+        List<Cookie> cookiesToAdd = new ArrayList<>();
         for(Cookie cookie : this.cookies) {
             if(HTTPUtils.isExpiredCookie(cookie)) { //Cookie is expired
                 Cookie newCookie = new Cookie();
-                this.cookies.remove(cookie);
-                response.responseHeaders.setValue(HttpHeaders.SET_COOKIE, newCookie.toString());
-                this.cookies.add(newCookie);
+                cookiesToRemove.add(cookie);
+                cookiesToAdd.add(newCookie);
+                response.responseHeaders.headers.remove(HttpHeaders.SET_COOKIE.getHeader() + ": " + cookie.toString());
+                response.responseHeaders.addHeaderToHeaders(HttpHeaders.SET_COOKIE, newCookie.toString());        
             } else if(!HTTPUtils.existServerCookie(request, cookie)) { //Cookie is not expired and doesn´t exist in the request
                 response.responseHeaders.addHeaderToHeaders(HttpHeaders.SET_COOKIE, cookie.toString());
             }
+        }
+
+        for(Cookie cookie : cookiesToRemove) {
+            this.cookies.remove(cookie);
+        }
+
+        for(Cookie cookie : cookiesToAdd) {
+            this.cookies.add(cookie);
         }
     }
 }

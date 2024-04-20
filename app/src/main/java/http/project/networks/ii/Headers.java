@@ -32,8 +32,8 @@ public abstract class Headers {
     public void setValue(HttpHeaders headerType, String headerValue) {
         for (int i = 0; i < this.headers.size(); i++) {
             String[] parts = this.headers.get(i).split(": ", 2);
-            if (parts[0].equals(headerType.toString())) {
-                this.headers.set(i, headerType.toString() + ": " + headerValue);
+            if (parts[0].equals(headerType.getHeader())) {
+                this.headers.set(i, headerType.getHeader() + ": " + headerValue);
                 return;
             }
         }

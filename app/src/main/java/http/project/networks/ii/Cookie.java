@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class Cookie {
     private static int count = 1;
+    private int id;
     private String name;
     private String value;
     private int maxAge;
@@ -12,11 +13,22 @@ public class Cookie {
 
     public Cookie() {
         this.name = "cookie"+count;
+        this.id = count;
         this.value = "ma" + (count+365) + "xrz";
-        this.maxAge = 3600; //seconds
+        this.maxAge = 20; //seconds
         this.secure = false; //No TLS de momento
         this.timeStartCookie = LocalDateTime.now();
         count++; //Increment the count in a way that is difficol to guess
+    }
+
+    //Constructor for the Parse cookie
+    public Cookie(int id, String value, int maxAge, boolean secure, LocalDateTime timeStartCookie) {
+        this.id = id;
+        this.name= "cookie"+id;
+        this.value = value;
+        this.maxAge = maxAge;
+        this.secure = secure;
+        this.timeStartCookie = timeStartCookie;
     }
 
     public String getName() {
@@ -25,6 +37,10 @@ public class Cookie {
     
     public String getValue() {
         return this.value;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public LocalDateTime getTimeStartCookie() {
@@ -37,25 +53,34 @@ public class Cookie {
 
     public static Cookie parse(String cookie){
         String[] parts = cookie.split("; ");
-        Cookie newCookie = new Cookie();
+        int id = 0;
+        String value = "";
+        int maxAge = 0;
+        boolean secure = false;
+        LocalDateTime timeStartCookie = null;
+
         for(String part: parts) {
             String[] keyValue = part.split("=", 2);
             if(keyValue[0].equals("id")) {
-                newCookie.value = keyValue[1];
+                id = Integer.parseInt(keyValue[1]);
+            }else if(keyValue[0].equals("cookie"+id)) {
+                value = keyValue[1];
             } else if(keyValue[0].equals("Max-Age")) {
-                newCookie.maxAge = Integer.parseInt(keyValue[1]);
+                maxAge = Integer.parseInt(keyValue[1]);
             } else if(keyValue[0].equals("Secure")) {
-                newCookie.secure = true;
+                secure = true;
             } else if(keyValue[0].equals("Date")) {
-                newCookie.timeStartCookie = LocalDateTime.parse(keyValue[1]);
+                timeStartCookie = LocalDateTime.parse(keyValue[1]);
             }
         }
-        return newCookie;
+        return new Cookie(id,value,maxAge,secure,timeStartCookie);
     }
 
     public String toString() {
         StringBuilder cookie = new StringBuilder();
-        cookie.append(name+"=");
+        cookie.append("id=");
+        cookie.append(id);
+        cookie.append("; "+name+"=");
         cookie.append(value);
         cookie.append("; Max-Age=");
         cookie.append(maxAge);
@@ -65,7 +90,6 @@ public class Cookie {
         cookie.append("; HttpOnly");
         cookie.append("; Date=");
         cookie.append(this.timeStartCookie.toString()); // Add the start date of the cookie
-        //cookie.append("\r\n");
         return cookie.toString(); 
     }
 

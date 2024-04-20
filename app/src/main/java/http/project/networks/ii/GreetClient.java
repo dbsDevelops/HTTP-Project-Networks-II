@@ -77,8 +77,9 @@ public class GreetClient {
     }
 
     private void addServerCookiesToClient(String cookieLine) {
+        String cookieValue = cookieLine.substring(HttpHeaders.SET_COOKIE.getHeader().length()+2); //Remove the "Set-Cookie: "
         StringBuilder cookiesValue = new StringBuilder();
-        Cookie cookie = Cookie.parse(cookieLine);
+        Cookie cookie = Cookie.parse(cookieValue);
         cookiesValue.append(cookie.getName()+"="+cookie.getValue()+"; "); //Add the cookie to the client
         this.clientCookies += cookiesValue.toString();
     }
