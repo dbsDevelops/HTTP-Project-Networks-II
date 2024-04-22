@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import com.google.gson.Gson;
+
 import http.project.networks.ii.HttpHeaders;
 
 import javax.swing.BorderFactory;
@@ -21,21 +24,10 @@ import java.awt.Container;
 import java.awt.Dimension;
 
 public class ClientRequestPanel extends JPanel {
-
-    protected static final String HOST_STRING = "Host ";
-    protected static final String PORT_STRING = "Port ";
-    protected static final String HEADERS_STRING = "Headers";
-    protected static final String ADD_HEADERS_STRING = "Add headers";
-    protected static final String SEND_STRING = "Send";
-    protected static final int ROWS_AND_COLUMNS = 4;
-
     
-    // Lay out the text controls and labels
-    JLabel hostLabel = new JLabel(HOST_STRING);
-    JLabel portLabel = new JLabel(PORT_STRING);
+    HostField hostField = new HostField();
+    PortField portField = new PortField();
     JLabel headersLabel = new JLabel(HEADERS_STRING);
-    JTextField hostField = new JTextField(40);
-    JTextField portField = new JTextField(3);
     ArrayList<Checkbox> headerCheckboxes = new ArrayList<>();
     JButton addHeadersButton = new JButton(ADD_HEADERS_STRING);
     JDialog addHeadersDialog = new JDialog();
@@ -59,7 +51,7 @@ public class ClientRequestPanel extends JPanel {
         addHeaderCheckboxes();
 
         addHeadersDialog.setTitle("Extra Headers");
-        addHeadersButton.setSize(getPreferredSize());
+        addHeadersDialog.setSize(new Dimension(DIALOG_WIDTH, DIALOG_HEIGHT));
         addHeaderCheckboxesToDialog();
         addHeadersButton.addActionListener(new ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent e) {
