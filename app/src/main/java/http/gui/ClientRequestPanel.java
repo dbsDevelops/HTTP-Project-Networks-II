@@ -6,8 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import com.google.gson.Gson;
-
 import http.project.networks.ii.HttpHeaders;
 
 import javax.swing.BorderFactory;
@@ -27,14 +25,14 @@ public class ClientRequestPanel extends JPanel {
     
     HostField hostField = new HostField();
     PortField portField = new PortField();
-    JLabel headersLabel = new JLabel(HEADERS_STRING);
+    JLabel headersLabel = new JLabel(GuiUtils.HEADERS_STRING);
     ArrayList<Checkbox> headerCheckboxes = new ArrayList<>();
-    JButton addHeadersButton = new JButton(ADD_HEADERS_STRING);
+    JButton addHeadersButton = new JButton(GuiUtils.ADD_HEADERS_STRING);
     JDialog addHeadersDialog = new JDialog();
-    JButton sendButton = new JButton(SEND_STRING);
+    JButton sendButton = new JButton(GuiUtils.SEND_STRING);
 
     JPanel requestControlsPanel = new JPanel();
-    GridLayout gridLayout = new GridLayout(ROWS_AND_COLUMNS, ROWS_AND_COLUMNS);
+    GridLayout gridLayout = new GridLayout(GuiUtils.ROWS_AND_COLUMNS, GuiUtils.ROWS_AND_COLUMNS);
 
     JScrollPane responseControlsPanel = new JScrollPane();
 
@@ -43,15 +41,15 @@ public class ClientRequestPanel extends JPanel {
         // Add components
 
         // Set up left panel (requests)
-        JLabel[] labels = {hostLabel, portLabel};
-        JTextField[] textFields = {hostField, portField};
+        JLabel[] labels = {hostField.getHostLabel(), portField.getPortLabel()};
+        JTextField[] textFields = {hostField.getHostTextField(), portField.getPortTextField()};
         requestControlsPanel.setLayout(gridLayout);
         addLabelTextRows(labels, textFields, requestControlsPanel);
 
         addHeaderCheckboxes();
 
         addHeadersDialog.setTitle("Extra Headers");
-        addHeadersDialog.setSize(new Dimension(DIALOG_WIDTH, DIALOG_HEIGHT));
+        addHeadersDialog.setSize(new Dimension(GuiUtils.DIALOG_WIDTH, GuiUtils.DIALOG_HEIGHT));
         addHeaderCheckboxesToDialog();
         addHeadersButton.addActionListener(new ActionListener() {
            public void actionPerformed(java.awt.event.ActionEvent e) {
