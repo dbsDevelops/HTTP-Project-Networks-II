@@ -25,14 +25,9 @@ public class ClientRequestPanel extends JPanel {
     
     HostField hostField = new HostField();
     PortField portField = new PortField();
-    JLabel headersLabel = new JLabel(GuiUtils.HEADERS_STRING);
-    ArrayList<Checkbox> headerCheckboxes = new ArrayList<>();
-    JButton addHeadersButton = new JButton(GuiUtils.ADD_HEADERS_STRING);
-    JDialog addHeadersDialog = new JDialog();
-    JButton sendButton = new JButton(GuiUtils.SEND_STRING);
-
-    JPanel requestControlsPanel = new JPanel();
-    GridLayout gridLayout = new GridLayout(GuiUtils.ROWS_AND_COLUMNS, GuiUtils.ROWS_AND_COLUMNS);
+    HeadersDialog headersDialog = new HeadersDialog();
+    RequestAndResponseSplitPanel requestAndResponseSplitPanel = new RequestAndResponseSplitPanel();
+    SendRequestButton sendRequestButton = new SendRequestButton();
 
     JScrollPane responseControlsPanel = new JScrollPane();
 
@@ -43,50 +38,52 @@ public class ClientRequestPanel extends JPanel {
         // Set up left panel (requests)
         JLabel[] labels = {hostField.getHostLabel(), portField.getPortLabel()};
         JTextField[] textFields = {hostField.getHostTextField(), portField.getPortTextField()};
-        requestControlsPanel.setLayout(gridLayout);
-        addLabelTextRows(labels, textFields, requestControlsPanel);
+        addLabelTextRows(labels, textFields, requestAndResponseSplitPanel.getRequestControlsPanel());
+        // add(headersDialog, BorderLayout.CENTER);
+        add(requestAndResponseSplitPanel, BorderLayout.CENTER);
+        add(sendRequestButton, BorderLayout.SOUTH);
 
-        addHeaderCheckboxes();
+        //addHeaderCheckboxes();
 
-        addHeadersDialog.setTitle("Extra Headers");
-        addHeadersDialog.setSize(new Dimension(GuiUtils.DIALOG_WIDTH, GuiUtils.DIALOG_HEIGHT));
-        addHeaderCheckboxesToDialog();
-        addHeadersButton.addActionListener(new ActionListener() {
-           public void actionPerformed(java.awt.event.ActionEvent e) {
-            if (!addHeadersDialog.isVisible()){
-                addHeadersDialog.setVisible(true);
-            }
-           }
-        });
+        headersDialog.setTitle("Extra Headers");
+        headersDialog.setSize(new Dimension(GuiUtils.DIALOG_WIDTH, GuiUtils.DIALOG_HEIGHT));
+        //addHeaderCheckboxesToDialog();
+        // headersDialog.addActionListener(new ActionListener() {
+        //    public void actionPerformed(java.awt.event.ActionEvent e) {
+        //     if (!headersDialog.isVisible()){
+        //         headersDialog.setVisible(true);
+        //     }
+        //    }
+        // });
 
-        requestControlsPanel.add(addHeadersButton);
-        requestControlsPanel.add(sendButton);
+        // requestControlsPanel.add(addHeadersButton);
+        // requestControlsPanel.add(sendButton);
         //requestControlsPanel.setPreferredSize(new Dimension(500, 300));
-        requestControlsPanel.setMinimumSize(new Dimension(300, 100));
-        requestControlsPanel.setBorder(
-            BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder("Request"),
-                BorderFactory.createEmptyBorder(5,5,5,5)
-            )
-        );
+        // requestControlsPanel.setMinimumSize(new Dimension(300, 100));
+        // requestControlsPanel.setBorder(
+        //     BorderFactory.createCompoundBorder(
+        //         BorderFactory.createTitledBorder("Request"),
+        //         BorderFactory.createEmptyBorder(5,5,5,5)
+        //     )
+        // );
 
         // Set up right panel (resoponses)
         //responseControlsPanel.setLayout(new BorderLayout());
         //requestControlsPanel.setPreferredSize(new Dimension(500, 300));
-        responseControlsPanel.setMinimumSize(new Dimension(300, 100));
-        responseControlsPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        responseControlsPanel.setBorder(
-            BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder("Response"),
-                BorderFactory.createEmptyBorder(5,5,5,5)
-            )
-        );
+        // responseControlsPanel.setMinimumSize(new Dimension(300, 100));
+        // responseControlsPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        // responseControlsPanel.setBorder(
+        //     BorderFactory.createCompoundBorder(
+        //         BorderFactory.createTitledBorder("Response"),
+        //         BorderFactory.createEmptyBorder(5,5,5,5)
+        //     )
+        // );
         
         // Set up split panel
-        JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, requestControlsPanel, responseControlsPanel);
-        splitPanel.setOneTouchExpandable(true);
-        splitPanel.setResizeWeight(0.5);
-        add(splitPanel);
+        // JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, requestControlsPanel, responseControlsPanel);
+        // splitPanel.setOneTouchExpandable(true);
+        // splitPanel.setResizeWeight(0.5);
+        // add(splitPanel);
     }
 
     private void addLabelTextRows(JLabel[] labels, JTextField[] textFields, Container container) {
@@ -104,19 +101,6 @@ public class ClientRequestPanel extends JPanel {
             labels[currentLabelIndex].setLabelFor(textFields[currentLabelIndex]);
             container.add(labels[currentLabelIndex]);
             container.add(textFields[currentLabelIndex]);
-        }
-    }
-
-    public void addHeaderCheckboxes() {
-        for (String header: HttpHeaders.getHeaders()) {
-            Checkbox headerCheckbox = new Checkbox(header);
-            headerCheckboxes.add(headerCheckbox);
-        }
-    }
-
-    public void addHeaderCheckboxesToDialog() {
-        for (Checkbox headerCheckbox: headerCheckboxes) {
-            addHeadersDialog.add(headerCheckbox);
         }
     }
 }

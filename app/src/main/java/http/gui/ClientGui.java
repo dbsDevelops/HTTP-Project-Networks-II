@@ -11,7 +11,7 @@ public class ClientGui extends JFrame {
 
     public ClientGui(){
         // Create and set up the window
-        super("Http Client");
+        super(GuiUtils.CLIENT_GUI_TITLE);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Add content to the window
