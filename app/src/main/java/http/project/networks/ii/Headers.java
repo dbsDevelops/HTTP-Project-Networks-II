@@ -19,6 +19,11 @@ public abstract class Headers {
         this.headers.add(header);
     }
 
+    public void removeHeader(HttpHeaders headerType, String headerValue) {
+        String header = headerType.getHeader() + ": " + headerValue;
+        this.headers.remove(header);
+    }
+
     public String getValue(HttpHeaders headerType) {
         for (String header : this.headers) {
             String[] parts = header.split(": ", 2);

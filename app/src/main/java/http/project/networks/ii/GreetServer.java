@@ -175,7 +175,8 @@ public class GreetServer {
                 Cookie newCookie = new Cookie();
                 cookiesToRemove.add(cookie);
                 cookiesToAdd.add(newCookie);
-                response.responseHeaders.headers.remove(HttpHeaders.SET_COOKIE.getHeader() + ": " + cookie.toString());
+                //response.responseHeaders.headers.remove(HttpHeaders.SET_COOKIE.getHeader() + ": " + cookie.toString());
+                response.responseHeaders.removeHeader(HttpHeaders.SET_COOKIE, cookie.toString());
                 response.responseHeaders.addHeaderToHeaders(HttpHeaders.SET_COOKIE, newCookie.toString());        
             } else if(!HTTPUtils.existServerCookie(request, cookie)) { //Cookie is not expired and doesn´t exist in the request
                 response.responseHeaders.addHeaderToHeaders(HttpHeaders.SET_COOKIE, cookie.toString());
