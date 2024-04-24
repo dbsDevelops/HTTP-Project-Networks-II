@@ -1,10 +1,15 @@
 package http.project.networks.ii;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 public class TeachersClass {
     protected List<Teacher> teachers;
-
+    String path = "TeachersClass.txt";
+  
     public TeachersClass(List<Teacher> teachers) {
         this.teachers = teachers;
     }
@@ -27,6 +32,11 @@ public class TeachersClass {
 
     public void updateTeacher(Teacher teacher) {
         teachers.set(teachers.indexOf(teacher), teacher);
+        try {
+            Files.write(Paths.get(path), "Aquí el texto".getBytes(), StandardOpenOption.APPEND);
+        }catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
     }
 
     public void removeTeacher(String teacher) {
