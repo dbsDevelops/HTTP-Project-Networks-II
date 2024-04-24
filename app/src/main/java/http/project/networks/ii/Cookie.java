@@ -3,6 +3,12 @@ package http.project.networks.ii;
 import java.time.LocalDateTime;
 
 public class Cookie {
+    private static final String COOKIE = "cookie";
+    private static final String MAX_AGE = "Max-Age";
+    private static final String SECURE = "Secure";
+    private static final String DATE = "Date";
+    private static final String HTTP_ONLY = "HttpOnly";
+
     private static int count = 1;
     private int id;
     private String name;
@@ -51,9 +57,9 @@ public class Cookie {
         return this.maxAge;
     }
 
-    public static Cookie parse(String cookie){
+    public static Cookie parse(String cookie) {
         String[] parts = cookie.split("; ");
-        int id = 0;
+        int id = 0; //Invalid cookie (always starting in 1)
         String value = "";
         int maxAge = 0;
         boolean secure = false;
@@ -61,34 +67,33 @@ public class Cookie {
 
         for(String part: parts) {
             String[] keyValue = part.split("=", 2);
-            if(keyValue[0].equals("id")) {
-                id = Integer.parseInt(keyValue[1]);
-            }else if(keyValue[0].equals("cookie"+id)) {
+            String key = keyValue[0];
+            if (key.startsWith(COOKIE)) {
+                id = Integer.parseInt(key.substring(6)); // "cookie" has 6 characters
                 value = keyValue[1];
-            } else if(keyValue[0].equals("Max-Age")) {
+            }else if(key.equals(MAX_AGE)) {
                 maxAge = Integer.parseInt(keyValue[1]);
-            } else if(keyValue[0].equals("Secure")) {
+            } else if(key.equals(SECURE)) {
                 secure = true;
-            } else if(keyValue[0].equals("Date")) {
+            } else if(key.equals(DATE)) {
                 timeStartCookie = LocalDateTime.parse(keyValue[1]);
             }
         }
+        
         return new Cookie(id,value,maxAge,secure,timeStartCookie);
     }
 
     public String toString() {
         StringBuilder cookie = new StringBuilder();
-        cookie.append("id=");
-        cookie.append(id);
-        cookie.append("; "+name+"=");
+        cookie.append(name+"=");
         cookie.append(value);
-        cookie.append("; Max-Age=");
+        cookie.append("; "+MAX_AGE+"=");
         cookie.append(maxAge);
         if (secure) { //If the cookie is HTTPS only
-            cookie.append("; Secure");
+            cookie.append("; "+SECURE);
         }
-        cookie.append("; HttpOnly");
-        cookie.append("; Date=");
+        cookie.append("; "+HTTP_ONLY);
+        cookie.append("; "+DATE+"=");
         cookie.append(this.timeStartCookie.toString()); // Add the start date of the cookie
         return cookie.toString(); 
     }
