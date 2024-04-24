@@ -1,5 +1,6 @@
 package http.project.networks.ii;
 
+import com.google.gson.Gson;
 
 public class APITeachers {
 
@@ -65,49 +66,74 @@ public class APITeachers {
         if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
-        return processBody(body, true);
+        return processBody(body, Verbs.POST);
     }
 
     private Response handlePutRequest(String path, HttpRequestBody body) {
         if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
-        return processBody(body, false); 
+        return processBody(body, Verbs.PUT); 
     }
 
     private Response handleDeleteRequest(String path, HttpRequestBody body) {
         if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
-        String content = body.getStringContent();
-        String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
-        for (String part : contentParts) {
-            teachers.removeTeacher(part.trim());
-        }
-        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_DELETED));
+        return processBody(body, Verbs.DELETE);
     }
 
     // false indica actualizar y true indica agregar
-    private Response processBody(HttpRequestBody body, boolean add) {
-        if (body == null || body.getType() != HttpBodyType.RAW) {
-            return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
-        }
-        String content = body.getStringContent();
-        String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
-        for (String part : contentParts) {
-            String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
-            if (teacherParts.length != 2) {
-                return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_TEACHER_FORMAT));
+    private Response processBody(HttpRequestBody body, Verbs verb) {
+
+        if (body.getType() == HttpBodyType.JSON){
+            Gson gson = new Gson();
+
+            TeachersClass teachers = gson.fromJson(body.getStringContent(), TeachersClass.class);
+
+            if (verb == Verbs.POST) {
+                for (Teacher teacher : teachers.getTeachers()) {
+                    this.teachers.addTeacher(teacher);
+                }
+                return new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED));
+            } else if (verb == Verbs.PUT) {
+                for (Teacher teacher : teachers.getTeachers()) {
+                    this.teachers.updateTeacher(teacher);
+                }
+                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_UPDATED));
+            } else if (verb == Verbs.DELETE){
+                for (Teacher teacher : teachers.getTeachers()) {
+                    this.teachers.removeTeacher(teacher.getName());
+                }
+                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_DELETED));
             }
-            int avg = Integer.parseInt(teacherParts[1].trim());
-            if (add) {
-                teachers.addTeacher(new Teacher(teacherParts[0], avg));
-            } else {
-                teachers.updateTeacher(new Teacher(teacherParts[0], avg));
-            }
+
+
+
         }
-        return add ? new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED))
-                   : new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_UPDATED));
+
+        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+
+        // if (body.getType() != HttpBodyType.RAW) {
+        //     return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+        // }
+        // String content = body.getStringContent();
+
+        // String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
+        // for (String part : contentParts) {
+        //     String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
+        //     if (teacherParts.length != 2) {
+        //         return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_TEACHER_FORMAT));
+        //     }
+        //     int avg = Integer.parseInt(teacherParts[1].trim());
+        //     if (add) {
+        //         teachers.addTeacher(new Teacher(teacherParts[0], avg));
+        //     } else {
+        //         teachers.updateTeacher(new Teacher(teacherParts[0], avg));
+        //     }
+        // }
+        // return add ? new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED))
+        //            : new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_UPDATED));
     }
 
     private Response methodNotAllowedResponse() {

@@ -7,6 +7,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
+import com.google.gson.Gson;
+
 public class ClientApp {
     
     public static void main(String[] args) {
@@ -32,8 +34,16 @@ public class ClientApp {
             url = new URL("http://localhost/teachers");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
-            bodyType = HttpBodyType.RAW;                                            //Body type
-            bodyContent = "Pedro 9";                                      //Body content
+            bodyType = HttpBodyType.JSON;                                            //Body type
+
+            //Body content
+            TeachersClass teachers = new TeachersClass();
+            teachers.addTeacher(new Teacher("TEST Teacher 1", 0));
+            Gson gson = new Gson();
+            bodyContent = gson.toJson(teachers);                                      //Body content
+
+
+
             client = new GreetClient(HTTPUtils.HTTP_PORT);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
@@ -41,35 +51,19 @@ public class ClientApp {
             client.sendRequest(url, request);
 
 
-            //Create new requests with random values
-            // Verbs [] methods = {Verbs.GET, Verbs.POST, Verbs.PUT, Verbs.DELETE};
-            // String [] urls = {"http://localhost/teachers/", "http://localhost"};
-            // String [] protocolVersions = {"HTTP/1.1", "HTTP/1.0"};
-            // String [] bodyContents = {
-            //     "", 
-            //     "postedTeacher 3", //text
-            //     "<html><body><h1>Hello, World!</h1></body></html>", // HTML
-            //     "<note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>", // XML
-            //     "{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}" // JSON
-            // };
-            // HttpBodyType [] bodyTypes = {HttpBodyType.RAW, HttpBodyType.JSON, HttpBodyType.XML, HttpBodyType.FORM};
-            // Random random = new Random();
+            method = Verbs.GET;                                                           //Method to send the request
+            url = new URL("http://localhost/teachers");                     //URL to send the request
+            protocolVersion = "HTTP/1.1";                                                 //Protocol version
+            headers = new RequestHeaders(url);                                          //Headers
+            bodyType = HttpBodyType.RAW;                                            //Body type
+            bodyContent = "";                                      //Body content
 
-            // for (int i = 0; i < 17; i++) {
-            //     method = methods[random.nextInt(methods.length)]; 
-                
-            //     url = new URL(urls[random.nextInt(urls.length)]); 
-            //     protocolVersion = protocolVersions[random.nextInt(protocolVersions.length)]; 
-            //     headers = new RequestHeaders(url); //Headers
-            //     bodyType = bodyTypes[random.nextInt(bodyTypes.length)]; 
-            //     bodyContent = bodyContents[random.nextInt(bodyContents.length)]; 
-            //     client = new GreetClient(HTTPUtils.HTTP_PORT);
-
-            //     //Send the request
-            //     request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
-            //     System.out.println("\nREQUEST "+(i+1)+":\n"+request.toString());
-            //     client.sendRequest(url, request);
-            // }
+            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            //Send the request
+            request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
+            System.out.println(request.toString());
+            client.sendRequest(url, request);
+            
 
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
