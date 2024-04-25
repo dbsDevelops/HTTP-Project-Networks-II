@@ -5,7 +5,6 @@ package http.project.networks.ii;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Random;
 
 import com.google.gson.Gson;
 
@@ -22,13 +21,6 @@ public class ClientApp {
             String bodyContent = null;  
             GreetClient client = null;
             Request request = null;                                //Body content
- 
-            //Send the request
-            //System.out.println(request.toString());
-            // for(int i = 0; i < 10; i++) {
-            //     client.sendRequest(url, request);
-            // }
-            //client.sendRequest(url, request);
 
             method = Verbs.POST;                                                           //Method to send the request
             url = new URL("http://localhost/teachers");                     //URL to send the request

@@ -24,17 +24,7 @@ public class GreetServer {
         }
         System.out.println(this.staticFiles.toString());
         this.cookies = new ArrayList<>();
-        for(int i=0; i<4; i++) {
-            cookies.add(new Cookie());
-            
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            
-        }
+        cookies.add(new Cookie());
     }
 
     public void initServer(int port) {
