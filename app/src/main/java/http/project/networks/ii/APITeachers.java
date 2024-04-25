@@ -113,27 +113,6 @@ public class APITeachers {
         }
 
         return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
-
-        // if (body.getType() != HttpBodyType.RAW) {
-        //     return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
-        // }
-        // String content = body.getStringContent();
-
-        // String[] contentParts = content.split(HTTPUtils.NEW_LINE_CHARACTER);
-        // for (String part : contentParts) {
-        //     String[] teacherParts = part.split(HTTPUtils.SPACE_CHARACTER);
-        //     if (teacherParts.length != 2) {
-        //         return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_TEACHER_FORMAT));
-        //     }
-        //     int avg = Integer.parseInt(teacherParts[1].trim());
-        //     if (add) {
-        //         teachers.addTeacher(new Teacher(teacherParts[0], avg));
-        //     } else {
-        //         teachers.updateTeacher(new Teacher(teacherParts[0], avg));
-        //     }
-        // }
-        // return add ? new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED))
-        //            : new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_UPDATED));
     }
 
     private Response methodNotAllowedResponse() {
