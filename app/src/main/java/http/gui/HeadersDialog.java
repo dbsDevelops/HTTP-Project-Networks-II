@@ -3,50 +3,115 @@ package http.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
+import java.awt.BorderLayout;
 import java.awt.Checkbox;
-import java.awt.CheckboxGroup;
+import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.WindowConstants;
 
 import http.project.networks.ii.HttpHeaders;
 
 public class HeadersDialog extends JDialog {
-    CheckboxGroup checkboxGroup = new CheckboxGroup();
-    ArrayList<Checkbox> headerCheckboxes = new ArrayList<>();
+    private static final int NUMBER_OF_HEADERS = HttpHeaders.values().length;
+    private static final int NUMBER_OF_FIELDS = 2;
+    
+    ArrayList<JCheckBox> headerCheckboxes = new ArrayList<>();
     ArrayList<JTextField> headerTextFields = new ArrayList<>();
+    //JScrollPane scrollPane;
 
     public HeadersDialog() {
         super();
         this.setTitle(GuiUtils.ADD_HEADERS_STRING);
+        this.setLayout(new GridLayout(NUMBER_OF_HEADERS, NUMBER_OF_FIELDS));
         this.setSize(GuiUtils.DIALOG_WIDTH, GuiUtils.DIALOG_HEIGHT);
         this.setResizable(true);
-        this.addHeadersToCheckboxes();
-        this.addHeaderCheckboxesToDialog();
+        this.initUI();
+        // this.addScrollPanel();
+        // this.addCheckboxesAndTextFieldsToPanel();
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
-    public void addHeadersToCheckboxes() {
+    private void initUI() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        getContentPane().add(scrollPane);
+
+        for (HttpHeaders header : HttpHeaders.values()) {
+            JPanel rowPanel = new JPanel();
+            rowPanel.setLayout(new GridLayout(1, 1));
+            
+            JCheckBox checkBox = new JCheckBox(header.getHeader());
+            JTextField textField = new JTextField(20);
+            textField.setEnabled(false);  // Initially disable the text field
+            
+            // Listener to enable text field when checkbox is selected
+            checkBox.addActionListener(e -> textField.setEnabled(checkBox.isSelected()));
+            
+            headerCheckboxes.add(checkBox);
+            headerTextFields.add(textField);
+
+            rowPanel.add(checkBox);
+            rowPanel.add(textField);
+            
+            getContentPane().add(rowPanel);
+        }
+    }
+
+    // public void addScrollPanel() {
+    //     scrollPane = new JScrollPane();
+    //     //scrollPane.setLayout(new GridLayout(NUMBER_OF_HEADERS, NUMBER_OF_FIELDS));
+    //     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    //     this.add(scrollPane);
+    // }
+
+    public void addCheckboxesAndTextFields() {
         for (HttpHeaders header : HttpHeaders.values()) {
             Checkbox checkbox = new Checkbox(header.getHeader());
-            headerCheckboxes.add(checkbox);
+            //checkbox.setBounds(10, 10, 5, 5);
+            JTextField textField = new JTextField();
+            textField.setEnabled(Boolean.FALSE);
+
+            checkbox.addItemListener(new ItemListener() {
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    if (checkbox.isEnabled()) {
+                        textField.setEnabled(Boolean.TRUE);
+                    } else {
+                        textField.setEnabled(Boolean.FALSE);
+                    }
+                }
+            });
+
+            //headerCheckboxes.add(checkbox);
+            headerTextFields.add(textField);
         }
     }
 
-    public void addHeaderCheckboxesToDialog() {
-        for (Checkbox checkbox : headerCheckboxes) {
-            checkbox.setCheckboxGroup(checkboxGroup);
-            checkbox.setBounds(10, 10, 5, 5);
-            this.add(checkbox);
-        }
-    }
+    // public void addCheckboxesAndTextFieldsToPanel() {
+    //     this.addCheckboxesAndTextFields();
+        
+    //     for (Checkbox checkbox : headerCheckboxes) {
+    //         scrollPane.add(checkbox);
+    //     }
 
-    // public void addTextFieldsToCheckboxes
+    //     for (JTextField textField : headerTextFields) {
+    //         scrollPane.add(textField);
+    //     }
+    // }
 
-    public List<Checkbox> getHeaderCheckboxes() {
-        return headerCheckboxes;
-    }
-
+    // public List<Checkbox> getHeaderCheckboxes() {
+    //     return headerCheckboxes;
+    // }
 }

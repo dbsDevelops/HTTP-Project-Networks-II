@@ -1,5 +1,7 @@
 package http.gui;
 
+import http.project.networks.ii.HttpHeaders;
+
 public class GuiUtils {
 
     public static final String HOST_STRING = "Host ";

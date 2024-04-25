@@ -12,4 +12,12 @@ public class MethodField extends JComboBox<String> {
             this.addItem(method.toString());
         }
     }
+
+    public Verbs getSelectedMethod() {
+        return (Verbs) this.getSelectedItem();
+    }
+
+    public void setSelectedMethod(Verbs method) {
+        this.setSelectedItem(method);
+    }
 }

@@ -3,11 +3,10 @@ package http.gui;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 public class ClientGui extends JFrame {
 
-    ClientRequestPanel clientRequestPanel;
+    RequestAndResponseSplitPanel requestAndResponseSplitPanel;
 
     public ClientGui(){
         // Create and set up the window
@@ -27,15 +26,13 @@ public class ClientGui extends JFrame {
         //creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                //Turn off metal's use of bold fonts
-		        UIManager.put("swing.boldMetal", Boolean.FALSE);
 		        new ClientGui();
             }
         });
     }
     
     public void initComponenets() {
-        clientRequestPanel = new ClientRequestPanel();
-        this.add(clientRequestPanel);
+        requestAndResponseSplitPanel = new RequestAndResponseSplitPanel();
+        this.add(requestAndResponseSplitPanel);
     }
 }

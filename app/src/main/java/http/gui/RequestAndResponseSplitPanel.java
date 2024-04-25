@@ -2,14 +2,14 @@ package http.gui;
 
 import javax.swing.JSplitPane;
 
-public class RequestAndResponseSplitPanel extends JSplitPane{
+public class RequestAndResponseSplitPanel extends JSplitPane {
 
-    
+    private static final float RESIZE_WEIGHT = 0.5f;
 
     public RequestAndResponseSplitPanel() {
         super(JSplitPane.HORIZONTAL_SPLIT, new RequestControlsPanel(), new ResponsePanel());
         this.setOneTouchExpandable(true);
-        this.setResizeWeight(0.5);
+        this.setResizeWeight(RESIZE_WEIGHT);
     }
 
     public RequestControlsPanel getRequestControlsPanel() {
@@ -18,5 +18,13 @@ public class RequestAndResponseSplitPanel extends JSplitPane{
 
     public ResponsePanel getResponsePanel() {
         return (ResponsePanel) this.getRightComponent();
+    }
+
+    public void setRequestControlsPanel(RequestControlsPanel requestControlsPanel) {
+        this.setLeftComponent(requestControlsPanel);
+    }
+
+    public void setResponsePanel(ResponsePanel responsePanel) {
+        this.setRightComponent(responsePanel);
     }
 }
