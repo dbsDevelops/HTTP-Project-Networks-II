@@ -34,10 +34,8 @@ public class HeadersDialog extends JDialog {
         this.setTitle(GuiUtils.ADD_HEADERS_STRING);
         this.setLayout(new GridLayout(NUMBER_OF_HEADERS, NUMBER_OF_FIELDS));
         this.setSize(GuiUtils.DIALOG_WIDTH, GuiUtils.DIALOG_HEIGHT);
-        this.setResizable(true);
+        this.setResizable(Boolean.TRUE);
         this.initUI();
-        // this.addScrollPanel();
-        // this.addCheckboxesAndTextFieldsToPanel();
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 

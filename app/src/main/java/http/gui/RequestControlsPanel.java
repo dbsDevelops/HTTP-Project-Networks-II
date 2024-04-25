@@ -5,6 +5,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import http.project.networks.ii.GreetClient;
+import http.project.networks.ii.GreetServer;
+import http.project.networks.ii.Request;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Container;
@@ -14,6 +18,9 @@ public class RequestControlsPanel extends JPanel {
     private static final int FIRST_LABEL_INDEX = 0;
     private static final int PANEL_WIDTH = 300;
     private static final int PANEL_HEIGHT = 300;
+
+    GreetClient greetClient;
+    Request request;
 
     HostField hostField;
     PortField portField;
