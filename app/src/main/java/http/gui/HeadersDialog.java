@@ -46,7 +46,7 @@ public class HeadersDialog extends JDialog {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        getContentPane().add(scrollPane);
+        getContentPane().add(scrollPane); 
 
         for (HttpHeaders header : HttpHeaders.values()) {
             JPanel rowPanel = new JPanel();
@@ -68,50 +68,4 @@ public class HeadersDialog extends JDialog {
             getContentPane().add(rowPanel);
         }
     }
-
-    // public void addScrollPanel() {
-    //     scrollPane = new JScrollPane();
-    //     //scrollPane.setLayout(new GridLayout(NUMBER_OF_HEADERS, NUMBER_OF_FIELDS));
-    //     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-    //     this.add(scrollPane);
-    // }
-
-    public void addCheckboxesAndTextFields() {
-        for (HttpHeaders header : HttpHeaders.values()) {
-            Checkbox checkbox = new Checkbox(header.getHeader());
-            //checkbox.setBounds(10, 10, 5, 5);
-            JTextField textField = new JTextField();
-            textField.setEnabled(Boolean.FALSE);
-
-            checkbox.addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent e) {
-                    if (checkbox.isEnabled()) {
-                        textField.setEnabled(Boolean.TRUE);
-                    } else {
-                        textField.setEnabled(Boolean.FALSE);
-                    }
-                }
-            });
-
-            //headerCheckboxes.add(checkbox);
-            headerTextFields.add(textField);
-        }
-    }
-
-    // public void addCheckboxesAndTextFieldsToPanel() {
-    //     this.addCheckboxesAndTextFields();
-        
-    //     for (Checkbox checkbox : headerCheckboxes) {
-    //         scrollPane.add(checkbox);
-    //     }
-
-    //     for (JTextField textField : headerTextFields) {
-    //         scrollPane.add(textField);
-    //     }
-    // }
-
-    // public List<Checkbox> getHeaderCheckboxes() {
-    //     return headerCheckboxes;
-    // }
 }
