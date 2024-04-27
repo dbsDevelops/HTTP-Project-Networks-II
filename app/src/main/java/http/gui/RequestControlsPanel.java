@@ -35,7 +35,7 @@ public class RequestControlsPanel extends JPanel {
         this.hostField = new HostField();
         this.portField = new PortField();
         this.methodField = new MethodField();
-        this.sendRequestButton = new SendRequestButton();
+        this.sendRequestButton = new SendRequestButton(greetClient, request);
         this.headersDialog = new HeadersDialog();
         this.addHeadersButton = new AddHeadersButton(headersDialog);
         configurePanel();
