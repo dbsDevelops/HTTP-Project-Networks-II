@@ -22,6 +22,10 @@ public class PortField {
         return portTextField;
     }
 
+    public String getPort() {
+        return portTextField.getText();
+    }
+
     public void setPortLabel(JLabel portLabel) {
         this.portLabel = portLabel;
     }

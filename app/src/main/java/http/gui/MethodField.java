@@ -16,7 +16,7 @@ public class MethodField extends JComboBox<String> {
     public Verbs getSelectedMethod() {
         return (Verbs) this.getSelectedItem();
     }
-
+    
     public void setSelectedMethod(Verbs method) {
         this.setSelectedItem(method);
     }
