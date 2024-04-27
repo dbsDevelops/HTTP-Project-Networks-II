@@ -43,7 +43,7 @@ public class ClientApp {
             client.sendRequest(url, request);
 
 
-            method = Verbs.GET;                                                           //Method to send the request
+            method = Verbs.DELETE;                                                           //Method to send the request
             url = new URL("http://localhost/teachers");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers

@@ -36,6 +36,6 @@ public enum HttpBodyType {
                 return type;
             }
         }
-        throw new IllegalArgumentException("The body type " + bodyType + " is not supported");
+        return null;
     }
 }
