@@ -30,13 +30,20 @@ public class TeachersClass {
         this.teachers.add(teacher);
     }
 
-    public void updateTeacher(Teacher teacher) {
-        teachers.set(teachers.indexOf(teacher), teacher);
-        try {
-            Files.write(Paths.get(path), "Aquí el texto".getBytes(), StandardOpenOption.APPEND);
-        }catch (IOException e) {
-            //exception handling left as an exercise for the reader
+    public boolean updateTeacher(Teacher teacher) {
+        //compare the name of the teacher to update
+        for (Teacher t : teachers) {
+            if (t.getName().equals(teacher.getName())) {
+                teachers.set(teachers.indexOf(t), teacher);
+                try {
+                    Files.write(Paths.get(path), "Aquí el texto".getBytes(), StandardOpenOption.APPEND);
+                }catch (IOException e) {
+                    //exception handling left as an exercise for the reader
+                }
+                return true;
+            }
         }
+        return false;
     }
 
     public void removeTeacher(String teacher) {

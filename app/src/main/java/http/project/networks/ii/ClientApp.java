@@ -30,7 +30,7 @@ public class ClientApp {
 
             //Body content
             TeachersClass teachers = new TeachersClass();
-            teachers.addTeacher(new Teacher("Teacher 1", 0));
+            teachers.addTeacher(new Teacher("Teacher 1", 10));
             Gson gson = new Gson();
             bodyContent = gson.toJson(teachers);                                      //Body content
 

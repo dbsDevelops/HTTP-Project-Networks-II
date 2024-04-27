@@ -52,7 +52,7 @@ public class Teacher {
         return this.name.equals(name) && this.passRate == passRate;
     }
 
-    public Object getId() {
+    public String getId() {
         return this.name;
     }
 }

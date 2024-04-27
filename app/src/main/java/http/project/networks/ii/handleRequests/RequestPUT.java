@@ -33,21 +33,14 @@ public class RequestPUT implements RequestCommand {
         if (body.getType() == HttpBodyType.JSON) {
             Gson gson = new Gson();
             TeachersClass updatedTeachers = gson.fromJson(body.getStringContent(), TeachersClass.class);
-            for (Teacher updatedTeacher : updatedTeachers.getTeachers()) {
-                // Find and update existing teacher, or add new teacher if not found
-                boolean found = false;
-                for (Teacher existingTeacher : teachers.getTeachers()) {
-                    if (existingTeacher.getId() == updatedTeacher.getId()) {
-                        existingTeacher.setName(updatedTeacher.getName());
-                        existingTeacher.setPassRate(updatedTeacher.getPassRate());
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    teachers.addTeacher(updatedTeacher);
+            for (Teacher teacher : updatedTeachers.getTeachers()) {
+                boolean updated = teachers.updateTeacher(teacher);
+                if (!updated) {
+                    // Teacher with the given ID not found
+                    return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Teacher with ID " + teacher.getId() + " not found"));
                 }
             }
+
             return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Teachers updated successfully"));
         }
         return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
