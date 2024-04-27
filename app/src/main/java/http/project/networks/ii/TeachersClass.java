@@ -52,8 +52,12 @@ public class TeachersClass {
         }
     }
 
-    public void removeTeacher(int index) {
-        this.teachers.remove(index);
+    public boolean removeTeacher(int index) {
+        if (index < 0 || index >= teachers.size()) {
+            return false;
+        }
+        teachers.remove(index);
+        return true;
     }
 
     public Teacher getTeacher(int index) {

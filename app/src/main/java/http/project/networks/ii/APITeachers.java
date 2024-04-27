@@ -1,10 +1,10 @@
 package http.project.networks.ii;
 
-import com.google.gson.Gson;
+import http.project.networks.ii.handleRequests.*;
 
 public class APITeachers {
 
-    private TeachersClass teachers;
+    private final TeachersClass teachers;
 
     public APITeachers(TeachersClass teachers) {
         this.teachers = teachers;
@@ -23,20 +23,29 @@ public class APITeachers {
 
     public Response readRequest(Request request) {
         String path = extractPath(request.url.getPath());
+        RequestCommand command;
+
         switch (request.method) {
             case HEAD:
-                return handleHeadRequest();
+                command = new RequestHEAD(path);
+                break;
             case GET:
-                return handleGetRequest(path);
+                command = new RequestGET(path, teachers);
+                break;
             case POST:
-                return handlePostRequest(path, request.body);
+                command = new RequestPOST(path, teachers, request.body);
+                break;
             case PUT:
-                return handlePutRequest(path, request.body);
+                command = new RequestPUT(path, teachers, request.body);
+                break;
             case DELETE:
-                return handleDeleteRequest(path, request.body);
+                command = new RequestDELETE(path, teachers, request.body);
+                break;
             default:
                 return methodNotAllowedResponse();
         }
+
+        return command.execute();
     }
 
     private String extractPath(String url) {
@@ -48,71 +57,6 @@ public class APITeachers {
             }
         }
         return path.toString();
-    }
-
-    private Response handleHeadRequest() {
-        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.ESTIMATED_RESPONSE_SIZE + teachers.toString().getBytes().length));
-    }
-
-    private Response handleGetRequest(String path) {
-        if (path.equals(HTTPUtils.TEACHERS_PATH)) {
-            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, teachers.toString()));
-        } else {
-            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
-        }
-    }
-
-    private Response handlePostRequest(String path, HttpRequestBody body) {
-        if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
-            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
-        }
-        return processBody(body, Verbs.POST);
-    }
-
-    private Response handlePutRequest(String path, HttpRequestBody body) {
-        if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
-            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
-        }
-        return processBody(body, Verbs.PUT); 
-    }
-
-    private Response handleDeleteRequest(String path, HttpRequestBody body) {
-        if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
-            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
-        }
-        return processBody(body, Verbs.DELETE);
-    }
-
-    // false indica actualizar y true indica agregar
-    private Response processBody(HttpRequestBody body, Verbs verb) {
-
-        if (body.getType() == HttpBodyType.JSON){
-            Gson gson = new Gson();
-
-            TeachersClass teachers = gson.fromJson(body.getStringContent(), TeachersClass.class);
-
-            if (verb == Verbs.POST) {
-                for (Teacher teacher : teachers.getTeachers()) {
-                    this.teachers.addTeacher(teacher);
-                }
-                return new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED));
-            } else if (verb == Verbs.PUT) {
-                for (Teacher teacher : teachers.getTeachers()) {
-                    this.teachers.updateTeacher(teacher);
-                }
-                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_UPDATED));
-            } else if (verb == Verbs.DELETE){
-                for (Teacher teacher : teachers.getTeachers()) {
-                    this.teachers.removeTeacher(teacher.getName());
-                }
-                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_DELETED));
-            }
-
-
-
-        }
-
-        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
     }
 
     private Response methodNotAllowedResponse() {

@@ -1,19 +1,24 @@
 package http.project.networks.ii.handleRequests;
-import java.net.URL;
 
+import http.project.networks.ii.HTTPUtils;
 import http.project.networks.ii.HttpBodyType;
-import http.project.networks.ii.Request;
-import http.project.networks.ii.RequestHeaders;
-import http.project.networks.ii.Verbs;
+import http.project.networks.ii.HttpRequestBody;
+import http.project.networks.ii.Response;
+import http.project.networks.ii.ServerStatusCodes;
 
-public class RequestHEAD extends Request{
-    public RequestHEAD(URL url, String protocolVersion , RequestHeaders headers, HttpBodyType bodyType, String bodyContent) {
-        super(Verbs.HEAD ,url, protocolVersion, headers, bodyType, bodyContent);
+public class RequestHEAD implements RequestCommand {
+    private final String path;
+
+    public RequestHEAD(String path) {
+        this.path = path;
     }
 
     @Override
-    public String getMethod() {
-        return "HEAD";
+    public Response execute() {
+        if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
+            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+        }
+        // Process HEAD request here (HEAD requests typically only return headers)
+        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Headers for " + HTTPUtils.TEACHERS_PATH));
     }
-    
 }

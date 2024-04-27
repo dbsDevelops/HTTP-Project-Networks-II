@@ -51,5 +51,8 @@ public class Teacher {
     public boolean equals(String name, float passRate) {
         return this.name.equals(name) && this.passRate == passRate;
     }
-    
+
+    public Object getId() {
+        return this.name;
+    }
 }

@@ -1,19 +1,43 @@
 package http.project.networks.ii.handleRequests;
-import java.net.URL;
 
+import com.google.gson.Gson;
+
+import http.project.networks.ii.HTTPUtils;
 import http.project.networks.ii.HttpBodyType;
-import http.project.networks.ii.Request;
-import http.project.networks.ii.RequestHeaders;
-import http.project.networks.ii.Verbs;
+import http.project.networks.ii.HttpRequestBody;
+import http.project.networks.ii.Response;
+import http.project.networks.ii.ServerStatusCodes;
+import http.project.networks.ii.Teacher;
+import http.project.networks.ii.TeachersClass;
 
-public class RequestPOST extends Request{
-    public RequestPOST(URL url, String protocolVersion , RequestHeaders headers, HttpBodyType bodyType, String bodyContent) {
-        super(Verbs.POST ,url, protocolVersion, headers, bodyType, bodyContent);
+public class RequestPOST implements RequestCommand {
+    private final String path;
+    private final TeachersClass teachers;
+    private final HttpRequestBody body;
+
+    public RequestPOST(String path, TeachersClass teachers, HttpRequestBody body) {
+        this.path = path;
+        this.teachers = teachers;
+        this.body = body;
     }
 
     @Override
-    public String getMethod() {
-        return "POST";
+    public Response execute() {
+        if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
+            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+        }
+        return processBody(body);
     }
-    
+
+    private Response processBody(HttpRequestBody body) {
+        if (body.getType() == HttpBodyType.JSON) {
+            Gson gson = new Gson();
+            TeachersClass teachers = gson.fromJson(body.getStringContent(), TeachersClass.class);
+            for (Teacher teacher : teachers.getTeachers()) {
+                this.teachers.addTeacher(teacher);
+            }
+            return new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED));
+        }
+        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+    }
 }
