@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import http.project.networks.ii.GreetClient;
-import http.project.networks.ii.GreetServer;
 import http.project.networks.ii.Request;
 
 import java.awt.Dimension;
@@ -19,17 +18,17 @@ public class RequestControlsPanel extends JPanel {
     private static final int PANEL_WIDTH = 300;
     private static final int PANEL_HEIGHT = 300;
 
-    GreetClient greetClient;
-    Request request;
+    private transient GreetClient greetClient;
+    private transient Request request;
 
-    HostField hostField;
-    PortField portField;
-    MethodField methodField;
-    SendRequestButton sendRequestButton;
-    HeadersDialog headersDialog;
-    AddHeadersButton addHeadersButton;
+    private transient HostField hostField;
+    private transient PortField portField;
+    private MethodField methodField;
+    private SendRequestButton sendRequestButton;
+    private HeadersDialog headersDialog;
+    private AddHeadersButton addHeadersButton;
     
-    GridLayout gridLayout = new GridLayout(GuiUtils.ROWS_AND_COLUMNS, GuiUtils.ROWS_AND_COLUMNS);
+    private GridLayout gridLayout = new GridLayout(GuiUtils.ROWS_AND_COLUMNS, GuiUtils.ROWS_AND_COLUMNS);
 
     public RequestControlsPanel() {
         super();

@@ -22,6 +22,10 @@ public class HostField {
         return hostTextField;
     }
 
+    public String getHost() {
+        return hostTextField.getText();
+    }
+
     public void setHostLabel(JLabel hostLabel) {
         this.hostLabel = hostLabel;
     }
