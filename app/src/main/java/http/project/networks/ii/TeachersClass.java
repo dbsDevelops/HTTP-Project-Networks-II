@@ -46,7 +46,7 @@ public class TeachersClass {
         return false;
     }
 
-    public void removeTeacher(String teacher) {
+    public boolean removeTeacher(String teacher) {
         Teacher teacherToRemove = null;
         for (Teacher t : teachers) {
             if (t.getName().equals(teacher)) {
@@ -56,7 +56,9 @@ public class TeachersClass {
         }
         if (teacherToRemove != null) {
             teachers.remove(teacherToRemove);
+            return true;
         }
+        return false;
     }
 
     public boolean removeTeacher(int index) {

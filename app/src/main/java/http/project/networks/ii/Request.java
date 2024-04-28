@@ -17,9 +17,9 @@ public class Request {
         this.url = url;
         this.protocolVersion = protocolVersion;
         this.headers = headers;
-        if(this.method == Verbs.GET || this.method == Verbs.HEAD || this.method == Verbs.DELETE) {
+        if(this.method == Verbs.GET || this.method == Verbs.HEAD) {
             this.body = new HttpRequestBody(HttpBodyType.RAW, "");
-        } else { //POST, PUT
+        } else { //POST, PUT, DELETE
             this.body = new HttpRequestBody(bodyType, bodyContent);
             //Set the new values for the headers content-length and content-type
             if(this.headers.getValue(HttpHeaders.CONTENT_LENGTH) == null) { //If the header does not exists, we add it, else we didn't add it

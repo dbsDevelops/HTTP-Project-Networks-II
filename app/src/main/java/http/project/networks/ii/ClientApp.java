@@ -22,7 +22,7 @@ public class ClientApp {
             GreetClient client = null;
             Request request = null;                                //Body content
 
-            method = Verbs.POST;                                                           //Method to send the request
+            method = Verbs.DELETE;                                                           //Method to send the request
             url = new URL("http://localhost/teachers");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
@@ -30,7 +30,7 @@ public class ClientApp {
 
             //Body content
             TeachersClass teachers = new TeachersClass();
-            teachers.addTeacher(new Teacher("Teacher 1", 10));
+            teachers.addTeacher(new Teacher("Teacher 1", 0));
             Gson gson = new Gson();
             bodyContent = gson.toJson(teachers);                                      //Body content
 
@@ -43,7 +43,7 @@ public class ClientApp {
             client.sendRequest(url, request);
 
 
-            method = Verbs.DELETE;                                                           //Method to send the request
+            method = Verbs.GET;                                                           //Method to send the request
             url = new URL("http://localhost/teachers");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
