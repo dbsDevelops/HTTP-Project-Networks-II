@@ -24,7 +24,9 @@ public class GreetServer {
         }
         System.out.println(this.staticFiles.toString());
         this.cookies = new ArrayList<>();
-        cookies.add(new Cookie());
+        for(int i=0; i<3;i++) {
+            cookies.add(new Cookie());
+        }
     }
 
     public void initServer(int port) {
