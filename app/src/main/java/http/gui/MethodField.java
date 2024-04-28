@@ -1,23 +1,45 @@
 package http.gui;
 
+import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
 import http.project.networks.ii.Verbs;
 
-public class MethodField extends JComboBox<String> {
+public class MethodField {
+
+    JLabel methodLabel;
+    JComboBox<String> methodComboBox;
 
     public MethodField() {
         super();
+        methodLabel = new JLabel(GuiUtils.METHOD_STRING);
+        methodComboBox = new JComboBox<>();
         for (Verbs method: Verbs.values()) {
-            this.addItem(method.toString());
+            methodComboBox.addItem(method.toString());
         }
     }
 
+    public JLabel getMethodLabel() {
+        return methodLabel;
+    }
+
+    public JComboBox<String> getMethodComboBox() {
+        return methodComboBox;
+    }
+
     public Verbs getSelectedMethod() {
-        return (Verbs) this.getSelectedItem();
+        return (Verbs) methodComboBox.getSelectedItem();
     }
     
+    public void setMethodLabel(JLabel methodLabel) {
+        this.methodLabel = methodLabel;
+    }
+
     public void setSelectedMethod(Verbs method) {
-        this.setSelectedItem(method);
+        methodComboBox.setSelectedItem(method);
+    }
+
+    public void setMethodComboBox(JComboBox<String> methodComboBox) {
+        this.methodComboBox = methodComboBox;
     }
 }

@@ -26,7 +26,8 @@ public class HeadersDialog extends JDialog {
     public HeadersDialog() {
         super();
         this.setTitle(GuiUtils.ADD_HEADERS_STRING);
-        this.setLayout(new GridLayout(NUMBER_OF_HEADERS, NUMBER_OF_FIELDS));
+        //this.setLayout(new GridLayout(NUMBER_OF_HEADERS, NUMBER_OF_FIELDS));
+        this.setLayout(new GridLayout(NUMBER_OF_HEADERS, 1));
         this.setSize(GuiUtils.DIALOG_WIDTH, GuiUtils.DIALOG_HEIGHT);
         this.setResizable(Boolean.TRUE);
         this.initUI();
@@ -34,15 +35,10 @@ public class HeadersDialog extends JDialog {
     }
 
     private void initUI() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        getContentPane().add(scrollPane); 
-
         for (HttpHeaders header : HttpHeaders.values()) {
             JPanel rowPanel = new JPanel();
             rowPanel.setLayout(new GridLayout(1, 1));
+            rowPanel.setSize(10,10);
             
             JCheckBox checkBox = new JCheckBox(header.getHeader());
             JTextField textField = new JTextField(20);

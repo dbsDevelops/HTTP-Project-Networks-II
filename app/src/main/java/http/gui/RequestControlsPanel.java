@@ -12,6 +12,8 @@ import http.project.networks.ii.Request;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Container;
+import java.util.List;
+import java.util.ArrayList;
 
 public class RequestControlsPanel extends JPanel {
 
@@ -30,7 +32,7 @@ public class RequestControlsPanel extends JPanel {
     private HeadersDialog headersDialog;
     private AddHeadersButton addHeadersButton;
     
-    private GridLayout gridLayout = new GridLayout(GuiUtils.ROWS_AND_COLUMNS, GuiUtils.ROWS_AND_COLUMNS);
+    private GridLayout gridLayout = new GridLayout(GuiUtils.ROWS, GuiUtils.COLUMNS);
 
     public RequestControlsPanel() {
         super();
@@ -58,28 +60,31 @@ public class RequestControlsPanel extends JPanel {
         addLabelTextRows(labels, textFields, this);
     }
 
-    private void addBodyTypeComboBox() {
-        this.add(bodyTypeField.bodyTypeLabel);
-        bodyTypeField.bodyTypeLabel.setLabelFor(bodyTypeField.bodyTypeComboBox);
-        this.add(bodyTypeField.bodyTypeComboBox);
-    }
-
-    public void addMethodField() {
-        this.add(methodField);
-    }
-
     public void addButtons() {
         this.add(addHeadersButton);
         this.add(sendRequestButton);
     }
 
     public void addComponents() {
-        JLabel[] labels = {hostField.getHostLabel(), portField.getPortLabel()};
-        JTextField[] textFields = {hostField.getHostTextField(), portField.getPortTextField()};
-        addLabelsAndTextFields(labels, textFields);
-        addBodyTypeComboBox();
-        addMethodField();
+        addTextFields();
+        addComboBoxes();
         addButtons();
+    }
+
+    private void addTextFields() {
+        JLabel[] textLabels = {hostField.getHostLabel(), portField.getPortLabel()};
+        JTextField[] textFields = {hostField.getHostTextField(), portField.getPortTextField()};
+        addLabelsAndTextFields(textLabels, textFields);
+    }
+
+    private void addComboBoxes() {
+        List<JLabel> comboBoxLabels = new ArrayList<>();
+        comboBoxLabels.add(methodField.getMethodLabel());
+        comboBoxLabels.add(bodyTypeField.getBodyTypeLabel());
+        List<JComboBox<String>> comboBoxes = new ArrayList<>();
+        comboBoxes.add(methodField.getMethodComboBox());
+        comboBoxes.add(bodyTypeField.getBodyTypeComboBox());
+        addLabelComboBoxRows(comboBoxLabels, comboBoxes, this);
     }
 
     private void addLabelTextRows(JLabel[] labels, JTextField[] textFields, Container container) {
@@ -95,6 +100,15 @@ public class RequestControlsPanel extends JPanel {
             labels[currentLabelIndex].setLabelFor(textFields[currentLabelIndex]);
             container.add(labels[currentLabelIndex]);
             container.add(textFields[currentLabelIndex]);
+        }
+    }
+
+    private void addLabelComboBoxRows(List<JLabel> labels, List<JComboBox<String>> comboBoxes, Container container) {
+        int numLabels = labels.size();
+        for (int currentLabelIndex = FIRST_LABEL_INDEX; currentLabelIndex < numLabels; currentLabelIndex++) {
+            labels.get(currentLabelIndex).setLabelFor(comboBoxes.get(currentLabelIndex));
+            container.add(labels.get(currentLabelIndex));
+            container.add(comboBoxes.get(currentLabelIndex));
         }
     }
 
