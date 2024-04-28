@@ -101,16 +101,26 @@ public class TeachersClass {
     }
 
     // Unchanged methods
-    public Teacher getTeacher(int index) {
-        return this.teachers.get(index);
+    public Teacher getTeacher(String name) {
+        for (Teacher teacher : this.teachers) {
+            if (teacher.getName().equals(name)) {
+                return teacher;
+            }
+        }
+        return null;
     }
 
     public int getTeacherCount() {
         return this.teachers.size();
     }
 
-    public Project getProject(int index) {
-        return this.projects.get(index);
+    public Project getProject(String name) {
+        for (Project project : this.projects) {
+            if (project.getName().equals(name)) {
+                return project;
+            }
+        }
+        return null;
     }
 
     public int getProjectCount() {

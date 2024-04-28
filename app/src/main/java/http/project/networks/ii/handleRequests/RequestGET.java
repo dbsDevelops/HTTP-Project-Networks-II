@@ -23,6 +23,40 @@ public class RequestGET implements RequestCommand {
     @Override
     public Response execute() {
         if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
+
+            //see if the path is a subpath of teachers
+            if (path.startsWith(HTTPUtils.TEACHERS_PATH)) {
+                String[] pathParts = path.split("/");
+                if (pathParts.length == 4) {
+                    if (pathParts[2].equals("teacher")) {
+                        String teacherName = pathParts[3];
+                        List<Teacher> teacherList = teachers.getTeachers();
+                        for (Teacher teacher : teacherList) {
+                            if (teacher.getName().equals(teacherName)) {
+                                StringBuilder jsonBuilder = new StringBuilder("{").append("\n");
+                                jsonBuilder.append("\"teacher\": ").append("\n").append(teacher.toString()).append("\n");
+                                jsonBuilder.append("}");
+                                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, jsonBuilder.toString()));
+                            }
+                        }
+                    } else if (pathParts[2].equals("project")) {
+                        String projectName = pathParts[3];
+                        List<Project> projectList = teachers.getProjects();
+                        for (Project project : projectList) {
+                            if (project.getName().equals(projectName)) {
+                                StringBuilder jsonBuilder = new StringBuilder("{").append("\n");
+                                jsonBuilder.append("\"project\": ").append("\n").append(project.toString()).append("\n");
+                                jsonBuilder.append("}");
+                                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, jsonBuilder.toString()));
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
         return processRequest();
