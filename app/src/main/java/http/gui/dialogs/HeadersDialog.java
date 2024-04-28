@@ -1,4 +1,4 @@
-package http.gui;
+package http.gui.dialogs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +13,20 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 import java.awt.GridLayout;
+import java.awt.event.WindowListener;
 
+import http.gui.GuiUtils;
 import http.project.networks.ii.HttpHeaders;
+import http.project.networks.ii.Request;
+import http.project.networks.ii.RequestHeaders;
 
 public class HeadersDialog extends JDialog {
     private static final int NUMBER_OF_HEADERS = HttpHeaders.values().length;
     private static final int NUMBER_OF_FIELDS = 2;
     
-    ArrayList<JCheckBox> headerCheckboxes = new ArrayList<>();
-    ArrayList<JTextField> headerTextFields = new ArrayList<>();
+    private ArrayList<JCheckBox> headerCheckboxes = new ArrayList<>();
+    private ArrayList<JTextField> headerTextFields = new ArrayList<>();
+    private RequestHeaders headers = new RequestHeaders();
 
     public HeadersDialog() {
         super();
@@ -32,6 +37,37 @@ public class HeadersDialog extends JDialog {
         this.setResizable(Boolean.TRUE);
         this.initUI();
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        this.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent e) {
+                headers = null;
+            }
+
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                headers = getSelectedHeaders();
+            }
+
+            @Override
+            public void windowIconified(java.awt.event.WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(java.awt.event.WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(java.awt.event.WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(java.awt.event.WindowEvent e) {
+            }
+        });
     }
 
     private void initUI() {
@@ -57,13 +93,18 @@ public class HeadersDialog extends JDialog {
         }
     }
 
-    public List<String> getHeaders() {
-        List<String> headers = new ArrayList<>();
+    public RequestHeaders getSelectedHeaders() {
+        RequestHeaders requestHeaders = new RequestHeaders();
         for (int headerIndex = 0; headerIndex < NUMBER_OF_HEADERS; headerIndex++) {
             if (headerCheckboxes.get(headerIndex).isSelected()) {
-                headers.add(headerTextFields.get(headerIndex).getText());
+                requestHeaders.addHeaderToHeaders(HttpHeaders.values()[headerIndex], headerTextFields.get(headerIndex).getText());
+                System.out.println("Header: " + HttpHeaders.values()[headerIndex] + " Value: " + headerTextFields.get(headerIndex).getText());
             }
         }
+        return requestHeaders;
+    }
+
+    public RequestHeaders getHeaders() {
         return headers;
     }
 }

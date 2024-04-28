@@ -21,6 +21,10 @@ public class BodyTypeField {
         return bodyTypeLabel;
     }
 
+    public HttpBodyType getSelectedBodyType() {
+        return HttpBodyType.valueOf((String) bodyTypeComboBox.getSelectedItem());
+    }
+
     public JComboBox<String> getBodyTypeComboBox() {
         return bodyTypeComboBox;
     }

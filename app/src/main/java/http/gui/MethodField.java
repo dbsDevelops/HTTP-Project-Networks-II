@@ -28,7 +28,7 @@ public class MethodField {
     }
 
     public Verbs getSelectedMethod() {
-        return (Verbs) methodComboBox.getSelectedItem();
+        return Verbs.valueOf((String) methodComboBox.getSelectedItem());
     }
     
     public void setMethodLabel(JLabel methodLabel) {
