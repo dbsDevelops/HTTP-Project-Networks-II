@@ -136,13 +136,14 @@ public class ClientApp {
         }
     }
 
-    void testDELETE(String urlPath, String bodyContent) {
+    void testDELETE(String urlPath) {
         try {
             Verbs method = null;                                                           //Method to send the request
             URL url = null;                     //URL to send the request
             String protocolVersion = null;                                                 //Protocol version  
             RequestHeaders headers = null;                                          //Headers
             HttpBodyType bodyType = null;                                            //Body type
+            String bodyContent = null;
             GreetClient client = null;
             Request request = null;                                //Body content
 
@@ -151,6 +152,7 @@ public class ClientApp {
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.JSON;                                            //Body type
+            bodyContent = "";
 
             client = new GreetClient(HTTPUtils.HTTP_PORT);
             //Send the request
