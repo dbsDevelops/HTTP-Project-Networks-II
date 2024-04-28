@@ -27,7 +27,7 @@ class GreetClientTest {
     @BeforeEach
     public void init() {
         // Initialise the client and server.
-        client = new GreetClient(8081);
+        client = GreetClient.getInstance(8080);
         server = new GreetServer("app/src/main/java/http/project/networks/ii/static_resources");
     }
 

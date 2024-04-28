@@ -69,9 +69,9 @@ public class HeadersDialog extends JDialog {
 
     public List<String> getHeaders() {
         List<String> headers = new ArrayList<>();
-        for (int i = 0; i < NUMBER_OF_HEADERS; i++) {
-            if (headerCheckboxes.get(i).isSelected()) {
-                headers.add(headerTextFields.get(i).getText());
+        for (int headerIndex = 0; headerIndex < NUMBER_OF_HEADERS; headerIndex++) {
+            if (headerCheckboxes.get(headerIndex).isSelected()) {
+                headers.add(headerTextFields.get(headerIndex).getText());
             }
         }
         return headers;
