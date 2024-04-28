@@ -62,6 +62,14 @@ public class APITeachers {
                 command = new RequestHEAD(path);
                 break;
             case GET:
+                //conditional GET
+                for (String header : request.headers.myHeaders) {
+                    if (header.contains("If-Modified-Since")) {
+                        command = new RequestConditionalGet(path, teachers, request.headers.myHeaders);
+                        return command.execute();
+                    }
+                }
+
                 command = new RequestGET(path, teachers);
                 break;
             case POST:

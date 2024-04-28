@@ -19,6 +19,8 @@ public class ClientApp {
         ClientApp app = new ClientApp();
         app.testGET("http://localhost/teachers/project/Project_1");
 
+        //app.testConditionalGET("http://localhost/teachers/project/Project_1", "Wed, 21 Oct 2015 07:28:00 GMT");
+
     }
 
 
@@ -161,5 +163,33 @@ public class ClientApp {
         }
     }
 
+    void testConditionalGET(String urlPath, String timeHeaderValue) {
+        try {
+            Verbs method = null;                                                           //Method to send the request
+            URL url = null;                     //URL to send the request
+            String protocolVersion = null;                                                 //Protocol version  
+            RequestHeaders headers = null;                                          //Headers
+            HttpBodyType bodyType = null;                                            //Body type
+            String bodyContent = null;  
+            GreetClient client = null;
+            Request request = null;                                //Body content
 
+            method = Verbs.GET;                                                           //Method to send the request
+            url = new URL(urlPath);                     //URL to send the request
+            protocolVersion = "HTTP/1.1";                                                 //Protocol version
+            headers = new RequestHeaders(url);                                          //Headers
+            headers.addHeaderToHeaders("If-Modified-Since", timeHeaderValue);         //Add the header to the headers
+            bodyType = HttpBodyType.RAW;                                            //Body type
+            bodyContent = "";                                      //Body content
+
+            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            //Send the request
+            request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
+            System.out.println(request.toString());
+            client.sendRequest(url, request);
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

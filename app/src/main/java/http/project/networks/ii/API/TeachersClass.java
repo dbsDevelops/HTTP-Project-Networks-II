@@ -4,12 +4,15 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TeachersClass {
     protected List<Teacher> teachers;
     protected List<Project> projects;
     String path = "TeachersClass.txt";
+    private LocalDateTime lastModified;
+
 
     public TeachersClass(List<Teacher> teachers, List<Project> projects) {
         this.teachers = teachers;
@@ -21,12 +24,21 @@ public class TeachersClass {
         projects = new java.util.ArrayList<Project>();
     }
 
+    public void setLastModified(LocalDateTime lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public LocalDateTime getLastModified() {
+        return this.lastModified;
+    }
+
     public List<Teacher> getTeachers() {
         return this.teachers;
     }
 
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
+        this.lastModified = LocalDateTime.now();
     }
 
     public List<Project> getProjects() {
@@ -35,14 +47,17 @@ public class TeachersClass {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+        this.lastModified = LocalDateTime.now();
     }
 
     public void addTeacher(Teacher teacher) {
         this.teachers.add(teacher);
+        this.lastModified = LocalDateTime.now();
     }
 
     public void addProject(Project project) {
         this.projects.add(project);
+        this.lastModified = LocalDateTime.now();
     }
 
     public boolean updateTeacher(Teacher teacher) {
@@ -54,6 +69,7 @@ public class TeachersClass {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                this.lastModified = LocalDateTime.now();
                 return true;
             }
         }
@@ -64,6 +80,7 @@ public class TeachersClass {
         for (Project p : projects) {
             if (p.getName().equals(project.getName())) {
                 projects.set(projects.indexOf(p), project);
+                this.lastModified = LocalDateTime.now();
                 return true;
             }
         }
@@ -80,6 +97,7 @@ public class TeachersClass {
         }
         if (teacherToRemove != null) {
             teachers.remove(teacherToRemove);
+            this.lastModified = LocalDateTime.now();
             return true;
         }
         return false;
@@ -95,6 +113,7 @@ public class TeachersClass {
         }
         if (projectToRemove != null) {
             projects.remove(projectToRemove);
+            this.lastModified = LocalDateTime.now();
             return true;
         }
         return false;

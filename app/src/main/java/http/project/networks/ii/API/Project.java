@@ -1,5 +1,7 @@
 package http.project.networks.ii.API;
 
+import java.time.LocalDateTime;
+
 public class Project {
     protected String name;
     protected String description;
@@ -7,6 +9,7 @@ public class Project {
     protected String student;
     protected String grade;
     protected String status;
+    private LocalDateTime lastModified;
 
     public Project(String name, String description, String teacher, String student, String grade, String status) {
         this.name = name;
@@ -15,6 +18,15 @@ public class Project {
         this.student = student;
         this.grade = grade;
         this.status = status;
+        this.lastModified = LocalDateTime.now();
+    }
+
+    void setLastModified(LocalDateTime lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public LocalDateTime getLastModified() {
+        return this.lastModified;
     }
 
     public String getName() {
@@ -23,6 +35,7 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+        this.lastModified = LocalDateTime.now();
     }
 
     public String getDescription() {
@@ -31,6 +44,7 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+        this.lastModified = LocalDateTime.now();
     }
 
     public String getTeacher() {
@@ -39,6 +53,7 @@ public class Project {
 
     public void setTeacher(String teacher) {
         this.teacher = teacher;
+        this.lastModified = LocalDateTime.now();
     }
 
     public String getStudent() {
@@ -47,6 +62,7 @@ public class Project {
 
     public void setStudent(String student) {
         this.student = student;
+        this.lastModified = LocalDateTime.now();
     }
 
     public String getGrade() {
@@ -55,6 +71,7 @@ public class Project {
 
     public void setGrade(String grade) {
         this.grade = grade;
+        this.lastModified = LocalDateTime.now();
     }
 
     public String getStatus() {
@@ -63,6 +80,7 @@ public class Project {
 
     public void setStatus(String status) {
         this.status = status;
+        this.lastModified = LocalDateTime.now();
     }
 
     public String toString() {

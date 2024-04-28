@@ -1,16 +1,28 @@
 package http.project.networks.ii.API;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Teacher {
     protected String name;
     protected float passRate;
     protected Project project;
+    private LocalDateTime lastModified;
+
 
     public Teacher(String name, float passRate, Project project) {
         this.name = name;
         this.passRate = passRate;
         this.project = project;
+        this.lastModified = LocalDateTime.now();
+    }
+
+    void setLastModified(LocalDateTime lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public LocalDateTime getLastModified() {
+        return this.lastModified;
     }
 
     public String getName() {
@@ -19,6 +31,7 @@ public class Teacher {
 
     public void setName(String name) {
         this.name = name;
+        this.lastModified = LocalDateTime.now();
     }
 
     public float getPassRate() {
@@ -27,6 +40,7 @@ public class Teacher {
 
     public void setPassRate(float passRate) {
         this.passRate = passRate;
+        this.lastModified = LocalDateTime.now();
     }
 
     public Project getProject() {
@@ -35,6 +49,7 @@ public class Teacher {
 
     public void setProject(Project project) {
         this.project = project;
+        this.lastModified = LocalDateTime.now();
     }
 
     public String toString() {
