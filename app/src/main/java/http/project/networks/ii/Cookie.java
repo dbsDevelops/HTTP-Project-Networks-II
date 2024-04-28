@@ -1,6 +1,7 @@
 package http.project.networks.ii;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 public class Cookie {
     private static final String COOKIE = "cookie";
@@ -8,6 +9,8 @@ public class Cookie {
     private static final String SECURE = "Secure";
     private static final String DATE = "Date";
     private static final String HTTP_ONLY = "HttpOnly";
+    private static final int MIN_EXPIRATION = 20; // Minimum expiration time in seconds
+    private static final int MAX_EXPIRATION = 60; // Maximum expiration time in seconds
 
     private static int count = 1;
     private int id;
@@ -18,10 +21,11 @@ public class Cookie {
     private LocalDateTime timeStartCookie;
 
     public Cookie() {
+        Random random = new Random();
         this.name = "cookie"+count;
         this.id = count;
         this.value = "ma" + (count+365) + "xrz";
-        this.maxAge = 20; //seconds
+        this.maxAge = MIN_EXPIRATION + random.nextInt(MAX_EXPIRATION - MIN_EXPIRATION + 1);
         this.secure = false; //No TLS de momento
         this.timeStartCookie = LocalDateTime.now();
         count++; //Increment the count in a way that is difficol to guess
