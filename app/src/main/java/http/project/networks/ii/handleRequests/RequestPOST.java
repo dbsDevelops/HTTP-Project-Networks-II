@@ -7,8 +7,9 @@ import http.project.networks.ii.HttpBodyType;
 import http.project.networks.ii.HttpRequestBody;
 import http.project.networks.ii.Response;
 import http.project.networks.ii.ServerStatusCodes;
-import http.project.networks.ii.Teacher;
-import http.project.networks.ii.TeachersClass;
+import http.project.networks.ii.API.Project;
+import http.project.networks.ii.API.Teacher;
+import http.project.networks.ii.API.TeachersClass;
 
 public class RequestPOST implements RequestCommand {
     private final String path;
@@ -32,9 +33,12 @@ public class RequestPOST implements RequestCommand {
     private Response processBody(HttpRequestBody body) {
         if (body.getType() == HttpBodyType.JSON) {
             Gson gson = new Gson();
-            TeachersClass teachers = gson.fromJson(body.getStringContent(), TeachersClass.class);
-            for (Teacher teacher : teachers.getTeachers()) {
+            TeachersClass data = gson.fromJson(body.getStringContent(), TeachersClass.class);
+            for (Teacher teacher : data.getTeachers()) {
                 this.teachers.addTeacher(teacher);
+            }
+            for (Project project : data.getProjects()) {
+                this.teachers.addProject(project);
             }
             return new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED));
         }

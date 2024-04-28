@@ -1,14 +1,16 @@
-package http.project.networks.ii;
+package http.project.networks.ii.API;
 
 import java.util.Objects;
 
 public class Teacher {
     protected String name;
     protected float passRate;
+    protected Project project;
 
-    public Teacher(String name, float passRate) {
+    public Teacher(String name, float passRate, Project project) {
         this.name = name;
         this.passRate = passRate;
+        this.project = project;
     }
 
     public String getName() {
@@ -27,8 +29,17 @@ public class Teacher {
         this.passRate = passRate;
     }
 
+    public Project getProject() {
+        return this.project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
     public String toString() {
-        return this.name + " " + this.passRate;
+        String projectName = this.project == null ? "null" : this.project.getName();
+        return "Name: " + this.name + " PassRate: " + this.passRate + " Project Assigned: " + projectName;
     }
 
     @Override 

@@ -22,3 +22,4 @@ public class RequestHEAD implements RequestCommand {
         return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Headers for " + HTTPUtils.TEACHERS_PATH));
     }
 }
+

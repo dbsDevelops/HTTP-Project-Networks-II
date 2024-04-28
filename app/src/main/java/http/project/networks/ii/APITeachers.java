@@ -1,5 +1,8 @@
 package http.project.networks.ii;
 
+import http.project.networks.ii.API.Project;
+import http.project.networks.ii.API.Teacher;
+import http.project.networks.ii.API.TeachersClass;
 import http.project.networks.ii.handleRequests.*;
 
 public class APITeachers {
@@ -15,10 +18,39 @@ public class APITeachers {
     }
 
     public void initialiseTeachersMockData() {
-        String[] teacherNames = {"Teacher 1", "Teacher 2", "Teacher 3", "Teacher 4", "Teacher 5"};
-        for (String name : teacherNames) {
-            teachers.addTeacher(new Teacher(name, 0));
+        Teacher[] teachers = {
+                new Teacher("Teacher 1", 0.5f, null),
+                new Teacher("Teacher 2", 0.6f, null),
+                new Teacher("Teacher 3", 0.7f, null),
+                new Teacher("Teacher 4", 0.8f, null),
+                new Teacher("Teacher 5", 0.9f, null)
+        };
+
+        Project[] projects = {
+                new Project("Project 1", "Description 1", null, "Student 1", "A", "Completed"),
+                new Project("Project 2", "Description 2", null, "Student 2", "B", "In Progress"),
+                new Project("Project 3", "Description 3", null, "Student 3", "C", "In Progress"),
+                new Project("Project 4", "Description 4", null, "Student 4", "D", "In Progress"),
+                new Project("Project 5", "Description 5", null, "Student 5", "E", "In Progress")
+        };
+
+        //add the projects to each teacher
+        for (int i = 0; i < teachers.length; i++) {
+            teachers[i].setProject(projects[i]);
+            projects[i].setTeacher(teachers[i].getName());
         }
+
+
+        for (Teacher teacher : teachers) {
+            this.teachers.addTeacher(teacher);
+        }
+
+        for (Project project : projects) {
+            this.teachers.addProject(project);
+        }
+
+
+
     }
 
     public Response readRequest(Request request) {

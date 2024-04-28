@@ -8,6 +8,10 @@ import java.net.URL;
 
 import com.google.gson.Gson;
 
+import http.project.networks.ii.API.Project;
+import http.project.networks.ii.API.Teacher;
+import http.project.networks.ii.API.TeachersClass;
+
 public class ClientApp {
     
     public static void main(String[] args) {
@@ -22,7 +26,7 @@ public class ClientApp {
             GreetClient client = null;
             Request request = null;                                //Body content
 
-            method = Verbs.DELETE;                                                           //Method to send the request
+            method = Verbs.POST;                                                           //Method to send the request
             url = new URL("http://localhost/teachers");                     //URL to send the request
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
@@ -30,7 +34,14 @@ public class ClientApp {
 
             //Body content
             TeachersClass teachers = new TeachersClass();
-            teachers.addTeacher(new Teacher("Teacher 1", 0));
+
+            Teacher teacher = new Teacher("Teacher post", 0.5f, null);
+            teachers.addTeacher(teacher);
+
+            Project project = new Project("Project post", "Description post", teacher.getId(), "Student post", "A", "Completed");
+            teachers.addProject(project);
+
+
             Gson gson = new Gson();
             bodyContent = gson.toJson(teachers);                                      //Body content
 

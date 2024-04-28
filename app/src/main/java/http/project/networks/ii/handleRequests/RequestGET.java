@@ -5,8 +5,9 @@ import http.project.networks.ii.HttpBodyType;
 import http.project.networks.ii.HttpRequestBody;
 import http.project.networks.ii.Response;
 import http.project.networks.ii.ServerStatusCodes;
-import http.project.networks.ii.Teacher;
-import http.project.networks.ii.TeachersClass;
+import http.project.networks.ii.API.Teacher;
+import http.project.networks.ii.API.Project;
+import http.project.networks.ii.API.TeachersClass;
 
 import java.util.List;
 
@@ -29,22 +30,29 @@ public class RequestGET implements RequestCommand {
 
     private Response processRequest() {
         List<Teacher> teacherList = teachers.getTeachers();
-        String responseBody = convertTeacherListToJson(teacherList);
+        List<Project> projectList = teachers.getProjects();
+        String responseBody = convertDataToJson(teacherList, projectList);
         return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
     }
 
-    private String convertTeacherListToJson(List<Teacher> teacherList) {
-        StringBuilder jsonBuilder = new StringBuilder("[");
-        for (Teacher teacher : teacherList) {
-            jsonBuilder.append("{")
-                    .append("\"name\": \"").append(teacher.getName()).append("\",")
-                    .append("\"passRate\": ").append(teacher.getPassRate())
-                    .append("},");
+    private String convertDataToJson(List<Teacher> teacherList, List<Project> projectList) {
+        StringBuilder jsonBuilder = new StringBuilder("{").append("\n");
+        jsonBuilder.append("\"teachers\": ").append("\n").append(convertListToJson(teacherList)).append("\n");
+        jsonBuilder.append("\"projects\": ").append("\n").append(convertListToJson(projectList)).append("\n");
+        jsonBuilder.append("}");
+        return jsonBuilder.toString();
+    }
+
+    private String convertListToJson(List<?> list) {
+        StringBuilder jsonBuilder = new StringBuilder("[").append("\n");
+        for (Object obj : list) {
+            jsonBuilder.append(obj.toString()).append("\n");
+
         }
-        if (!teacherList.isEmpty()) {
+        if (!list.isEmpty()) {
             jsonBuilder.deleteCharAt(jsonBuilder.length() - 1); // Remove the last comma
         }
-        jsonBuilder.append("]");
+        jsonBuilder.append("\n").append("]");
         return jsonBuilder.toString();
     }
 }
