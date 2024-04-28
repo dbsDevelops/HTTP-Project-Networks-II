@@ -19,19 +19,19 @@ public class APITeachers {
 
     public void initialiseTeachersMockData() {
         Teacher[] teachers = {
-                new Teacher("Teacher 1", 0.5f, null),
-                new Teacher("Teacher 2", 0.6f, null),
-                new Teacher("Teacher 3", 0.7f, null),
-                new Teacher("Teacher 4", 0.8f, null),
-                new Teacher("Teacher 5", 0.9f, null)
+                new Teacher("Teacher_1", 0.5f, null),
+                new Teacher("Teacher_2", 0.6f, null),
+                new Teacher("Teacher_3", 0.7f, null),
+                new Teacher("Teacher_4", 0.8f, null),
+                new Teacher("Teacher_5", 0.9f, null)
         };
 
         Project[] projects = {
-                new Project("Project 1", "Description 1", null, "Student 1", "A", "Completed"),
-                new Project("Project 2", "Description 2", null, "Student 2", "B", "In Progress"),
-                new Project("Project 3", "Description 3", null, "Student 3", "C", "In Progress"),
-                new Project("Project 4", "Description 4", null, "Student 4", "D", "In Progress"),
-                new Project("Project 5", "Description 5", null, "Student 5", "E", "In Progress")
+                new Project("Project_1", "Description_1", null, "Student_1", "A", "Completed"),
+                new Project("Project_2", "Description_2", null, "Student_2", "B", "In_Progress"),
+                new Project("Project_3", "Description_3", null, "Student_3", "C", "In_Progress"),
+                new Project("Project_4", "Description_4", null, "Student_4", "D", "In_Progress"),
+                new Project("Project_5", "Description_5", null, "Student_5", "E", "In_Progress")
         };
 
         //add the projects to each teacher

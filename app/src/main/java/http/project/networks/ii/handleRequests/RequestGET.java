@@ -27,36 +27,49 @@ public class RequestGET implements RequestCommand {
             //see if the path is a subpath of teachers
             if (path.startsWith(HTTPUtils.TEACHERS_PATH)) {
                 String[] pathParts = path.split("/");
+                if (pathParts.length == 3) {
+                    if (pathParts[2].equals("teacher")) {
+                        List<Teacher> teacherList = teachers.getTeachers();
+                        String responseBody = convertListToJson(teacherList);
+                        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+                    }
+                    else if (pathParts[2].equals("project")) {
+                        List<Project> projectList = teachers.getProjects();
+                        String responseBody = convertListToJson(projectList);
+                        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+                    }
+                    else {
+                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+                    }
+                }
                 if (pathParts.length == 4) {
                     if (pathParts[2].equals("teacher")) {
-                        String teacherName = pathParts[3];
-                        List<Teacher> teacherList = teachers.getTeachers();
-                        for (Teacher teacher : teacherList) {
-                            if (teacher.getName().equals(teacherName)) {
-                                StringBuilder jsonBuilder = new StringBuilder("{").append("\n");
-                                jsonBuilder.append("\"teacher\": ").append("\n").append(teacher.toString()).append("\n");
-                                jsonBuilder.append("}");
-                                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, jsonBuilder.toString()));
-                            }
+                        Teacher teacher = teachers.getTeacher(pathParts[3]);
+                        if (teacher != null) {
+                            String responseBody = teacher.toString();
+                            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                         }
-                    } else if (pathParts[2].equals("project")) {
-                        String projectName = pathParts[3];
-                        List<Project> projectList = teachers.getProjects();
-                        for (Project project : projectList) {
-                            if (project.getName().equals(projectName)) {
-                                StringBuilder jsonBuilder = new StringBuilder("{").append("\n");
-                                jsonBuilder.append("\"project\": ").append("\n").append(project.toString()).append("\n");
-                                jsonBuilder.append("}");
-                                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, jsonBuilder.toString()));
-                            }
+                        else {
+                            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
                         }
+                    }
+                    else if (pathParts[2].equals("project")) {
+                        Project project = teachers.getProject(pathParts[3]);
+                        if (project != null) {
+                            String responseBody = project.toString();
+                            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+                        }
+                        else {
+                            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+                        }
+                    }
+                    else {
+                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
                     }
                 }
             }
 
-
-
-
+     
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
         return processRequest();
