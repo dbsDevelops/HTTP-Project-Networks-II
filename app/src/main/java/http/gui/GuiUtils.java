@@ -11,6 +11,7 @@ public class GuiUtils {
     public static final String REQUEST_STRING = "Request";
     public static final String RESPONSE_STRING = "Response";
     public static final String CLIENT_GUI_TITLE = "HTTP Client";
+    public static final String BODY_TYPE_STRING = "Body type";
 
     public static final int ROWS_AND_COLUMNS = 4;
     public static final int BORDER_WIDTH = 5;

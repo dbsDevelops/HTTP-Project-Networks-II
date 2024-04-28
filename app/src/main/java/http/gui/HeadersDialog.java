@@ -10,14 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-
-import java.awt.BorderLayout;
-import java.awt.Checkbox;
-import java.awt.GridLayout;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
 import javax.swing.WindowConstants;
+
+import java.awt.GridLayout;
 
 import http.project.networks.ii.HttpHeaders;
 
@@ -27,7 +22,6 @@ public class HeadersDialog extends JDialog {
     
     ArrayList<JCheckBox> headerCheckboxes = new ArrayList<>();
     ArrayList<JTextField> headerTextFields = new ArrayList<>();
-    //JScrollPane scrollPane;
 
     public HeadersDialog() {
         super();

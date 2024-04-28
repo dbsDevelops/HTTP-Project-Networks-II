@@ -4,6 +4,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 import http.project.networks.ii.GreetClient;
 import http.project.networks.ii.Request;
@@ -23,6 +24,7 @@ public class RequestControlsPanel extends JPanel {
 
     private transient HostField hostField;
     private transient PortField portField;
+    private BodyTypeField bodyTypeField;
     private MethodField methodField;
     private SendRequestButton sendRequestButton;
     private HeadersDialog headersDialog;
@@ -34,6 +36,7 @@ public class RequestControlsPanel extends JPanel {
         super();
         this.hostField = new HostField();
         this.portField = new PortField();
+        this.bodyTypeField = new BodyTypeField();
         this.methodField = new MethodField();
         this.sendRequestButton = new SendRequestButton(greetClient, request);
         this.headersDialog = new HeadersDialog();
@@ -55,6 +58,12 @@ public class RequestControlsPanel extends JPanel {
         addLabelTextRows(labels, textFields, this);
     }
 
+    private void addBodyTypeComboBox() {
+        this.add(bodyTypeField.bodyTypeLabel);
+        bodyTypeField.bodyTypeLabel.setLabelFor(bodyTypeField.bodyTypeComboBox);
+        this.add(bodyTypeField.bodyTypeComboBox);
+    }
+
     public void addMethodField() {
         this.add(methodField);
     }
@@ -68,6 +77,7 @@ public class RequestControlsPanel extends JPanel {
         JLabel[] labels = {hostField.getHostLabel(), portField.getPortLabel()};
         JTextField[] textFields = {hostField.getHostTextField(), portField.getPortTextField()};
         addLabelsAndTextFields(labels, textFields);
+        addBodyTypeComboBox();
         addMethodField();
         addButtons();
     }

@@ -64,6 +64,26 @@ public class Request {
         return this.body.getStringContent();
     }
 
+    public void setMethod(Verbs method) {
+        this.method = method;
+    }
+
+    public void setUrl(URL url) {
+        this.url = url;
+    }
+
+    public void setProtocolVersion(String protocolVersion) {
+        this.protocolVersion = protocolVersion;
+    }
+
+    public void setHeaders(RequestHeaders headers) {
+        this.headers = headers;
+    }
+
+    public void setBody(HttpRequestBody body) {
+        this.body = body;
+    }
+
     public boolean isConnectionAlive() {
         if(this.headers.getValue(HttpHeaders.CONNECTION) == null) { //We first check if null, to avoid conflicts with equals
             return true;
