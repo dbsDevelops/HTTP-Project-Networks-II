@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import http.gui.dialogs.HeadersDialog;
+
 public class AddHeadersButton extends JButton {
 
     public AddHeadersButton(HeadersDialog dialog) {

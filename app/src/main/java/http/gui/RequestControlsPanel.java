@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
-import http.project.networks.ii.GreetClient;
+import http.gui.dialogs.HeadersDialog;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -22,8 +22,8 @@ public class RequestControlsPanel extends JPanel {
 
     private transient HostField hostField;
     private transient PortField portField;
-    private BodyTypeField bodyTypeField;
-    private MethodField methodField;
+    private transient BodyTypeField bodyTypeField;
+    private transient MethodField methodField;
     private SendRequestButton sendRequestButton;
     private HeadersDialog headersDialog;
     private AddHeadersButton addHeadersButton;

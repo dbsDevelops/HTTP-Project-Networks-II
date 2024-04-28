@@ -23,10 +23,7 @@ public class SendRequestButton extends JButton {
     private transient HostField hostField;
     private transient PortField portField;
     private HeadersDialog headersDialog;
-    //private RequestHeaders headers;
     private transient BodyTypeField bodyTypeField;
-    //private BodyField bodyField;
-    private ResponsePanel responsePanel;
 
     public SendRequestButton(MethodField methodField, HostField hostField, PortField portField, BodyTypeField bodyTypeField, HeadersDialog headersDialog) {
         super(GuiUtils.SEND_STRING);
@@ -35,8 +32,6 @@ public class SendRequestButton extends JButton {
         this.portField = portField;
         this.bodyTypeField = bodyTypeField;
         this.headersDialog = headersDialog;
-        //this.bodyField = bodyField;
-        //this.responsePanel = responsePanel;
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
