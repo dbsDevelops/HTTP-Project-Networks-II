@@ -1,9 +1,10 @@
-package http.gui;
+package http.gui.buttons;
 
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import http.gui.GuiUtils;
 import http.gui.dialogs.HeadersDialog;
 
 public class AddHeadersButton extends JButton {

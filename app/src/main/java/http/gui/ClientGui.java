@@ -2,6 +2,9 @@ package http.gui;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+
+import http.gui.panels.RequestAndResponseSplitPanel;
+
 import javax.swing.SwingUtilities;
 
 public class ClientGui extends JFrame {

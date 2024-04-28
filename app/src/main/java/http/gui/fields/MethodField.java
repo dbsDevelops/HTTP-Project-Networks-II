@@ -1,8 +1,9 @@
-package http.gui;
+package http.gui.fields;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
+import http.gui.GuiUtils;
 import http.project.networks.ii.Verbs;
 
 public class MethodField {

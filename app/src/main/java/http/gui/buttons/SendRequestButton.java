@@ -1,4 +1,4 @@
-package http.gui;
+package http.gui.buttons;
 
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -7,15 +7,16 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 
+import http.gui.GuiUtils;
 import http.gui.dialogs.HeadersDialog;
+import http.gui.fields.BodyTypeField;
+import http.gui.fields.HostField;
+import http.gui.fields.MethodField;
+import http.gui.fields.PortField;
 import http.project.networks.ii.GreetClient;
-import http.project.networks.ii.HTTPUtils;
 import http.project.networks.ii.Request;
 import http.project.networks.ii.Verbs;
-import http.project.networks.ii.RequestHeaders;
 import http.project.networks.ii.HttpBodyType;
-import http.project.networks.ii.HttpRequestBody;
-import http.project.networks.ii.Response;
 
 public class SendRequestButton extends JButton {
 

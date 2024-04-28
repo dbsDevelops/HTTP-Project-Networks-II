@@ -1,4 +1,4 @@
-package http.gui;
+package http.gui.panels;
 
 import javax.swing.JSplitPane;
 
