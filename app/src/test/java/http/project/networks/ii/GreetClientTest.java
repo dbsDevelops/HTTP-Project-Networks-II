@@ -28,7 +28,7 @@ class GreetClientTest {
     public void init() {
         // Initialise the client and server.
         client = GreetClient.getInstance(8080);
-        server = new GreetServer("app/src/main/java/http/project/networks/ii/static_resources");
+        server = GreetServer.getInstance("app/src/main/java/http/project/networks/ii/static_resources");
     }
 
     @Test

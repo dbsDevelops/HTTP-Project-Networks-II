@@ -9,12 +9,14 @@ public class GreetServer {
 
     private volatile boolean running = true; // Used to check if server is running and warn rest of the threads
 
+    private static GreetServer instance;
     private APITeachers apiTeachers;
     private Path staticFiles;
     private ServerSocket serverSocket;
     private List<Cookie> cookies;
 
-    public GreetServer(String staticFilesPath) {
+    // Singleton pattern
+    private GreetServer(String staticFilesPath) {
         this.apiTeachers = new APITeachers();
         this.apiTeachers.initialiseTeachersMockData();
         this.staticFiles = Paths.get(staticFilesPath);
@@ -27,6 +29,13 @@ public class GreetServer {
         for(int i=0; i<3;i++) {
             cookies.add(new Cookie());
         }
+    }
+
+    public static GreetServer getInstance(String staticFilesPath) {
+        if(instance == null) {
+            instance = new GreetServer(staticFilesPath);
+        }
+        return instance;
     }
 
     public void initServer(int port) {
