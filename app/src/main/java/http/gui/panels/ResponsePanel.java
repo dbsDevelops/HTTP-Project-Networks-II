@@ -1,9 +1,12 @@
-package http.gui;
+package http.gui.panels;
 
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
+import http.gui.GuiUtils;
+
 import javax.swing.BorderFactory;
 
 public class ResponsePanel extends JScrollPane {

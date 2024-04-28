@@ -1,4 +1,4 @@
-package http.gui;
+package http.gui.panels;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -6,7 +6,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+import http.gui.GuiUtils;
+import http.gui.buttons.AddHeadersButton;
+import http.gui.buttons.SendRequestButton;
 import http.gui.dialogs.HeadersDialog;
+import http.gui.fields.BodyTypeField;
+import http.gui.fields.HostField;
+import http.gui.fields.MethodField;
+import http.gui.fields.PortField;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;

@@ -11,8 +11,8 @@ public class Response {
         this.body = body;
         //For example, the response of the head method does not require a body
         if(!body.equals(null)) {
-            this.responseHeaders.addHeaderToHeaders(HttpHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
-            this.responseHeaders.addHeaderToHeaders(HttpHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
+            this.responseHeaders.addHeaderToHeaders(HttpRequestHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
+            this.responseHeaders.addHeaderToHeaders(HttpRequestHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
         }
     }
 

@@ -1,7 +1,9 @@
-package http.gui;
+package http.gui.fields;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import http.gui.GuiUtils;
 
 public class HostField {
 

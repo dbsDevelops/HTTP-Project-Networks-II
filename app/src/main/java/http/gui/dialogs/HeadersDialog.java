@@ -12,11 +12,11 @@ import java.awt.GridLayout;
 import java.awt.event.WindowListener;
 
 import http.gui.GuiUtils;
-import http.project.networks.ii.HttpHeaders;
+import http.gui.extra_headers.HttpExtraHeaders;
 import http.project.networks.ii.RequestHeaders;
 
 public class HeadersDialog extends JDialog {
-    private static final int NUMBER_OF_HEADERS = HttpHeaders.values().length;
+    private static final int NUMBER_OF_HEADERS = HttpExtraHeaders.values().length;
     private static final int NUMBER_OF_FIELDS = 1;
     private static final int ROW_PANEL_SIZE = 10;
     private static final int TEXTFIELD_SIZE = 20;
@@ -67,7 +67,7 @@ public class HeadersDialog extends JDialog {
     }
 
     private void initUI() {
-        for (HttpHeaders header : HttpHeaders.values()) {
+        for (HttpExtraHeaders header : HttpExtraHeaders.values()) {
             JPanel rowPanel = new JPanel();
             rowPanel.setLayout(new GridLayout(NUMBER_OF_FIELDS, NUMBER_OF_FIELDS));
             rowPanel.setSize(ROW_PANEL_SIZE, ROW_PANEL_SIZE);
@@ -93,7 +93,7 @@ public class HeadersDialog extends JDialog {
         RequestHeaders requestHeaders = new RequestHeaders();
         for (int headerIndex = 0; headerIndex < NUMBER_OF_HEADERS; headerIndex++) {
             if (headerCheckboxes.get(headerIndex).isSelected()) {
-                requestHeaders.addHeaderToHeaders(HttpHeaders.values()[headerIndex], headerTextFields.get(headerIndex).getText());
+                requestHeaders.addHeaderToHeaders(HttpExtraHeaders.values()[headerIndex], headerTextFields.get(headerIndex).getText());
                 //System.out.println("Header: " + HttpHeaders.values()[headerIndex] + " Value: " + headerTextFields.get(headerIndex).getText()); // Used for debugging
             }
         }

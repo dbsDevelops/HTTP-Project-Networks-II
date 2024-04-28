@@ -141,8 +141,8 @@ public class HTTPUtils {
     }
 
     public static boolean existServerCookie(Request request, Cookie cookie) {
-        for(String header: request.headers.headers) {
-            if(header.startsWith(HttpHeaders.SET_COOKIE.getHeader())) {
+        for(String header: request.headers.myHeaders) {
+            if(header.startsWith(HttpRequestHeaders.SET_COOKIE.getHeader())) {
                 if(Cookie.parse(header).equals(cookie)){
                     return true;
                 }

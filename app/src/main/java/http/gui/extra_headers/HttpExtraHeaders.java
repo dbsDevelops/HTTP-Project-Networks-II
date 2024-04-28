@@ -1,22 +1,15 @@
-package http.project.networks.ii;
+package http.gui.extra_headers;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public enum HttpHeaders {
-    ACCEPT("Accept"),
+public enum HttpExtraHeaders {
     ACCEPT_CHARSET("Accept-Charset"),
     ACCEPT_ENCODING("Accept-Encoding"),
-    ACCEPT_LANGUAGE("Accept-Language"),
     ACCEPT_DATETIME("Accept-Datetime"),
     AUTHORIZATION("Authorization"),
     CACHE_CONTROL("Cache-Control"),
-    CONNECTION("Connection"),
-    COOKIE("Cookie"),
-    CONTENT_LENGTH("Content-Length"),
     CONTENT_MD5("Content-MD5"),
-    CONTENT_TYPE("Content-Type"),
-    DATE("Date"),
     EXPECT("Expect"),
     FORWARDED("Forwarded"),
     FROM("From"),
@@ -34,14 +27,12 @@ public enum HttpHeaders {
     REFERER("Referer"),
     SERVER("Server"),
     TE("TE"),
-    USER_AGENT("User-Agent"), // Importante poner un punto y coma al final del enum
     UPGRADE("Upgrade"),
-    VIA("Via"),
-    SET_COOKIE("Set-Cookie");
+    VIA("Via");
 
     private String header;
 
-    HttpHeaders(String header) {
+    HttpExtraHeaders(String header) {
         this.header = header;
     }
 
@@ -51,18 +42,18 @@ public enum HttpHeaders {
 
     public static List<String> getHeaders() {
         List<String> headers = new ArrayList<>();
-        for (HttpHeaders header : HttpHeaders.values()) {
+        for (HttpExtraHeaders header : HttpExtraHeaders.values()) {
             headers.add(header.getHeader());
         }
         return headers;
     }
 
-    public static HttpHeaders parse(String header) {
-        for (HttpHeaders headerType : HttpHeaders.values()) {
+    public static HttpExtraHeaders parse(String header) {
+        for (HttpExtraHeaders headerType : HttpExtraHeaders.values()) {
             if (headerType.getHeader().equals(header)) {
                 return headerType;
             }
         }
         throw new IllegalArgumentException("The header "+ header + " is not found in HttpHeaders: ");
-    }
+    } 
 }

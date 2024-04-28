@@ -1,8 +1,9 @@
-package http.gui;
+package http.gui.fields;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import http.gui.GuiUtils;
 import http.project.networks.ii.HttpBodyType;
 
 public class BodyTypeField {

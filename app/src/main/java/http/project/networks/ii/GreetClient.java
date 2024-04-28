@@ -58,7 +58,7 @@ public class GreetClient {
             responseLine = br.readLine();
             if(isCookieField(responseLine)) {
                 if(firstCookieField) {
-                    this.clientCookies = HttpHeaders.COOKIE.getHeader() + ": "; //Initialize the client cookies
+                    this.clientCookies = HttpRequestHeaders.COOKIE.getHeader() + ": "; //Initialize the client cookies
                     firstCookieField = false;
                 }
                 addServerCookiesToClient(responseLine); //Put all cookies sent by the server in the client
@@ -71,13 +71,13 @@ public class GreetClient {
 
     private boolean isCookieField(String field) {
         if(field != null) {
-            return field.startsWith(HttpHeaders.SET_COOKIE.getHeader());
+            return field.startsWith(HttpRequestHeaders.SET_COOKIE.getHeader());
         }
         return false;
     }
 
     private void addServerCookiesToClient(String cookieLine) {
-        String cookieValue = cookieLine.substring(HttpHeaders.SET_COOKIE.getHeader().length()+2); //Remove the "Set-Cookie: "
+        String cookieValue = cookieLine.substring(HttpRequestHeaders.SET_COOKIE.getHeader().length()+2); //Remove the "Set-Cookie: "
         StringBuilder cookiesValue = new StringBuilder();
         Cookie cookie = Cookie.parse(cookieValue);
         cookiesValue.append(cookie.getName()+"="+cookie.getValue()+"; "); //Add the cookie to the client

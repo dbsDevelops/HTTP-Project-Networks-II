@@ -3,29 +3,37 @@ package http.project.networks.ii;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import http.gui.extra_headers.HttpExtraHeaders;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public abstract class Headers {
-    List<String> headers;
+    List<String> myHeaders;
 
-    public void addHeaderToHeaders(HttpHeaders headerType, String headerValue) {
+    public void addHeaderToHeaders(HttpRequestHeaders headerType, String headerValue) {
         String header = headerType.getHeader() + ": " + headerValue;
-        this.headers.add(header);
+        this.myHeaders.add(header);
+    }
+
+    public void addHeaderToHeaders(HttpExtraHeaders headerType, String headerValue) {
+        String header = headerType.getHeader() + ": " + headerValue;
+        this.myHeaders.add(header);
     }
 
     public void addHeaderToHeaders(String headerType, String headerValue) {
         String header = headerType + ": " + headerValue;
-        this.headers.add(header);
+        this.myHeaders.add(header);
     }
 
-    public void removeHeader(HttpHeaders headerType, String headerValue) {
+    public void removeHeader(HttpRequestHeaders headerType, String headerValue) {
         String header = headerType.getHeader() + ": " + headerValue;
-        this.headers.remove(header);
+        this.myHeaders.remove(header);
     }
 
-    public String getValue(HttpHeaders headerType) {
-        for (String header : this.headers) {
+    public String getValue(HttpRequestHeaders headerType) {
+        for (String header : this.myHeaders) {
             String[] parts = header.split(": ", 2);
             if (parts[0].equals(headerType.getHeader())) {
                 return parts[1]; // Value of the header type found
@@ -34,11 +42,11 @@ public abstract class Headers {
         return null;
     }
     
-    public void setValue(HttpHeaders headerType, String headerValue) {
-        for (int i = 0; i < this.headers.size(); i++) {
-            String[] parts = this.headers.get(i).split(": ", 2);
+    public void setValue(HttpRequestHeaders headerType, String headerValue) {
+        for (int i = 0; i < this.myHeaders.size(); i++) {
+            String[] parts = this.myHeaders.get(i).split(": ", 2);
             if (parts[0].equals(headerType.getHeader())) {
-                this.headers.set(i, headerType.getHeader() + ": " + headerValue);
+                this.myHeaders.set(i, headerType.getHeader() + ": " + headerValue);
                 return;
             }
         }
@@ -82,7 +90,7 @@ public abstract class Headers {
 */
     public String toString() {
         StringBuilder headersString = new StringBuilder();
-        for (String header : this.headers) {
+        for (String header : this.myHeaders) {
             headersString.append(header).append("\r\n");
         }
         return headersString.toString();

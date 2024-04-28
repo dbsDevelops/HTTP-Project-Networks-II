@@ -22,9 +22,9 @@ public class Request {
         } else { //POST, PUT, DELETE
             this.body = new HttpRequestBody(bodyType, bodyContent);
             //Set the new values for the headers content-length and content-type
-            if(this.headers.getValue(HttpHeaders.CONTENT_LENGTH) == null) { //If the header does not exists, we add it, else we didn't add it
-                this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
-                this.headers.addHeaderToHeaders(HttpHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
+            if(this.headers.getValue(HttpRequestHeaders.CONTENT_LENGTH) == null) { //If the header does not exists, we add it, else we didn't add it
+                this.headers.addHeaderToHeaders(HttpRequestHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
+                this.headers.addHeaderToHeaders(HttpRequestHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
             }
         }
     }
@@ -85,9 +85,9 @@ public class Request {
     }
 
     public boolean isConnectionAlive() {
-        if(this.headers.getValue(HttpHeaders.CONNECTION) == null) { //We first check if null, to avoid conflicts with equals
+        if(this.headers.getValue(HttpRequestHeaders.CONNECTION) == null) { //We first check if null, to avoid conflicts with equals
             return true;
-        } else if (this.headers.getValue(HttpHeaders.CONNECTION).equals("keep-alive")) { //If is not null, we check if the connection needs to keep alive
+        } else if (this.headers.getValue(HttpRequestHeaders.CONNECTION).equals("keep-alive")) { //If is not null, we check if the connection needs to keep alive
             return true;
         } else { //If not keep-alive, we supose that the connection does not need to keep alive
             return false;
@@ -96,7 +96,7 @@ public class Request {
     }
 
     public void addCookies(String cookiesClient) {
-        this.headers.headers.add(cookiesClient);
+        this.headers.myHeaders.add(cookiesClient);
     }
 
     public static Request parse(String request) {
@@ -135,7 +135,7 @@ public class Request {
         if (method == Verbs.GET || method == Verbs.HEAD) {
             return new Request(method, url, protocolVersion, sentHeaders, HttpBodyType.RAW, "");
         }
-        String bodyTypeStr = sentHeaders.getValue(HttpHeaders.CONTENT_TYPE); //Error al leer el CONTENT_TYPE
+        String bodyTypeStr = sentHeaders.getValue(HttpRequestHeaders.CONTENT_TYPE); //Error al leer el CONTENT_TYPE
         HttpBodyType bodyType = HttpBodyType.parse(bodyTypeStr);
         
         StringBuilder bodyContent = new StringBuilder();
