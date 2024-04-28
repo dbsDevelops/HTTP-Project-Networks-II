@@ -31,7 +31,7 @@ public class RequestControlsPanel extends JPanel {
     private transient PortField portField;
     private transient BodyTypeField bodyTypeField;
     private transient MethodField methodField;
-    private SendRequestButton sendRequestButton;
+    //private SendRequestButton sendRequestButton;
     private HeadersDialog headersDialog;
     private AddHeadersButton addHeadersButton;
     
@@ -45,7 +45,7 @@ public class RequestControlsPanel extends JPanel {
         this.methodField = new MethodField();
         this.headersDialog = new HeadersDialog();
         this.addHeadersButton = new AddHeadersButton(headersDialog);
-        this.sendRequestButton = new SendRequestButton(methodField, hostField, portField, bodyTypeField, headersDialog);
+        // this.sendRequestButton = new SendRequestButton(methodField, hostField, portField, bodyTypeField, headersDialog);
         configurePanel();
         addComponents();
     }
@@ -65,7 +65,7 @@ public class RequestControlsPanel extends JPanel {
 
     public void addButtons() {
         this.add(addHeadersButton);
-        this.add(sendRequestButton);
+        //this.add(sendRequestButton);
     }
 
     public void addComponents() {
@@ -115,8 +115,24 @@ public class RequestControlsPanel extends JPanel {
         }
     }
 
-    public SendRequestButton getSendRequestButton() {
-        return sendRequestButton;
+    // public SendRequestButton getSendRequestButton() {
+    //     return sendRequestButton;
+    // }
+
+    public HostField getHostField() {
+        return hostField;
+    }
+
+    public PortField getPortField() {
+        return portField;
+    }
+
+    public BodyTypeField getBodyTypeField() {
+        return bodyTypeField;
+    }
+
+    public MethodField getMethodField() {
+        return methodField;
     }
 
     public AddHeadersButton getAddHeadersButton() {

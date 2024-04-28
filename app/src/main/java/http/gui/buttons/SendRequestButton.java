@@ -13,6 +13,7 @@ import http.gui.fields.BodyTypeField;
 import http.gui.fields.HostField;
 import http.gui.fields.MethodField;
 import http.gui.fields.PortField;
+import http.gui.panels.ResponsePanel;
 import http.project.networks.ii.GreetClient;
 import http.project.networks.ii.Request;
 import http.project.networks.ii.Verbs;
@@ -23,16 +24,19 @@ public class SendRequestButton extends JButton {
     private transient MethodField methodField;
     private transient HostField hostField;
     private transient PortField portField;
-    private HeadersDialog headersDialog;
     private transient BodyTypeField bodyTypeField;
+    private HeadersDialog headersDialog;
+    private ResponsePanel responsePanel;
+    
 
-    public SendRequestButton(MethodField methodField, HostField hostField, PortField portField, BodyTypeField bodyTypeField, HeadersDialog headersDialog) {
+    public SendRequestButton(MethodField methodField, HostField hostField, PortField portField, BodyTypeField bodyTypeField, HeadersDialog headersDialog, ResponsePanel responsePanel) {
         super(GuiUtils.SEND_STRING);
         this.methodField = methodField;
         this.hostField = hostField;
         this.portField = portField;
         this.bodyTypeField = bodyTypeField;
         this.headersDialog = headersDialog;
+        this.responsePanel = responsePanel;
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +59,8 @@ public class SendRequestButton extends JButton {
             String bodyContent = ""; // Modify this line to get the body content from the bodyField
             System.out.println("Headers:\n" + this.headersDialog.getHeaders().toString());
             Request request = new Request(method, url, protocolVersion, this.headersDialog.getHeaders(), bodyType, bodyContent);
-            System.out.println(request.toString());
+            //System.out.println(request.toString());
+            responsePanel.appendResponse(request.toString());
             greetClient.sendRequest(url, request);
         } catch (Exception ex) {
             System.out.println("Error sending request: " + ex.getMessage());

@@ -8,6 +8,9 @@ import javax.swing.ScrollPaneConstants;
 import http.gui.GuiUtils;
 
 import javax.swing.BorderFactory;
+import javax.swing.JTextArea;
+
+import java.awt.BorderLayout;
 
 public class ResponsePanel extends JScrollPane {
     
@@ -16,9 +19,10 @@ public class ResponsePanel extends JScrollPane {
     public static final int MINIMUM_WIDTH = 300;
     public static final int MINIMUM_HEIGHT = 200;
 
+    JTextArea responseTextArea = new JTextArea();
+
     public ResponsePanel() {
         super();
-        //this.setLayout(new BorderLayout());
         this.setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
         this.setPreferredSize(new Dimension(PREFERRED_WIDTH, PREFERRED_HEIGHT));
         this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -26,5 +30,25 @@ public class ResponsePanel extends JScrollPane {
                 BorderFactory.createTitledBorder(GuiUtils.RESPONSE_STRING),
                 BorderFactory.createEmptyBorder(GuiUtils.BORDER_WIDTH, GuiUtils.BORDER_WIDTH, GuiUtils.BORDER_WIDTH, GuiUtils.BORDER_WIDTH)
         ));
+        this.setViewportView(responseTextArea);
+        configureTextArea();
+    }
+
+    public JTextArea getResponseTextArea() {
+        return responseTextArea;
+    }
+
+    public void setResponseTextArea(JTextArea responseTextArea) {
+        this.responseTextArea = responseTextArea;
+    }
+
+    public void appendResponse(String response) {
+        responseTextArea.append(response);
+    }
+
+    public void configureTextArea() {
+        responseTextArea.setEditable(false);
+        responseTextArea.setLineWrap(true);
+        responseTextArea.setWrapStyleWord(true);
     }
 }
