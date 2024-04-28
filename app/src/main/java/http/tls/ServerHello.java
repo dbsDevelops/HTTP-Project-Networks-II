@@ -24,18 +24,18 @@ public class ServerHello {
     }
 
     public void sendServerHello() throws IOException, CertificateEncodingException {
-        // Read the length of the cipher suites list
-        int cipherSuitesLength = in.readUnsignedShort();
-
-        // Read each cipher suite (each one is 2 bytes)
+        // Now the server can choose a cipher suite from the received list
+        int chosenCipherSuite = -1;
+        int cipherSuitesLength = (in.readUnsignedByte() << 8) | in.readUnsignedByte();
         for (int i = 0; i < cipherSuitesLength; i += 2) {
             int cipherSuite = in.readUnsignedShort();
             System.out.println("Received cipher suite: " + cipherSuite);
+    
+            // Check if the server supports this cipher suite and if it's the most secure one
+            if (serverSupportsCipherSuite(cipherSuite) && (chosenCipherSuite == -1 || isMoreSecure(cipherSuite, chosenCipherSuite))) {
+                chosenCipherSuite = cipherSuite;
+            }
         }
-
-        // Now the server can choose a cipher suite from the received list
-        // Take the first one for example
-        int chosenCipherSuite = in.readUnsignedShort();
 
         // TLS version (3.3 for TLSv1.2)
         out.writeByte(3);
@@ -56,6 +56,56 @@ public class ServerHello {
 
         out.flush();
     }
+
+    private boolean serverSupportsCipherSuite(int cipherSuite) {
+        int[] supportedCipherSuites = {
+            0x002F, // TLS_RSA_WITH_AES_128_CBC_SHA
+            0x0035, // TLS_RSA_WITH_AES_256_CBC_SHA
+            0x000A, // TLS_RSA_WITH_3DES_EDE_CBC_SHA
+            // Añadir más suites de cifrado aquí
+        };
+    
+        for (int supportedCipherSuite : supportedCipherSuites) {
+            if (cipherSuite == supportedCipherSuite) {
+                return true;
+            }
+        }
+    
+        return false;
+    }
+
+    // Check if cipherSuite1 is more secure than cipherSuite2
+    private boolean isMoreSecure(int cipherSuite1, int cipherSuite2) {
+        int[] cipherSuitesOrderedBySecurity = {
+            0x002F, // TLS_RSA_WITH_AES_128_CBC_SHA
+            0x0035, // TLS_RSA_WITH_AES_256_CBC_SHA
+            0x000A, // TLS_RSA_WITH_3DES_EDE_CBC_SHA
+            // Añadir más suites de cifrado aquí (de menos a más seguras)
+        };
+    
+        int index1 = -1, index2 = -1;
+        for (int i = 0; i < cipherSuitesOrderedBySecurity.length; i++) {
+            if (cipherSuitesOrderedBySecurity[i] == cipherSuite1) {
+                index1 = i;
+            }
+            if (cipherSuitesOrderedBySecurity[i] == cipherSuite2) {
+                index2 = i;
+            }
+        }
+    
+        // If cipherSuite1 is not found in the list, consider cipherSuite1 less secure
+        if (index1 == -1) {
+            return false;
+        }
+
+        // If cipherSuite2 is not found in the list, consider cipherSuite1 more secure
+        if (index2 == -1) {
+            return true;
+        }
+
+        // If both are found, the one with the lower index is more secure
+        return index1 < index2;
+    }  
 
     public static void main(String[] args) {
         try {
