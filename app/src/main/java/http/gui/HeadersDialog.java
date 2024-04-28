@@ -66,4 +66,14 @@ public class HeadersDialog extends JDialog {
             getContentPane().add(rowPanel);
         }
     }
+
+    public List<String> getHeaders() {
+        List<String> headers = new ArrayList<>();
+        for (int i = 0; i < NUMBER_OF_HEADERS; i++) {
+            if (headerCheckboxes.get(i).isSelected()) {
+                headers.add(headerTextFields.get(i).getText());
+            }
+        }
+        return headers;
+    }
 }

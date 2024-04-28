@@ -4,6 +4,7 @@ import java.io.*;
 
 public class GreetClient {
 
+    private static GreetClient instance;
     private static final String SERVER_NOT_FOUND = "Server not found: ";
     private static final String IO_ERROR = "I/O error: ";
 
@@ -11,10 +12,18 @@ public class GreetClient {
     private int port;
     private String clientCookies;
 
-    public GreetClient(int port) {
+    // Singleton pattern
+    private GreetClient(int port) {
         this.host = "";
         this.port = port;
         this.clientCookies = null;
+    }
+
+    public static GreetClient getInstance(int port) {
+        if(instance == null) {
+            instance = new GreetClient(port);
+        }
+        return instance;
     }
 
     public void sendRequest(URL url, Request request) {

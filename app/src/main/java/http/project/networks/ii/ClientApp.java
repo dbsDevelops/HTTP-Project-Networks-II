@@ -36,7 +36,7 @@ public class ClientApp {
 
 
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = GreetClient.getInstance(HTTPUtils.HTTP_PORT);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -50,7 +50,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = GreetClient.getInstance(HTTPUtils.HTTPS_PORT);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
