@@ -62,6 +62,7 @@ public class SendRequestButton extends JButton {
             //System.out.println(request.toString());
             responsePanel.appendResponse(request.toString());
             greetClient.sendRequest(url, request);
+            responsePanel.appendResponse(greetClient.getResponseString());
         } catch (Exception ex) {
             System.out.println("Error sending request: " + ex.getMessage());
         }

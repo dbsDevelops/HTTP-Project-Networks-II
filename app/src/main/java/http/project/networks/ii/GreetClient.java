@@ -6,15 +6,18 @@ public class GreetClient {
 
     private static final String SERVER_NOT_FOUND = "Server not found: ";
     private static final String IO_ERROR = "I/O error: ";
+    private static final int RESET_RESPONSE = 0;
 
     private String host;
     private int port;
     private String clientCookies;
+    private StringBuilder response;
 
     public GreetClient(int port) {
         this.host = "";
         this.port = port;
         this.clientCookies = null;
+        this.response = new StringBuilder();
     }
 
     public void sendRequest(URL url, Request request) {
@@ -51,11 +54,15 @@ public class GreetClient {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         Boolean firstCookieField = true;
         String responseLine = "";
+        // Reset the response
+        response.setLength(RESET_RESPONSE);
+        
         responseLine = br.readLine();
-
+        response.append(responseLine + "\n");
         while (responseLine != null) {
             System.out.println(responseLine);
             responseLine = br.readLine();
+            response.append(responseLine + "\n");
             if(isCookieField(responseLine)) {
                 if(firstCookieField) {
                     this.clientCookies = HttpRequestHeaders.COOKIE.getHeader() + ": "; //Initialize the client cookies
@@ -67,6 +74,11 @@ public class GreetClient {
 
         this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "
         System.out.println(this.clientCookies);
+        response.append(this.clientCookies);
+    }
+
+    public String getResponseString() {
+        return this.response.toString();
     }
 
     private boolean isCookieField(String field) {
