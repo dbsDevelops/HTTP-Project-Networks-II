@@ -19,7 +19,10 @@ public class ClientApp {
         ClientApp app = new ClientApp();
         app.testGET("http://localhost/teachers/project/Project_1");
 
-        //app.testConditionalGET("http://localhost/teachers/project/Project_1", "Wed, 21 Oct 2015 07:28:00 GMT");
+        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
+
+        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
+        
 
     }
 

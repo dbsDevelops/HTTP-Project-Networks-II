@@ -26,8 +26,8 @@ public class RequestConditionalGet implements RequestCommand {
 
     @Override
     public Response execute() {
-        if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
-            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+        if (!path.startsWith(HTTPUtils.TEACHERS_PATH)) {
+            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND + " position 1"));
         }
         
         // Check conditional headers
@@ -35,11 +35,12 @@ public class RequestConditionalGet implements RequestCommand {
 
         if (ifModifiedSinceHeader != null) {
             // Handle If-Modified-Since header
-            LocalDateTime ifModifiedSinceDate = LocalDateTime.parse(ifModifiedSinceHeader, DateTimeFormatter.RFC_1123_DATE_TIME);
+            System.out.println("\n\nIf-Modified-Since header found: " + ifModifiedSinceHeader + "\n\n");
+            LocalDateTime ifModifiedSinceDate = LocalDateTime.parse(ifModifiedSinceHeader.toString(), DateTimeFormatter.RFC_1123_DATE_TIME);
             LocalDateTime lastModifiedDate = getLastModifiedDateOfResource(path, ifModifiedSinceDate); // You need to implement this method
             if (lastModifiedDate != null && lastModifiedDate.isAfter(ifModifiedSinceDate)) {
                 // Resource has been modified since the specified date
-                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Resource has been modified"));
+                return new RequestGET(path, teachers).execute();
             } else {
                 // Resource has not been modified since the specified date
                 return new Response(ServerStatusCodes.NOT_MODIFIED_304.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Resource has not been modified"));
