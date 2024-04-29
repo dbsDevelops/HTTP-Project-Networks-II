@@ -8,9 +8,9 @@ import java.net.URL;
 
 import com.google.gson.Gson;
 
-import http.project.networks.ii.API.Project;
-import http.project.networks.ii.API.Teacher;
-import http.project.networks.ii.API.TeachersClass;
+import http.project.networks.ii.API.TeachersAPI.Project;
+import http.project.networks.ii.API.TeachersAPI.Teacher;
+import http.project.networks.ii.API.TeachersAPI.TeachersClass;
 
 public class ClientApp {
     

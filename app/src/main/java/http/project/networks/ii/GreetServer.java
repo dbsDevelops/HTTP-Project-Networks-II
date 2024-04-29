@@ -10,6 +10,7 @@ public class GreetServer {
     private volatile boolean running = true; // Used to check if server is running and warn rest of the threads
 
     private APITeachers apiTeachers;
+    private APILogin apiLogin;
     private Path staticFiles;
     private ServerSocket serverSocket;
     private List<Cookie> cookies;
@@ -17,6 +18,7 @@ public class GreetServer {
     // Singleton pattern
     public GreetServer(String staticFilesPath) {
         this.apiTeachers = new APITeachers();
+        this.apiLogin = new APILogin();
         this.apiTeachers.initialiseTeachersMockData();
         this.staticFiles = Paths.get(staticFilesPath);
         //If the path is not absolute, we convert it into absolute, to avoid problems of relative routes
@@ -138,7 +140,11 @@ public class GreetServer {
         if (urlParts.length > 1) {
             if(urlParts[1].equals("teachers")){
                 return apiTeachers.readRequest(request);
-            } else {
+            } 
+            else if (urlParts[1].equals("login")){
+                return apiLogin.readRequest(request);
+            }            
+            else {
                 String filePathString = staticFiles.toString() + urlPath;
                 try {
                     HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(filePathString);

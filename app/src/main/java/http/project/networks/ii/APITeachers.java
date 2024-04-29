@@ -1,8 +1,8 @@
 package http.project.networks.ii;
 
-import http.project.networks.ii.API.Project;
-import http.project.networks.ii.API.Teacher;
-import http.project.networks.ii.API.TeachersClass;
+import http.project.networks.ii.API.TeachersAPI.Project;
+import http.project.networks.ii.API.TeachersAPI.Teacher;
+import http.project.networks.ii.API.TeachersAPI.TeachersClass;
 import http.project.networks.ii.handleRequests.*;
 
 public class APITeachers {
