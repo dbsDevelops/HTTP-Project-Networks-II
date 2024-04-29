@@ -17,12 +17,22 @@ public class ClientApp {
     public static void main(String[] args) {
 
         ClientApp app = new ClientApp();
-        app.testGET("http://localhost/teachers/project/Project_1");
+        app.testGET("http://localhost/teachers/");
 
-        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
+        //app.testGET("http://localhost/teachers/teacher/Teacher_1");
 
-        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
-        
+        //app.testPOST("http://localhost/teachers/teacher", "{\"name\":\"Teacher_6\",\"rating\":0.9,\"project\":{\"name\":\"Project_6\",\"description\":\"Description_6\",\"teacher\":\"Teacher_6\",\"student\":\"Student_6\",\"grade\":\"F\",\"status\":\"In_Progress\"}}");
+
+        //app.testPUT("http://localhost/teachers/teacher/Teacher_1", "{\"name\":\"Teacher_1\",\"rating\":0.9,\"project\":{\"name\":\"Project_1\",\"description\":\"Description_1\",\"teacher\":\"Teacher_1\",\"student\":\"Student_1\",\"grade\":\"A\",\"status\":\"Completed\"}}");
+
+        //app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
+
+        //app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
+
+        //app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
+
+
+        app.testGET("http://localhost/teachers/");
 
     }
 
@@ -155,7 +165,7 @@ public class ClientApp {
             protocolVersion = "HTTP/1.1";                                                 //Protocol version
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.JSON;                                            //Body type
-            bodyContent = "";
+            bodyContent = "";                                      //Body content
 
             client = new GreetClient(HTTPUtils.HTTP_PORT);
             //Send the request

@@ -79,7 +79,7 @@ public class APITeachers {
                 command = new RequestPUT(path, teachers, request.body);
                 break;
             case DELETE:
-                command = new RequestDELETE(path, teachers, request.body);
+                command = new RequestDELETE(path, teachers);
                 break;
             default:
                 return methodNotAllowedResponse();

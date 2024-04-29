@@ -146,6 +146,22 @@ public class TeachersClass {
         return this.projects.size();
     }
 
+    public void clear() {
+        this.teachers.clear();
+        this.projects.clear();
+        this.lastModified = LocalDateTime.now();
+    }
+
+    public void clearTeachers() {
+        this.teachers.clear();
+        this.lastModified = LocalDateTime.now();
+    }
+
+    public void clearProjects() {
+        this.projects.clear();
+        this.lastModified = LocalDateTime.now();
+    }
+
     public String toString() {
         return "Teachers: " + this.teachers.toString() + "\nProjects: " + this.projects.toString();
     }
