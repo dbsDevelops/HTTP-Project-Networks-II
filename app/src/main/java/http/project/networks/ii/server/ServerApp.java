@@ -1,6 +1,6 @@
 package http.project.networks.ii.server;
 
-import http.project.networks.ii.HTTPUtils;
+import http.project.networks.ii.utils.HTTPUtils;
 
 public class ServerApp {
 

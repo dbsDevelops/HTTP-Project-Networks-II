@@ -4,7 +4,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 import http.project.networks.ii.gui.GuiUtils;
-import http.project.networks.ii.HttpBodyType;
+import http.project.networks.ii.utils.HttpBodyType;
 
 public class BodyTypeField {
 

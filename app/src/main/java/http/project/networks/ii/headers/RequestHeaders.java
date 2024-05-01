@@ -3,7 +3,7 @@ package http.project.networks.ii.headers;
 import java.net.URL;
 import java.util.ArrayList;
 
-import http.project.networks.ii.HttpRequestHeaders;
+import http.project.networks.ii.utils.HttpRequestHeaders;
 
 public class RequestHeaders extends Headers {
 

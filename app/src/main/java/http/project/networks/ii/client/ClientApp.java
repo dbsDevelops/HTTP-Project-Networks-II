@@ -6,11 +6,11 @@ package http.project.networks.ii.client;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import http.project.networks.ii.HTTPUtils;
-import http.project.networks.ii.HttpBodyType;
 import http.project.networks.ii.Request;
 import http.project.networks.ii.headers.RequestHeaders;
-import http.project.networks.ii.helpers.Verbs;
+import http.project.networks.ii.utils.HTTPUtils;
+import http.project.networks.ii.utils.HttpBodyType;
+import http.project.networks.ii.utils.Verbs;
 
 public class ClientApp {
     

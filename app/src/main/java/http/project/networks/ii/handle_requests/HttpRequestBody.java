@@ -1,6 +1,6 @@
 package http.project.networks.ii.handle_requests;
 
-import http.project.networks.ii.HttpBodyType;
+import http.project.networks.ii.utils.HttpBodyType;
 
 public class HttpRequestBody {
     private final HttpBodyType type;

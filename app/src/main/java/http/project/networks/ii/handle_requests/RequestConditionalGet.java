@@ -1,13 +1,13 @@
 package http.project.networks.ii.handle_requests;
 
-import http.project.networks.ii.HTTPUtils;
-import http.project.networks.ii.HttpBodyType;
-import http.project.networks.ii.HttpRequestBody;
 import http.project.networks.ii.Response;
 import http.project.networks.ii.api.teachers_api.Project;
 import http.project.networks.ii.api.teachers_api.Teacher;
 import http.project.networks.ii.api.teachers_api.TeachersClass;
 import http.project.networks.ii.server.ServerStatusCodes;
+import http.project.networks.ii.utils.HTTPUtils;
+import http.project.networks.ii.utils.HttpBodyType;
+import http.project.networks.ii.utils.HttpRequestBody;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

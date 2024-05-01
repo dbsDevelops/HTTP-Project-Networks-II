@@ -139,7 +139,7 @@ public class HTTPUtils {
     }
 
     public static boolean existServerCookie(Request request, Cookie cookie) {
-        for(String header: request.headers.getHeaders()) {
+        for(String header: request.getRequestHeadersObject().getHeaders()) {
             if(header.startsWith(HttpRequestHeaders.SET_COOKIE.getHeader())) {
                 if(Cookie.parse(header).equals(cookie)){
                     return true;

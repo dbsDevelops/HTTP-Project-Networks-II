@@ -4,7 +4,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import http.project.networks.ii.headers.RequestHeaders;
-import http.project.networks.ii.helpers.Verbs;
+import http.project.networks.ii.utils.HttpBodyType;
+import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpRequestHeaders;
+import http.project.networks.ii.utils.Verbs;
 
 public class Request {
     public static final String END_LINE = "\r\n";

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import http.project.networks.ii.HttpRequestHeaders;
 import http.project.networks.ii.gui.extra_headers.HttpExtraHeaders;
+import http.project.networks.ii.utils.HttpRequestHeaders;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;

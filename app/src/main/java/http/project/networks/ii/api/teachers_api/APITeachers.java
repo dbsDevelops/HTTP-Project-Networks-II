@@ -1,12 +1,12 @@
 package http.project.networks.ii.api.teachers_api;
 
-import http.project.networks.ii.HTTPUtils;
-import http.project.networks.ii.HttpBodyType;
-import http.project.networks.ii.HttpRequestBody;
 import http.project.networks.ii.Request;
 import http.project.networks.ii.Response;
 import http.project.networks.ii.handle_requests.*;
 import http.project.networks.ii.server.ServerStatusCodes;
+import http.project.networks.ii.utils.HTTPUtils;
+import http.project.networks.ii.utils.HttpBodyType;
+import http.project.networks.ii.utils.HttpRequestBody;
 
 public class APITeachers {
 

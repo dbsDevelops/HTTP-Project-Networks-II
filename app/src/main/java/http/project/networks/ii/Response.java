@@ -1,5 +1,8 @@
 package http.project.networks.ii;
 
+import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpRequestHeaders;
+
 public class Response {
     private String statusCodeAndDescription;
     protected ResponseHeaders responseHeaders;
