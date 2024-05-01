@@ -1,4 +1,4 @@
-package http.project.networks.ii.API.loginAPI;
+package http.project.networks.ii.api.login_api;
 
 public class User {
 

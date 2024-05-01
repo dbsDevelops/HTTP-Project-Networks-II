@@ -5,9 +5,9 @@ import http.project.networks.ii.HttpBodyType;
 import http.project.networks.ii.HttpRequestBody;
 import http.project.networks.ii.Response;
 import http.project.networks.ii.ServerStatusCodes;
-import http.project.networks.ii.API.TeachersAPI.Project;
-import http.project.networks.ii.API.TeachersAPI.Teacher;
-import http.project.networks.ii.API.TeachersAPI.TeachersClass;
+import http.project.networks.ii.api.teachers_api.Project;
+import http.project.networks.ii.api.teachers_api.Teacher;
+import http.project.networks.ii.api.teachers_api.TeachersClass;
 
 import java.util.List;
 

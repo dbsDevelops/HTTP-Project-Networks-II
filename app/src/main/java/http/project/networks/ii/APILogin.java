@@ -2,7 +2,7 @@ package http.project.networks.ii;
 
 import java.util.List;
 
-import http.project.networks.ii.API.loginAPI.User;
+import http.project.networks.ii.api.login_api.User;
 
 public class APILogin {
 

@@ -1,4 +1,4 @@
-package http.project.networks.ii.API.TeachersAPI;
+package http.project.networks.ii.api.teachers_api;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -20,8 +20,8 @@ public class TeachersClass {
     }
 
     public TeachersClass() {
-        teachers = new java.util.ArrayList<Teacher>();
-        projects = new java.util.ArrayList<Project>();
+        teachers = new java.util.ArrayList<>();
+        projects = new java.util.ArrayList<>();
     }
 
     public void setLastModified(LocalDateTime lastModified) {

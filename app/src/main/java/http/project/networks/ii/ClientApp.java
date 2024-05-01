@@ -8,9 +8,9 @@ import java.net.URL;
 
 import com.google.gson.Gson;
 
-import http.project.networks.ii.API.TeachersAPI.Project;
-import http.project.networks.ii.API.TeachersAPI.Teacher;
-import http.project.networks.ii.API.TeachersAPI.TeachersClass;
+import http.project.networks.ii.api.teachers_api.Project;
+import http.project.networks.ii.api.teachers_api.Teacher;
+import http.project.networks.ii.api.teachers_api.TeachersClass;
 
 public class ClientApp {
     
@@ -19,17 +19,17 @@ public class ClientApp {
         ClientApp app = new ClientApp();
         app.testGET("http://localhost/teachers/");
 
-        //app.testGET("http://localhost/teachers/teacher/Teacher_1");
+        app.testGET("http://localhost/teachers/teacher/Teacher_1");
 
-        //app.testPOST("http://localhost/teachers/teacher", "{\"name\":\"Teacher_6\",\"rating\":0.9,\"project\":{\"name\":\"Project_6\",\"description\":\"Description_6\",\"teacher\":\"Teacher_6\",\"student\":\"Student_6\",\"grade\":\"F\",\"status\":\"In_Progress\"}}");
+        app.testPOST("http://localhost/teachers/teacher", "{\"name\":\"Teacher_6\",\"rating\":0.9,\"project\":{\"name\":\"Project_6\",\"description\":\"Description_6\",\"teacher\":\"Teacher_6\",\"student\":\"Student_6\",\"grade\":\"F\",\"status\":\"In_Progress\"}}");
 
-        //app.testPUT("http://localhost/teachers/teacher/Teacher_1", "{\"name\":\"Teacher_1\",\"rating\":0.9,\"project\":{\"name\":\"Project_1\",\"description\":\"Description_1\",\"teacher\":\"Teacher_1\",\"student\":\"Student_1\",\"grade\":\"A\",\"status\":\"Completed\"}}");
+        app.testPUT("http://localhost/teachers/teacher/Teacher_1", "{\"name\":\"Teacher_1\",\"rating\":0.9,\"project\":{\"name\":\"Project_1\",\"description\":\"Description_1\",\"teacher\":\"Teacher_1\",\"student\":\"Student_1\",\"grade\":\"A\",\"status\":\"Completed\"}}");
 
-        //app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
+        app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
 
-        //app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
+        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
 
-        //app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
+        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
 
 
         app.testGET("http://localhost/teachers/");
