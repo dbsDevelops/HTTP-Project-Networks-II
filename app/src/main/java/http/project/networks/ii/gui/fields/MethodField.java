@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
 import http.project.networks.ii.gui.GuiUtils;
-import http.project.networks.ii.Verbs;
+import http.project.networks.ii.helpers.Verbs;
 
 public class MethodField {
 

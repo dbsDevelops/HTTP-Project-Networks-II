@@ -9,8 +9,8 @@ import java.net.URL;
 import http.project.networks.ii.HTTPUtils;
 import http.project.networks.ii.HttpBodyType;
 import http.project.networks.ii.Request;
-import http.project.networks.ii.Verbs;
 import http.project.networks.ii.headers.RequestHeaders;
+import http.project.networks.ii.helpers.Verbs;
 
 public class ClientApp {
     
