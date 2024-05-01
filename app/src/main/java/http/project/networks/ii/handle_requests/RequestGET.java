@@ -1,8 +1,4 @@
-package http.project.networks.ii.handleRequests;
-
-import java.util.List;
-
-import com.google.gson.Gson;
+package http.project.networks.ii.handle_requests;
 
 import http.project.networks.ii.HTTPUtils;
 import http.project.networks.ii.HttpBodyType;
@@ -13,21 +9,19 @@ import http.project.networks.ii.api.teachers_api.Teacher;
 import http.project.networks.ii.api.teachers_api.TeachersClass;
 import http.project.networks.ii.server.ServerStatusCodes;
 
-public class RequestDELETE implements RequestCommand {
+import java.util.List;
+
+public class RequestGET implements RequestCommand {
     private final String path;
     private final TeachersClass teachers;
 
-    public RequestDELETE(String path, TeachersClass teachers) {
+    public RequestGET(String path, TeachersClass teachers) {
         this.path = path;
         this.teachers = teachers;
     }
 
     @Override
     public Response execute() {
-        return processPath();
-    }
-
-    private Response processPath() {
         if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
 
             //see if the path is a subpath of teachers
@@ -35,12 +29,14 @@ public class RequestDELETE implements RequestCommand {
                 String[] pathParts = path.split("/");
                 if (pathParts.length == 3) {
                     if (pathParts[2].equals("teacher")) {
-                        teachers.clearTeachers();
-                        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "All teachers deleted"));
+                        List<Teacher> teacherList = teachers.getTeachers();
+                        String responseBody = convertListToJson(teacherList);
+                        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                     }
                     else if (pathParts[2].equals("project")) {
-                        teachers.clearProjects();
-                        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "All projects deleted"));
+                        List<Project> projectList = teachers.getProjects();
+                        String responseBody = convertListToJson(projectList);
+                        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                     }
                     else {
                         return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
@@ -50,8 +46,8 @@ public class RequestDELETE implements RequestCommand {
                     if (pathParts[2].equals("teacher")) {
                         Teacher teacher = teachers.getTeacher(pathParts[3]);
                         if (teacher != null) {
-                            teachers.removeTeacher(teacher.getName());
-                            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Teacher deleted"));
+                            String responseBody = teacher.toString();
+                            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                         }
                         else {
                             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
@@ -60,8 +56,8 @@ public class RequestDELETE implements RequestCommand {
                     else if (pathParts[2].equals("project")) {
                         Project project = teachers.getProject(pathParts[3]);
                         if (project != null) {
-                            teachers.removeProject(project.getName());
-                            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Project deleted"));
+                            String responseBody = project.toString();
+                            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                         }
                         else {
                             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
@@ -76,9 +72,34 @@ public class RequestDELETE implements RequestCommand {
      
             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
         }
-        else{
-            teachers.clear();
-            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "All teachers and projects deleted"));    
+        return processRequest();
+    }
+
+    private Response processRequest() {
+        List<Teacher> teacherList = teachers.getTeachers();
+        List<Project> projectList = teachers.getProjects();
+        String responseBody = convertDataToJson(teacherList, projectList);
+        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+    }
+
+    private String convertDataToJson(List<Teacher> teacherList, List<Project> projectList) {
+        StringBuilder jsonBuilder = new StringBuilder("{").append("\n");
+        jsonBuilder.append("\"teachers\": ").append("\n").append(convertListToJson(teacherList)).append("\n");
+        jsonBuilder.append("\"projects\": ").append("\n").append(convertListToJson(projectList)).append("\n");
+        jsonBuilder.append("}");
+        return jsonBuilder.toString();
+    }
+
+    private String convertListToJson(List<?> list) {
+        StringBuilder jsonBuilder = new StringBuilder("[").append("\n");
+        for (Object obj : list) {
+            jsonBuilder.append(obj.toString()).append("\n");
+
         }
+        if (!list.isEmpty()) {
+            jsonBuilder.deleteCharAt(jsonBuilder.length() - 1); // Remove the last comma
+        }
+        jsonBuilder.append("\n").append("]");
+        return jsonBuilder.toString();
     }
 }

@@ -3,7 +3,7 @@ package http.project.networks.ii;
 import http.project.networks.ii.api.teachers_api.Project;
 import http.project.networks.ii.api.teachers_api.Teacher;
 import http.project.networks.ii.api.teachers_api.TeachersClass;
-import http.project.networks.ii.handleRequests.*;
+import http.project.networks.ii.handle_requests.*;
 import http.project.networks.ii.server.ServerStatusCodes;
 
 public class APITeachers {
