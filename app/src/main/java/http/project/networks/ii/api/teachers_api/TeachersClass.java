@@ -1,4 +1,4 @@
-package http.project.networks.ii.API.TeachersAPI;
+package http.project.networks.ii.api.teachers_api;
 
 import java.io.*;
 import java.nio.file.Files;
