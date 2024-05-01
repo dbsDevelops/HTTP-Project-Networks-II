@@ -1,9 +1,9 @@
 package http.project.networks.ii.client;
 import java.net.*;
 
-import http.project.networks.ii.Cookie;
 import http.project.networks.ii.HttpRequestHeaders;
 import http.project.networks.ii.Request;
+import http.project.networks.ii.cookies.Cookie;
 
 import java.io.*;   
 

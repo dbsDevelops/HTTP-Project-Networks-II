@@ -1,24 +1,19 @@
-package http.project.networks.ii;
+package http.project.networks.ii.headers;
 
 import java.net.URL;
 import java.util.ArrayList;
+
+import http.project.networks.ii.HttpRequestHeaders;
 
 public class RequestHeaders extends Headers {
 
     //Empty constructor for the Server parse
     public RequestHeaders() {
-        this.myHeaders = new ArrayList<>();
+        super();
     }
 
     public RequestHeaders(URL url) {
-        this.myHeaders = new ArrayList<>();
-        //DIVIDE THE HEADERS IN VERBS AND THE VALUE OF THE HEADER WILL CHAGE DEPENDING ON THE VERB
-        /* 
-        for (HttpHeaders headerType : HttpHeaders.values()) {
-            addHeaderToHeaders(headerType, "");
-        }
-        */
-
+        super();
         // ADDING BASIC HEADERS FOR THE REQUEST MANUALLY
         addHeaderToHeaders(HttpRequestHeaders.HOST, url.getHost());
         addHeaderToHeaders(HttpRequestHeaders.ACCEPT, "/");
@@ -28,7 +23,7 @@ public class RequestHeaders extends Headers {
         addHeaderToHeaders(HttpRequestHeaders.DATE, getCurrentTime());
     }
 
-    public static RequestHeaders parse(String headersString, URL url) {
+    public static RequestHeaders parse(String headersString) {
         String[] headers = headersString.split("\r\n");
         RequestHeaders requestHeaders = new RequestHeaders();
         for (String header : headers) {

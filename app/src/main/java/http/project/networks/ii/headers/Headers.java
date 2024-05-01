@@ -1,9 +1,11 @@
-package http.project.networks.ii;
+package http.project.networks.ii.headers;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import http.project.networks.ii.HttpRequestHeaders;
 import http.project.networks.ii.gui.extra_headers.HttpExtraHeaders;
 
 import java.util.Date;
@@ -11,6 +13,10 @@ import java.text.SimpleDateFormat;
 
 public abstract class Headers {
     List<String> myHeaders;
+
+    protected Headers() {
+        this.myHeaders = new ArrayList<>();
+    }
 
     public List<String> getHeaders() {
         return this.myHeaders;

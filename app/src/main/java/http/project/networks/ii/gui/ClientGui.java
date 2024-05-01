@@ -17,7 +17,7 @@ public class ClientGui extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Add content to the window
-        initComponenets();
+        initComponents();
 
         // Display the window
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -34,7 +34,7 @@ public class ClientGui extends JFrame {
         });
     }
     
-    public void initComponenets() {
+    public void initComponents() {
         requestAndResponseSplitPanel = new RequestAndResponseSplitPanel();
         this.add(requestAndResponseSplitPanel);
     }

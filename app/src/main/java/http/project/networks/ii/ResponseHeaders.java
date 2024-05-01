@@ -1,11 +1,11 @@
 package http.project.networks.ii;
 
-import java.util.ArrayList;
+import http.project.networks.ii.headers.Headers;
 
 public class ResponseHeaders extends Headers {
 
     public ResponseHeaders() {
-        this.myHeaders = new ArrayList<>();
+        // this.myHeaders = new ArrayList<>();
         
         // ADDING BASIC HEADERS FOR THE REQUEST MANUALLY
         addHeaderToHeaders(HttpRequestHeaders.CONNECTION, "close");

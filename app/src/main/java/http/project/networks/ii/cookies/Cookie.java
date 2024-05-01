@@ -1,4 +1,4 @@
-package http.project.networks.ii;
+package http.project.networks.ii.cookies;
 
 import java.time.LocalDateTime;
 import java.util.Random;

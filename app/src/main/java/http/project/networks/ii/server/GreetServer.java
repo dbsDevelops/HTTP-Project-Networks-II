@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.io.*;
 import java.util.*;
 
-import http.project.networks.ii.Cookie;
 import http.project.networks.ii.HTTPUtils;
 import http.project.networks.ii.HttpBodyType;
 import http.project.networks.ii.HttpRequestBody;
@@ -14,6 +13,7 @@ import http.project.networks.ii.Request;
 import http.project.networks.ii.Response;
 import http.project.networks.ii.api.login_api.APILogin;
 import http.project.networks.ii.api.teachers_api.APITeachers;
+import http.project.networks.ii.cookies.Cookie;
 
 public class GreetServer {
 

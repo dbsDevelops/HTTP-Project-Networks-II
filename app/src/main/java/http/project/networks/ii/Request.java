@@ -3,6 +3,8 @@ package http.project.networks.ii;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import http.project.networks.ii.headers.RequestHeaders;
+
 public class Request {
     public static final String END_LINE = "\r\n";
     public static final String WHITE_SPACE = " ";
@@ -108,7 +110,7 @@ public class Request {
     }
 
     public void addCookies(String cookiesClient) {
-        this.headers.myHeaders.add(cookiesClient);
+        this.headers.getHeaders().add(cookiesClient);
     }
 
     public static Request parse(String request) {
@@ -142,7 +144,7 @@ public class Request {
         }
         headers = headers.substring(0, headers.length() - 2);
 
-        RequestHeaders sentHeaders = RequestHeaders.parse(headers, url);
+        RequestHeaders sentHeaders = RequestHeaders.parse(headers);
 
         if (method == Verbs.GET || method == Verbs.HEAD) {
             return new Request(method, url, protocolVersion, sentHeaders, HttpBodyType.RAW, "");

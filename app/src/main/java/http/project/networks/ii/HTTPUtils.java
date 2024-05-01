@@ -18,6 +18,8 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
+import http.project.networks.ii.cookies.Cookie;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.*;
@@ -141,7 +143,7 @@ public class HTTPUtils {
     }
 
     public static boolean existServerCookie(Request request, Cookie cookie) {
-        for(String header: request.headers.myHeaders) {
+        for(String header: request.headers.getHeaders()) {
             if(header.startsWith(HttpRequestHeaders.SET_COOKIE.getHeader())) {
                 if(Cookie.parse(header).equals(cookie)){
                     return true;

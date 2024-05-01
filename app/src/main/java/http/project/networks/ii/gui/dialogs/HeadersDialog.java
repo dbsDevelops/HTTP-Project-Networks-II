@@ -13,7 +13,7 @@ import java.awt.event.WindowListener;
 
 import http.project.networks.ii.gui.GuiUtils;
 import http.project.networks.ii.gui.extra_headers.HttpExtraHeaders;
-import http.project.networks.ii.RequestHeaders;
+import http.project.networks.ii.headers.RequestHeaders;
 
 public class HeadersDialog extends JDialog {
     private static final int NUMBER_OF_HEADERS = HttpExtraHeaders.values().length;
