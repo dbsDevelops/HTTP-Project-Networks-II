@@ -4,6 +4,7 @@ import java.net.*;
 import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.utils.HttpRequestHeaders;
+import http.project.networks.ii.logger.Logger;
 
 import java.io.*;   
 
@@ -17,12 +18,14 @@ public class GreetClient {
     private int port;
     private String clientCookies;
     private StringBuilder response;
+    // private Logger logger;
 
     public GreetClient(int port) {
         this.host = "";
         this.port = port;
         this.clientCookies = null;
         this.response = new StringBuilder();
+        //this.logger = new Logger("client");
     }
 
     public void sendRequest(URL url, Request request) {
@@ -49,9 +52,10 @@ public class GreetClient {
             readResponse(is);
         } catch(UnknownHostException e){
             System.err.println(SERVER_NOT_FOUND + e.getMessage());
-
+            //logger.log(SERVER_NOT_FOUND + e.getMessage());
         } catch(IOException e){
             System.err.println(IO_ERROR + e.getMessage());
+            //logger.log(IO_ERROR + e.getMessage());
         } 
     }
 
@@ -66,6 +70,7 @@ public class GreetClient {
         response.append(responseLine + "\n");
         while (responseLine != null) {
             System.out.println(responseLine);
+            //logger.log(responseLine);
             responseLine = br.readLine();
             response.append(responseLine + "\n");
             if(isCookieField(responseLine)) {
@@ -79,6 +84,7 @@ public class GreetClient {
 
         this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "
         System.out.println(this.clientCookies);
+        //logger.log(this.clientCookies);
         response.append(this.clientCookies);
     }
 

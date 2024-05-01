@@ -8,6 +8,7 @@ import java.util.*;
 import http.project.networks.ii.api.login_api.APILogin;
 import http.project.networks.ii.api.teachers_api.APITeachers;
 import http.project.networks.ii.cookies.Cookie;
+import http.project.networks.ii.logger.Logger;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.responses.Response;
 import http.project.networks.ii.utils.HTTPUtils;
@@ -24,6 +25,7 @@ public class GreetServer {
     private Path staticFiles;
     private ServerSocket serverSocket;
     private List<Cookie> cookies;
+    private Logger logger;
 
     // Singleton pattern
     public GreetServer(String staticFilesPath) {
@@ -40,7 +42,16 @@ public class GreetServer {
         for(int i=0; i<3;i++) {
             cookies.add(new Cookie());
         }
+        this.logger = new Logger("server_log_");
     }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }   
 
     public void initServer(int port) {
         // try (ServerSocket serverSocket = new ServerSocket(port)) {
@@ -59,11 +70,14 @@ public class GreetServer {
         try {
             serverSocket = new ServerSocket(port);
             System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
+            logger.log(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port, Logger.INFO);
             while (running) {
                 handleClientConnection();
             }
+            //logger.close();
         } catch (IOException e) {
             System.err.println("Could not listen on port " + port + ": " + e.getMessage());
+            logger.log("Could not listen on port " + port + ": " + e.getMessage(), Logger.ERROR);
         } 
     }
 
@@ -72,11 +86,13 @@ public class GreetServer {
             Socket clientSocket = serverSocket.accept();
             clientSocket.setKeepAlive(true);
             System.out.println(HTTPUtils.CLIENT_CONNECTED + " from " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+            logger.log(HTTPUtils.CLIENT_CONNECTED + " from " + clientSocket.getInetAddress() + ":" + clientSocket.getPort(), Logger.INFO);
             ServerThread serverThread = new ServerThread(this, clientSocket);
             serverThread.start();
             
         } catch (IOException e) {// Break the loop if server is supposed to stop
             System.err.println("Error accepting connection: " + e.getMessage());
+            logger.log("Error accepting connection: " + e.getMessage(), Logger.ERROR);
         }
     }
 
@@ -88,6 +104,7 @@ public class GreetServer {
             }
         } catch (IOException e) {
             System.err.println("Error closing server: " + e.getMessage());
+            logger.log("Error closing server: " + e.getMessage(), Logger.ERROR);
         }
     }
 
@@ -103,6 +120,7 @@ public class GreetServer {
 
         // Output the response
         System.out.println(HTTPUtils.RESPONSE + response);
+        logger.log(HTTPUtils.RESPONSE + response, Logger.INFO);
 
         // Write the output to the client
         clientOutput.write(response.toString().getBytes());
@@ -114,7 +132,6 @@ public class GreetServer {
         // Clean the output and close the stream
         clientOutput.flush();
         clientOutput.close();
-        //System.err.println(HTTPUtils.CLIENT_CONNECTION_CLOSED);
     }
 
     protected String readRequest(BufferedReader br) throws IOException {
@@ -184,7 +201,6 @@ public class GreetServer {
                 Cookie newCookie = new Cookie();
                 cookiesToRemove.add(cookie);
                 cookiesToAdd.add(newCookie);
-                //response.responseHeaders.headers.remove(HttpHeaders.SET_COOKIE.getHeader() + ": " + cookie.toString());
                 response.getResponseHeaders().removeHeader(HttpRequestHeaders.SET_COOKIE, cookie.toString());
                 response.getResponseHeaders().addHeaderToHeaders(HttpRequestHeaders.SET_COOKIE, newCookie.toString());        
             } else if(!HTTPUtils.existServerCookie(request, cookie)) { //Cookie is not expired and doesn´t exist in the request
