@@ -1,4 +1,4 @@
-package http.project.networks.ii.api.teachers_api;
+package http.project.networks.ii.API.TeachersAPI;
 
 import java.time.LocalDateTime;
 

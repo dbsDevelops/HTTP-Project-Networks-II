@@ -1,9 +1,9 @@
-package http.project.networks.ii.gui;
+package http.gui;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import http.project.networks.ii.gui.panels.RequestAndResponseSplitPanel;
+import http.gui.panels.RequestAndResponseSplitPanel;
 
 import javax.swing.SwingUtilities;
 
