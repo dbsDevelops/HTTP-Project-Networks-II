@@ -1,4 +1,4 @@
-package http.project.networks.ii;
+package http.project.networks.ii.server;
 
 public enum ServerStatusCodes {
     CONTINUE_100("100 Continue"), 

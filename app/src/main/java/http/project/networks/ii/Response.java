@@ -20,7 +20,11 @@ public class Response {
         return this.statusCodeAndDescription;
     }
 
-    public String getStringContent() {
+    public ResponseHeaders getResponseHeaders() {
+        return this.responseHeaders;
+    }
+
+    public String getBodyContent() {
         return this.body.getStringContent();
     }
 
@@ -37,7 +41,7 @@ public class Response {
         if(!this.body.equals(null)) {
             //If the string content is not null, write it there, else we will manage with the server to send the bytes from the body
             if(this.body.getStringContent() != null) {
-                response.append(getStringContent());
+                response.append(getBodyContent());
                 response.append("\r\n");  
             }
         }   

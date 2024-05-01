@@ -1,5 +1,8 @@
-package http.project.networks.ii;
+package http.project.networks.ii.server;
 import java.net.*;
+
+import http.project.networks.ii.Request;
+
 import java.io.*;
 
 public class ServerThread extends Thread {

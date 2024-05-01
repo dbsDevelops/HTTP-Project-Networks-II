@@ -13,9 +13,9 @@ import http.project.networks.ii.gui.fields.HostField;
 import http.project.networks.ii.gui.fields.MethodField;
 import http.project.networks.ii.gui.fields.PortField;
 import http.project.networks.ii.gui.panels.ResponsePanel;
-import http.project.networks.ii.GreetClient;
 import http.project.networks.ii.Request;
 import http.project.networks.ii.Verbs;
+import http.project.networks.ii.client.GreetClient;
 import http.project.networks.ii.HttpBodyType;
 
 public class SendRequestButton extends JButton {

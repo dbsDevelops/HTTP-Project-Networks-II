@@ -17,7 +17,8 @@ import java.net.URL;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import http.project.networks.ii.GreetClient;
+import http.project.networks.ii.client.GreetClient;
+import http.project.networks.ii.server.GreetServer;
 
 class GreetClientTest {
 

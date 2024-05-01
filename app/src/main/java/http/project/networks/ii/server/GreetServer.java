@@ -1,9 +1,19 @@
-package http.project.networks.ii;
+package http.project.networks.ii.server;
 import java.net.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.*;
 import java.util.*;
+
+import http.project.networks.ii.APILogin;
+import http.project.networks.ii.APITeachers;
+import http.project.networks.ii.Cookie;
+import http.project.networks.ii.HTTPUtils;
+import http.project.networks.ii.HttpBodyType;
+import http.project.networks.ii.HttpRequestBody;
+import http.project.networks.ii.HttpRequestHeaders;
+import http.project.networks.ii.Request;
+import http.project.networks.ii.Response;
 
 public class GreetServer {
 
@@ -86,7 +96,7 @@ public class GreetServer {
     }
 
     protected void response(OutputStream clientOutput, Request request) throws IOException {
-        String urlPath = request.url.getPath();
+        String urlPath = request.getUrl().getPath();
         Response response = handleUrl(urlPath, request);
         
         handleCookies(request,response);
@@ -97,7 +107,7 @@ public class GreetServer {
         // Write the output to the client
         clientOutput.write(response.toString().getBytes());
         //If the body has binary content, we sent it directly
-        if(response.getStringContent() == null && response.getBinaryContent() != null) {
+        if(response.getBodyContent() == null && response.getBinaryContent() != null) {
             clientOutput.write(response.getBinaryContent());
         }
     
@@ -175,10 +185,10 @@ public class GreetServer {
                 cookiesToRemove.add(cookie);
                 cookiesToAdd.add(newCookie);
                 //response.responseHeaders.headers.remove(HttpHeaders.SET_COOKIE.getHeader() + ": " + cookie.toString());
-                response.responseHeaders.removeHeader(HttpRequestHeaders.SET_COOKIE, cookie.toString());
-                response.responseHeaders.addHeaderToHeaders(HttpRequestHeaders.SET_COOKIE, newCookie.toString());        
+                response.getResponseHeaders().removeHeader(HttpRequestHeaders.SET_COOKIE, cookie.toString());
+                response.getResponseHeaders().addHeaderToHeaders(HttpRequestHeaders.SET_COOKIE, newCookie.toString());        
             } else if(!HTTPUtils.existServerCookie(request, cookie)) { //Cookie is not expired and doesn´t exist in the request
-                response.responseHeaders.addHeaderToHeaders(HttpRequestHeaders.SET_COOKIE, cookie.toString());
+                response.getResponseHeaders().addHeaderToHeaders(HttpRequestHeaders.SET_COOKIE, cookie.toString());
             }
         }
 

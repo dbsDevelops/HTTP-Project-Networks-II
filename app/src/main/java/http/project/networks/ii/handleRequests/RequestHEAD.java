@@ -4,7 +4,7 @@ import http.project.networks.ii.HTTPUtils;
 import http.project.networks.ii.HttpBodyType;
 import http.project.networks.ii.HttpRequestBody;
 import http.project.networks.ii.Response;
-import http.project.networks.ii.ServerStatusCodes;
+import http.project.networks.ii.server.ServerStatusCodes;
 
 public class RequestHEAD implements RequestCommand {
     private final String path;
