@@ -1,4 +1,4 @@
-package http.project.networks.ii;
+package http.project.networks.ii.responses;
 
 import http.project.networks.ii.utils.HttpRequestBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;

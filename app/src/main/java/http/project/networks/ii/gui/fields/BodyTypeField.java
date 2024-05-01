@@ -3,7 +3,7 @@ package http.project.networks.ii.gui.fields;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
-import http.project.networks.ii.gui.GuiUtils;
+import http.project.networks.ii.gui.utils.GuiUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 
 public class BodyTypeField {

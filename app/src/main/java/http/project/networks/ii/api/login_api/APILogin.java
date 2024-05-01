@@ -2,8 +2,8 @@ package http.project.networks.ii.api.login_api;
 
 import java.util.List;
 
-import http.project.networks.ii.Request;
-import http.project.networks.ii.Response;
+import http.project.networks.ii.requests.Request;
+import http.project.networks.ii.responses.Response;
 
 public class APILogin {
 

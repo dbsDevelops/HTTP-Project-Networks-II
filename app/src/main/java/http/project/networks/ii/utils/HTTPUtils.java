@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import http.project.networks.ii.Request;
 import http.project.networks.ii.cookies.Cookie;
+import http.project.networks.ii.requests.Request;
 
 public class HTTPUtils {
 

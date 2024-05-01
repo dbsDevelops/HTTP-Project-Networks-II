@@ -1,4 +1,4 @@
-package http.project.networks.ii;
+package http.project.networks.ii.requests;
 
 import java.net.MalformedURLException;
 import java.net.URL;

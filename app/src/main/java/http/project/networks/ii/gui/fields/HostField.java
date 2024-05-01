@@ -3,7 +3,7 @@ package http.project.networks.ii.gui.fields;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import http.project.networks.ii.gui.GuiUtils;
+import http.project.networks.ii.gui.utils.GuiUtils;
 
 public class HostField {
 

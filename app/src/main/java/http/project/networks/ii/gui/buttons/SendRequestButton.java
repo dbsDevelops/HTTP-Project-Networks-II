@@ -6,16 +6,16 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 
-import http.project.networks.ii.gui.GuiUtils;
 import http.project.networks.ii.gui.dialogs.HeadersDialog;
 import http.project.networks.ii.gui.fields.BodyTypeField;
 import http.project.networks.ii.gui.fields.HostField;
 import http.project.networks.ii.gui.fields.MethodField;
 import http.project.networks.ii.gui.fields.PortField;
 import http.project.networks.ii.gui.panels.ResponsePanel;
+import http.project.networks.ii.gui.utils.GuiUtils;
+import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.Verbs;
-import http.project.networks.ii.Request;
 import http.project.networks.ii.client.GreetClient;
 
 public class SendRequestButton extends JButton {

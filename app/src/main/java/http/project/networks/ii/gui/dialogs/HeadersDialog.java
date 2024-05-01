@@ -11,8 +11,8 @@ import javax.swing.WindowConstants;
 import java.awt.GridLayout;
 import java.awt.event.WindowListener;
 
-import http.project.networks.ii.gui.GuiUtils;
 import http.project.networks.ii.gui.extra_headers.HttpExtraHeaders;
+import http.project.networks.ii.gui.utils.GuiUtils;
 import http.project.networks.ii.headers.RequestHeaders;
 
 public class HeadersDialog extends JDialog {

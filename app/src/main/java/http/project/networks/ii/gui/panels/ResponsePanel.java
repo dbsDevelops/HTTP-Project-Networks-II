@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import http.project.networks.ii.gui.GuiUtils;
+import http.project.networks.ii.gui.utils.GuiUtils;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;

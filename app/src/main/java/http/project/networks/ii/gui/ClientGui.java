@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import http.project.networks.ii.gui.panels.RequestAndResponseSplitPanel;
+import http.project.networks.ii.gui.utils.GuiUtils;
 
 import javax.swing.SwingUtilities;
 

@@ -1,8 +1,8 @@
 package http.project.networks.ii.api.teachers_api;
 
-import http.project.networks.ii.Request;
-import http.project.networks.ii.Response;
 import http.project.networks.ii.handle_requests.*;
+import http.project.networks.ii.requests.Request;
+import http.project.networks.ii.responses.Response;
 import http.project.networks.ii.server.ServerStatusCodes;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;

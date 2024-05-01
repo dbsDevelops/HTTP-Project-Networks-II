@@ -1,4 +1,4 @@
-package http.project.networks.ii.gui;
+package http.project.networks.ii.gui.utils;
 
 public class GuiUtils {
 

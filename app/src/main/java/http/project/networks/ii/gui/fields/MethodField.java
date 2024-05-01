@@ -3,7 +3,7 @@ package http.project.networks.ii.gui.fields;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
-import http.project.networks.ii.gui.GuiUtils;
+import http.project.networks.ii.gui.utils.GuiUtils;
 import http.project.networks.ii.utils.Verbs;
 
 public class MethodField {

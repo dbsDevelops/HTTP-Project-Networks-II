@@ -6,13 +6,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
-import http.project.networks.ii.gui.GuiUtils;
 import http.project.networks.ii.gui.buttons.AddHeadersButton;
 import http.project.networks.ii.gui.dialogs.HeadersDialog;
 import http.project.networks.ii.gui.fields.BodyTypeField;
 import http.project.networks.ii.gui.fields.HostField;
 import http.project.networks.ii.gui.fields.MethodField;
 import http.project.networks.ii.gui.fields.PortField;
+import http.project.networks.ii.gui.utils.GuiUtils;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;

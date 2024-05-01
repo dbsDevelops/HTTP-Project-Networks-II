@@ -1,7 +1,7 @@
 package http.project.networks.ii.server;
 import java.net.*;
 
-import http.project.networks.ii.Request;
+import http.project.networks.ii.requests.Request;
 
 import java.io.*;
 
