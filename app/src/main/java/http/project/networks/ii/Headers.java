@@ -12,6 +12,10 @@ import java.text.SimpleDateFormat;
 public abstract class Headers {
     List<String> myHeaders;
 
+    public List<String> getHeaders() {
+        return this.myHeaders;
+    }
+
     public void addHeaderToHeaders(HttpRequestHeaders headerType, String headerValue) {
         String header = headerType.getHeader() + ": " + headerValue;
         this.myHeaders.add(header);

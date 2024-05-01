@@ -31,7 +31,7 @@ public class Request {
 
     public String toString() {
         StringBuilder request = new StringBuilder();
-        request.append(getMethod());
+        request.append(getMethodName());
         request.append(WHITE_SPACE);
         request.append(url.getPath());
         request.append(WHITE_SPACE);
@@ -39,12 +39,16 @@ public class Request {
         request.append(END_LINE);     
         request.append(getHeaders());
         request.append(END_LINE);
-        request.append(getBody());
+        request.append(getBodyContent());
         request.append(END_LINE);
         return request.toString();
     }
 
-    public String getMethod() {
+    public Verbs getMethod() {
+        return this.method;
+    }
+
+    public String getMethodName() {
         return this.method.toString();
     }
 
@@ -56,11 +60,19 @@ public class Request {
         return this.protocolVersion;
     }
 
+    public RequestHeaders getRequestHeadersObject() {
+        return this.headers;
+    }
+
     public String getHeaders() {
         return this.headers.toString();
     }
 
-    public String getBody() {
+    public HttpRequestBody getBody() {
+        return this.body;
+    }
+
+    public String getBodyContent() {
         return this.body.getStringContent();
     }
 

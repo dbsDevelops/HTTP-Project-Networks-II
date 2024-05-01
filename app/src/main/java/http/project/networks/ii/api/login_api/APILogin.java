@@ -1,12 +1,13 @@
-package http.project.networks.ii;
+package http.project.networks.ii.api.login_api;
 
 import java.util.List;
 
-import http.project.networks.ii.api.login_api.User;
+import http.project.networks.ii.Request;
+import http.project.networks.ii.Response;
 
 public class APILogin {
 
-    private List<User> users = new java.util.ArrayList<User>();
+    private List<User> users = new java.util.ArrayList<>();
 
     public APILogin() {
         users.add(new User("admin", "admin", "admin"));

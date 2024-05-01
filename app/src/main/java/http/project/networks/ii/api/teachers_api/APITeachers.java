@@ -1,8 +1,10 @@
-package http.project.networks.ii;
+package http.project.networks.ii.api.teachers_api;
 
-import http.project.networks.ii.api.teachers_api.Project;
-import http.project.networks.ii.api.teachers_api.Teacher;
-import http.project.networks.ii.api.teachers_api.TeachersClass;
+import http.project.networks.ii.HTTPUtils;
+import http.project.networks.ii.HttpBodyType;
+import http.project.networks.ii.HttpRequestBody;
+import http.project.networks.ii.Request;
+import http.project.networks.ii.Response;
 import http.project.networks.ii.handle_requests.*;
 import http.project.networks.ii.server.ServerStatusCodes;
 
@@ -55,18 +57,18 @@ public class APITeachers {
     }
 
     public Response readRequest(Request request) {
-        String path = extractPath(request.url.getPath());
+        String path = extractPath(request.getUrl().getPath());
         RequestCommand command;
 
-        switch (request.method) {
+        switch (request.getMethod()) {
             case HEAD:
                 command = new RequestHEAD(path);
                 break;
             case GET:
                 //conditional GET
-                for (String header : request.headers.myHeaders) {
+                for (String header : request.getRequestHeadersObject().getHeaders()) {
                     if (header.contains("If-Modified-Since")) {
-                        command = new RequestConditionalGet(path, teachers, request.headers.myHeaders);
+                        command = new RequestConditionalGet(path, teachers, request.getRequestHeadersObject().getHeaders());
                         return command.execute();
                     }
                 }
@@ -74,10 +76,10 @@ public class APITeachers {
                 command = new RequestGET(path, teachers);
                 break;
             case POST:
-                command = new RequestPOST(path, teachers, request.body);
+                command = new RequestPOST(path, teachers, request.getBody());
                 break;
             case PUT:
-                command = new RequestPUT(path, teachers, request.body);
+                command = new RequestPUT(path, teachers, request.getBody());
                 break;
             case DELETE:
                 command = new RequestDELETE(path, teachers);
