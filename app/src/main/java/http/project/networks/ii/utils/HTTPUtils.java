@@ -1,30 +1,26 @@
-package http.project.networks.ii;
+package http.project.networks.ii.utils;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+import java.nio.file.Files;
+
+import java.net.URL;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Base64;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
-
+import http.project.networks.ii.Request;
 import http.project.networks.ii.cookies.Cookie;
 
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.*;
-
 public class HTTPUtils {
+
+    // Private constructor to avoid instantiation
+    private HTTPUtils() {}
+
     // Port numbers
     public static final int HTTP_PORT = 80;
     public static final int HTTPS_PORT = 443;

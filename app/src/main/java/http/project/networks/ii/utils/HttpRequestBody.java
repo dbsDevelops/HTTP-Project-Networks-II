@@ -1,4 +1,4 @@
-package http.project.networks.ii;
+package http.project.networks.ii.utils;
 
 public class HttpRequestBody {
     private HttpBodyType type;

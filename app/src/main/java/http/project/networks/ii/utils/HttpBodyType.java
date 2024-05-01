@@ -1,4 +1,4 @@
-package http.project.networks.ii;
+package http.project.networks.ii.utils;
 
 public enum HttpBodyType {
     RAW("text/plain"), 
