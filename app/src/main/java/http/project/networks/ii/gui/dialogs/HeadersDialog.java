@@ -1,4 +1,4 @@
-package http.gui.dialogs;
+package http.project.networks.ii.gui.dialogs;
 
 import java.util.ArrayList;
 
@@ -11,8 +11,8 @@ import javax.swing.WindowConstants;
 import java.awt.GridLayout;
 import java.awt.event.WindowListener;
 
-import http.gui.GuiUtils;
-import http.gui.extra_headers.HttpExtraHeaders;
+import http.project.networks.ii.gui.GuiUtils;
+import http.project.networks.ii.gui.extra_headers.HttpExtraHeaders;
 import http.project.networks.ii.RequestHeaders;
 
 public class HeadersDialog extends JDialog {

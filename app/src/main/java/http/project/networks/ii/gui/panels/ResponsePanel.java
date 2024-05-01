@@ -1,16 +1,14 @@
-package http.gui.panels;
+package http.project.networks.ii.gui.panels;
 
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import http.gui.GuiUtils;
+import http.project.networks.ii.gui.GuiUtils;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
-
-import java.awt.BorderLayout;
 
 public class ResponsePanel extends JScrollPane {
     

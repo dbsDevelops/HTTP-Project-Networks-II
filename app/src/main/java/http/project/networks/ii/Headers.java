@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import http.gui.extra_headers.HttpExtraHeaders;
+import http.project.networks.ii.gui.extra_headers.HttpExtraHeaders;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;

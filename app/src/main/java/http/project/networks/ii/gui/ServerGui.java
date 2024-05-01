@@ -1,4 +1,4 @@
-package http.gui;
+package http.project.networks.ii.gui;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;

@@ -1,4 +1,4 @@
-package http.gui.panels;
+package http.project.networks.ii.gui.panels;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -6,14 +6,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
-import http.gui.GuiUtils;
-import http.gui.buttons.AddHeadersButton;
-import http.gui.buttons.SendRequestButton;
-import http.gui.dialogs.HeadersDialog;
-import http.gui.fields.BodyTypeField;
-import http.gui.fields.HostField;
-import http.gui.fields.MethodField;
-import http.gui.fields.PortField;
+import http.project.networks.ii.gui.GuiUtils;
+import http.project.networks.ii.gui.buttons.AddHeadersButton;
+import http.project.networks.ii.gui.dialogs.HeadersDialog;
+import http.project.networks.ii.gui.fields.BodyTypeField;
+import http.project.networks.ii.gui.fields.HostField;
+import http.project.networks.ii.gui.fields.MethodField;
+import http.project.networks.ii.gui.fields.PortField;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -31,7 +30,6 @@ public class RequestControlsPanel extends JPanel {
     private transient PortField portField;
     private transient BodyTypeField bodyTypeField;
     private transient MethodField methodField;
-    //private SendRequestButton sendRequestButton;
     private HeadersDialog headersDialog;
     private AddHeadersButton addHeadersButton;
     
@@ -45,7 +43,6 @@ public class RequestControlsPanel extends JPanel {
         this.methodField = new MethodField();
         this.headersDialog = new HeadersDialog();
         this.addHeadersButton = new AddHeadersButton(headersDialog);
-        // this.sendRequestButton = new SendRequestButton(methodField, hostField, portField, bodyTypeField, headersDialog);
         configurePanel();
         addComponents();
     }

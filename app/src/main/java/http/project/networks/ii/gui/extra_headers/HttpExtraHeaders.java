@@ -1,4 +1,4 @@
-package http.gui.extra_headers;
+package http.project.networks.ii.gui.extra_headers;
 
 import java.util.ArrayList;
 import java.util.List;

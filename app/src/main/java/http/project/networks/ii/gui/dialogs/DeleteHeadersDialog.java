@@ -1,4 +1,4 @@
-package http.gui.dialogs;
+package http.project.networks.ii.gui.dialogs;
 
 public class DeleteHeadersDialog {
 

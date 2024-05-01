@@ -1,19 +1,18 @@
-package http.gui.buttons;
+package http.project.networks.ii.gui.buttons;
 
 import java.awt.event.ActionListener;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 
-import http.gui.GuiUtils;
-import http.gui.dialogs.HeadersDialog;
-import http.gui.fields.BodyTypeField;
-import http.gui.fields.HostField;
-import http.gui.fields.MethodField;
-import http.gui.fields.PortField;
-import http.gui.panels.ResponsePanel;
+import http.project.networks.ii.gui.GuiUtils;
+import http.project.networks.ii.gui.dialogs.HeadersDialog;
+import http.project.networks.ii.gui.fields.BodyTypeField;
+import http.project.networks.ii.gui.fields.HostField;
+import http.project.networks.ii.gui.fields.MethodField;
+import http.project.networks.ii.gui.fields.PortField;
+import http.project.networks.ii.gui.panels.ResponsePanel;
 import http.project.networks.ii.GreetClient;
 import http.project.networks.ii.Request;
 import http.project.networks.ii.Verbs;

@@ -1,8 +1,8 @@
-package http.gui.panels;
+package http.project.networks.ii.gui.panels;
 
 import javax.swing.JSplitPane;
 
-import http.gui.buttons.SendRequestButton;
+import http.project.networks.ii.gui.buttons.SendRequestButton;
 
 public class RequestAndResponseSplitPanel extends JSplitPane {
 
