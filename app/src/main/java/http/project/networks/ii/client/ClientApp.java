@@ -26,14 +26,14 @@ public class ClientApp {
 
 
         // Test Teacher Class
-        TeachersClass teachers = new TeachersClass();
-        Project project = new Project("Project_6", "Description_1", "Teacher_6", "Student_1", "A", "Completed");
-        Teacher teacher = new Teacher("Teacher_6", 0.9f, project);
-        teachers.addTeacher(teacher);
-        teachers.addProject(project);
-        Gson gson = new Gson();
+        // TeachersClass teachers = new TeachersClass();
+        // Project project = new Project("Project_6", "Description_1", "Teacher_6", "Student_1", "A", "Completed");
+        // Teacher teacher = new Teacher("Teacher_6", 0.9f, project);
+        // teachers.addTeacher(teacher);
+        // teachers.addProject(project);
+        // Gson gson = new Gson();
 
-        String gsonTeacher = gson.toJson(teachers);
+        // String gsonTeacher = gson.toJson(teachers);
 
 
 
@@ -41,7 +41,7 @@ public class ClientApp {
 
         // app.testGET("http://localhost/teachers/teacher/Teacher_1");
 
-        app.testPOST("http://localhost/teachers", gsonTeacher);
+        // app.testPOST("http://localhost/teachers", gsonTeacher);
 
         // app.testPUT("http://localhost/teachers/teacher/Teacher_1", "{\"name\":\"Teacher_1\",\"rating\":0.9,\"project\":{\"name\":\"Project_1\",\"description\":\"Description_1\",\"teacher\":\"Teacher_1\",\"student\":\"Student_1\",\"grade\":\"A\",\"status\":\"Completed\"}}");
 
