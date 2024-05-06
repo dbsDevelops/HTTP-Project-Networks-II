@@ -5,8 +5,12 @@ package http.project.networks.ii.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import http.project.networks.ii.api.teachers_api.Project;
 import http.project.networks.ii.api.teachers_api.Teacher;
@@ -26,14 +30,14 @@ public class ClientApp {
 
 
         // Test Teacher Class
-        // TeachersClass teachers = new TeachersClass();
-        // Project project = new Project("Project_6", "Description_1", "Teacher_6", "Student_1", "A", "Completed");
-        // Teacher teacher = new Teacher("Teacher_6", 0.9f, project);
-        // teachers.addTeacher(teacher);
-        // teachers.addProject(project);
-        // Gson gson = new Gson();
+        TeachersClass teachers = new TeachersClass();
+        Project project = new Project("Project_6", "Description_1", "Teacher_6", "Student_1", "A", "Completed");
+        Teacher teacher = new Teacher("Teacher_6", 0.9f, project);
+        teachers.addTeacher(teacher);
+        teachers.addProject(project);
+        Gson gson = new Gson();
 
-        // String gsonTeacher = gson.toJson(teachers);
+        String gsonTeacher = gson.toJson(teachers);
 
 
 
@@ -47,12 +51,12 @@ public class ClientApp {
 
         // app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
 
-        // app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
+        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
 
-        // app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
+        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
 
 
-        app.testGET("http://localhost/teachers/");
+        // app.testGET("http://localhost/teachers/");
 
     }
 

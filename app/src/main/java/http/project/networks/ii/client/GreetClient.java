@@ -68,7 +68,14 @@ public class GreetClient {
         
         responseLine = br.readLine();
         response.append(responseLine + "\n");
+
         while (responseLine != null) {
+
+            if (responseLine.contains("HTTP/1.1 304 Not Modified")) {
+                System.out.println("Resource has not been modified and we have seen it");
+                continue;
+            }
+
             System.out.println(responseLine);
             //logger.log(responseLine);
             responseLine = br.readLine();

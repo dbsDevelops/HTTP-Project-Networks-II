@@ -7,22 +7,27 @@ public class Teacher {
     protected String name;
     protected float passRate;
     protected Project project;
-    public LocalDateTime lastModified;
+    public String lastModified;
 
 
     public Teacher(String name, float passRate, Project project) {
         this.name = name;
         this.passRate = passRate;
         this.project = project;
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
-    void setLastModified(LocalDateTime lastModified) {
+    public void lastModifiedReset(){
+        this.lastModified = LocalDateTime.now().toString();
+    }
+
+    void setLastModified(String lastModified) {
         this.lastModified = lastModified;
     }
 
     public LocalDateTime getLastModified() {
-        return this.lastModified;
+        LocalDateTime lastModified = LocalDateTime.parse(this.lastModified);
+        return lastModified;
     }
 
     public String getName() {
@@ -31,7 +36,7 @@ public class Teacher {
 
     public void setName(String name) {
         this.name = name;
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public float getPassRate() {
@@ -40,7 +45,7 @@ public class Teacher {
 
     public void setPassRate(float passRate) {
         this.passRate = passRate;
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public Project getProject() {
@@ -49,7 +54,7 @@ public class Teacher {
 
     public void setProject(Project project) {
         this.project = project;
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public String toString() {

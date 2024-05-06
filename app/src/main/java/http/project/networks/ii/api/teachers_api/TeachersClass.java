@@ -11,11 +11,15 @@ public class TeachersClass {
     protected List<Teacher> teachers;
     protected List<Project> projects;
     protected String path = "TeachersClass.txt";
-    public LocalDateTime lastModified;
+    public String lastModified;
 
     public TeachersClass(List<Teacher> teachers, List<Project> projects) {
         this.teachers = teachers;
         this.projects = projects;
+    }
+
+    public void lastModifiedReset(){
+        this.lastModified = LocalDateTime.now().toString();
     }
 
     public TeachersClass() {
@@ -23,12 +27,13 @@ public class TeachersClass {
         projects = new java.util.ArrayList<>();
     }
 
-    public void setLastModified(LocalDateTime lastModified) {
+    public void setLastModified(String lastModified) {
         this.lastModified = lastModified;
     }
 
     public LocalDateTime getLastModified() {
-        return this.lastModified;
+        LocalDateTime lastModified = LocalDateTime.parse(this.lastModified);
+        return lastModified;
     }
 
     public List<Teacher> getTeachers() {
@@ -37,7 +42,7 @@ public class TeachersClass {
 
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public List<Project> getProjects() {
@@ -46,17 +51,17 @@ public class TeachersClass {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public void addTeacher(Teacher teacher) {
         this.teachers.add(teacher);
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public void addProject(Project project) {
         this.projects.add(project);
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public boolean updateTeacher(Teacher teacher) {
@@ -68,7 +73,7 @@ public class TeachersClass {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                this.lastModified = LocalDateTime.now();
+                lastModifiedReset();
                 return true;
             }
         }
@@ -79,7 +84,7 @@ public class TeachersClass {
         for (Project p : projects) {
             if (p.getName().equals(project.getName())) {
                 projects.set(projects.indexOf(p), project);
-                this.lastModified = LocalDateTime.now();
+                lastModifiedReset();
                 return true;
             }
         }
@@ -96,7 +101,7 @@ public class TeachersClass {
         }
         if (teacherToRemove != null) {
             teachers.remove(teacherToRemove);
-            this.lastModified = LocalDateTime.now();
+            lastModifiedReset();
             return true;
         }
         return false;
@@ -112,7 +117,7 @@ public class TeachersClass {
         }
         if (projectToRemove != null) {
             projects.remove(projectToRemove);
-            this.lastModified = LocalDateTime.now();
+            lastModifiedReset();
             return true;
         }
         return false;
@@ -148,17 +153,17 @@ public class TeachersClass {
     public void clear() {
         this.teachers.clear();
         this.projects.clear();
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public void clearTeachers() {
         this.teachers.clear();
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public void clearProjects() {
         this.projects.clear();
-        this.lastModified = LocalDateTime.now();
+        lastModifiedReset();
     }
 
     public String toString() {
