@@ -1,6 +1,8 @@
 package http.project.networks.ii.client;
 import java.net.*;
+import java.util.List;
 
+import http.project.networks.ii.api.teachers_api.TeachersClass;
 import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.utils.HttpRequestHeaders;
@@ -20,11 +22,15 @@ public class GreetClient {
     private StringBuilder response;
     // private Logger logger;
 
+
+    private List<String> cachedResources;
+
     public GreetClient(int port) {
         this.host = "";
         this.port = port;
         this.clientCookies = null;
         this.response = new StringBuilder();
+        cachedResources = new java.util.ArrayList<>();
         //this.logger = new Logger("client");
     }
 
@@ -69,11 +75,25 @@ public class GreetClient {
         responseLine = br.readLine();
         response.append(responseLine + "\n");
 
+        Boolean isCached = false;
+        Boolean bodystarted = false;
+
+        String body = "";
+
         while (responseLine != null) {
 
-            if (responseLine.contains("HTTP/1.1 304 Not Modified")) {
+            if (responseLine.contains("304 Not Modified")) {
+                isCached = true;
                 System.out.println("Resource has not been modified and we have seen it");
-                continue;
+            }
+
+            if(bodystarted){
+                body += responseLine;
+            }
+
+            if (responseLine.contains("Body:")) {
+                bodystarted = true;
+                //System.out.println("this is the middle of the response");
             }
 
             System.out.println(responseLine);
@@ -87,6 +107,21 @@ public class GreetClient {
                 }
                 addServerCookiesToClient(responseLine); //Put all cookies sent by the server in the client
             }
+
+
+            
+
+        }
+        
+        if(bodystarted && body != null){
+            System.out.println("\n\nBody:\n" + body);
+        }
+
+
+        if(isCached) {
+            System.out.println("Resource has not been modified and we have seen it");
+        } else {
+            System.out.println("Resource has been modified or we have not seen it");
         }
 
         this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "

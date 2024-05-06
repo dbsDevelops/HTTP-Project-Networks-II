@@ -26,7 +26,7 @@ public class ClientApp {
     public static void main(String[] args) {
 
         ClientApp app = new ClientApp();
-        app.testGET("http://localhost/teachers/");
+        //app.testGET("http://localhost/teachers/");
 
 
         // Test Teacher Class

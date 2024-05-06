@@ -1,0 +1,30 @@
+2024-05-06T17:55:08.265647700-Server is running on port: 80
+2024-05-06T17:55:16.848037600-Client connected from /127.0.0.1:39412
+2024-05-06T17:55:16.928782400-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 15:55:16 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 180
+Set-Cookie: cookie1=ma366xrz; Max-Age=37; HttpOnly; Date=2024-05-06T17:55:08.227205200
+Set-Cookie: cookie2=ma367xrz; Max-Age=39; HttpOnly; Date=2024-05-06T17:55:08.227205200
+Set-Cookie: cookie3=ma368xrz; Max-Age=56; HttpOnly; Date=2024-05-06T17:55:08.227205200
+
+Body:
+{"name":"Project_1","description":"Description_1","teacher":"Teacher_1","student":"Student_1","grade":"A","status":"Completed","lastModified":"2024-05-06T17:55:08.219691300"}
+
+2024-05-06T17:55:16.945197500-Client connected from /127.0.0.1:39413
+2024-05-06T17:55:16.948226800-Response: 
+HTTP/1.1 304 Not Modified
+Connection: close
+Date: Mon, 06 May 2024 15:55:16 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 30
+Set-Cookie: cookie1=ma366xrz; Max-Age=37; HttpOnly; Date=2024-05-06T17:55:08.227205200
+Set-Cookie: cookie2=ma367xrz; Max-Age=39; HttpOnly; Date=2024-05-06T17:55:08.227205200
+Set-Cookie: cookie3=ma368xrz; Max-Age=56; HttpOnly; Date=2024-05-06T17:55:08.227205200
+
+Resource has not been modified
+
