@@ -9,7 +9,7 @@ public class Project {
     protected String student;
     protected String grade;
     protected String status;
-    private LocalDateTime lastModified;
+    public LocalDateTime lastModified;
 
     public Project(String name, String description, String teacher, String student, String grade, String status) {
         this.name = name;

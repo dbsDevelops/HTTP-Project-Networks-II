@@ -77,6 +77,16 @@ public class Logger {
         }
     }
 
+    public void clear() {
+        try {
+            this.fileOutputStream = new FileOutputStream(System.getProperty(USER_DIR_PROPERTY) + DIRECTORY_PATH + logPath + dateText + LOG_FILE_EXTENSION);
+            this.outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            log(e.getMessage(), ERROR);
+        }
+    }
+
     public String getLogPath() {
         return logPath;
     }

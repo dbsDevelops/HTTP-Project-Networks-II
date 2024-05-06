@@ -1,0 +1,125 @@
+2024-05-06T15:25:11.418781400-Server is running on port: 80
+2024-05-06T15:25:28.359255-Client connected from /127.0.0.1:53130
+2024-05-06T15:25:28.400564500-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:25:28 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 875
+Set-Cookie: cookie1=ma366xrz; Max-Age=26; HttpOnly; Date=2024-05-06T15:25:11.375487400
+Set-Cookie: cookie2=ma367xrz; Max-Age=35; HttpOnly; Date=2024-05-06T15:25:11.375487400
+Set-Cookie: cookie3=ma368xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:25:11.375487400
+
+{
+"teachers": 
+[
+Name: Teacher_1 PassRate: 0.5 Project Assigned: Project_1
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T15:26:35.883943900-Client connected from /127.0.0.1:53151
+2024-05-06T15:26:35.889943900-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:26:35 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 875
+Set-Cookie: cookie4=ma369xrz; Max-Age=49; HttpOnly; Date=2024-05-06T15:26:35.886944500
+Set-Cookie: cookie5=ma370xrz; Max-Age=32; HttpOnly; Date=2024-05-06T15:26:35.887943800
+Set-Cookie: cookie6=ma371xrz; Max-Age=26; HttpOnly; Date=2024-05-06T15:26:35.887943800
+
+{
+"teachers": 
+[
+Name: Teacher_1 PassRate: 0.5 Project Assigned: Project_1
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T15:27:20.963901700-Client connected from /127.0.0.1:53166
+2024-05-06T15:27:20.970900100-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:27:20 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 875
+Set-Cookie: cookie4=ma369xrz; Max-Age=49; HttpOnly; Date=2024-05-06T15:26:35.886944500
+Set-Cookie: cookie7=ma372xrz; Max-Age=39; HttpOnly; Date=2024-05-06T15:27:20.968901100
+Set-Cookie: cookie8=ma373xrz; Max-Age=49; HttpOnly; Date=2024-05-06T15:27:20.968901100
+
+{
+"teachers": 
+[
+Name: Teacher_1 PassRate: 0.5 Project Assigned: Project_1
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T15:27:58.771616100-Client connected from /127.0.0.1:53196
+2024-05-06T15:27:58.776614600-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:27:58 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 875
+Set-Cookie: cookie9=ma374xrz; Max-Age=36; HttpOnly; Date=2024-05-06T15:27:58.774615
+Set-Cookie: cookie7=ma372xrz; Max-Age=39; HttpOnly; Date=2024-05-06T15:27:20.968901100
+Set-Cookie: cookie8=ma373xrz; Max-Age=49; HttpOnly; Date=2024-05-06T15:27:20.968901100
+
+{
+"teachers": 
+[
+Name: Teacher_1 PassRate: 0.5 Project Assigned: Project_1
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
