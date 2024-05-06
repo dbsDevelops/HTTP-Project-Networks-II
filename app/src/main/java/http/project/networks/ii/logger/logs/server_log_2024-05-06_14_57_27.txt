@@ -1,0 +1,146 @@
+2024-05-06T14:57:27.706957-Server is running on port: 80
+2024-05-06T14:57:38.494339-Client connected from /127.0.0.1:56309
+2024-05-06T14:57:38.516344-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 12:57:38 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 875
+Set-Cookie: cookie1=ma366xrz; Max-Age=53; HttpOnly; Date=2024-05-06T14:57:27.674717
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-06T14:57:27.674737
+Set-Cookie: cookie3=ma368xrz; Max-Age=46; HttpOnly; Date=2024-05-06T14:57:27.674745
+
+{
+"teachers": 
+[
+Name: Teacher_1 PassRate: 0.5 Project Assigned: Project_1
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T14:57:38.527420-Client connected from /127.0.0.1:56311
+2024-05-06T14:57:38.528221-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 12:57:38 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 57
+Set-Cookie: cookie1=ma366xrz; Max-Age=53; HttpOnly; Date=2024-05-06T14:57:27.674717
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-06T14:57:27.674737
+Set-Cookie: cookie3=ma368xrz; Max-Age=46; HttpOnly; Date=2024-05-06T14:57:27.674745
+
+Name: Teacher_1 PassRate: 0.5 Project Assigned: Project_1
+
+2024-05-06T14:57:38.529609-Client connected from /127.0.0.1:56312
+2024-05-06T14:57:38.530936-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Mon, 06 May 2024 12:57:38 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 18
+Set-Cookie: cookie1=ma366xrz; Max-Age=53; HttpOnly; Date=2024-05-06T14:57:27.674717
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-06T14:57:27.674737
+Set-Cookie: cookie3=ma368xrz; Max-Age=46; HttpOnly; Date=2024-05-06T14:57:27.674745
+
+Resource not found
+
+2024-05-06T14:57:38.532722-Client connected from /127.0.0.1:56313
+2024-05-06T14:57:38.533941-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Mon, 06 May 2024 12:57:38 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 18
+Set-Cookie: cookie1=ma366xrz; Max-Age=53; HttpOnly; Date=2024-05-06T14:57:27.674717
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-06T14:57:27.674737
+Set-Cookie: cookie3=ma368xrz; Max-Age=46; HttpOnly; Date=2024-05-06T14:57:27.674745
+
+Resource not found
+
+2024-05-06T14:57:38.535341-Client connected from /127.0.0.1:56314
+2024-05-06T14:57:38.536435-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 12:57:38 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 15
+Set-Cookie: cookie1=ma366xrz; Max-Age=53; HttpOnly; Date=2024-05-06T14:57:27.674717
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-06T14:57:27.674737
+Set-Cookie: cookie3=ma368xrz; Max-Age=46; HttpOnly; Date=2024-05-06T14:57:27.674745
+
+Teacher deleted
+
+2024-05-06T14:57:38.537657-Client connected from /127.0.0.1:56315
+2024-05-06T14:57:38.542151-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 12:57:38 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 107
+Set-Cookie: cookie1=ma366xrz; Max-Age=53; HttpOnly; Date=2024-05-06T14:57:27.674717
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-06T14:57:27.674737
+Set-Cookie: cookie3=ma368xrz; Max-Age=46; HttpOnly; Date=2024-05-06T14:57:27.674745
+
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+
+2024-05-06T14:57:38.543454-Client connected from /127.0.0.1:56316
+2024-05-06T14:57:38.544120-Response: 
+HTTP/1.1 304 Not Modified
+Connection: close
+Date: Mon, 06 May 2024 12:57:38 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 30
+Set-Cookie: cookie1=ma366xrz; Max-Age=53; HttpOnly; Date=2024-05-06T14:57:27.674717
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-06T14:57:27.674737
+Set-Cookie: cookie3=ma368xrz; Max-Age=46; HttpOnly; Date=2024-05-06T14:57:27.674745
+
+Resource has not been modified
+
+2024-05-06T14:57:38.545023-Client connected from /127.0.0.1:56317
+2024-05-06T14:57:38.545580-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 12:57:38 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 817
+Set-Cookie: cookie1=ma366xrz; Max-Age=53; HttpOnly; Date=2024-05-06T14:57:27.674717
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-06T14:57:27.674737
+Set-Cookie: cookie3=ma368xrz; Max-Age=46; HttpOnly; Date=2024-05-06T14:57:27.674745
+
+{
+"teachers": 
+[
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+

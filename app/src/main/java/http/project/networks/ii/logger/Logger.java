@@ -17,10 +17,10 @@ public class Logger {
     public static final int WARNING = 1;
     public static final int ERROR = 2;
 
-    private static final String DATE_FORMAT = "yyyy-MM-dd_HH:mm:ss";
+    private static final String DATE_FORMAT = "yyyy-MM-dd_HH_mm_ss";
     private static final String USER_DIR_PROPERTY = "user.dir";
     private static final String DIRECTORY_PATH = "/app/src/main/java/http/project/networks/ii/logger/logs/";
-    private static final String LOG_FILE_EXTENSION = ".log";
+    private static final String LOG_FILE_EXTENSION = ".txt";
 
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_RED = "\u001B[31m";
