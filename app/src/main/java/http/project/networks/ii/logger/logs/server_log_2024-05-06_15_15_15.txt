@@ -1,0 +1,251 @@
+2024-05-06T15:15:15.054355-Server is running on port: 80
+2024-05-06T15:15:48.031904400-Client connected from /127.0.0.1:52888
+2024-05-06T15:15:48.089042100-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:15:48 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 875
+Set-Cookie: cookie1=ma366xrz; Max-Age=42; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie2=ma367xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie4=ma369xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:15:48.088041
+
+{
+"teachers": 
+[
+Name: Teacher_1 PassRate: 0.5 Project Assigned: Project_1
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T15:15:48.108227400-Client connected from /127.0.0.1:52889
+2024-05-06T15:15:48.111238600-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:15:48 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 57
+Set-Cookie: cookie1=ma366xrz; Max-Age=42; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie2=ma367xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie4=ma369xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:15:48.088041
+
+Name: Teacher_1 PassRate: 0.5 Project Assigned: Project_1
+
+2024-05-06T15:15:48.116219300-Client connected from /127.0.0.1:52890
+2024-05-06T15:15:48.121218800-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Mon, 06 May 2024 13:15:48 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 18
+Set-Cookie: cookie1=ma366xrz; Max-Age=42; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie2=ma367xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie4=ma369xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:15:48.088041
+
+Resource not found
+
+2024-05-06T15:15:48.126222-Client connected from /127.0.0.1:52891
+2024-05-06T15:15:48.132384300-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Mon, 06 May 2024 13:15:48 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 18
+Set-Cookie: cookie1=ma366xrz; Max-Age=42; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie2=ma367xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie4=ma369xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:15:48.088041
+
+Resource not found
+
+2024-05-06T15:15:48.141397700-Client connected from /127.0.0.1:52892
+2024-05-06T15:15:48.145387300-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:15:48 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 15
+Set-Cookie: cookie1=ma366xrz; Max-Age=42; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie2=ma367xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie4=ma369xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:15:48.088041
+
+Teacher deleted
+
+2024-05-06T15:15:48.150387400-Client connected from /127.0.0.1:52893
+2024-05-06T15:15:48.164386300-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:15:48 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 107
+Set-Cookie: cookie1=ma366xrz; Max-Age=42; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie2=ma367xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie4=ma369xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:15:48.088041
+
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+
+2024-05-06T15:15:48.170394400-Client connected from /127.0.0.1:52894
+2024-05-06T15:15:48.174397300-Response: 
+HTTP/1.1 304 Not Modified
+Connection: close
+Date: Mon, 06 May 2024 13:15:48 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 30
+Set-Cookie: cookie1=ma366xrz; Max-Age=42; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie2=ma367xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie4=ma369xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:15:48.088041
+
+Resource has not been modified
+
+2024-05-06T15:15:48.187210900-Client connected from /127.0.0.1:52895
+2024-05-06T15:15:48.191212800-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:15:48 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 817
+Set-Cookie: cookie1=ma366xrz; Max-Age=42; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie2=ma367xrz; Max-Age=57; HttpOnly; Date=2024-05-06T15:15:15.014727600
+Set-Cookie: cookie4=ma369xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:15:48.088041
+
+{
+"teachers": 
+[
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T15:17:32.318996-Client connected from /127.0.0.1:52904
+2024-05-06T15:17:32.322996900-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:17:32 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 817
+Set-Cookie: cookie5=ma370xrz; Max-Age=31; HttpOnly; Date=2024-05-06T15:17:32.321995700
+Set-Cookie: cookie6=ma371xrz; Max-Age=22; HttpOnly; Date=2024-05-06T15:17:32.321995700
+Set-Cookie: cookie7=ma372xrz; Max-Age=29; HttpOnly; Date=2024-05-06T15:17:32.321995700
+
+{
+"teachers": 
+[
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T15:17:32.342526900-Client connected from /127.0.0.1:52905
+2024-05-06T15:17:32.346526900-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Mon, 06 May 2024 13:17:32 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 18
+Set-Cookie: cookie5=ma370xrz; Max-Age=31; HttpOnly; Date=2024-05-06T15:17:32.321995700
+Set-Cookie: cookie6=ma371xrz; Max-Age=22; HttpOnly; Date=2024-05-06T15:17:32.321995700
+Set-Cookie: cookie7=ma372xrz; Max-Age=29; HttpOnly; Date=2024-05-06T15:17:32.321995700
+
+Resource not found
+
+2024-05-06T15:17:32.351529500-Client connected from /127.0.0.1:52906
+2024-05-06T15:17:32.355526-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:17:32 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 817
+Set-Cookie: cookie5=ma370xrz; Max-Age=31; HttpOnly; Date=2024-05-06T15:17:32.321995700
+Set-Cookie: cookie6=ma371xrz; Max-Age=22; HttpOnly; Date=2024-05-06T15:17:32.321995700
+Set-Cookie: cookie7=ma372xrz; Max-Age=29; HttpOnly; Date=2024-05-06T15:17:32.321995700
+
+{
+"teachers": 
+[
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T15:18:09.842518700-Client connected from /127.0.0.1:52917
+2024-05-06T15:18:09.846520100-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 06 May 2024 13:18:09 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 817
+Set-Cookie: cookie8=ma373xrz; Max-Age=51; HttpOnly; Date=2024-05-06T15:18:09.844522900
+Set-Cookie: cookie9=ma374xrz; Max-Age=37; HttpOnly; Date=2024-05-06T15:18:09.844522900
+Set-Cookie: cookie10=ma375xrz; Max-Age=49; HttpOnly; Date=2024-05-06T15:18:09.844522900
+
+{
+"teachers": 
+[
+Name: Teacher_2 PassRate: 0.6 Project Assigned: Project_2
+Name: Teacher_3 PassRate: 0.7 Project Assigned: Project_3
+Name: Teacher_4 PassRate: 0.8 Project Assigned: Project_4
+Name: Teacher_5 PassRate: 0.9 Project Assigned: Project_5
+]
+"projects": 
+[
+Name: Project_1 Description: Description_1 Teacher: Teacher_1 Student: Student_1 Grade: A Status: Completed
+Name: Project_2 Description: Description_2 Teacher: Teacher_2 Student: Student_2 Grade: B Status: In_Progress
+Name: Project_3 Description: Description_3 Teacher: Teacher_3 Student: Student_3 Grade: C Status: In_Progress
+Name: Project_4 Description: Description_4 Teacher: Teacher_4 Student: Student_4 Grade: D Status: In_Progress
+Name: Project_5 Description: Description_5 Teacher: Teacher_5 Student: Student_5 Grade: E Status: In_Progress
+]
+}
+
+2024-05-06T15:18:09.862530100-Client connected from /127.0.0.1:52918

@@ -10,9 +10,8 @@ import java.util.List;
 public class TeachersClass {
     protected List<Teacher> teachers;
     protected List<Project> projects;
-    String path = "TeachersClass.txt";
-    private LocalDateTime lastModified;
-
+    protected String path = "TeachersClass.txt";
+    public LocalDateTime lastModified;
 
     public TeachersClass(List<Teacher> teachers, List<Project> projects) {
         this.teachers = teachers;

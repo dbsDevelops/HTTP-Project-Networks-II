@@ -7,7 +7,7 @@ public class Teacher {
     protected String name;
     protected float passRate;
     protected Project project;
-    private LocalDateTime lastModified;
+    public LocalDateTime lastModified;
 
 
     public Teacher(String name, float passRate, Project project) {

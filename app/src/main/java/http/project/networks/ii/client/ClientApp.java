@@ -6,6 +6,11 @@ package http.project.networks.ii.client;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.google.gson.Gson;
+
+import http.project.networks.ii.api.teachers_api.Project;
+import http.project.networks.ii.api.teachers_api.Teacher;
+import http.project.networks.ii.api.teachers_api.TeachersClass;
 import http.project.networks.ii.headers.RequestHeaders;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.utils.HTTPUtils;
@@ -19,17 +24,32 @@ public class ClientApp {
         ClientApp app = new ClientApp();
         app.testGET("http://localhost/teachers/");
 
-        app.testGET("http://localhost/teachers/teacher/Teacher_1");
 
-        app.testPOST("http://localhost/teachers/teacher", "{\"name\":\"Teacher_6\",\"rating\":0.9,\"project\":{\"name\":\"Project_6\",\"description\":\"Description_6\",\"teacher\":\"Teacher_6\",\"student\":\"Student_6\",\"grade\":\"F\",\"status\":\"In_Progress\"}}");
+        // Test Teacher Class
+        TeachersClass teachers = new TeachersClass();
+        Project project = new Project("Project_6", "Description_1", "Teacher_6", "Student_1", "A", "Completed");
+        Teacher teacher = new Teacher("Teacher_6", 0.9f, project);
+        teachers.addTeacher(teacher);
+        teachers.addProject(project);
+        Gson gson = new Gson();
 
-        app.testPUT("http://localhost/teachers/teacher/Teacher_1", "{\"name\":\"Teacher_1\",\"rating\":0.9,\"project\":{\"name\":\"Project_1\",\"description\":\"Description_1\",\"teacher\":\"Teacher_1\",\"student\":\"Student_1\",\"grade\":\"A\",\"status\":\"Completed\"}}");
+        String gsonTeacher = gson.toJson(teachers);
 
-        app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
 
-        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
 
-        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
+
+
+        // app.testGET("http://localhost/teachers/teacher/Teacher_1");
+
+        app.testPOST("http://localhost/teachers", gsonTeacher);
+
+        // app.testPUT("http://localhost/teachers/teacher/Teacher_1", "{\"name\":\"Teacher_1\",\"rating\":0.9,\"project\":{\"name\":\"Project_1\",\"description\":\"Description_1\",\"teacher\":\"Teacher_1\",\"student\":\"Student_1\",\"grade\":\"A\",\"status\":\"Completed\"}}");
+
+        // app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
+
+        // app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
+
+        // app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
 
 
         app.testGET("http://localhost/teachers/");
