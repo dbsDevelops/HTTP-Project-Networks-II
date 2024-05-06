@@ -21,16 +21,14 @@ public class GreetClient {
     private String clientCookies;
     private StringBuilder response;
     // private Logger logger;
+    CachedData cachedData;
 
-
-    private List<String> cachedResources;
-
-    public GreetClient(int port) {
+    public GreetClient(int port, CachedData cachedData) {
         this.host = "";
         this.port = port;
         this.clientCookies = null;
         this.response = new StringBuilder();
-        cachedResources = new java.util.ArrayList<>();
+        this.cachedData = cachedData;
         //this.logger = new Logger("client");
     }
 
@@ -114,7 +112,7 @@ public class GreetClient {
         }
         
         if(bodystarted && body != null){
-            System.out.println("\n\nBody:\n" + body);
+            cachedData.setCachedData(body);
         }
 
 

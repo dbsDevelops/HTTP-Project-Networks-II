@@ -22,9 +22,8 @@ import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.Verbs;
 
 public class ClientApp {
-    
+    static CachedData cachedData = new CachedData();
     public static void main(String[] args) {
-
         ClientApp app = new ClientApp();
         //app.testGET("http://localhost/teachers/");
 
@@ -51,7 +50,10 @@ public class ClientApp {
 
         // app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
 
-        app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2023 11:05:30 GMT");
+        String Url = "http://localhost/teachers/project/Project_1";
+        cachedData.addKey(Url);
+
+        app.testConditionalGET(Url, "Sat, 3 Jun 2023 11:05:30 GMT");
 
         app.testConditionalGET("http://localhost/teachers/project/Project_1", "Sat, 3 Jun 2028 11:05:30 GMT");
 
@@ -79,7 +81,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -106,7 +108,7 @@ public class ClientApp {
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.JSON;                                            //Body type
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -133,7 +135,7 @@ public class ClientApp {
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.JSON;                                            //Body type
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -162,7 +164,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -191,7 +193,7 @@ public class ClientApp {
             bodyType = HttpBodyType.JSON;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -221,7 +223,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
