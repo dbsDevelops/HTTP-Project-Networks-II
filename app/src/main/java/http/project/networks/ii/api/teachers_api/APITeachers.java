@@ -7,6 +7,7 @@ import http.project.networks.ii.server.ServerStatusCodes;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpRequestHeaders;
 
 public class APITeachers {
 
@@ -66,11 +67,9 @@ public class APITeachers {
                 break;
             case GET:
                 //conditional GET
-                for (String header : request.getRequestHeadersObject().getHeaders()) {
-                    if (header.contains("If-Modified-Since")) {
-                        command = new RequestConditionalGet(path, teachers, request.getRequestHeadersObject().getHeaders());
-                        return command.execute();
-                    }
+                if (request.getRequestHeadersObject().getValue(HttpRequestHeaders.IF_MODIFIED_SINCE) != null) {
+                    command = new RequestConditionalGet(path, teachers, request.getRequestHeadersObject().getHeaders());
+                    return command.execute();
                 }
 
                 command = new RequestGET(path, teachers);

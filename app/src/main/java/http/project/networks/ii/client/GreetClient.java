@@ -2,6 +2,8 @@ package http.project.networks.ii.client;
 import java.net.*;
 import java.util.List;
 
+import org.checkerframework.checker.units.qual.s;
+
 import http.project.networks.ii.api.teachers_api.TeachersClass;
 import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.requests.Request;
@@ -103,7 +105,7 @@ public class GreetClient {
                 body += responseLine;
             }
 
-            if (responseLine.contains("Body:")) {
+            if (responseLine.isEmpty()) {
                 bodystarted = true;
             }
 

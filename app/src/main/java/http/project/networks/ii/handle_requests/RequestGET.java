@@ -32,12 +32,12 @@ public class RequestGET implements RequestCommand {
                 if (pathParts.length == 3) {
                     if (pathParts[2].equals("teacher")) {
                         List<Teacher> teacherList = teachers.getTeachers();
-                        String responseBody = "Body:\n" + gson.toJson(teacherList);
+                        String responseBody = gson.toJson(teacherList);
                         return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                     }
                     else if (pathParts[2].equals("project")) {
                         List<Project> projectList = teachers.getProjects();
-                        String responseBody = "Body:\n" + gson.toJson(projectList);
+                        String responseBody = gson.toJson(projectList);
                         return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                     }
                     else {
@@ -48,7 +48,7 @@ public class RequestGET implements RequestCommand {
                     if (pathParts[2].equals("teacher")) {
                         Teacher teacher = teachers.getTeacher(pathParts[3]);
                         if (teacher != null) {
-                            String responseBody = "Body:\n" + gson.toJson(teacher);
+                            String responseBody = gson.toJson(teacher);
                             return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                         }
                         else {
@@ -58,7 +58,7 @@ public class RequestGET implements RequestCommand {
                     else if (pathParts[2].equals("project")) {
                         Project project = teachers.getProject(pathParts[3]);
                         if (project != null) {
-                            String responseBody = "Body:\n" + gson.toJson(project);
+                            String responseBody = gson.toJson(project);
                             return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
                         }
                         else {
@@ -83,7 +83,7 @@ public class RequestGET implements RequestCommand {
         TeachersClass teachersClass = new TeachersClass();
         teachersClass.setTeachers(teacherList);
         teachersClass.setProjects(projectList);
-        String responseBody = "Body:\n" + gson.toJson(teachersClass);
+        String responseBody = gson.toJson(teachersClass);
         return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
     }
 }
