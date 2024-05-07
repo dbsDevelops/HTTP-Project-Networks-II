@@ -22,6 +22,7 @@ public class GreetClient {
     private StringBuilder response;
     // private Logger logger;
     CachedData cachedData;
+    URL url;
 
     public GreetClient(int port, CachedData cachedData) {
         this.host = "";
@@ -32,8 +33,17 @@ public class GreetClient {
         //this.logger = new Logger("client");
     }
 
-    public void sendRequest(URL url, Request request) {
+    public GreetClient(int port) {
+        this.host = "";
+        this.port = port;
+        this.clientCookies = null;
+        this.response = new StringBuilder();
+        this.cachedData = new CachedData();
+        //this.logger = new Logger("client");
+    }
 
+    public void sendRequest(URL url, Request request) {
+        this.url = url;
         this.host = url.getHost();
 
         try(Socket socket = new Socket(this.host, this.port)){
@@ -73,17 +83,21 @@ public class GreetClient {
         responseLine = br.readLine();
         response.append(responseLine + "\n");
 
-        Boolean isCached = false;
         Boolean bodystarted = false;
 
         String body = "";
 
-        while (responseLine != null) {
-
-            if (responseLine.contains("304 Not Modified")) {
-                isCached = true;
-                System.out.println("Resource has not been modified and we have seen it");
+        if(response.toString().contains("HTTP/1.1 304 Not Modified")){
+            if (!cachedData.containsKey(url.toString())) {
+                System.out.println("Resource has not been cached before");
             }
+            else{
+                String data = cachedData.getData(url.toString());
+                System.out.println("Data from cache: \n" + data + "\n");
+            }
+        }
+
+        while (responseLine != null) {
 
             if(bodystarted){
                 body += responseLine;
@@ -91,7 +105,6 @@ public class GreetClient {
 
             if (responseLine.contains("Body:")) {
                 bodystarted = true;
-                //System.out.println("this is the middle of the response");
             }
 
             System.out.println(responseLine);
@@ -105,21 +118,12 @@ public class GreetClient {
                 }
                 addServerCookiesToClient(responseLine); //Put all cookies sent by the server in the client
             }
-
-
-            
-
         }
         
-        if(bodystarted && body != null){
-            cachedData.setCachedData(body);
-        }
-
-
-        if(isCached) {
-            System.out.println("Resource has not been modified and we have seen it");
-        } else {
-            System.out.println("Resource has been modified or we have not seen it");
+        if(bodystarted){
+            if (cachedData.containsKey(url.toString())) 
+                cachedData.removeData(url.toString());
+            cachedData.addData(url.toString(), body);
         }
 
         this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "

@@ -1,7 +1,6 @@
 package http.project.networks.ii.client;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 public class CachedData {
@@ -50,18 +49,5 @@ public class CachedData {
 
     public void clear() {
         this.cachedData.clear();
-    }
-
-    public void setCachedData(String data){
-        Set<String> keys = this.cachedData.keySet();
-        for(String key : keys){
-            if(this.cachedData.get(key).isEmpty()){
-                this.cachedData.put(key, data);
-            }
-        }
-    }
-
-    public void addKey(String url) {
-        this.cachedData.put(url, "");
     }
 }
