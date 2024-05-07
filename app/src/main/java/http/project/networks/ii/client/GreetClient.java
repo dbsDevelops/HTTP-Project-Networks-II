@@ -127,7 +127,7 @@ public class GreetClient {
         }
 
         this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "
-        System.out.println(this.clientCookies);
+        System.out.println(this.clientCookies + "\n\n\n--------------------------------------------\n\n");
         //logger.log(this.clientCookies);
         response.append(this.clientCookies);
     }
