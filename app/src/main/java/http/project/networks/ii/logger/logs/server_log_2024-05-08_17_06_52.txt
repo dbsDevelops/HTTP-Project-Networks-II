@@ -1,0 +1,615 @@
+2024-05-08T17:06:52.258967-Server is running on port: 80
+2024-05-08T17:06:55.912980-Client connected from /0:0:0:0:0:0:0:1:64969
+2024-05-08T17:06:55.941502-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:06:55 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 458
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie3=ma368xrz; Max-Age=33; HttpOnly; Date=2024-05-08T17:06:52.219640
+
+<html><head><title>Index of /Users/ivano/Desktop/USJ/3_CARRERA/REDES_II/HTTP-Project-Networks-II/app/src/main/java/http/project/networks/ii/static_resources/nineties_web</title></head><body><h1>Index of /Users/ivano/Desktop/USJ/3_CARRERA/REDES_II/HTTP-Project-Networks-II/app/src/main/java/http/project/networks/ii/static_resources/nineties_web</h1><ul><li><a href="index.html">index.html</a></li><li><a href="style.css">style.css</a></li></ul></body></html>
+
+2024-05-08T17:07:12.631562-Client connected from /0:0:0:0:0:0:0:1:64975
+2024-05-08T17:07:12.634522-Client connected from /0:0:0:0:0:0:0:1:64976
+2024-05-08T17:07:12.655104-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:12 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1491
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie3=ma368xrz; Max-Age=33; HttpOnly; Date=2024-05-08T17:06:52.219640
+
+body {
+    font-family: 'Papyrus', fantasy; /* Playful and fantasy-like font */
+    background-color: #ffccf9; /* Light, whimsical background color */
+    color: #5d3a9b; /* Deep purple for text, adding to the whimsy */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4aedc4; /* Bright, welcoming color */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px dashed #ff69b4; /* Adds a playful dash underline */
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #ff69b4; /* Playful pink */
+    padding: 0;
+    text-align: center;
+    border-bottom: 3px dotted #333; /* Dotted underline for a whimsical touch */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #34befa; /* Bright blue for contrast */
+}
+
+nav ul li a:hover {
+    background-color: #fa8334; /* A warm, playful hover color */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff0f5; /* Light and airy background for sections */
+    padding: 10px;
+    border-radius: 15px; /* Soft, rounded corners for a gentle look */
+}
+
+footer {
+    background-color: #5d3a9b; /* Ties in with the text color for consistency */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px dashed #ff69b4; /* Echoes the playful dash from the header */
+}
+
+
+2024-05-08T17:07:14.802509-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:14 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 1283
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie3=ma368xrz; Max-Age=33; HttpOnly; Date=2024-05-08T17:06:52.219640
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whimsical World of Señoras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Whimsical World of Señoras Lapuente & Lasheras!</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#story">Epic Saga</a></li>
+            <li><a href="#recipes">Magical Recipes</a></li>
+            <li><a href="https://youtu.be/qaLTbmgwUQ8?si=sJopucLrzPkPoYRK">Mystical Advice (Fake URL)</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="story">
+            <h2>The Epic Saga</h2>
+            <p>Join our heroes, Señora Lapuente and Señora Lasheras, in a whimsical tale of laughter, mystery, and fake mustaches!</p>
+            <img src="juan.jpg" alt="juangpt">
+        </section>
+        <section id="recipes">
+            <h2>Magical Recipes</h2>
+            <p>Feast your eyes on the most fantastical, never-before-seen recipes straight from the kitchens of our señoras. Unicorn toast, anyone?</p>
+            <img src="baquero.jpeg" alt="baquerogpt">
+        </section>
+    </main>
+    <footer>
+        <p>🌈 &copy; 2024 The Whimsical World of Señoras. All rights reserved, even the imaginary ones!</p>
+    </footer>
+</body>
+</html>
+
+
+2024-05-08T17:07:14.826161-Client connected from /0:0:0:0:0:0:0:1:64977
+2024-05-08T17:07:14.827027-Client connected from /0:0:0:0:0:0:0:1:64978
+2024-05-08T17:07:14.829666-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:14 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1491
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie3=ma368xrz; Max-Age=33; HttpOnly; Date=2024-05-08T17:06:52.219640
+
+body {
+    font-family: 'Papyrus', fantasy; /* Playful and fantasy-like font */
+    background-color: #ffccf9; /* Light, whimsical background color */
+    color: #5d3a9b; /* Deep purple for text, adding to the whimsy */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4aedc4; /* Bright, welcoming color */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px dashed #ff69b4; /* Adds a playful dash underline */
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #ff69b4; /* Playful pink */
+    padding: 0;
+    text-align: center;
+    border-bottom: 3px dotted #333; /* Dotted underline for a whimsical touch */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #34befa; /* Bright blue for contrast */
+}
+
+nav ul li a:hover {
+    background-color: #fa8334; /* A warm, playful hover color */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff0f5; /* Light and airy background for sections */
+    padding: 10px;
+    border-radius: 15px; /* Soft, rounded corners for a gentle look */
+}
+
+footer {
+    background-color: #5d3a9b; /* Ties in with the text color for consistency */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px dashed #ff69b4; /* Echoes the playful dash from the header */
+}
+
+
+2024-05-08T17:07:14.829899-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:14 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 6399
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie3=ma368xrz; Max-Age=33; HttpOnly; Date=2024-05-08T17:06:52.219640
+
+
+2024-05-08T17:07:14.832405-Client connected from /0:0:0:0:0:0:0:1:64979
+2024-05-08T17:07:14.836138-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:14 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 108244
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie3=ma368xrz; Max-Age=33; HttpOnly; Date=2024-05-08T17:06:52.219640
+
+
+2024-05-08T17:07:26.693135-Client connected from /0:0:0:0:0:0:0:1:64983
+2024-05-08T17:07:26.705794-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:26 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 1283
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whimsical World of Señoras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Whimsical World of Señoras Lapuente & Lasheras!</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#story">Epic Saga</a></li>
+            <li><a href="#recipes">Magical Recipes</a></li>
+            <li><a href="https://youtu.be/qaLTbmgwUQ8?si=sJopucLrzPkPoYRK">Mystical Advice (Fake URL)</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="story">
+            <h2>The Epic Saga</h2>
+            <p>Join our heroes, Señora Lapuente and Señora Lasheras, in a whimsical tale of laughter, mystery, and fake mustaches!</p>
+            <img src="juan.jpg" alt="juangpt">
+        </section>
+        <section id="recipes">
+            <h2>Magical Recipes</h2>
+            <p>Feast your eyes on the most fantastical, never-before-seen recipes straight from the kitchens of our señoras. Unicorn toast, anyone?</p>
+            <img src="baquero.jpeg" alt="baquerogpt">
+        </section>
+    </main>
+    <footer>
+        <p>🌈 &copy; 2024 The Whimsical World of Señoras. All rights reserved, even the imaginary ones!</p>
+    </footer>
+</body>
+</html>
+
+
+2024-05-08T17:07:26.722762-Client connected from /0:0:0:0:0:0:0:1:64984
+2024-05-08T17:07:26.725619-Client connected from /0:0:0:0:0:0:0:1:64985
+2024-05-08T17:07:26.730654-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:26 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 6399
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+
+2024-05-08T17:07:26.733267-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:26 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1491
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+body {
+    font-family: 'Papyrus', fantasy; /* Playful and fantasy-like font */
+    background-color: #ffccf9; /* Light, whimsical background color */
+    color: #5d3a9b; /* Deep purple for text, adding to the whimsy */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4aedc4; /* Bright, welcoming color */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px dashed #ff69b4; /* Adds a playful dash underline */
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #ff69b4; /* Playful pink */
+    padding: 0;
+    text-align: center;
+    border-bottom: 3px dotted #333; /* Dotted underline for a whimsical touch */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #34befa; /* Bright blue for contrast */
+}
+
+nav ul li a:hover {
+    background-color: #fa8334; /* A warm, playful hover color */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff0f5; /* Light and airy background for sections */
+    padding: 10px;
+    border-radius: 15px; /* Soft, rounded corners for a gentle look */
+}
+
+footer {
+    background-color: #5d3a9b; /* Ties in with the text color for consistency */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px dashed #ff69b4; /* Echoes the playful dash from the header */
+}
+
+
+2024-05-08T17:07:26.733495-Client connected from /0:0:0:0:0:0:0:1:64986
+2024-05-08T17:07:26.735584-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:26 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 108244
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+
+2024-05-08T17:07:31.684386-Client connected from /0:0:0:0:0:0:0:1:64987
+2024-05-08T17:07:31.693385-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:31 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 1283
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whimsical World of Señoras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Whimsical World of Señoras Lapuente & Lasheras!</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#story">Epic Saga</a></li>
+            <li><a href="#recipes">Magical Recipes</a></li>
+            <li><a href="https://youtu.be/qaLTbmgwUQ8?si=sJopucLrzPkPoYRK">Mystical Advice (Fake URL)</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="story">
+            <h2>The Epic Saga</h2>
+            <p>Join our heroes, Señora Lapuente and Señora Lasheras, in a whimsical tale of laughter, mystery, and fake mustaches!</p>
+            <img src="juan.jpg" alt="juangpt">
+        </section>
+        <section id="recipes">
+            <h2>Magical Recipes</h2>
+            <p>Feast your eyes on the most fantastical, never-before-seen recipes straight from the kitchens of our señoras. Unicorn toast, anyone?</p>
+            <img src="baquero.jpeg" alt="baquerogpt">
+        </section>
+    </main>
+    <footer>
+        <p>🌈 &copy; 2024 The Whimsical World of Señoras. All rights reserved, even the imaginary ones!</p>
+    </footer>
+</body>
+</html>
+
+
+2024-05-08T17:07:31.706073-Client connected from /0:0:0:0:0:0:0:1:64988
+2024-05-08T17:07:31.707751-Client connected from /0:0:0:0:0:0:0:1:64989
+2024-05-08T17:07:31.708341-Client connected from /0:0:0:0:0:0:0:1:64990
+2024-05-08T17:07:31.711968-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:31 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 108244
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+
+2024-05-08T17:07:31.715884-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:31 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1491
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+body {
+    font-family: 'Papyrus', fantasy; /* Playful and fantasy-like font */
+    background-color: #ffccf9; /* Light, whimsical background color */
+    color: #5d3a9b; /* Deep purple for text, adding to the whimsy */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4aedc4; /* Bright, welcoming color */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px dashed #ff69b4; /* Adds a playful dash underline */
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #ff69b4; /* Playful pink */
+    padding: 0;
+    text-align: center;
+    border-bottom: 3px dotted #333; /* Dotted underline for a whimsical touch */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #34befa; /* Bright blue for contrast */
+}
+
+nav ul li a:hover {
+    background-color: #fa8334; /* A warm, playful hover color */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff0f5; /* Light and airy background for sections */
+    padding: 10px;
+    border-radius: 15px; /* Soft, rounded corners for a gentle look */
+}
+
+footer {
+    background-color: #5d3a9b; /* Ties in with the text color for consistency */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px dashed #ff69b4; /* Echoes the playful dash from the header */
+}
+
+
+2024-05-08T17:07:31.717520-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:31 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 6399
+Set-Cookie: cookie1=ma366xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:06:52.219612
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+
+2024-05-08T17:07:35.218750-Client connected from /0:0:0:0:0:0:0:1:64991
+2024-05-08T17:07:35.222597-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:07:35 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1491
+Set-Cookie: cookie5=ma370xrz; Max-Age=37; HttpOnly; Date=2024-05-08T17:07:35.222392
+Set-Cookie: cookie2=ma367xrz; Max-Age=56; HttpOnly; Date=2024-05-08T17:06:52.219631
+Set-Cookie: cookie4=ma369xrz; Max-Age=27; HttpOnly; Date=2024-05-08T17:07:26.703980
+
+body {
+    font-family: 'Papyrus', fantasy; /* Playful and fantasy-like font */
+    background-color: #ffccf9; /* Light, whimsical background color */
+    color: #5d3a9b; /* Deep purple for text, adding to the whimsy */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4aedc4; /* Bright, welcoming color */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px dashed #ff69b4; /* Adds a playful dash underline */
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #ff69b4; /* Playful pink */
+    padding: 0;
+    text-align: center;
+    border-bottom: 3px dotted #333; /* Dotted underline for a whimsical touch */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #34befa; /* Bright blue for contrast */
+}
+
+nav ul li a:hover {
+    background-color: #fa8334; /* A warm, playful hover color */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff0f5; /* Light and airy background for sections */
+    padding: 10px;
+    border-radius: 15px; /* Soft, rounded corners for a gentle look */
+}
+
+footer {
+    background-color: #5d3a9b; /* Ties in with the text color for consistency */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px dashed #ff69b4; /* Echoes the playful dash from the header */
+}
+
+

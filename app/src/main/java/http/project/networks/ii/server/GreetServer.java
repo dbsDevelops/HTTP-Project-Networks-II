@@ -172,9 +172,8 @@ public class GreetServer {
                 return apiLogin.readRequest(request);
             }            
             else {
-                String filePathString = staticFiles.toString() + urlPath;
                 try {
-                    HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(filePathString);
+                    HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
                     if(body != null) {
                         return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                     } else {
