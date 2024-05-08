@@ -18,7 +18,7 @@ public class ClientHello {
     }
 
     public void sendClientHello() throws IOException {
-        // TLS version (3.3 for TLSv1.2)
+        // TLS version (3.3 for TLSv1.3)
         out.writeByte(3);
         out.writeByte(3);
     
@@ -26,46 +26,19 @@ public class ClientHello {
         byte[] challenge = new byte[32];
         random.nextBytes(challenge);
         out.write(challenge);
-    
+
+        //USAR SIEMPRE : TLS_AES_128_GCM_SHA256
         // List of supported cipher suites
-        byte[][] cipherSuites = {
-            {0x00, 0x2F}, // TLS_RSA_WITH_AES_128_CBC_SHA
-            {0x00, 0x35}, // TLS_RSA_WITH_AES_256_CBC_SHA
-            {0x00, 0x0A}, // TLS_RSA_WITH_3DES_EDE_CBC_SHA
-            {0x00, 0x05}, // TLS_RSA_WITH_RC4_128_SHA
-            {0x00, 0x04}, // TLS_RSA_WITH_RC4_128_MD5
-            {0x00, 0x2B}, // TLS_RSA_WITH_AES_128_CBC_SHA256
-            {0x00, 0x3C}, // TLS_RSA_WITH_AES_256_CBC_SHA256
-            {(byte) 0xC0, 0x14}, // TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA
-            {(byte) 0xC0, 0x0A}, // TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
-            {(byte) 0xC0, 0x13}, // TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
-            {(byte) 0xC0, 0x09}, // TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-            {(byte) 0xC0, 0x23}, // TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
-            {(byte) 0xC0, 0x27}, // TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-        };
-        
-        //CIPHER SUITES LENGTH:: 2 bytes
-        /*
-         * out.writeByte(0); // Cipher suites length MSB
-         * out.writeByte(cipherSuites.length * 2); // Cipher suites length LSB
-         */
-        int cipherSuitesLength = cipherSuites.length * 2;
-        out.writeByte(cipherSuitesLength >>> 8); // Cipher suites length MSB
-        out.writeByte(cipherSuitesLength); // Cipher suites length LSB
-
-
+        byte[] cipherSuites = "TLS_AES_128_GCM_SHA256".getBytes();
     
-        for (byte[] cipherSuite : cipherSuites) {
-            out.write(cipherSuite);
-        }
-    
+        out.writeBytes(cipherSuites.toString());
         out.flush();
     }
     
 
     public static void main(String[] args) {
         try {
-            ClientHello client = new ClientHello("localhost", 4433);
+            ClientHello client = new ClientHello("localhost", 443);
             client.sendClientHello();
         } catch (IOException e) {
             e.printStackTrace();

@@ -24,88 +24,48 @@ public class ServerHello {
     }
 
     public void sendServerHello() throws IOException, CertificateEncodingException {
-        // Now the server can choose a cipher suite from the received list
-        int chosenCipherSuite = -1;
-        int cipherSuitesLength = (in.readUnsignedByte() << 8) | in.readUnsignedByte();
-        for (int i = 0; i < cipherSuitesLength; i += 2) {
-            int cipherSuite = in.readUnsignedShort();
-            System.out.println("Received cipher suite: " + cipherSuite);
+        // TLS version (3.3 for TLSv1.3)
+        out.writeByte(3);
+        out.writeByte(3);
     
-            // Check if the server supports this cipher suite and if it's the most secure one
-            if (serverSupportsCipherSuite(cipherSuite) && (chosenCipherSuite == -1 || isMoreSecure(cipherSuite, chosenCipherSuite))) {
-                chosenCipherSuite = cipherSuite;
-            }
-        }
-
-        // TLS version (3.3 for TLSv1.2)
-        out.writeByte(3);
-        out.writeByte(3);
-
         // Random: 32-byte challenge
         byte[] challenge = new byte[32];
         random.nextBytes(challenge);
         out.write(challenge);
 
-        // Cipher suite
-        out.writeShort(chosenCipherSuite);
+        byte[] cipherSuites = "TLS_AES_128_GCM_SHA256".getBytes();
+        if(serverSupportsCipherSuite("TLS_AES_128_GCM_SHA256")) {
+            out.write(cipherSuites);
+        } else {
+            out.writeBytes("No cipher suites supported");
+        }
 
-        // Send the certificate
-        byte[] encodedCert = certificate.getEncoded();
-        out.writeInt(encodedCert.length);
-        out.write(encodedCert);
+        // Certificate
+        byte[] cert = certificate.getEncoded();
+        out.write(cert);
 
+        // ServerHelloDone
+        out.writeByte(0);
+        out.writeByte(0);
         out.flush();
     }
 
-    private boolean serverSupportsCipherSuite(int cipherSuite) {
-        int[] supportedCipherSuites = {
-            0x002F, // TLS_RSA_WITH_AES_128_CBC_SHA
-            0x0035, // TLS_RSA_WITH_AES_256_CBC_SHA
-            0x000A, // TLS_RSA_WITH_3DES_EDE_CBC_SHA
-            // Añadir más suites de cifrado aquí
+    private boolean serverSupportsCipherSuite(String cipherSuite) {
+        String[] supportedCipherSuites = {
+            "TLS_AES_128_GCM_SHA256",
+            "TLS_AES_256_GCM_SHA384",
+            "TLS_CHACHA20_POLY1305_SHA256",
+            "TLS_AES_128_CCM_SHA256"
         };
     
-        for (int supportedCipherSuite : supportedCipherSuites) {
-            if (cipherSuite == supportedCipherSuite) {
+        for (String supportedCipherSuite : supportedCipherSuites) {
+            if (cipherSuite.equals(supportedCipherSuite)) {
                 return true;
             }
         }
     
         return false;
-    }
-
-    // Check if cipherSuite1 is more secure than cipherSuite2
-    private boolean isMoreSecure(int cipherSuite1, int cipherSuite2) {
-        int[] cipherSuitesOrderedBySecurity = {
-            0x002F, // TLS_RSA_WITH_AES_128_CBC_SHA
-            0x0035, // TLS_RSA_WITH_AES_256_CBC_SHA
-            0x000A, // TLS_RSA_WITH_3DES_EDE_CBC_SHA
-            // Añadir más suites de cifrado aquí (de menos a más seguras)
-        };
-    
-        int index1 = -1, index2 = -1;
-        for (int i = 0; i < cipherSuitesOrderedBySecurity.length; i++) {
-            if (cipherSuitesOrderedBySecurity[i] == cipherSuite1) {
-                index1 = i;
-            }
-            if (cipherSuitesOrderedBySecurity[i] == cipherSuite2) {
-                index2 = i;
-            }
-        }
-    
-        // If cipherSuite1 is not found in the list, consider cipherSuite1 less secure
-        if (index1 == -1) {
-            return false;
-        }
-
-        // If cipherSuite2 is not found in the list, consider cipherSuite1 more secure
-        if (index2 == -1) {
-            return true;
-        }
-
-        // If both are found, the one with the lower index is more secure
-        return index1 < index2;
-    }  
+    } 
 
     public static void main(String[] args) {
         try {
