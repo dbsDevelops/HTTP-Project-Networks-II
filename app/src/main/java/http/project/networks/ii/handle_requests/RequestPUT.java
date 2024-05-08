@@ -24,13 +24,15 @@ public class RequestPUT implements RequestCommand {
 
     @Override
     public Response execute() {
-        if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
-            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+        if (path.equals(HTTPUtils.TEACHERS_PATH)) {
+            return processBodyTeachers(body);
         }
-        return processBody(body);
+
+        
+        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
     }
 
-    private Response processBody(HttpRequestBody body) {
+    private Response processBodyTeachers(HttpRequestBody body) {
         if (body.getType() == HttpBodyType.JSON) {
             Gson gson = new Gson();
             TeachersClass updatedData = gson.fromJson(body.getStringContent(), TeachersClass.class);

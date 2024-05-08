@@ -42,13 +42,17 @@ public class ClientApp {
 
 
 
-        // app.testGET("http://localhost/teachers/teacher/Teacher_1");
+        app.testGET("http://localhost/teachers/teacher/Teacher_1");
 
-        // app.testPOST("http://localhost/teachers", gsonTeacher);
+        app.testPOST("http://localhost/teachers", gsonTeacher);
 
-        // app.testPUT("http://localhost/teachers/teacher/Teacher_1", "{\"name\":\"Teacher_1\",\"rating\":0.9,\"project\":{\"name\":\"Project_1\",\"description\":\"Description_1\",\"teacher\":\"Teacher_1\",\"student\":\"Student_1\",\"grade\":\"A\",\"status\":\"Completed\"}}");
+        teacher.setPassRate(3.3f);
 
-        // app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
+        gsonTeacher = gson.toJson(teachers);
+
+        app.testPUT("http://localhost/teachers", gsonTeacher);
+
+        app.testDELETE("http://localhost/teachers/teacher/Teacher_1");
 
         String Url = "http://localhost/teachers/project";
 
@@ -57,7 +61,7 @@ public class ClientApp {
         app.testConditionalGET(Url, "Sat, 3 Jun 2028 11:05:30 GMT");
 
 
-        // app.testGET("http://localhost/teachers/");
+        app.testGET("http://localhost/teachers/");
 
     }
 

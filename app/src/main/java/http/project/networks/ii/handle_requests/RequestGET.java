@@ -22,62 +22,27 @@ public class RequestGET implements RequestCommand {
         this.teachers = teachers;
     }
     Gson gson = new Gson();
+
     @Override
     public Response execute() {
-        if (!path.equals(HTTPUtils.TEACHERS_PATH)) {
-            
-            //see if the path is a subpath of teachers
-            if (path.startsWith(HTTPUtils.TEACHERS_PATH)) {
-                String[] pathParts = path.split("/");
-                if (pathParts.length == 3) {
-                    if (pathParts[2].equals("teacher")) {
-                        List<Teacher> teacherList = teachers.getTeachers();
-                        String responseBody = gson.toJson(teacherList);
-                        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
-                    }
-                    else if (pathParts[2].equals("project")) {
-                        List<Project> projectList = teachers.getProjects();
-                        String responseBody = gson.toJson(projectList);
-                        return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
-                    }
-                    else {
-                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
-                    }
-                }
-                if (pathParts.length == 4) {
-                    if (pathParts[2].equals("teacher")) {
-                        Teacher teacher = teachers.getTeacher(pathParts[3]);
-                        if (teacher != null) {
-                            String responseBody = gson.toJson(teacher);
-                            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
-                        }
-                        else {
-                            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
-                        }
-                    }
-                    else if (pathParts[2].equals("project")) {
-                        Project project = teachers.getProject(pathParts[3]);
-                        if (project != null) {
-                            String responseBody = gson.toJson(project);
-                            return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
-                        }
-                        else {
-                            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
-                        }
-                    }
-                    else {
-                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
-                    }
-                }
-            }
+        if (path.startsWith(HTTPUtils.TEACHERS_PATH)) {
 
-     
-            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+            //see if the path is a subpath of teachers
+            if (path.equals(HTTPUtils.TEACHERS_PATH)) {
+                return handleTeacher();
+            }
+            else{
+                return handleTeacherSubpath();
+            }     
         }
-        return processRequest();
+
+        
+        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
     }
 
-    private Response processRequest() {
+
+    
+    private Response handleTeacher() {
         List<Teacher> teacherList = teachers.getTeachers();
         List<Project> projectList = teachers.getProjects();
         TeachersClass teachersClass = new TeachersClass();
@@ -85,5 +50,50 @@ public class RequestGET implements RequestCommand {
         teachersClass.setProjects(projectList);
         String responseBody = gson.toJson(teachersClass);
         return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+    }
+
+    private Response handleTeacherSubpath(){
+        String[] pathParts = path.split("/");
+        if (pathParts.length == 3) {
+            if (pathParts[2].equals("teacher")) {
+                List<Teacher> teacherList = teachers.getTeachers();
+                String responseBody = gson.toJson(teacherList);
+                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+            }
+            else if (pathParts[2].equals("project")) {
+                List<Project> projectList = teachers.getProjects();
+                String responseBody = gson.toJson(projectList);
+                return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+            }
+            else {
+                return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+            }
+        }
+        if (pathParts.length == 4) {
+            if (pathParts[2].equals("teacher")) {
+                Teacher teacher = teachers.getTeacher(pathParts[3]);
+                if (teacher != null) {
+                    String responseBody = gson.toJson(teacher);
+                    return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+                }
+                else {
+                    return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+                }
+            }
+            else if (pathParts[2].equals("project")) {
+                Project project = teachers.getProject(pathParts[3]);
+                if (project != null) {
+                    String responseBody = gson.toJson(project);
+                    return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.JSON, responseBody));
+                }
+                else {
+                    return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+                }
+            }
+            else {
+                return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+            }
+        }
+        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
     }
 }
