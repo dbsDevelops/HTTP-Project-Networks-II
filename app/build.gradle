@@ -24,14 +24,27 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'net.sf.jopt-simple:jopt-simple:5.0.4'
+    implementation 'com.auth0:java-jwt:4.4.0'
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'http.project.networks.ii.App'
+    mainClass = 'http.project.networks.ii.client.ClientCLI'
 }
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': application.mainClass.get()
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE  // Agregar esta línea para excluir duplicados
 }
