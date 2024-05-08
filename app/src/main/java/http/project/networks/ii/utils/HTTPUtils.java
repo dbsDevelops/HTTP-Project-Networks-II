@@ -90,6 +90,8 @@ public class HTTPUtils {
         extensionToTypeMap.put("gz", HttpBodyType.GZIP);
         extensionToTypeMap.put("bz2", HttpBodyType.BZIP2);
         extensionToTypeMap.put("mp4", HttpBodyType.MP4);
+        extensionToTypeMap.put("mp3", HttpBodyType.MPEG);
+        extensionToTypeMap.put("wav", HttpBodyType.WAV);
     }
     
     /**
