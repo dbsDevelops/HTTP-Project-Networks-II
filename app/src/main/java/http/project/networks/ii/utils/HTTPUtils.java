@@ -192,7 +192,8 @@ public class HTTPUtils {
     private static boolean isBinaryType(HttpBodyType type) {
         return type == HttpBodyType.PNG || type == HttpBodyType.JPEG || type == HttpBodyType.GIF ||
                type == HttpBodyType.SVG || type == HttpBodyType.PDF || type == HttpBodyType.ZIP ||
-               type == HttpBodyType.TAR || type == HttpBodyType.GZIP || type == HttpBodyType.BZIP2;
+               type == HttpBodyType.TAR || type == HttpBodyType.GZIP || type == HttpBodyType.BZIP2 || 
+               type == HttpBodyType.MP4 || type == HttpBodyType.MPEG || type == HttpBodyType.WAV;
     }
 
     private static String getFileExtension(Path path) {
