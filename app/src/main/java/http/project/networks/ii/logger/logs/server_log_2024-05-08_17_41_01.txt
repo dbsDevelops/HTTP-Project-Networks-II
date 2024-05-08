@@ -1,0 +1,351 @@
+2024-05-08T17:41:01.838416-Server is running on port: 80
+2024-05-08T17:41:06.975089-Client connected from /0:0:0:0:0:0:0:1:49238
+2024-05-08T17:41:06.976865-Client connected from /0:0:0:0:0:0:0:1:49239
+2024-05-08T17:41:07.006797-Response: 
+HTTP/1.1 418 I'm a teapot
+Connection: close
+Date: Wed, 08 May 2024 15:41:06 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 13
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+I'm a teapot 
+
+2024-05-08T17:41:07.010397-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Wed, 08 May 2024 15:41:07 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+Not found
+
+2024-05-08T17:41:11.288432-Client connected from /0:0:0:0:0:0:0:1:49244
+2024-05-08T17:41:11.303286-Client connected from /0:0:0:0:0:0:0:1:49245
+2024-05-08T17:41:11.308625-Response: 
+HTTP/1.1 418 I'm a teapot
+Connection: close
+Date: Wed, 08 May 2024 15:41:11 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 13
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+I'm a teapot 
+
+2024-05-08T17:41:11.312147-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Wed, 08 May 2024 15:41:11 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+Not found
+
+2024-05-08T17:41:13.663649-Client connected from /0:0:0:0:0:0:0:1:49248
+2024-05-08T17:41:13.675996-Response: 
+HTTP/1.1 418 I'm a teapot
+Connection: close
+Date: Wed, 08 May 2024 15:41:13 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 13
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+I'm a teapot 
+
+2024-05-08T17:41:13.681166-Client connected from /0:0:0:0:0:0:0:1:49249
+2024-05-08T17:41:13.683681-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Wed, 08 May 2024 15:41:13 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+Not found
+
+2024-05-08T17:41:19.876873-Client connected from /0:0:0:0:0:0:0:1:49252
+2024-05-08T17:41:19.914705-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:41:19 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 1089
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Señoras Time Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Señoras Lapuente & Lasheras' Time Machine!</h1>
+    </header></marquee>
+    <nav>
+        <ul>
+            <li><a href="#story">Epic Tales</a></li>
+            <li><a href="#recipes">Time-Traveling Recipes</a></li>
+            <li><a href="http://totally-real-advice.com">Mystical Advice</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="story">
+            <h2>The Epic Tales</h2>
+            <p>Dive into the pixelated adventures of our heroic señoras as they navigate the wild web of the 90s.</p>
+        </section>
+        <section id="recipes">
+            <h2>Time-Traveling Recipes</h2>
+            <p>Discover culinary delights that taste like pixels and sound like dial-up internet.</p>
+        </section>
+    </main>
+    <footer>
+        <p>💾 &copy; 1990-2024 Time Machine. All rights reserved in this timeline and the next!</p>
+    </footer>
+</body>
+</html>
+
+
+2024-05-08T17:41:19.924110-Client connected from /0:0:0:0:0:0:0:1:49253
+2024-05-08T17:41:19.925765-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:41:19 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1566
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #08f; /* Bright blue, very 90s */
+    color: #ff0; /* Bright yellow text */
+    /* Placeholder for a repeating cat GIF background. Replace the URL with your actual cat GIF location */
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.foroparalelo.com%2Fdeportes%2Ffernando-alonso-983449%2F&psig=AOvVaw1QM0RMm642AB9EYLhxE8Gu&ust=1709226062734000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCAm7TBzoQDFQAAAAAdAAAAABAJ');
+    background-repeat: repeat; /* Ensure the GIF repeats across the page */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f; /* Bright purple */
+    color: #0ff; /* Cyan text for maximum clash */
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #f00; /* Bright red */
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #00f; /* Blue links */
+    padding: 5px 20px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #ff0; /* Bright yellow on hover */
+}
+
+main {
+    padding: 20px;
+    background-color: rgba(0, 255, 0, 0.5); /* Bright green for sections with transparency */
+    color: #f00; /* Red text inside */
+}
+
+section {
+    border: 2px solid #ff0; /* Yellow borders */
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #f0f; /* Matching the header */
+    color: #0ff;
+    text-align: center;
+    padding: 10px;
+}
+
+
+2024-05-08T17:41:25.484669-Client connected from /0:0:0:0:0:0:0:1:49254
+2024-05-08T17:41:25.508003-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:41:25 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 230
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:41:01.807916
+Set-Cookie: cookie2=ma367xrz; Max-Age=55; HttpOnly; Date=2024-05-08T17:41:01.807933
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:41:01.807941
+
+<html><head><title>Index of /nineties_web</title></head><body><h1>Index of /nineties_web</h1><ul><li><a href="/nineties_web/index.html">index.html</a></li><li><a href="/nineties_web/style.css">style.css</a></li></ul></body></html>
+
+2024-05-08T17:52:26.601596-Client connected from /0:0:0:0:0:0:0:1:49394
+2024-05-08T17:52:26.723537-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:52:26 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 230
+Set-Cookie: cookie4=ma369xrz; Max-Age=58; HttpOnly; Date=2024-05-08T17:52:26.719998
+Set-Cookie: cookie5=ma370xrz; Max-Age=31; HttpOnly; Date=2024-05-08T17:52:26.723016
+Set-Cookie: cookie6=ma371xrz; Max-Age=35; HttpOnly; Date=2024-05-08T17:52:26.723079
+
+<html><head><title>Index of /nineties_web</title></head><body><h1>Index of /nineties_web</h1><ul><li><a href="/nineties_web/index.html">index.html</a></li><li><a href="/nineties_web/style.css">style.css</a></li></ul></body></html>
+
+2024-05-08T17:52:32.485229-Client connected from /0:0:0:0:0:0:0:1:49398
+2024-05-08T17:52:32.493831-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:52:32 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 1089
+Set-Cookie: cookie4=ma369xrz; Max-Age=58; HttpOnly; Date=2024-05-08T17:52:26.719998
+Set-Cookie: cookie5=ma370xrz; Max-Age=31; HttpOnly; Date=2024-05-08T17:52:26.723016
+Set-Cookie: cookie6=ma371xrz; Max-Age=35; HttpOnly; Date=2024-05-08T17:52:26.723079
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Señoras Time Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Señoras Lapuente & Lasheras' Time Machine!</h1>
+    </header></marquee>
+    <nav>
+        <ul>
+            <li><a href="#story">Epic Tales</a></li>
+            <li><a href="#recipes">Time-Traveling Recipes</a></li>
+            <li><a href="http://totally-real-advice.com">Mystical Advice</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="story">
+            <h2>The Epic Tales</h2>
+            <p>Dive into the pixelated adventures of our heroic señoras as they navigate the wild web of the 90s.</p>
+        </section>
+        <section id="recipes">
+            <h2>Time-Traveling Recipes</h2>
+            <p>Discover culinary delights that taste like pixels and sound like dial-up internet.</p>
+        </section>
+    </main>
+    <footer>
+        <p>💾 &copy; 1990-2024 Time Machine. All rights reserved in this timeline and the next!</p>
+    </footer>
+</body>
+</html>
+
+
+2024-05-08T17:52:32.510841-Client connected from /0:0:0:0:0:0:0:1:49399
+2024-05-08T17:52:32.514379-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:52:32 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1566
+Set-Cookie: cookie4=ma369xrz; Max-Age=58; HttpOnly; Date=2024-05-08T17:52:26.719998
+Set-Cookie: cookie5=ma370xrz; Max-Age=31; HttpOnly; Date=2024-05-08T17:52:26.723016
+Set-Cookie: cookie6=ma371xrz; Max-Age=35; HttpOnly; Date=2024-05-08T17:52:26.723079
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #08f; /* Bright blue, very 90s */
+    color: #ff0; /* Bright yellow text */
+    /* Placeholder for a repeating cat GIF background. Replace the URL with your actual cat GIF location */
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.foroparalelo.com%2Fdeportes%2Ffernando-alonso-983449%2F&psig=AOvVaw1QM0RMm642AB9EYLhxE8Gu&ust=1709226062734000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCAm7TBzoQDFQAAAAAdAAAAABAJ');
+    background-repeat: repeat; /* Ensure the GIF repeats across the page */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f; /* Bright purple */
+    color: #0ff; /* Cyan text for maximum clash */
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #f00; /* Bright red */
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #00f; /* Blue links */
+    padding: 5px 20px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #ff0; /* Bright yellow on hover */
+}
+
+main {
+    padding: 20px;
+    background-color: rgba(0, 255, 0, 0.5); /* Bright green for sections with transparency */
+    color: #f00; /* Red text inside */
+}
+
+section {
+    border: 2px solid #ff0; /* Yellow borders */
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #f0f; /* Matching the header */
+    color: #0ff;
+    text-align: center;
+    padding: 10px;
+}
+
+

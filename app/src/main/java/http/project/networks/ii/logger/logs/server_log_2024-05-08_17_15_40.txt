@@ -1,0 +1,15 @@
+2024-05-08T17:15:40.212867-Server is running on port: 80
+2024-05-08T17:15:43.775961-Client connected from /0:0:0:0:0:0:0:1:65104
+2024-05-08T17:15:43.815916-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:15:43 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 744
+Set-Cookie: cookie1=ma366xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:15:40.177487
+Set-Cookie: cookie2=ma367xrz; Max-Age=39; HttpOnly; Date=2024-05-08T17:15:40.177505
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-08T17:15:40.177514
+
+<html><head><title>Index of /Users/ivano/Desktop/USJ/3_CARRERA/REDES_II/HTTP-Project-Networks-II/app/src/main/java/http/project/networks/ii/static_resources/nineties_web</title></head><body><h1>Index of /Users/ivano/Desktop/USJ/3_CARRERA/REDES_II/HTTP-Project-Networks-II/app/src/main/java/http/project/networks/ii/static_resources/nineties_web</h1><ul><li><a href="//Users/ivano/Desktop/USJ/3_CARRERA/REDES_II/HTTP-Project-Networks-II/app/src/main/java/http/project/networks/ii/static_resources/nineties_web/index.html">index.html</a></li><li><a href="//Users/ivano/Desktop/USJ/3_CARRERA/REDES_II/HTTP-Project-Networks-II/app/src/main/java/http/project/networks/ii/static_resources/nineties_web/style.css">style.css</a></li></ul></body></html>
+
