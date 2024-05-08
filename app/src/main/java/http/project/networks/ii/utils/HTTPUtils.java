@@ -71,9 +71,6 @@ public class HTTPUtils {
 
     //To map extensions and create a new body depending on the extension that the file has
     private static final Map<String, HttpBodyType> extensionToTypeMap = new HashMap<String, HttpBodyType>();
-
-    // Encrypts a message using AES encryption
-    private static final String SYMETRIC_KEY = "PEDRO_MALO_PERISE";
     
     static {
         extensionToTypeMap.put("txt", HttpBodyType.RAW);
@@ -92,6 +89,7 @@ public class HTTPUtils {
         extensionToTypeMap.put("tar", HttpBodyType.TAR);
         extensionToTypeMap.put("gz", HttpBodyType.GZIP);
         extensionToTypeMap.put("bz2", HttpBodyType.BZIP2);
+        extensionToTypeMap.put("mp4", HttpBodyType.MP4);
     }
     
     /**

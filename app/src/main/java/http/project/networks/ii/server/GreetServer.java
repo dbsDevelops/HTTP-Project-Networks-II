@@ -179,15 +179,25 @@ public class GreetServer {
                     } else {
                         return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.NOT_FOUND));
                     }
-                    
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
             }
         } else {
-            // teapot response, later will be the main page of the server
-            return new Response(ServerStatusCodes.IM_A_TEAPOT_418.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, ServerStatusCodes.IM_A_TEAPOT_418.getMessageString()));
+            try {
+                if(staticFiles.resolve("index.html").toFile().exists()) {
+                    HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), "/index.html");
+                    return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
+                } else {
+                    //TODO generate default server html
+                    return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "This is the DJGI/1.0.0 server main page"));
+                }
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
         }
     }
 

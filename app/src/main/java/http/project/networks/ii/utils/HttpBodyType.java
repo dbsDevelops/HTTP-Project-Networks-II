@@ -18,7 +18,8 @@ public enum HttpBodyType {
     ZIP("application/zip"),
     TAR("application/x-tar"),
     GZIP("application/gzip"),
-    BZIP2("application/x-bzip2");
+    BZIP2("application/x-bzip2"),
+    MP4("video/mp4");
 
     private String bodyType;
 

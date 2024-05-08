@@ -1,0 +1,266 @@
+2024-05-08T18:07:29.552251-Server is running on port: 80
+2024-05-08T18:07:32.589803-Client connected from /0:0:0:0:0:0:0:1:49877
+2024-05-08T18:07:32.641704-Client connected from /0:0:0:0:0:0:0:1:49878
+2024-05-08T18:07:32.642225-Client connected from /0:0:0:0:0:0:0:1:49879
+2024-05-08T18:07:32.642564-Client connected from /0:0:0:0:0:0:0:1:49880
+2024-05-08T18:07:32.672686-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 16:07:32 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 33
+Set-Cookie: cookie1=ma366xrz; Max-Age=48; HttpOnly; Date=2024-05-08T18:07:29.515316
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-08T18:07:29.515334
+Set-Cookie: cookie3=ma368xrz; Max-Age=40; HttpOnly; Date=2024-05-08T18:07:29.515342
+
+This is the DJGI server main page
+
+2024-05-08T18:07:32.681859-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 16:07:32 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 6399
+Set-Cookie: cookie1=ma366xrz; Max-Age=48; HttpOnly; Date=2024-05-08T18:07:29.515316
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-08T18:07:29.515334
+Set-Cookie: cookie3=ma368xrz; Max-Age=40; HttpOnly; Date=2024-05-08T18:07:29.515342
+
+
+2024-05-08T18:07:32.681785-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 16:07:32 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 108244
+Set-Cookie: cookie1=ma366xrz; Max-Age=48; HttpOnly; Date=2024-05-08T18:07:29.515316
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-08T18:07:29.515334
+Set-Cookie: cookie3=ma368xrz; Max-Age=40; HttpOnly; Date=2024-05-08T18:07:29.515342
+
+
+2024-05-08T18:07:32.682261-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 16:07:32 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1491
+Set-Cookie: cookie1=ma366xrz; Max-Age=48; HttpOnly; Date=2024-05-08T18:07:29.515316
+Set-Cookie: cookie2=ma367xrz; Max-Age=32; HttpOnly; Date=2024-05-08T18:07:29.515334
+Set-Cookie: cookie3=ma368xrz; Max-Age=40; HttpOnly; Date=2024-05-08T18:07:29.515342
+
+body {
+    font-family: 'Papyrus', fantasy; /* Playful and fantasy-like font */
+    background-color: #ffccf9; /* Light, whimsical background color */
+    color: #5d3a9b; /* Deep purple for text, adding to the whimsy */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4aedc4; /* Bright, welcoming color */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px dashed #ff69b4; /* Adds a playful dash underline */
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #ff69b4; /* Playful pink */
+    padding: 0;
+    text-align: center;
+    border-bottom: 3px dotted #333; /* Dotted underline for a whimsical touch */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #34befa; /* Bright blue for contrast */
+}
+
+nav ul li a:hover {
+    background-color: #fa8334; /* A warm, playful hover color */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff0f5; /* Light and airy background for sections */
+    padding: 10px;
+    border-radius: 15px; /* Soft, rounded corners for a gentle look */
+}
+
+footer {
+    background-color: #5d3a9b; /* Ties in with the text color for consistency */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px dashed #ff69b4; /* Echoes the playful dash from the header */
+}
+
+
+2024-05-08T18:08:39.253436-Client connected from /0:0:0:0:0:0:0:1:49903
+2024-05-08T18:08:39.271746-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 16:08:39 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 1283
+Set-Cookie: cookie4=ma369xrz; Max-Age=35; HttpOnly; Date=2024-05-08T18:08:39.266942
+Set-Cookie: cookie5=ma370xrz; Max-Age=38; HttpOnly; Date=2024-05-08T18:08:39.268778
+Set-Cookie: cookie6=ma371xrz; Max-Age=51; HttpOnly; Date=2024-05-08T18:08:39.268858
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whimsical World of Señoras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Whimsical World of Señoras Lapuente & Lasheras!</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#story">Epic Saga</a></li>
+            <li><a href="#recipes">Magical Recipes</a></li>
+            <li><a href="https://youtu.be/qaLTbmgwUQ8?si=sJopucLrzPkPoYRK">Mystical Advice (Fake URL)</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="story">
+            <h2>The Epic Saga</h2>
+            <p>Join our heroes, Señora Lapuente and Señora Lasheras, in a whimsical tale of laughter, mystery, and fake mustaches!</p>
+            <img src="juan.jpg" alt="juangpt">
+        </section>
+        <section id="recipes">
+            <h2>Magical Recipes</h2>
+            <p>Feast your eyes on the most fantastical, never-before-seen recipes straight from the kitchens of our señoras. Unicorn toast, anyone?</p>
+            <img src="baquero.jpeg" alt="baquerogpt">
+        </section>
+    </main>
+    <footer>
+        <p>🌈 &copy; 2024 The Whimsical World of Señoras. All rights reserved, even the imaginary ones!</p>
+    </footer>
+</body>
+</html>
+
+
+2024-05-08T18:08:39.319936-Client connected from /0:0:0:0:0:0:0:1:49904
+2024-05-08T18:08:39.320859-Client connected from /0:0:0:0:0:0:0:1:49905
+2024-05-08T18:08:39.321097-Client connected from /0:0:0:0:0:0:0:1:49906
+2024-05-08T18:08:39.323328-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 16:08:39 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 6399
+Set-Cookie: cookie4=ma369xrz; Max-Age=35; HttpOnly; Date=2024-05-08T18:08:39.266942
+Set-Cookie: cookie5=ma370xrz; Max-Age=38; HttpOnly; Date=2024-05-08T18:08:39.268778
+Set-Cookie: cookie6=ma371xrz; Max-Age=51; HttpOnly; Date=2024-05-08T18:08:39.268858
+
+
+2024-05-08T18:08:39.323162-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 16:08:39 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 1491
+Set-Cookie: cookie4=ma369xrz; Max-Age=35; HttpOnly; Date=2024-05-08T18:08:39.266942
+Set-Cookie: cookie5=ma370xrz; Max-Age=38; HttpOnly; Date=2024-05-08T18:08:39.268778
+Set-Cookie: cookie6=ma371xrz; Max-Age=51; HttpOnly; Date=2024-05-08T18:08:39.268858
+
+body {
+    font-family: 'Papyrus', fantasy; /* Playful and fantasy-like font */
+    background-color: #ffccf9; /* Light, whimsical background color */
+    color: #5d3a9b; /* Deep purple for text, adding to the whimsy */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4aedc4; /* Bright, welcoming color */
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px dashed #ff69b4; /* Adds a playful dash underline */
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #ff69b4; /* Playful pink */
+    padding: 0;
+    text-align: center;
+    border-bottom: 3px dotted #333; /* Dotted underline for a whimsical touch */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #34befa; /* Bright blue for contrast */
+}
+
+nav ul li a:hover {
+    background-color: #fa8334; /* A warm, playful hover color */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: #fff0f5; /* Light and airy background for sections */
+    padding: 10px;
+    border-radius: 15px; /* Soft, rounded corners for a gentle look */
+}
+
+footer {
+    background-color: #5d3a9b; /* Ties in with the text color for consistency */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 5px dashed #ff69b4; /* Echoes the playful dash from the header */
+}
+
+
+2024-05-08T18:08:39.324008-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 16:08:39 GMT
+Server: DJGI/1.0.0
+Content-Type: image/jpeg
+Content-Length: 108244
+Set-Cookie: cookie4=ma369xrz; Max-Age=35; HttpOnly; Date=2024-05-08T18:08:39.266942
+Set-Cookie: cookie5=ma370xrz; Max-Age=38; HttpOnly; Date=2024-05-08T18:08:39.268778
+Set-Cookie: cookie6=ma371xrz; Max-Age=51; HttpOnly; Date=2024-05-08T18:08:39.268858
+
+
