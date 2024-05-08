@@ -1,0 +1,15 @@
+2024-05-08T17:38:29.032309-Server is running on port: 80
+2024-05-08T17:38:32.358397-Client connected from /0:0:0:0:0:0:0:1:65505
+2024-05-08T17:38:32.397252-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 08 May 2024 15:38:32 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 232
+Set-Cookie: cookie1=ma366xrz; Max-Age=29; HttpOnly; Date=2024-05-08T17:38:29.001080
+Set-Cookie: cookie2=ma367xrz; Max-Age=54; HttpOnly; Date=2024-05-08T17:38:29.001098
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-08T17:38:29.001105
+
+<html><head><title>Index of /nineties_web</title></head><body><h1>Index of /nineties_web</h1><ul><li><a href="//nineties_web/index.html">index.html</a></li><li><a href="//nineties_web/style.css">style.css</a></li></ul></body></html>
+

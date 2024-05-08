@@ -1,0 +1,35 @@
+2024-05-08T17:58:54.924368-Server is running on port: 80
+2024-05-08T17:58:58.799991-Client connected from /0:0:0:0:0:0:0:1:49620
+2024-05-08T17:58:58.863391-Client connected from /0:0:0:0:0:0:0:1:49621
+2024-05-08T17:58:58.895056-Response: 
+HTTP/1.1 418 I'm a teapot
+Connection: close
+Date: Wed, 08 May 2024 15:58:58 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 13
+Set-Cookie: cookie1=ma366xrz; Max-Age=35; HttpOnly; Date=2024-05-08T17:58:54.889612
+Set-Cookie: cookie2=ma367xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:58:54.889628
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:58:54.889637
+
+I'm a teapot 
+
+2024-05-08T17:58:58.905493-Client connected from /0:0:0:0:0:0:0:1:49622
+2024-05-08T17:58:58.907061-Client connected from /0:0:0:0:0:0:0:1:49623
+2024-05-08T17:59:03.831149-Client connected from /0:0:0:0:0:0:0:1:49625
+2024-05-08T17:59:03.864637-Client connected from /0:0:0:0:0:0:0:1:49626
+2024-05-08T17:59:03.866476-Response: 
+HTTP/1.1 418 I'm a teapot
+Connection: close
+Date: Wed, 08 May 2024 15:59:03 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 13
+Set-Cookie: cookie1=ma366xrz; Max-Age=35; HttpOnly; Date=2024-05-08T17:58:54.889612
+Set-Cookie: cookie2=ma367xrz; Max-Age=23; HttpOnly; Date=2024-05-08T17:58:54.889628
+Set-Cookie: cookie3=ma368xrz; Max-Age=34; HttpOnly; Date=2024-05-08T17:58:54.889637
+
+I'm a teapot 
+
+2024-05-08T17:59:03.870407-Client connected from /0:0:0:0:0:0:0:1:49627
+2024-05-08T17:59:03.875015-Client connected from /0:0:0:0:0:0:0:1:49628

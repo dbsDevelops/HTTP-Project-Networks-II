@@ -1,0 +1,10 @@
+@font-face {
+    font-family: AmongUsFont; 
+    src: url('../fonts/amongus_vector.ttf');
+ } 
+
+body {
+cursor: url('../images/icons/mouseCursor.ico'), auto;
+background-color: black;
+}
+

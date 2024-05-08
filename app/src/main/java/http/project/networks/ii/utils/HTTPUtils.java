@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.requests.Request;
@@ -69,9 +71,6 @@ public class HTTPUtils {
 
     //To map extensions and create a new body depending on the extension that the file has
     private static final Map<String, HttpBodyType> extensionToTypeMap = new HashMap<String, HttpBodyType>();
-
-    // Encrypts a message using AES encryption
-    private static final String SYMETRIC_KEY = "PEDRO_MALO_PERISE";
     
     static {
         extensionToTypeMap.put("txt", HttpBodyType.RAW);
@@ -90,6 +89,9 @@ public class HTTPUtils {
         extensionToTypeMap.put("tar", HttpBodyType.TAR);
         extensionToTypeMap.put("gz", HttpBodyType.GZIP);
         extensionToTypeMap.put("bz2", HttpBodyType.BZIP2);
+        extensionToTypeMap.put("mp4", HttpBodyType.MP4);
+        extensionToTypeMap.put("mp3", HttpBodyType.MPEG);
+        extensionToTypeMap.put("wav", HttpBodyType.WAV);
     }
     
     /**
@@ -116,19 +118,52 @@ public class HTTPUtils {
 
     }
 
-    public static HttpRequestBody createRequestBodyFromFile(String filePath) throws IOException {
-        Path path = Paths.get(filePath);
-        if(!path.toFile().exists() || path.toFile().isDirectory()) {
+    public static HttpRequestBody createRequestBodyFromFile(String localPath, String filePath) throws IOException {
+        String filePathString = localPath + filePath;
+        Path path = Paths.get(filePathString);
+        if(!path.toFile().exists()) {
             return null;
         }
-        HttpBodyType type = determineBodyType(path);
-        if (isBinaryType(type)) {
-            byte[] data = Files.readAllBytes(path);
-            return new HttpRequestBody(type, data);
+        if(path.toFile().isDirectory()) {
+            String html = buildDirectoryHtml(localPath, filePath);
+            return new HttpRequestBody(HttpBodyType.HTML, html);
         } else {
-            String content = Files.readString(path);
-            return new HttpRequestBody(type, content);
+            HttpBodyType type = determineBodyType(path);
+            if (isBinaryType(type)) {
+                byte[] data = Files.readAllBytes(path);
+                return new HttpRequestBody(type, data);
+            } else {
+                String content = Files.readString(path);
+                return new HttpRequestBody(type, content);
+            }
         }
+    }
+
+    private static String buildDirectoryHtml(String localPath, String filePath) throws IOException {
+        Path directoryPath = Paths.get(localPath, filePath).normalize();
+        StringBuilder htmlBuilder = new StringBuilder();
+        htmlBuilder.append("<html><head><title>Index of ");
+        htmlBuilder.append(filePath);
+        htmlBuilder.append("</title></head><body><h1>Index of ");
+        htmlBuilder.append(filePath);
+        htmlBuilder.append("</h1><ul>");
+
+        // List files and directories
+        try (Stream<Path> stream = Files.list(directoryPath)) {
+            for (Path entry : stream.collect(Collectors.toList())) {
+                String fileName = entry.getFileName().toString();
+                Path relativeFilePath = Paths.get(filePath, fileName);
+
+                htmlBuilder.append("<li><a href=\"");
+                htmlBuilder.append(relativeFilePath.toString());
+                htmlBuilder.append("\">");
+                htmlBuilder.append(fileName);
+                htmlBuilder.append("</a></li>");
+            }
+        }
+
+        htmlBuilder.append("</ul></body></html>");
+        return htmlBuilder.toString();
     }
 
     public static Boolean isExpiredCookie(Cookie cookie){
@@ -157,7 +192,8 @@ public class HTTPUtils {
     private static boolean isBinaryType(HttpBodyType type) {
         return type == HttpBodyType.PNG || type == HttpBodyType.JPEG || type == HttpBodyType.GIF ||
                type == HttpBodyType.SVG || type == HttpBodyType.PDF || type == HttpBodyType.ZIP ||
-               type == HttpBodyType.TAR || type == HttpBodyType.GZIP || type == HttpBodyType.BZIP2;
+               type == HttpBodyType.TAR || type == HttpBodyType.GZIP || type == HttpBodyType.BZIP2 || 
+               type == HttpBodyType.MP4 || type == HttpBodyType.MPEG || type == HttpBodyType.WAV;
     }
 
     private static String getFileExtension(Path path) {
