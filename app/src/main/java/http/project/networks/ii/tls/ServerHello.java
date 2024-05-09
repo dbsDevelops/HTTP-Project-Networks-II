@@ -65,6 +65,7 @@ public class ServerHello {
 
         // Send certificate
         byte[] encodedCertificate = certificate.getEncoded();
+        out.writeInt(encodedCertificate.length);
         out.write(encodedCertificate);
 
         out.flush();
