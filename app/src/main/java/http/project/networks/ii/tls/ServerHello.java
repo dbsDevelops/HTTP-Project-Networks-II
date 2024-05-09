@@ -2,9 +2,11 @@ package http.project.networks.ii.tls;
 
 import java.io.*;
 import java.net.*;
+import java.security.InvalidKeyException;
 import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
 
 public class ServerHello {
     private ServerSocket serverSocket;
@@ -23,32 +25,51 @@ public class ServerHello {
         this.certificate = certificate;
     }
 
-    public void sendServerHello() throws IOException, CertificateEncodingException {
+    public void processClientHello() throws IOException, InvalidKeyException,
+             CertificateException{
+        // Read TLS version
+        byte major = in.readByte();
+        byte minor = in.readByte();
+
+        System.out.println("ClientHello: TLS version " + major + "." + minor);
+
+        // Read client random
+        byte[] clientRandom = new byte[32];
+        in.readFully(clientRandom);
+
+        // Read cipher suite
+        byte[] cipherSuiteBytes = new byte[in.available()];
+        in.readFully(cipherSuiteBytes);
+        String cipherSuite = new String(cipherSuiteBytes);
+
+        if (serverSupportsCipherSuite(cipherSuite)) {
+            sendServerHello(cipherSuite); //SERVER HELLO with the cipher suite selected
+        } else {
+            System.out.println("Server does not support ClientHello cipher suite " + cipherSuite);
+        }
+    }
+
+    private void sendServerHello(String cipherSuite) throws IOException, InvalidKeyException,
+             CertificateException {
         // TLS version (3.3 for TLSv1.3)
         out.writeByte(3);
         out.writeByte(3);
-    
+
         // Random: 32-byte challenge
         byte[] challenge = new byte[32];
         random.nextBytes(challenge);
         out.write(challenge);
 
-        byte[] cipherSuites = "TLS_AES_128_GCM_SHA256".getBytes();
-        if(serverSupportsCipherSuite("TLS_AES_128_GCM_SHA256")) {
-            out.write(cipherSuites);
-        } else {
-            out.writeBytes("No cipher suites supported");
-        }
+        // Cipher suite: Selected cipher suite
+        out.write(cipherSuite.getBytes());
 
-        // Certificate
-        byte[] cert = certificate.getEncoded();
-        out.write(cert);
+        // Send certificate
+        byte[] encodedCertificate = certificate.getEncoded();
+        out.write(encodedCertificate);
 
-        // ServerHelloDone
-        out.writeByte(0);
-        out.writeByte(0);
         out.flush();
     }
+
 
     private boolean serverSupportsCipherSuite(String cipherSuite) {
         String[] supportedCipherSuites = {
@@ -57,30 +78,33 @@ public class ServerHello {
             "TLS_CHACHA20_POLY1305_SHA256",
             "TLS_AES_128_CCM_SHA256"
         };
-    
+
         for (String supportedCipherSuite : supportedCipherSuites) {
             if (cipherSuite.equals(supportedCipherSuite)) {
                 return true;
             }
         }
-    
+
         return false;
-    } 
+    }
 
     public static void main(String[] args) {
         try {
-            
-            Certificate certificate = null; //Put the certificate
-            ServerHello server = new ServerHello(4433, certificate);
-            server.sendServerHello();
+            // Aquí deberías cargar tu certificado
+            Certificate certificate = null;
+            ServerHello server = new ServerHello(443, certificate);
+            server.processClientHello();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (CertificateEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (CertificateException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 }
-
-
