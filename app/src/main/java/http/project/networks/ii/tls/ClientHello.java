@@ -40,9 +40,9 @@ public class ClientHello {
         out.write(challenge);
 
         //USAR SIEMPRE : TLS_AES_128_GCM_SHA256
-        byte[] cipherSuites = "TLS_AES_128_GCM_SHA256".getBytes();
-    
-        out.writeBytes(cipherSuites.toString());
+        String cipherSuite = "TLS_AES_128_GCM_SHA256";
+        out.writeUTF(cipherSuite);
+        
         out.flush();
     }
 

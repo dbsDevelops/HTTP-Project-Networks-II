@@ -38,9 +38,7 @@ public class ServerHello {
         in.readFully(clientRandom);
 
         // Read cipher suite
-        byte[] cipherSuiteBytes = new byte[in.available()];
-        in.readFully(cipherSuiteBytes);
-        String cipherSuite = new String(cipherSuiteBytes);
+        String cipherSuite = in.readUTF();
 
         if (serverSupportsCipherSuite(cipherSuite)) {
             sendServerHello(cipherSuite); //SERVER HELLO with the cipher suite selected
