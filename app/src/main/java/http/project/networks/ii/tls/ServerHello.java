@@ -62,8 +62,8 @@ public class ServerHello {
         random.nextBytes(challenge);
         out.write(challenge);
 
-        // Cipher suite: Selected cipher suite
-        //out.write(cipherSuite.getBytes());
+        // Cipher suite: Selected cipher suite from the server
+        out.writeUTF(cipherSuite);
 
         // Send certificate
         byte[] encodedCertificate = certificate.getEncoded();
@@ -71,6 +71,8 @@ public class ServerHello {
         out.write(encodedCertificate);
 
         out.flush();
+        
+        System.out.println("ServerHello: Sent ServerHello with cipher suite " + cipherSuite);
     }
 
 
@@ -99,7 +101,7 @@ public class ServerHello {
             InputStream is = new FileInputStream(path.toFile());
             Certificate certificate = factory.generateCertificate(is);
             ServerHello server = new ServerHello(443, certificate);
-            System.out.println("CETIFICADOOOOOOOOOOOOOOOOOOOOOO: "+certificate.toString());
+            //System.out.println("CETIFICADOOOOOOOOOOOOOOOOOOOOOO: "+certificate.toString());
             server.processClientAndServer();
             is.close();
         } catch (IOException e) {
