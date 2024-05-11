@@ -37,14 +37,32 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-jar {
+task jarServerDocker(type: Jar) {
+    archiveBaseName.set('ServerDocker')
     manifest {
         attributes(
-            'Main-Class': application.mainClass.get()
+            'Main-Class': 'http.project.networks.ii.server.ServerDockerApp'
         )
     }
+    from sourceSets.main.output
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE  // Agregar esta línea para excluir duplicados
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
+
+task jarClientCLI(type: Jar) {
+    archiveBaseName.set('ClientCLI')
+    manifest {
+        attributes(
+            'Main-Class': 'http.project.networks.ii.client.ClientCLI'
+        )
+    }
+    from sourceSets.main.output
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+build.dependsOn jarServerDocker, jarClientCLI
