@@ -46,7 +46,7 @@ public class ClientHello {
         out.flush();
     }
 
-    public void handleResponse() {
+    public void validateCertificateFromServer() {
         try {
             // Read TLS version
             byte major = in.readByte();
@@ -59,23 +59,17 @@ public class ClientHello {
             in.readFully(serverRandom);
     
             // Read cipher suite
-            byte[] cipherSuiteBytes = new byte[in.available()];
-            in.readFully(cipherSuiteBytes);
-            String cipherSuite = new String(cipherSuiteBytes);
-    
-            System.out.println("ServerHello: Cipher suite " + cipherSuite);
-    
-            // Read certificate
             int certificateLength = in.readInt();
             byte[] certificateBytes = new byte[certificateLength];
             in.readFully(certificateBytes);
-    
+
             certificate = CertificateFactory.getInstance("X.509")
-                    .generateCertificate(new ByteArrayInputStream(certificateBytes));
+                .generateCertificate(new ByteArrayInputStream(certificateBytes));
     
             //Not valid certificate will throw an exception
             PublicKey publicKey = certificate.getPublicKey();
             validateCertificate(publicKey);
+            System.out.println("Certificate is valid.");
         } catch (IOException | CertificateException | InvalidKeyException | NoSuchAlgorithmException | NoSuchProviderException | SignatureException e) {
             e.printStackTrace();
         }
@@ -96,14 +90,15 @@ public class ClientHello {
     }
     
 
-    public static void main(String[] args) {
-        try {
+    public static void main(String[] args) { 
+        try {    
             ClientHello client = new ClientHello("localhost", 443);
             client.sendClientHello();
-            client.handleResponse();
+            client.validateCertificateFromServer();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
 }
 

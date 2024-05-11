@@ -7,6 +7,9 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 
 public class ServerHello {
     private ServerSocket serverSocket;
@@ -25,8 +28,9 @@ public class ServerHello {
         this.certificate = certificate;
     }
 
-    public void processClientHello() throws IOException, InvalidKeyException,
+    public void processClientAndServer() throws IOException, InvalidKeyException,
              CertificateException{
+                //1. CLIENT HELLO
         // Read TLS version
         byte major = in.readByte();
         byte minor = in.readByte();
@@ -41,7 +45,7 @@ public class ServerHello {
         String cipherSuite = in.readUTF();
 
         if (serverSupportsCipherSuite(cipherSuite)) {
-            sendServerHello(cipherSuite); //SERVER HELLO with the cipher suite selected
+            sendServerHello(cipherSuite); //2. SERVER HELLO with the cipher suite selected
         } else {
             System.out.println("Server does not support ClientHello cipher suite " + cipherSuite);
         }
@@ -59,7 +63,7 @@ public class ServerHello {
         out.write(challenge);
 
         // Cipher suite: Selected cipher suite
-        out.write(cipherSuite.getBytes());
+        //out.write(cipherSuite.getBytes());
 
         // Send certificate
         byte[] encodedCertificate = certificate.getEncoded();
@@ -89,10 +93,15 @@ public class ServerHello {
 
     public static void main(String[] args) {
         try {
-            // Aquí deberías cargar tu certificado
-            Certificate certificate = null;
+            CertificateFactory factory = CertificateFactory.getInstance("X.509");
+            Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certificate.crt");
+            
+            InputStream is = new FileInputStream(path.toFile());
+            Certificate certificate = factory.generateCertificate(is);
             ServerHello server = new ServerHello(443, certificate);
-            server.processClientHello();
+            System.out.println("CETIFICADOOOOOOOOOOOOOOOOOOOOOO: "+certificate.toString());
+            server.processClientAndServer();
+            is.close();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CertificateEncodingException e) {
