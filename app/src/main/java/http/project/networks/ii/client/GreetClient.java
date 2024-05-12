@@ -128,10 +128,12 @@ public class GreetClient {
             cachedData.addData(url.toString(), body);
         }
 
-        this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "
-        System.out.println(this.clientCookies + "\n\n\n--------------------------------------------\n\n");
-        //logger.log(this.clientCookies);
-        response.append(this.clientCookies);
+        if(this.clientCookies != null) {
+            this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "
+            System.out.println(this.clientCookies + "\n\n\n--------------------------------------------\n\n");
+            //logger.log(this.clientCookies);
+            response.append(this.clientCookies);
+        }
     }
 
     public String getResponseString() {
