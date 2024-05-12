@@ -103,12 +103,13 @@ public class ClientHello {
         // Generate pre-master secret
         byte[] preMasterSecret = new byte[48];
         random.nextBytes(preMasterSecret);
+        out.write(preMasterSecret);
+        out.flush();
+
+        //Generate symmetric key
         tlsShared.setClientRandom(this.clientRandom);
         tlsShared.setServerRandom(this.serverRandom);
         tlsShared.generateSymmetricKey(preMasterSecret);
-        
-        out.write(preMasterSecret);
-        out.flush();
         this.symmetricKey = tlsShared.getSymmetricKey();
         System.out.println("Client: Sent pre-master secret and have the symmetric key");
     }

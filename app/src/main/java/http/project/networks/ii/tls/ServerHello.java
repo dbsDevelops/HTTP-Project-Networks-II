@@ -10,6 +10,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.nio.file.Paths;
 import java.nio.file.Path;
+import javax.crypto.SecretKey;
 
 public class ServerHello {
     private ServerSocket serverSocket;
@@ -21,6 +22,7 @@ public class ServerHello {
     private byte[] serverRandom;
     private Certificate certificate;
     private TlsShared tlsShared;
+    private SecretKey symmetricKey;
 
     public ServerHello(int port, Certificate certificate, TlsShared tlsShared) throws IOException {
         serverSocket = new ServerSocket(port);
@@ -82,9 +84,12 @@ public class ServerHello {
     private void receivePremasterSecret() throws Exception {
         byte[] preMasterSecret = new byte[48];
         in.readFully(preMasterSecret);
+
+        // Generate symmetric key
         tlsShared.setClientRandom(this.clientRandom);
         tlsShared.setServerRandom(this.serverRandom);
         tlsShared.generateSymmetricKey(preMasterSecret);
+        this.symmetricKey = tlsShared.getSymmetricKey();
         System.out.println("ServerHello: Received pre-master secret and have the symmetric key");
     }
 
