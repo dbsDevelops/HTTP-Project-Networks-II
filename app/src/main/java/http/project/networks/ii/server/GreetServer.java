@@ -4,13 +4,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.*;
 import java.util.*;
-
+import java.security.InvalidKeyException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import http.project.networks.ii.api.login_api.APILogin;
 import http.project.networks.ii.api.teachers_api.APITeachers;
 import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.logger.Logger;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.responses.Response;
+import http.project.networks.ii.tls.ServerHello;
+import http.project.networks.ii.tls.TlsShared;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.HttpRequestBody;
@@ -25,6 +30,7 @@ public class GreetServer {
     private Path staticFiles;
     private ServerSocket serverSocket;
     private List<Cookie> cookies;
+    private ServerHello serverHello;
     private Logger logger;
 
     // Singleton pattern
@@ -68,11 +74,26 @@ public class GreetServer {
         //     System.exit(-1);
         // }
         try {
+            CertificateFactory factory = CertificateFactory.getInstance("X.509");
+            Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
+            InputStream is = new FileInputStream(path.toFile());
+            Certificate certificate = factory.generateCertificate(is);
+            serverHello = new ServerHello(port, certificate, new TlsShared());
+            serverHello.processClientAndServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        }
+        
+        try {
             serverSocket = new ServerSocket(port);
             System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
             logger.log(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port, Logger.INFO);
             while (running) {
-                handleClientConnection();
+                handleClientConnection(port);
             }
             //logger.close();
         } catch (IOException e) {
@@ -81,8 +102,17 @@ public class GreetServer {
         } 
     }
 
-    public void handleClientConnection() {
+    public void handleClientConnection(int port) {
         try {
+            if(port == 443) {
+                CertificateFactory factory = CertificateFactory.getInstance("X.509");
+                Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
+                InputStream is = new FileInputStream(path.toFile());
+                Certificate certificate = factory.generateCertificate(is);
+                serverHello = new ServerHello(port, certificate, new TlsShared());
+                serverHello.processClientAndServer();
+            }
+            
             Socket clientSocket = serverSocket.accept();
             clientSocket.setKeepAlive(true);
             System.out.println(HTTPUtils.CLIENT_CONNECTED + " from " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
@@ -93,6 +123,12 @@ public class GreetServer {
         } catch (IOException e) {// Break the loop if server is supposed to stop
             System.err.println("Error accepting connection: " + e.getMessage());
             logger.log("Error accepting connection: " + e.getMessage(), Logger.ERROR);
+        } catch (CertificateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 

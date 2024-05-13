@@ -27,7 +27,6 @@ public class ClientApp {
         ClientApp app = new ClientApp();
         //app.testGET("http://localhost/teachers/");
 
-
         // Test Teacher Class
         TeachersClass teachers = new TeachersClass();
         Project project = new Project("Project_6", "Description_1", "Teacher_6", "Student_1", "A", "Completed");

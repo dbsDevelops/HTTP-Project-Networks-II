@@ -7,6 +7,8 @@ import org.checkerframework.checker.units.qual.s;
 import http.project.networks.ii.api.teachers_api.TeachersClass;
 import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.requests.Request;
+import http.project.networks.ii.tls.ClientHello;
+import http.project.networks.ii.tls.TlsShared;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 import http.project.networks.ii.logger.Logger;
 
@@ -22,6 +24,7 @@ public class GreetClient {
     private int port;
     private String clientCookies;
     private StringBuilder response;
+    private ClientHello clientHello;
     // private Logger logger;
     CachedData cachedData;
     URL url;
@@ -47,6 +50,20 @@ public class GreetClient {
     public void sendRequest(URL url, Request request) {
         this.url = url;
         this.host = url.getHost();
+        if(this.port == 443){
+            try {
+                this.clientHello = new ClientHello(this.host, this.port, new TlsShared());
+                clientHello.sendClientHello();
+                clientHello.validateCertificateFromServer();
+                clientHello.sendPremasterSecret();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
         try(Socket socket = new Socket(this.host, this.port)){
             // Add timeout for closing the connection 

@@ -101,7 +101,7 @@ public class ClientHello {
                 }
     }
 
-    private void sendPremasterSecret() throws Exception {
+    public void sendPremasterSecret() throws Exception {
         // Generate pre-master secret
         byte[] preMasterSecret = new byte[48];
         random.nextBytes(preMasterSecret);
