@@ -14,7 +14,9 @@ import java.security.cert.CertificateExpiredException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.CertificateNotYetValidException;
 import java.security.cert.X509Certificate;
+import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
+import org.apache.commons.codec.binary.Hex;
 
 public class ClientHello {
     private Socket socket;
@@ -103,7 +105,13 @@ public class ClientHello {
         // Generate pre-master secret
         byte[] preMasterSecret = new byte[48];
         random.nextBytes(preMasterSecret);
-        out.write(preMasterSecret);
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, certificate.getPublicKey());
+        byte[] encryptedPreMasterSecret = cipher.doFinal(preMasterSecret);
+
+        // Send encrypted pre-master secret
+        out.writeInt(encryptedPreMasterSecret.length);
+        out.write(encryptedPreMasterSecret);
         out.flush();
 
         //Generate symmetric key
@@ -112,6 +120,7 @@ public class ClientHello {
         tlsShared.generateSymmetricKey(preMasterSecret);
         this.symmetricKey = tlsShared.getSymmetricKey();
         System.out.println("Client: Sent pre-master secret and have the symmetric key");
+        System.out.println("\nSymmetric key: " + Hex.encodeHexString(this.symmetricKey.getEncoded()));
     }
     
     public static void main(String[] args) { 

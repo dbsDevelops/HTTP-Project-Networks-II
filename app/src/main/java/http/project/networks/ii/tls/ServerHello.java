@@ -3,14 +3,20 @@ package http.project.networks.ii.tls;
 import java.io.*;
 import java.net.*;
 import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
 import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.nio.file.Paths;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.crypto.SecretKey;
+import org.apache.commons.codec.binary.Hex;
+import javax.crypto.Cipher;
 
 public class ServerHello {
     private ServerSocket serverSocket;
@@ -82,8 +88,15 @@ public class ServerHello {
     }
 
     private void receivePremasterSecret() throws Exception {
-        byte[] preMasterSecret = new byte[48];
-        in.readFully(preMasterSecret);
+        int length = in.readInt();
+        byte[] preMasterSecretCiphered = new byte[length];
+        in.readFully(preMasterSecretCiphered);
+
+        // Decrypt pre-master secret
+        PrivateKey privateKey = getPrivateKey(Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "private_key.der").toAbsolutePath().toString());
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        byte[] preMasterSecret = cipher.doFinal(preMasterSecretCiphered);
 
         // Generate symmetric key
         tlsShared.setClientRandom(this.clientRandom);
@@ -91,6 +104,7 @@ public class ServerHello {
         tlsShared.generateSymmetricKey(preMasterSecret);
         this.symmetricKey = tlsShared.getSymmetricKey();
         System.out.println("ServerHello: Received pre-master secret and have the symmetric key");
+        System.out.println("\nSymmetric key: " + Hex.encodeHexString(this.symmetricKey.getEncoded()));
     }
 
     private boolean serverSupportsCipherSuite(String cipherSuite) {
@@ -111,11 +125,18 @@ public class ServerHello {
         return false;
     }
 
+    private PrivateKey getPrivateKey(String filename) throws Exception {
+        byte[] keyBytes = Files.readAllBytes(Paths.get(filename));
+        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        return kf.generatePrivate(spec);
+    }
+
     public static void main(String[] args) {
         try {
             TlsShared tlsShared = new TlsShared();
             CertificateFactory factory = CertificateFactory.getInstance("X.509");
-            Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certificate.crt");
+            Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
             InputStream is = new FileInputStream(path.toFile());
             Certificate certificate = factory.generateCertificate(is);
             ServerHello server = new ServerHello(443, certificate, tlsShared);
