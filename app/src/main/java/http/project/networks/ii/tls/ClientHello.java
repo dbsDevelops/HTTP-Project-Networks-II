@@ -27,7 +27,7 @@ public class ClientHello {
     private TlsShared tlsShared;
     private byte[] clientRandom;
     private byte[] serverRandom;
-    private SecretKey symmetricKey;
+    public SecretKey symmetricKey;
 
     public ClientHello(String serverName, int port, TlsShared tlsShared) throws IOException {
         socket = new Socket(serverName, port);

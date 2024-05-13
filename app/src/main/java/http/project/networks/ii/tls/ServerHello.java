@@ -28,7 +28,7 @@ public class ServerHello {
     private byte[] serverRandom;
     private Certificate certificate;
     private TlsShared tlsShared;
-    private SecretKey symmetricKey;
+    public SecretKey symmetricKey;
 
     public ServerHello(int port, Certificate certificate, TlsShared tlsShared) throws IOException {
         serverSocket = new ServerSocket(port);
