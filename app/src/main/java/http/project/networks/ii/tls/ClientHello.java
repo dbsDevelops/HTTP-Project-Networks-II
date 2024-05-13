@@ -50,7 +50,7 @@ public class ClientHello {
         out.write(this.clientRandom);
 
         // Cipher suite
-        String cipherSuite = "TLS_AES_256_GCM_SHA384";
+        String cipherSuite = "TLS_RSA_WITH_AES_128_CBC_SHA";
         out.writeUTF(cipherSuite);
         
         out.flush();
