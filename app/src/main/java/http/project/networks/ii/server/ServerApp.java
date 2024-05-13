@@ -6,7 +6,7 @@ public class ServerApp {
 
     public static void main(String[] args) {
         GreetServer gs = new GreetServer("app/src/main/java/http/project/networks/ii/static_resources");
-        gs.initServer(HTTPUtils.HTTP_PORT);
+        gs.initServer(HTTPUtils.HTTPS_PORT);
     }
 
 }

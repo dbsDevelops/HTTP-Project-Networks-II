@@ -73,20 +73,6 @@ public class GreetServer {
         //     System.err.println(HTTPUtils.COULD_NOT_LISTEN_ON_PORT + port);
         //     System.exit(-1);
         // }
-        try {
-            CertificateFactory factory = CertificateFactory.getInstance("X.509");
-            Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
-            InputStream is = new FileInputStream(path.toFile());
-            Certificate certificate = factory.generateCertificate(is);
-            serverHello = new ServerHello(port, certificate, new TlsShared());
-            serverHello.processClientAndServer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        }
         
         try {
             serverSocket = new ServerSocket(port);
@@ -109,10 +95,11 @@ public class GreetServer {
                 Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
                 InputStream is = new FileInputStream(path.toFile());
                 Certificate certificate = factory.generateCertificate(is);
-                serverHello = new ServerHello(port, certificate, new TlsShared());
+                serverHello = new ServerHello(port, certificate, new TlsShared(), serverSocket.accept());
                 serverHello.processClientAndServer();
+                is.close();
+                serverHello.receivePremasterSecret();
             }
-            
             Socket clientSocket = serverSocket.accept();
             clientSocket.setKeepAlive(true);
             System.out.println(HTTPUtils.CLIENT_CONNECTED + " from " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
@@ -127,6 +114,9 @@ public class GreetServer {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (InvalidKeyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

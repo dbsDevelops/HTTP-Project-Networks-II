@@ -19,7 +19,6 @@ import org.apache.commons.codec.binary.Hex;
 import javax.crypto.Cipher;
 
 public class ServerHello {
-    private ServerSocket serverSocket;
     private Socket socket;
     private DataOutputStream out;
     private DataInputStream in;
@@ -30,9 +29,8 @@ public class ServerHello {
     private TlsShared tlsShared;
     public SecretKey symmetricKey;
 
-    public ServerHello(int port, Certificate certificate, TlsShared tlsShared) throws IOException {
-        serverSocket = new ServerSocket(port);
-        socket = serverSocket.accept();
+    public ServerHello(int port, Certificate certificate, TlsShared tlsShared, Socket s) throws IOException {
+        this.socket = s;
         out = new DataOutputStream(socket.getOutputStream());
         in = new DataInputStream(socket.getInputStream());
         random = new SecureRandom();
@@ -87,7 +85,7 @@ public class ServerHello {
         System.out.println("ServerHello: Sent ServerHello with cipher suite " + cipherSuite);
     }
 
-    private void receivePremasterSecret() throws Exception {
+    public void receivePremasterSecret() throws Exception {
         int length = in.readInt();
         byte[] preMasterSecretCiphered = new byte[length];
         in.readFully(preMasterSecretCiphered);
@@ -139,17 +137,14 @@ public class ServerHello {
             Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
             InputStream is = new FileInputStream(path.toFile());
             Certificate certificate = factory.generateCertificate(is);
-            ServerHello server = new ServerHello(443, certificate, tlsShared);
+            //ServerHello server = new ServerHello(443, certificate, tlsShared);
             //System.out.println("CETIFICADOOOOOOOOOOOOOOOOOOOOOO: "+certificate.toString());
-            server.processClientAndServer();
+            //server.processClientAndServer();
             is.close();
-            server.receivePremasterSecret();
+            //server.receivePremasterSecret();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CertificateEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (CertificateException e) {
