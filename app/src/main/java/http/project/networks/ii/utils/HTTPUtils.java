@@ -17,6 +17,11 @@ import java.util.stream.Stream;
 
 import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.requests.Request;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKey; // Import the SecretKey class
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class HTTPUtils {
 
@@ -201,6 +206,23 @@ public class HTTPUtils {
         int dotIndex = fileName.lastIndexOf('.');
         if (dotIndex == -1) return "";
         return fileName.substring(dotIndex + 1).toLowerCase();
+    }
+
+    public String encryptMessage(String message, SecretKey symmetricKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        SecretKeySpec secretKey = new SecretKeySpec(symmetricKey.getEncoded(), "AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        byte[] encryptedMessage = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
+        return Base64.getEncoder().encodeToString(encryptedMessage); //To avoid socket issues
+    }
+
+    public String decryptMessage(String encryptedMessage, SecretKey symmetricKey) throws Exception {
+        byte[] bytes = Base64.getDecoder().decode(encryptedMessage);
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        SecretKeySpec secretKey = new SecretKeySpec(symmetricKey.getEncoded(), "AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        byte[] decryptedMessage = cipher.doFinal(bytes);
+        return new String(decryptedMessage, StandardCharsets.UTF_8);
     }
 
 }
