@@ -66,4 +66,14 @@ task jarClientCLI(type: Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
+javadoc {
+    source = sourceSets.main.allJava
+    classpath += configurations.runtimeClasspath
+    destinationDir = file("$buildDir/docs/javadoc")
+    options.memberLevel = JavadocMemberLevel.PUBLIC
+    options.author = true
+    options.version = true
+    options.links("https://docs.oracle.com/javase/8/docs/api/")
+}
+
 build.dependsOn jarServerDocker, jarClientCLI

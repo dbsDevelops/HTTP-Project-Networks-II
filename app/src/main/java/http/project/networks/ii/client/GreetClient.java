@@ -47,6 +47,11 @@ public class GreetClient {
         //this.logger = new Logger("client");
     }
 
+    /**
+     * Method that sends a request to a specified server hostname
+     * @param url where you want to send your request
+     * @param request the request you want to send to the server
+     */
     public void sendRequest(URL url, Request request) {
         this.url = url;
         this.host = url.getHost();
