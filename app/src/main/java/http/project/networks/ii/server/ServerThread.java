@@ -1,5 +1,6 @@
 package http.project.networks.ii.server;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.utils.HTTPUtils;
@@ -19,13 +20,20 @@ public class ServerThread extends Thread {
     }
 
     @Override 
-    public void run() {      
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))){
+    public void run() {
+        InputStream clientInputStream = null;
+        try {
+            clientInputStream = clientSocket.getInputStream();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(clientInputStream))){
             while(keepAlive) { //Connection: keep-alive
                 String requestString = "";
                 if(!clientSocket.isClosed()) {
                     if(server.port == HTTPUtils.HTTPS_PORT) {
-                        requestString = HTTPUtils.decryptMessage(server.readBase64String(in), server.serverHello.symmetricKey);
+                        requestString = HTTPUtils.decryptMessage(server.readBase64String(in).getBytes(StandardCharsets.UTF_8), server.serverHello.symmetricKey);
                     } else {
                         requestString = server.handleRequest(in);
                     }

@@ -1,5 +1,7 @@
 package http.project.networks.ii.server;
 import java.net.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.*;
@@ -154,11 +156,12 @@ public class GreetServer {
         logger.log(HTTPUtils.RESPONSE + response, Logger.INFO);
 
         // Write the output to the client
-        clientOutput.write(response.toString().getBytes());
+        byte[] responseBytes = response.toString().getBytes(StandardCharsets.UTF_8);
         //If the body has binary content, we sent it directly
         if(response.getBodyContent() == null && response.getBinaryContent() != null) {
-            clientOutput.write(response.getBinaryContent());
+            responseBytes = concatByteArrays(responseBytes, response.getBinaryContent());
         }
+        clientOutput.write(handleResponse(responseBytes));
     
         // Clean the output and close the stream
         clientOutput.flush();
@@ -259,15 +262,27 @@ public class GreetServer {
         }
     }
 
-    private String handleResponse(Response response) {
-        if(this.port == HTTPUtils.HTTPS_PORT) {
+    private byte[] handleResponse(byte[] response) {
+        if (this.port == HTTPUtils.HTTPS_PORT) {
             try {
-                return HTTPUtils.encryptMessage(response.toString(), serverHello.symmetricKey);
+                String encryptedResponse = HTTPUtils.encryptMessage(response, serverHello.symmetricKey);
+                return encryptedResponse.getBytes(StandardCharsets.UTF_8);  
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return response.toString();
+        return response;
     }
+    
+
+    private byte[] concatByteArrays(byte[] array1, byte[] array2) {
+        byte[] result = new byte[array1.length + array2.length];
+    
+        System.arraycopy(array1, 0, result, 0, array1.length);
+        System.arraycopy(array2, 0, result, array1.length, array2.length);
+    
+        return result;
+    }
+    
 }
 

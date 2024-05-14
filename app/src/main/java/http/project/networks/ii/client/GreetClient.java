@@ -1,5 +1,6 @@
 package http.project.networks.ii.client;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.crypto.SecretKey;
@@ -26,7 +27,7 @@ public class GreetClient {
     private String host;
     private int port;
     private String clientCookies;
-    private StringBuilder response;
+    private StringBuilder responseBuilder;
     private ClientHello clientHello;
     // private Logger logger;
     CachedData cachedData;
@@ -36,7 +37,7 @@ public class GreetClient {
         this.host = "";
         this.port = port;
         this.clientCookies = null;
-        this.response = new StringBuilder();
+        this.responseBuilder = new StringBuilder();
         this.cachedData = cachedData;
         //this.logger = new Logger("client");
     }
@@ -45,7 +46,7 @@ public class GreetClient {
         this.host = "";
         this.port = port;
         this.clientCookies = null;
-        this.response = new StringBuilder();
+        this.responseBuilder = new StringBuilder();
         this.cachedData = new CachedData();
         //this.logger = new Logger("client");
     }
@@ -58,7 +59,7 @@ public class GreetClient {
     public void sendRequest(URL url, Request request) {
         this.url = url;
         this.host = url.getHost();
-        if(this.port == 443){
+        if(this.port == HTTPUtils.HTTPS_PORT){
             try {
                 this.clientHello = new ClientHello(this.host, this.port, new TlsShared());
                 clientHello.sendClientHello();
@@ -86,8 +87,8 @@ public class GreetClient {
                 request.addCookies(this.clientCookies);
             }
 
-            if(port == 443) {
-                pw.println(HTTPUtils.encryptMessage(request.toString(), clientHello.symmetricKey));
+            if(port == HTTPUtils.HTTPS_PORT) {
+                pw.println(HTTPUtils.encryptMessage(request.toString().getBytes(StandardCharsets.UTF_8), clientHello.symmetricKey));
             } else {
                 pw.println(request.toString());
             }
@@ -107,69 +108,95 @@ public class GreetClient {
         } 
     }
 
-    public void readResponse(InputStream is) throws IOException {
+    public void readResponse(InputStream is) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        StringBuilder responseRaw = new StringBuilder();
+        String line;
+    
+        // Read the response
+        if(port == HTTPUtils.HTTPS_PORT){
+            while ((line = br.readLine()) != null) {
+                responseRaw.append(line);
+            }
+        } else {
+            while ((line = br.readLine()) != null) {
+                responseRaw.append(line);
+                responseRaw.append("\n");
+            }
+        }
+        //Check if TLS is used, if not the response is not cyphered
+        String response;
+        if(port == HTTPUtils.HTTPS_PORT) {
+            response = HTTPUtils.decryptMessage(responseRaw.toString().getBytes(StandardCharsets.UTF_8), clientHello.symmetricKey);
+        } else {
+            response = responseRaw.toString();
+        }
+    
+        // Process the response
+        processResponse(response);
+    }
+    
+    public void processResponse(String decryptedResponse) throws IOException {
+        BufferedReader br = new BufferedReader(new StringReader(decryptedResponse));
         Boolean firstCookieField = true;
         String responseLine = "";
-        // Reset the response
-        response.setLength(RESET_RESPONSE);
+        responseBuilder.setLength(RESET_RESPONSE);
         
         responseLine = br.readLine();
-        response.append(responseLine + "\n");
-
+        responseBuilder.append(responseLine + "\n");
+    
         Boolean bodystarted = false;
-
-        String body = "";
-
-        if(response.toString().contains("HTTP/1.1 304 Not Modified")){
+        StringBuilder body = new StringBuilder();
+    
+        if(responseBuilder.toString().contains("HTTP/1.1 304 Not Modified")){
             if (!cachedData.containsKey(url.toString())) {
                 System.out.println("Resource has not been cached before");
             }
-            else{
+            else {
                 String data = cachedData.getData(url.toString());
                 System.out.println("Data from cache: \n" + data + "\n");
             }
         }
-
+    
         while (responseLine != null) {
-
-            if(bodystarted){
-                body += responseLine;
+            if(bodystarted) {
+                body.append(responseLine);
             }
-
+    
             if (responseLine.isEmpty()) {
                 bodystarted = true;
             }
-
+    
             System.out.println(responseLine);
-            //logger.log(responseLine);
             responseLine = br.readLine();
-            response.append(responseLine + "\n");
-            if(isCookieField(responseLine)) {
-                if(firstCookieField) {
-                    this.clientCookies = HttpRequestHeaders.COOKIE.getHeader() + ": "; //Initialize the client cookies
-                    firstCookieField = false;
+            if (responseLine != null) {
+                responseBuilder.append(responseLine + "\n");
+                if(isCookieField(responseLine)) {
+                    if(firstCookieField) {
+                        this.clientCookies = HttpRequestHeaders.COOKIE.getHeader() + ": ";
+                        firstCookieField = false;
+                    }
+                    addServerCookiesToClient(responseLine);
                 }
-                addServerCookiesToClient(responseLine); //Put all cookies sent by the server in the client
             }
         }
         
         if(bodystarted){
             if (cachedData.containsKey(url.toString())) 
                 cachedData.removeData(url.toString());
-            cachedData.addData(url.toString(), body);
+            cachedData.addData(url.toString(), body.toString());
         }
-
+    
         if(this.clientCookies != null) {
-            this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2); //Remove the last "; "
+            this.clientCookies = this.clientCookies.substring(0, this.clientCookies.length()-2);
             System.out.println(this.clientCookies + "\n\n\n--------------------------------------------\n\n");
-            //logger.log(this.clientCookies);
-            response.append(this.clientCookies);
+            responseBuilder.append(this.clientCookies);
         }
     }
+    
 
     public String getResponseString() {
-        return this.response.toString();
+        return this.responseBuilder.toString();
     }
 
     private boolean isCookieField(String field) {
