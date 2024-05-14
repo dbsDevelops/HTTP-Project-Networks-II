@@ -118,16 +118,8 @@ public class Request {
     }
 
     public static Request parse(String request) {
-        String[] lines = request.split("\n");
-        //System.out.println(lines[0]);
-        String hostname = lines[1].split(" ")[1];
-        //System.out.println(lines[1].split(" ")[0]);
-        System.out.println(hostname);
-        //System.out.println(lines[2]);
-        StringBuilder strBuild = new StringBuilder();
+        String[] lines = request.split("\r\n");
         String[] firstLine = lines[0].split(" ");
-        strBuild.append("http://").append(hostname).append(firstLine[1]);
-        System.out.println(strBuild.toString());
 
         for (String firslineElement : firstLine) {
             firslineElement = firslineElement.split("\n")[0];
@@ -137,7 +129,6 @@ public class Request {
 
         URL url = null;
         try {
-            System.out.println("Begin URL");
             url = new URL("http://" + lines[1].split(" ")[1] + firstLine[1]);
         } catch (MalformedURLException e) {
             e.printStackTrace();

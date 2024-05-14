@@ -22,19 +22,18 @@ public class ServerThread extends Thread {
     public void run() {      
         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))){
             while(keepAlive) { //Connection: keep-alive
-                String requestString;
-                if(server.port == HTTPUtils.HTTPS_PORT) {
-                    requestString = HTTPUtils.decryptMessage(server.readBase64String(in), server.serverHello.symmetricKey);
-                } else {
-                    requestString = "";
-                    if(!clientSocket.isClosed()) {
+                String requestString = "";
+                if(!clientSocket.isClosed()) {
+                    if(server.port == HTTPUtils.HTTPS_PORT) {
+                        requestString = HTTPUtils.decryptMessage(server.readBase64String(in), server.serverHello.symmetricKey);
+                    } else {
                         requestString = server.handleRequest(in);
                     }
-                    if (requestString.isEmpty()) {
-                        break;
-                    }
                 }
-                System.out.println(requestString);
+                if (requestString.isEmpty()) {
+                    break;
+                }
+                
                 //SEND RESPONSE
                 OutputStream clientOutput = clientSocket.getOutputStream();
                 Request request = Request.parse(requestString);
