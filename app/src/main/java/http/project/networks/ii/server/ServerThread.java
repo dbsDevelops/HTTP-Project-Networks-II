@@ -2,6 +2,7 @@ package http.project.networks.ii.server;
 import java.net.*;
 
 import http.project.networks.ii.requests.Request;
+import http.project.networks.ii.utils.HTTPUtils;
 
 import java.io.*;
 
@@ -21,13 +22,19 @@ public class ServerThread extends Thread {
     public void run() {      
         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))){
             while(keepAlive) { //Connection: keep-alive
-                String requestString = "";
-                if(!clientSocket.isClosed()) {
-                    requestString = server.handleRequest(in);
+                String requestString;
+                if(server.port == HTTPUtils.HTTPS_PORT) {
+                    requestString = HTTPUtils.decryptMessage(server.readBase64String(in), server.serverHello.symmetricKey);
+                } else {
+                    requestString = "";
+                    if(!clientSocket.isClosed()) {
+                        requestString = server.handleRequest(in);
+                    }
+                    if (requestString.isEmpty()) {
+                        break;
+                    }
                 }
-                if (requestString.isEmpty()) {
-                    break;
-                } 
+                System.out.println(requestString);
                 //SEND RESPONSE
                 OutputStream clientOutput = clientSocket.getOutputStream();
                 Request request = Request.parse(requestString);

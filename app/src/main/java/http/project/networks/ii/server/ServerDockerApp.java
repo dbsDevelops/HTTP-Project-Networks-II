@@ -10,8 +10,8 @@ public class ServerDockerApp {
         if (staticFilesDir == null) {
             staticFilesDir = "/HTTP-Project-Networks-II/app/src/main/java/http/project/networks/ii/static_resources";
         }
-        GreetServer gs = new GreetServer(staticFilesDir);
-        gs.initServer(HTTPUtils.HTTP_PORT);
+        GreetServer gs = new GreetServer(staticFilesDir, HTTPUtils.HTTP_PORT);
+        gs.initServer();
     }
 
 }

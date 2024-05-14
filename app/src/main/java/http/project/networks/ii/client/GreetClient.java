@@ -2,6 +2,8 @@ package http.project.networks.ii.client;
 import java.net.*;
 import java.util.List;
 
+import javax.crypto.SecretKey;
+
 import org.checkerframework.checker.units.qual.s;
 
 import http.project.networks.ii.api.teachers_api.TeachersClass;
@@ -9,6 +11,7 @@ import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.tls.ClientHello;
 import http.project.networks.ii.tls.TlsShared;
+import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 import http.project.networks.ii.logger.Logger;
 
@@ -83,7 +86,11 @@ public class GreetClient {
                 request.addCookies(this.clientCookies);
             }
 
-            pw.println(request.toString());
+            if(port == 443) {
+                pw.println(HTTPUtils.encryptMessage(request.toString(), clientHello.symmetricKey));
+            } else {
+                pw.println(request.toString());
+            }
 
             // Handling the server response:
             InputStream is = socket.getInputStream();
@@ -94,6 +101,9 @@ public class GreetClient {
         } catch(IOException e){
             System.err.println(IO_ERROR + e.getMessage());
             //logger.log(IO_ERROR + e.getMessage());
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         } 
     }
 

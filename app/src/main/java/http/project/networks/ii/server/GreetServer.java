@@ -4,6 +4,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.*;
 import java.util.*;
+
+import javax.crypto.SecretKey;
+
 import java.security.InvalidKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
@@ -30,11 +33,12 @@ public class GreetServer {
     private Path staticFiles;
     private ServerSocket serverSocket;
     private List<Cookie> cookies;
-    private ServerHello serverHello;
+    ServerHello serverHello;
     private Logger logger;
+    int port;
 
     // Singleton pattern
-    public GreetServer(String staticFilesPath) {
+    public GreetServer(String staticFilesPath, int port) {
         this.apiTeachers = new APITeachers();
         this.apiLogin = new APILogin();
         this.apiTeachers.initialiseTeachersMockData();
@@ -49,6 +53,7 @@ public class GreetServer {
             cookies.add(new Cookie());
         }
         this.logger = new Logger("server_log_");
+        this.port = port;
     }
 
     public Logger getLogger() {
@@ -59,7 +64,7 @@ public class GreetServer {
         this.logger = logger;
     }   
 
-    public void initServer(int port) {
+    public void initServer() {
         // try (ServerSocket serverSocket = new ServerSocket(port)) {
         //     System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
         //     while (running) {
@@ -75,27 +80,27 @@ public class GreetServer {
         // }
         
         try {
-            serverSocket = new ServerSocket(port);
-            System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
-            logger.log(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port, Logger.INFO);
+            serverSocket = new ServerSocket(this.port);
+            System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + this.port);
+            logger.log(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + this.port, Logger.INFO);
             while (running) {
-                handleClientConnection(port);
+                handleClientConnection();
             }
             //logger.close();
         } catch (IOException e) {
-            System.err.println("Could not listen on port " + port + ": " + e.getMessage());
-            logger.log("Could not listen on port " + port + ": " + e.getMessage(), Logger.ERROR);
+            System.err.println("Could not listen on port " + this.port + ": " + e.getMessage());
+            logger.log("Could not listen on port " + this.port + ": " + e.getMessage(), Logger.ERROR);
         } 
     }
 
-    public void handleClientConnection(int port) {
+    public void handleClientConnection() {
         try {
-            if(port == 443) {
+            if(this.port == 443) {
                 CertificateFactory factory = CertificateFactory.getInstance("X.509");
                 Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
                 InputStream is = new FileInputStream(path.toFile());
                 Certificate certificate = factory.generateCertificate(is);
-                serverHello = new ServerHello(port, certificate, new TlsShared(), serverSocket.accept());
+                serverHello = new ServerHello(this.port, certificate, new TlsShared(), serverSocket.accept());
                 serverHello.processClientAndServer();
                 is.close();
                 serverHello.receivePremasterSecret();
@@ -173,18 +178,20 @@ public class GreetServer {
                 contentLength = Integer.parseInt(line.substring(16).trim());
             }
         }
-    
-        // Read the blank line following the headers
-        requestBuilder.append(HTTPUtils.NEW_LINE_CHARACTER);
-    
         // If there's content to read, read it
         if (contentLength > 0) {
+            // Read the blank line following the headers
+            requestBuilder.append(HTTPUtils.NEW_LINE_CHARACTER);
             char[] body = new char[contentLength];
             int bytesRead = br.read(body, 0, contentLength);
             requestBuilder.append(body, 0, bytesRead);
         }
     
         return requestBuilder.toString();
+    }
+
+    public String readBase64String(BufferedReader reader) throws IOException {
+        return reader.readLine();
     }
     
 

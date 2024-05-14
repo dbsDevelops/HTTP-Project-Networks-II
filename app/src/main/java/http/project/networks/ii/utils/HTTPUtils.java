@@ -208,15 +208,16 @@ public class HTTPUtils {
         return fileName.substring(dotIndex + 1).toLowerCase();
     }
 
-    public String encryptMessage(String message, SecretKey symmetricKey) throws Exception {
+    public static String encryptMessage(String message, SecretKey symmetricKey) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         SecretKeySpec secretKey = new SecretKeySpec(symmetricKey.getEncoded(), "AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] encryptedMessage = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
+        System.out.println(Base64.getEncoder().encodeToString(encryptedMessage));
         return Base64.getEncoder().encodeToString(encryptedMessage); //To avoid socket issues
     }
 
-    public String decryptMessage(String encryptedMessage, SecretKey symmetricKey) throws Exception {
+    public static String decryptMessage(String encryptedMessage, SecretKey symmetricKey) throws Exception {
         byte[] bytes = Base64.getDecoder().decode(encryptedMessage);
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         SecretKeySpec secretKey = new SecretKeySpec(symmetricKey.getEncoded(), "AES");
