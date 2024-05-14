@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import http.project.networks.ii.headers.RequestHeaders;
+import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.HttpRequestBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
@@ -117,8 +118,13 @@ public class Request {
         this.headers.getHeaders().add(cookiesClient);
     }
 
-    public static Request parse(String request) {
-        String[] lines = request.split("\r\n");
+    public static Request parse(String request, int port) {
+        String[] lines;
+        if(port == HTTPUtils.HTTPS_PORT) {
+            lines = request.split("\r\n");
+        } else {
+            lines = request.split("\n");
+        }
         String[] firstLine = lines[0].split(" ");
 
         for (String firslineElement : firstLine) {

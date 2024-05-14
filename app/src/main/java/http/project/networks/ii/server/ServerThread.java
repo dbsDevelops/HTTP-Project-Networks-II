@@ -36,7 +36,7 @@ public class ServerThread extends Thread {
                 
                 //SEND RESPONSE
                 OutputStream clientOutput = clientSocket.getOutputStream();
-                Request request = Request.parse(requestString);
+                Request request = Request.parse(requestString, server.port);
 
                 //System.out.println("Request without parse: \n" + requestString);
                 System.out.println("Request: \n" + request.toString());
