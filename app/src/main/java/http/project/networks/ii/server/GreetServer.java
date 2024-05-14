@@ -258,5 +258,16 @@ public class GreetServer {
             this.cookies.add(cookie);
         }
     }
+
+    private String handleResponse(Response response) {
+        if(this.port == HTTPUtils.HTTPS_PORT) {
+            try {
+                return HTTPUtils.encryptMessage(response.toString(), serverHello.symmetricKey);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return response.toString();
+    }
 }
 

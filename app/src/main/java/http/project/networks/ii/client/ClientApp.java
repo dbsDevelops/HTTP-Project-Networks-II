@@ -79,7 +79,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
+            client = new GreetClient(HTTPUtils.HTTPS_PORT, cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
