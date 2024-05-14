@@ -67,25 +67,3 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - name: Generate Javadoc
-      run: ./gradlew javadoc
-
-    - name: Upload Javadoc Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: javadoc
-        path: build/docs/javadoc/
-
-    - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v4
-      with:
-        artifact_name: javadoc
-        preview: false
