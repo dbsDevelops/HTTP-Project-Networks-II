@@ -33,18 +33,16 @@ public class GreetClient {
     CachedData cachedData;
     URL url;
 
-    public GreetClient(int port, CachedData cachedData) {
+    public GreetClient(CachedData cachedData) {
         this.host = "";
-        this.port = port;
         this.clientCookies = null;
         this.response = new StringBuilder();
         this.cachedData = cachedData;
         //this.logger = new Logger("client");
     }
 
-    public GreetClient(int port) {
+    public GreetClient() {
         this.host = "";
-        this.port = port;
         this.clientCookies = null;
         this.response = new StringBuilder();
         this.cachedData = new CachedData();
@@ -59,6 +57,7 @@ public class GreetClient {
     public void sendRequest(URL url, Request request) {
         this.url = url;
         this.host = url.getHost();
+        this.port = HTTPUtils.selectPortBasedOnProtocol(url); //Get the port based on the protocol URL
         if(this.port == 443){
             try {
                 this.clientHello = new ClientHello(this.host, this.port, new TlsShared());

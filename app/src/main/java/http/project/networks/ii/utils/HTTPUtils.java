@@ -104,23 +104,23 @@ public class HTTPUtils {
      * @param url the url where the information is going to be sent by the client
      * @return the port where the url is pointing to. If somthing goes wrong, -1 will be returned
      */
-    public static int selectOperatingPort(URL url) {
-
-        if(url.getPort() != PORT_NOT_SET) { //The method returns -1 if the port is not set with the ":" in the URL
-            return url.getPort();
+    public static int selectPortBasedOnProtocol(URL url) {
+        int port = -1; // Valor predeterminado si algo va mal
+    
+        String protocol = url.getProtocol(); // Obtiene el protocolo de la URL (http o https)
+    
+        if(url.getPort() != -1) {
+            return url.getPort(); //If port is specified with the : return this port
         }
 
-        int port = PORT_NOT_SET;
-        String host = url.getHost(); //Returns an IP of the form http/s://whatever
-        String[] split = host.split(URL_SPLIT_CHARACTER);
-        if(split[URL_PROTOCOL].equals(HTTP_STRING)) {
-            port = HTTPUtils.HTTP_PORT;
+        if(protocol.equals("http")) {
+            port = url.getPort() != -1 ? url.getPort() : HTTPUtils.HTTP_PORT;
         }
-        else if(split[URL_PROTOCOL].equals(HTTPS_STRING)) {
-            port = HTTPUtils.HTTPS_PORT;
+        else if(protocol.equals("https")) {
+            port = url.getPort() != -1 ? url.getPort() : HTTPUtils.HTTPS_PORT;
         }
+    
         return port;
-
     }
 
     public static HttpRequestBody createRequestBodyFromFile(String localPath, String filePath) throws IOException {

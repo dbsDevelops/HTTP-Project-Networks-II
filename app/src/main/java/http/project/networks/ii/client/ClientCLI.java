@@ -38,7 +38,7 @@ public class ClientCLI {
 
         try {
             URL url = new URL(urlString);
-            GreetClient client = new GreetClient(HTTPUtils.HTTP_PORT);
+            GreetClient client = new GreetClient();
             RequestHeaders requestHeaders = new RequestHeaders(url);
             for (Object header : headers) {
                 String[] splitHeader = ((String) header).split(":");

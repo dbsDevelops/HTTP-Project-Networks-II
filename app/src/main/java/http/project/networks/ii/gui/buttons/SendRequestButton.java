@@ -46,7 +46,7 @@ public class SendRequestButton extends JButton {
 
     public void sendRequest() {
         try {
-            GreetClient greetClient = new GreetClient(portField.getPort());
+            GreetClient greetClient = new GreetClient();
             System.out.println("Port: " + portField.getPort());
             URL url = new URL(hostField.getHost());
             System.out.println("Host: " + hostField.getHost());

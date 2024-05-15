@@ -79,7 +79,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
+            client = new GreetClient(cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -106,7 +106,7 @@ public class ClientApp {
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.JSON;                                            //Body type
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient();
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -133,7 +133,7 @@ public class ClientApp {
             headers = new RequestHeaders(url);                                          //Headers
             bodyType = HttpBodyType.JSON;                                            //Body type
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient();
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -162,7 +162,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient();
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -191,7 +191,7 @@ public class ClientApp {
             bodyType = HttpBodyType.JSON;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT);
+            client = new GreetClient();
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
@@ -221,7 +221,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
+            client = new GreetClient(cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
