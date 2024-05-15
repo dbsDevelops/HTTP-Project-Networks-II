@@ -52,6 +52,7 @@ public class ClientCLI {
             Request request = new Request(verb, url, "HTTP/1.1", requestHeaders, bodyType, data != null ? data : "");
             
             client.sendRequest(url, request);
+            client.getResponseString();
         } catch (MalformedURLException e) {
             System.err.println("Invalid URL: " + urlString);
         } catch (IllegalArgumentException e) {

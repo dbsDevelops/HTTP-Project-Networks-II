@@ -37,7 +37,7 @@ public class ClientApp {
 
         String gsonTeacher = gson.toJson(teachers);
 
-        app.testGET("http://localhost/");
+        app.testGET("http://testredes.free.beeceptor.com/cats.txt");
 
         //app.testPOST("http://localhost/teachers", gsonTeacher);
 
@@ -79,7 +79,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(HTTPUtils.HTTPS_PORT, cachedData);
+            client = new GreetClient(HTTPUtils.HTTP_PORT, cachedData);
             //Send the request
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
