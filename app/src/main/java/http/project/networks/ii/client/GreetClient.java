@@ -86,7 +86,7 @@ public class GreetClient {
                 request.addCookies(this.clientCookies);
             }
 
-            if(port == 443) {
+            if(port == HTTPUtils.HTTPS_PORT) {
                 pw.println(HTTPUtils.encryptMessage(request.toString().getBytes(StandardCharsets.UTF_8), clientHello.symmetricKey));
             } else {
                 pw.println(request.toString());
