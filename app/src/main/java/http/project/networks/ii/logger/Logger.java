@@ -5,7 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public class Logger {
 
     private static final String DATE_FORMAT = "yyyy-MM-dd_HH_mm_ss";
     private static final String USER_DIR_PROPERTY = "user.dir";
-    private static final String DIRECTORY_PATH = "/app/src/main/java/http/project/networks/ii/logger/logs/";
+    private static final String DIRECTORY_PATH = Paths.get(System.getProperty(USER_DIR_PROPERTY), "app", "src", "main", "java", "http", "project", "networks", "ii", "logger", "loggs").toString();
     private static final String LOG_FILE_EXTENSION = ".txt";
 
     private static final String ANSI_RESET = "\u001B[0m";
@@ -38,7 +39,7 @@ public class Logger {
         simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
         dateText = simpleDateFormat.format(new Date());
         try {
-            this.fileOutputStream = new FileOutputStream(System.getProperty(USER_DIR_PROPERTY) + DIRECTORY_PATH + logPath + dateText + LOG_FILE_EXTENSION, true);
+            this.fileOutputStream = new FileOutputStream(logPath + dateText + LOG_FILE_EXTENSION, true);
             this.outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block

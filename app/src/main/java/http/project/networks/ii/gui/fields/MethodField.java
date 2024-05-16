@@ -10,15 +10,21 @@ public class MethodField {
 
     JLabel methodLabel;
     JComboBox<String> methodComboBox;
+    BodyField bodyField;
 
     public MethodField() {
         super();
         methodLabel = new JLabel(GuiUtils.METHOD_STRING);
         methodComboBox = new JComboBox<>();
+        bodyField = new BodyField();
         for (Verbs method: Verbs.values()) {
             methodComboBox.addItem(method.toString());
+            methodComboBox.addItemListener(
+                new MethodComboBoxListener(method.toString(), bodyField));
         }
     }
+
+    
 
     public JLabel getMethodLabel() {
         return methodLabel;

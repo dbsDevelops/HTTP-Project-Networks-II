@@ -3,11 +3,13 @@ package http.project.networks.ii.gui.panels;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
 import http.project.networks.ii.gui.buttons.AddHeadersButton;
 import http.project.networks.ii.gui.dialogs.HeadersDialog;
+import http.project.networks.ii.gui.fields.BodyField;
 import http.project.networks.ii.gui.fields.BodyTypeField;
 import http.project.networks.ii.gui.fields.HostField;
 import http.project.networks.ii.gui.fields.MethodField;
@@ -29,6 +31,7 @@ public class RequestControlsPanel extends JPanel {
     private transient HostField hostField;
     private transient PortField portField;
     private transient BodyTypeField bodyTypeField;
+    private transient BodyField bodyField;
     private transient MethodField methodField;
     private HeadersDialog headersDialog;
     private AddHeadersButton addHeadersButton;
@@ -40,6 +43,7 @@ public class RequestControlsPanel extends JPanel {
         this.hostField = new HostField();
         this.portField = new PortField();
         this.bodyTypeField = new BodyTypeField();
+        this.bodyField = new BodyField();
         this.methodField = new MethodField();
         this.headersDialog = new HeadersDialog();
         this.addHeadersButton = new AddHeadersButton(headersDialog);
@@ -60,6 +64,10 @@ public class RequestControlsPanel extends JPanel {
         addLabelTextRows(labels, textFields, this);
     }
 
+    public void addLabelsAndTextAreas(JLabel[] labels, JTextArea[] textAreas) {
+        //addLabelTextRows(labels, textAreas, this);
+    }
+
     public void addButtons() {
         this.add(addHeadersButton);
         //this.add(sendRequestButton);
@@ -67,8 +75,21 @@ public class RequestControlsPanel extends JPanel {
 
     public void addComponents() {
         addTextFields();
+        addBodyField();
         addComboBoxes();
         addButtons();
+    }
+
+    private void addBodyField() {
+        JLabel textLabels = bodyField.getBodyContentLabel();
+        JTextArea textArea = bodyField.getBodyContentTextArea();
+        addLabelsAndTextAreaFields(textLabels, textArea);
+    }
+
+    private void addLabelsAndTextAreaFields(JLabel textLabel, JTextArea textArea) {
+        textLabel.setLabelFor(textArea);
+        this.add(textLabel);
+        this.add(textArea);
     }
 
     private void addTextFields() {
@@ -111,10 +132,6 @@ public class RequestControlsPanel extends JPanel {
             container.add(comboBoxes.get(currentLabelIndex));
         }
     }
-
-    // public SendRequestButton getSendRequestButton() {
-    //     return sendRequestButton;
-    // }
 
     public HostField getHostField() {
         return hostField;
