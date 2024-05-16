@@ -37,7 +37,7 @@ public class ClientApp {
 
         String gsonTeacher = gson.toJson(teachers);
 
-        app.testGET("http://testredes.free.beeceptor.com/cats.txt");
+        app.testGET("https://localhost");
 
         //app.testPOST("http://localhost/teachers", gsonTeacher);
 
