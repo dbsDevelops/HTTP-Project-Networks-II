@@ -20,7 +20,7 @@ public class TlsShared {
 
     void generateSymmetricKey(byte[] preMasterSecret) throws Exception {
         byte[] seed = concatenate(serverRandom, clientRandom);
-        pbkdf2(preMasterSecret, seed, 2048, 256);
+        //pbkdf2(preMasterSecret, seed, 2048, 256);
         symmetricKey = pbkdf2(preMasterSecret, seed, 2048, 256);
     }
 
