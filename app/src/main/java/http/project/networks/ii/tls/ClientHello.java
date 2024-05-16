@@ -62,7 +62,7 @@ public class ClientHello {
             byte major = in.readByte();
             byte minor = in.readByte();
 
-            System.out.println("ServerHello: TLS version " + major + "." + minor);
+            //System.out.println("ServerHello: TLS version " + major + "." + minor);
 
             // Read server random
             in.readFully(this.serverRandom);
@@ -81,7 +81,7 @@ public class ClientHello {
             //Not valid certificate will throw an exception
             PublicKey publicKey = certificate.getPublicKey();
             validateCertificate(publicKey);
-            System.out.println("CLIENT VERIFICATION SUCCESSFUL!. Selected cipher suite: " + cipherSuite+ ",\n Certificate: \n" + certificate.toString());
+            //System.out.println("CLIENT VERIFICATION SUCCESSFUL!. Selected cipher suite: " + cipherSuite+ ",\n Certificate: \n" + certificate.toString());
         } catch (IOException | CertificateException | InvalidKeyException | NoSuchAlgorithmException | NoSuchProviderException | SignatureException e) {
             e.printStackTrace();
         }
@@ -93,11 +93,11 @@ public class ClientHello {
                     X509Certificate x509Certificate = (X509Certificate) certificate;
                     x509Certificate.checkValidity();
                     x509Certificate.verify(publicKey);
-                    System.out.println("Client Verification: Certificate is valid.");
+                    //System.out.println("Client Verification: Certificate is valid.");
                 } catch (CertificateExpiredException e) {
-                    System.out.println("Client Verification: Certificate is expired.");
+                    //System.out.println("Client Verification: Certificate is expired.");
                 } catch (CertificateNotYetValidException e) {
-                    System.out.println("Client Verification: Certificate is not yet valid.");
+                    //System.out.println("Client Verification: Certificate is not yet valid.");
                 }
     }
 
@@ -119,8 +119,8 @@ public class ClientHello {
         tlsShared.setServerRandom(this.serverRandom);
         tlsShared.generateSymmetricKey(preMasterSecret);
         this.symmetricKey = tlsShared.getSymmetricKey();
-        System.out.println("Client: Sent pre-master secret and have the symmetric key");
-        System.out.println("\nSymmetric key: " + Hex.encodeHexString(this.symmetricKey.getEncoded()));
+        //System.out.println("Client: Sent pre-master secret and have the symmetric key");
+        //System.out.println("\nSymmetric key: " + Hex.encodeHexString(this.symmetricKey.getEncoded()));
     }
     
     public static void main(String[] args) { 

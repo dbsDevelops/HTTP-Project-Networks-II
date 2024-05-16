@@ -47,7 +47,7 @@ public class ServerHello {
         byte major = in.readByte();
         byte minor = in.readByte();
 
-        System.out.println("ClientHello: TLS version " + major + "." + minor);
+        //System.out.println("ClientHello: TLS version " + major + "." + minor);
 
         // Read client random
         in.readFully(this.clientRandom);
@@ -58,7 +58,7 @@ public class ServerHello {
         if (serverSupportsCipherSuite(cipherSuite)) {
             sendServerHello(cipherSuite); //2. SERVER HELLO with the cipher suite selected
         } else {
-            System.out.println("Server does not support ClientHello cipher suite " + cipherSuite);
+            //System.out.println("Server does not support ClientHello cipher suite " + cipherSuite);
         }
     }
 
@@ -82,7 +82,7 @@ public class ServerHello {
 
         out.flush();
         
-        System.out.println("ServerHello: Sent ServerHello with cipher suite " + cipherSuite);
+        //System.out.println("ServerHello: Sent ServerHello with cipher suite " + cipherSuite);
     }
 
     public void receivePremasterSecret() throws Exception {
@@ -101,8 +101,8 @@ public class ServerHello {
         tlsShared.setServerRandom(this.serverRandom);
         tlsShared.generateSymmetricKey(preMasterSecret);
         this.symmetricKey = tlsShared.getSymmetricKey();
-        System.out.println("ServerHello: Received pre-master secret and have the symmetric key");
-        System.out.println("\nSymmetric key: " + Hex.encodeHexString(this.symmetricKey.getEncoded()));
+        //System.out.println("ServerHello: Received pre-master secret and have the symmetric key");
+        //System.out.println("\nSymmetric key: " + Hex.encodeHexString(this.symmetricKey.getEncoded()));
     }
 
     private boolean serverSupportsCipherSuite(String cipherSuite) {
