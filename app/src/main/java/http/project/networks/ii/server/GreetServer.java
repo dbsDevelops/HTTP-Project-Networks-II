@@ -25,6 +25,7 @@ import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.HttpRequestBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
+import http.project.networks.ii.utils.Verbs;
 
 public class GreetServer {
 
@@ -152,13 +153,15 @@ public class GreetServer {
         handleCookies(request,response);
 
         // Output the response
-        System.out.println(HTTPUtils.RESPONSE + response);
-        logger.log(HTTPUtils.RESPONSE + response, Logger.INFO);
+        String responseStr = handlePetitionType(request, response);
+        System.out.println(HTTPUtils.RESPONSE + responseStr);
+        logger.log(HTTPUtils.RESPONSE + responseStr, Logger.INFO);
 
         // Write the output to the client
-        byte[] responseBytes = response.toString().getBytes(StandardCharsets.UTF_8);
+        byte[] responseBytes = responseStr.getBytes(StandardCharsets.UTF_8);
         //If the body has binary content, we sent it directly
-        if(response.getBodyContent() == null && response.getBinaryContent() != null) {
+        if(response.getBodyContent() == null && response.getBinaryContent() != null
+        && !request.getMethod().equals(Verbs.HEAD)) {
             responseBytes = concatByteArrays(responseBytes, response.getBinaryContent());
         }
         clientOutput.write(handleResponse(responseBytes));
@@ -282,6 +285,14 @@ public class GreetServer {
         System.arraycopy(array2, 0, result, array1.length, array2.length);
     
         return result;
+    }
+
+    private String handlePetitionType(Request clientRequest, Response serverResponse) {
+        if(clientRequest.getMethod().equals(Verbs.HEAD)) {
+            return serverResponse.headTypeResponse();
+        } else {
+            return serverResponse.toString();
+        }
     }
     
 }

@@ -37,13 +37,20 @@ public class Response {
         return this.body.getBinaryContent();
     }
 
-    public String toString() {
+    public String headTypeResponse() {
         StringBuilder response = new StringBuilder();
         response.append("HTTP/1.1 " + statusCodeAndDescription);
         response.append("\r\n");
         response.append(responseHeaders.toString());
         response.append("\r\n");
-        if(!this.body.equals(null)) {
+        return response.toString();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder response = new StringBuilder();
+        response.append(headTypeResponse());
+        if(this.body != null) {
             //If the string content is not null, write it there, else we will manage with the server to send the bytes from the body
             if(this.body.getStringContent() != null) {
                 response.append(getBodyContent());
