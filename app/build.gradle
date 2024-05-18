@@ -69,7 +69,7 @@ task jarClientCLI(type: Jar) {
 javadoc {
     source = sourceSets.main.allJava
     classpath += configurations.runtimeClasspath
-    destinationDir = file("$buildDir/docs/javadoc")
+    destinationDir = file("src/main/java/http/project/networks/ii/static_resources/javadocs")
     options.memberLevel = JavadocMemberLevel.PUBLIC
     options.author = true
     options.version = true
