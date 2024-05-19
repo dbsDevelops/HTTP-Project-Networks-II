@@ -7,12 +7,20 @@ import http.project.networks.ii.utils.HTTPUtils;
 
 import java.io.*;
 
+/**
+ * This class is responsible for handling each request individually, to avoid server main thread blocking.
+ */
 public class ServerThread extends Thread {
 
     private GreetServer server;
     private Socket clientSocket;
     private boolean keepAlive;
 
+    /**
+     * Constructor of the class, it initializes the server and the client socket.
+     * @param server The server that is running.
+     * @param clientSocket The client socket that is connected to the server.
+     */
     public ServerThread(GreetServer server, Socket clientSocket) {
         this.server = server;
         this.clientSocket = clientSocket;
