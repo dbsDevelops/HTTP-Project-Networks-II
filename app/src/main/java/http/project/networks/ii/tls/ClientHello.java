@@ -16,7 +16,6 @@ import java.security.cert.CertificateNotYetValidException;
 import java.security.cert.X509Certificate;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-import org.apache.commons.codec.binary.Hex;
 
 public class ClientHello {
     private Socket socket;

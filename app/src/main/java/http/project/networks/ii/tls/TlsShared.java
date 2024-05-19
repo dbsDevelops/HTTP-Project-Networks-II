@@ -3,15 +3,10 @@ import javax.crypto.spec.SecretKeySpec;
 
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.SecretKeyFactory;
-
-import java.nio.file.Paths;
-import java.security.KeyFactory;
-import java.security.PrivateKey;
-import java.security.spec.KeySpec;
-import java.security.spec.PKCS8EncodedKeySpec;
-
 import javax.crypto.SecretKey;
-import java.nio.file.Files;
+
+import java.security.spec.KeySpec;
+
 
 public class TlsShared {
     private byte[] clientRandom;

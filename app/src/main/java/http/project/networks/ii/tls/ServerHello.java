@@ -7,15 +7,11 @@ import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.SecureRandom;
 import java.security.cert.Certificate;
-import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.nio.file.Paths;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import javax.crypto.SecretKey;
-import org.apache.commons.codec.binary.Hex;
 import javax.crypto.Cipher;
 
 public class ServerHello {

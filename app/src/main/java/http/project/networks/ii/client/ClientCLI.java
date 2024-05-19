@@ -2,7 +2,6 @@ package http.project.networks.ii.client;
 
 import http.project.networks.ii.headers.RequestHeaders;
 import http.project.networks.ii.requests.Request;
-import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.Verbs;
 import joptsimple.OptionParser;

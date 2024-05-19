@@ -3,8 +3,6 @@ package http.project.networks.ii.client;
 import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
-import javax.crypto.SecretKey;
-import http.project.networks.ii.api.teachers_api.TeachersClass;
 import http.project.networks.ii.cookies.Cookie;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.responses.Response;
@@ -12,7 +10,6 @@ import http.project.networks.ii.tls.ClientHello;
 import http.project.networks.ii.tls.TlsShared;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpRequestHeaders;
-import http.project.networks.ii.logger.Logger;
 
 public class GreetClient {
 

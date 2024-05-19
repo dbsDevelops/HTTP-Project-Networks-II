@@ -1,13 +1,10 @@
 package http.project.networks.ii.server;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.*;
 import java.util.*;
-
-import javax.crypto.SecretKey;
 
 import java.security.InvalidKeyException;
 import java.security.cert.Certificate;

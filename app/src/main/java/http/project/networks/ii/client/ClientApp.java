@@ -5,19 +5,14 @@ package http.project.networks.ii.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import http.project.networks.ii.api.teachers_api.Project;
 import http.project.networks.ii.api.teachers_api.Teacher;
 import http.project.networks.ii.api.teachers_api.TeachersClass;
 import http.project.networks.ii.headers.RequestHeaders;
 import http.project.networks.ii.requests.Request;
-import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.Verbs;
 

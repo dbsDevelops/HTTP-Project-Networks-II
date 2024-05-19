@@ -1,7 +1,6 @@
 package http.project.networks.ii.client;
 
 import java.util.HashMap;
-import java.util.Set;
 
 public class CachedData {
     public HashMap<String, String> cachedData;
