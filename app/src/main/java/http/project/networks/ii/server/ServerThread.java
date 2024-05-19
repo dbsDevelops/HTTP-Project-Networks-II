@@ -19,6 +19,11 @@ public class ServerThread extends Thread {
         this.keepAlive = true;
     }
 
+    /**
+     * Override method that handles each request individually, to avoid server main thread blocking.
+     * The method reads each request and handles it, to finally send a response to the client. If a connection is persistent,
+     * the connection keeps open until it finds a differen header value of Connection: keep-alive.
+     */
     @Override 
     public void run() {
         InputStream clientInputStream = null;
@@ -35,7 +40,7 @@ public class ServerThread extends Thread {
                     if(server.port == HTTPUtils.HTTPS_PORT) {
                         requestString = HTTPUtils.decryptMessage(server.readBase64String(in).getBytes(StandardCharsets.UTF_8), server.serverHello.symmetricKey);
                     } else {
-                        requestString = server.handleRequest(in);
+                        requestString = server.readRequest(in);
                     }
                 }
                 if (requestString.isEmpty()) {

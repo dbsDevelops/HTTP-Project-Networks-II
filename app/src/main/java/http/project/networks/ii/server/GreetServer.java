@@ -67,6 +67,10 @@ public class GreetServer {
         this.logger = logger;
     }   
 
+    /**
+     * Function that starts the server to listen to client connections. The server will be running until an interrupt 
+     * signal is received or the terminal that runs the program is closed.
+     */
     public void initServer() {
         // try (ServerSocket serverSocket = new ServerSocket(port)) {
         //     System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
@@ -96,6 +100,11 @@ public class GreetServer {
         } 
     }
 
+    /**
+     * Method that manages server connections, waiting to receive new connections. When it receives one, it creates a 
+     * runnable object called ServerThread that manages the requests, to prevent the server from blocking itself handling 
+     * each request.
+     */
     public void handleClientConnection() {
         try {
             if(this.port == HTTPUtils.HTTPS_PORT) {
@@ -135,6 +144,9 @@ public class GreetServer {
         }
     }
 
+    /**
+     * Method that for the execution of the server. This method was created for the purpose of using it within the GUI.
+     */
     public void stopServer() {
         running = false;
         try {
@@ -147,10 +159,14 @@ public class GreetServer {
         }
     }
 
-    protected String handleRequest(BufferedReader br) throws IOException {
-        return readRequest(br);
-    }
-
+    /**
+     * Method that is responsible for sending a response to the client based on their request. The method processes 
+     * the request to the server, and generates an appropriate response to the client (encrypted or unencrypted 
+     * depending on whether TLS is used).
+     * @param clientOutput The outputstream that will send the response from the server through the client socket.
+     * @param request The request that the server is receiving and has to be processed to generate a response.
+     * @throws IOException If there is a write error to the socket, it will be thrown.
+     */
     protected void response(OutputStream clientOutput, Request request) throws IOException {
         String urlPath = request.getUrl().getPath();
         Response response = handleUrl(urlPath, request);
@@ -176,6 +192,15 @@ public class GreetServer {
         clientOutput.close();
     }
 
+    /**
+     * Method that takes care of reading an incoming HTTP request from the client. The method will identify whether 
+     * this request has a body or not, in order to process it and read it dynamically according to its length, obtained 
+     * from the "Content-Lenght" header.
+     * @param br The buffered reader coming from the input stream of the socket, from which the request coming from the 
+     * client will be read.
+     * @return String containing the client's request
+     * @throws IOException If there's a read error, this exception will be thrown.
+     */
     protected String readRequest(BufferedReader br) throws IOException {
         StringBuilder requestBuilder = new StringBuilder();
         String line;
@@ -201,11 +226,27 @@ public class GreetServer {
         return requestBuilder.toString();
     }
 
+    /**
+     * Method used to read the base64 string from the client's symmetric key encryption. This method should only 
+     * be used to read the request if it is a tls connection.
+     * @param reader The buffered reader coming from the input stream of the socket, from which the cyphered request coming from the 
+     * client will be read.
+     * @return Base64 string encrypted with the client's symmetric key (obtained from the TLS Handshake)
+     * @throws IOException If there's a read error, this exception will be thrown
+     */
     public String readBase64String(BufferedReader reader) throws IOException {
         return reader.readLine();
     }
     
 
+    /**
+     * Method that handles the request and returns the appropriate response. The method will parse the path of 
+     * the request that has been included in the url, and then handle it to see if it is a request to the API or 
+     * if it is a request for a static resource.
+     * @param urlPath The path that has been included in the url for the request to the server.
+     * @param request The request sent by the client and received by the server.
+     * @return An appropriate response, which has been created from the request made to the server.
+     */
     protected Response handleUrl(String urlPath, Request request) {
         String[] urlParts = urlPath.split(HTTPUtils.SLASH_CHARACTER);
         if (urlParts.length > 1) {
@@ -262,8 +303,8 @@ public class GreetServer {
      *  It checks if the cookies are expired or if they are not in the request.
      *  If they are expired, it creates a new cookie with the same id and a new value.
      *  If they are not in the request, it adds them to the response.
-     * @param request
-     * @param response
+     * @param request Request coming to the server from the client.
+     * @param response Response to be processed with respect to cookies, and then sent back to the client.
      */
     public void handleCookies(Request request, Response response) {
         List<Cookie> cookiesToRemove = new ArrayList<>();
@@ -292,6 +333,12 @@ public class GreetServer {
         }
     }
 
+    /**
+     * Method that determines whether or not the response is to be encrypted with the symmetric key generated by TLS.
+     * @param response Array of bytes corresponding to the response to be sent
+     * @return The same byte array if TLS is not used, or an encrypted one corresponding to the result of symmetric key 
+     * encryption, and its subsequent conversion to base64.
+     */
     private byte[] handleResponse(byte[] response) {
         if (this.port == HTTPUtils.HTTPS_PORT) {
             try {
@@ -314,6 +361,13 @@ public class GreetServer {
         return result;
     }
 
+    /**
+     * Method that is in charge of managing whether the request is HEAD or a different one, in order to send 
+     * or not the body of the response.
+     * @param clientRequest Request from the client
+     * @param serverResponse Response of the server 
+     * @return A text string that will or will not contain the body of the response, depending if the request is HEAD type or other.
+     */
     private String handlePetitionType(Request clientRequest, Response serverResponse) {
         if(clientRequest.getMethod().equals(Verbs.HEAD)) {
             return serverResponse.headTypeResponse();
