@@ -1,0 +1,1700 @@
+2024-05-19T13:19:31.902203-Server is running on port: 80
+2024-05-19T13:19:57.448022-Client connected from /0:0:0:0:0:0:0:1:57668
+2024-05-19T13:19:57.455178-Client connected from /0:0:0:0:0:0:0:1:57669
+2024-05-19T13:19:57.486849-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 713
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SussYnvaders</title>
+    <link rel="icon" href="images/Sussy.ico" type="image/x-icon" />
+</head>
+    <body>
+        <!--Style Scripts-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+        <!--Javascript Scripts-->
+        <script src="js/covers.js"></script>
+        <script src="js/matrix.js"></script>
+        <script src="js/sound.js"></script>
+        <script src="js/player.js"></script>
+        <script src="js/aliens.js"></script>
+        <script src="js/saucerAlien.js"></script>
+        <script src="js/bullets.js"></script>
+        <script src="js/collision.js"></script>
+        <script src="js/game.js"></script>
+
+    </body>
+</html>
+
+2024-05-19T13:19:57.517315-Client connected from /0:0:0:0:0:0:0:1:57670
+2024-05-19T13:19:57.518216-Client connected from /0:0:0:0:0:0:0:1:57671
+2024-05-19T13:19:57.520138-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: text/css
+Content-Length: 103
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+  
+
+2024-05-19T13:19:57.520346-Client connected from /0:0:0:0:0:0:0:1:57672
+2024-05-19T13:19:57.520484-Client connected from /0:0:0:0:0:0:0:1:57673
+2024-05-19T13:19:57.520613-Client connected from /0:0:0:0:0:0:0:1:57674
+2024-05-19T13:19:57.520744-Client connected from /0:0:0:0:0:0:0:1:57675
+2024-05-19T13:19:57.521421-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 4252
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+class CoverFragment {
+    constructor(x, y, active) {
+        this.x = x;
+        this.y = y;
+        this.width = 5;
+        this.height = 5;
+        this.active = active;
+    }
+
+    render() {
+        if (this.active) {
+            ctx.fillStyle = "#00ff00";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+    }
+}
+
+class Cover {
+    constructor() {
+        this.coverFragments = [];
+    }
+
+    render() {
+        for (let i = 0; i < this.coverFragments.length; i++) {
+            for (let j = 0; j < this.coverFragments[i].length; j++) {
+                if (this.coverFragments[i][j] != null)
+                this.coverFragments[i][j].render();
+            }
+        }
+    }
+}
+
+
+function createCovers(coversArray) {
+    coversArray.push(new Cover());
+    coversArray.push(new Cover());
+    coversArray.push(new Cover());
+    coversArray.push(new Cover());
+
+    var square = 5;
+    var posy = 200;
+    var posx = canvas.width / 8;
+    coversArray[0].coverFragments = createCoverFragment(posx, posy, square);
+    var posx = canvas.width / 3;
+    coversArray[1].coverFragments = createCoverFragment(posx, posy, square);
+    var posx = 2 * canvas.width / 3 - square * 18;
+    coversArray[2].coverFragments = createCoverFragment(posx, posy, square);
+    var posx = 7 * canvas.width / 8 - square * 18;
+    coversArray[3].coverFragments = createCoverFragment(posx, posy, square);
+}
+
+function createCoverFragment(posx, posy, square) {
+    var fragmentMatrix = [];
+    fragmentMatrix = createMatrix(18, 13);
+
+    for (let i = 0; i < 10; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square)+ square*4, canvas.height - posy, true), i, 1);
+
+    }
+    for (let i = 0; i < 12; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square)+ square*3, canvas.height - posy + square, true), i, 2);
+    }
+    
+    for (let i = 0; i < 14; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square)+ square*2, canvas.height - posy + square*2, true), i, 3);
+    }
+    for (let i = 0; i < 16; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square)+ square, canvas.height - posy + square*3, true), i, 4);
+    }
+    for (let i = 0; i < 18; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*4, true), i, 5);    
+    }
+    for (let i = 0; i < 18; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*5, true), i, 6);
+    }
+    for (let i = 0; i < 18; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*6, true), i, 7);
+    }
+    for (let i = 0; i < 18; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*7, true), i, 8);
+    }
+    for (let i = 0; i < 18; i++) {
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*8, true), i, 9);
+    }
+    for (let i = 0; i < 18; i++) {
+        if(i != 7 && i != 8 && i != 9 && i != 10)
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*9, true), i, 10);
+    }
+    for (let i = 0; i < 18; i++) {
+        if(i!=6 && i != 7 && i != 8 && i != 9 && i != 10 && i != 11)
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*10, true), i, 11);
+    }
+    for (let i = 0; i < 18; i++) {
+        if(i!=5 && i!=6 && i != 7 && i != 8 && i != 9 && i != 10 && i != 11 && i != 12)
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*11, true), i, 12);
+    }
+    for (let i = 0; i < 18; i++) {
+        if(i!=5 && i!=6 && i != 7 && i != 8 && i != 9 && i != 10 && i != 11 && i != 12)
+        matrixInsertObjectHorizontaly(fragmentMatrix, new CoverFragment((posx + i * square), canvas.height - posy + square*12, true), i, 13);
+    }
+
+
+    return fragmentMatrix;
+}
+
+2024-05-19T13:19:57.521675-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 1185
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+function createMatrix(rows, columns) {
+	const matrix = [];
+	for (let i = 0; i < rows; i++) {
+		matrix[i] = [];
+		for (let j = 0; j < columns; j++) {
+			matrix[i][j] = null;
+		}
+	}
+	return matrix;
+}
+
+function clearMatrix(matrix) {
+	for (let i = 0; i < matrix.length; i++) {
+		for (let j = 0; j < matrix[i].length; j++) {
+			matrix[i][j] = null;
+		}
+	}
+}
+
+function clearAlienMatrix(matrix) {
+	for (let i = 0; i < matrix.length; i++) {
+		for (let j = 0; j < matrix[i].length; j++) {
+			matrix[i][j].active = false;
+		}
+	}
+}
+
+function isMatrixClear(matrix) {
+	for (let i = 0; i < matrix.length; i++) {
+		for (let j = 0; j < matrix[i].length; j++) {
+			if (matrix[i][j] !== null) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+function isAliensMatrixClear(matrix) {
+	for (let i = 0; i < matrix.length; i++) {
+		for (let j = 0; j < matrix[i].length; j++) {
+			if (matrix[i][j].active === true) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+
+function matrixLength(matrix) {
+	return matrix.length * matrix[0].length;
+}
+
+function matrixInsertObject(matrix, object, x, y) {
+	matrix[y][x] = object;
+}
+
+function matrixInsertObjectHorizontaly(matrix, object, x, y) {
+  matrix[x][y] = object;
+}
+
+2024-05-19T13:19:57.531997-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 1545
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+//Player JS
+
+//Path: js\player.js
+//Space invaders player.js
+class Player {
+	constructor(x, y, scale) {
+		this.x = x;
+		this.y = y;
+		this.canshoot = true;
+		this.speed = 500;
+		this.fireSpeed = 500;
+		this.lives = 3;
+		this.image = new Image();
+		this.image.src = "./images/Player.png";
+		this.image.onload = () => {
+			this.width = this.image.width * scale;
+			this.height = this.image.height * scale;
+		};
+
+		this.imageDead = new Image();
+		this.imageDead.src = "./images/PlayerDead.png";
+		this.imageDead.onload = () => {
+			this.width = this.imageDead.width * scale;
+			this.height = this.imageDead.height * scale;
+		};
+		this.score = 0;
+	}
+
+	render() {
+
+		if (gameOver && this.imageDead) {
+			ctx.drawImage(this.imageDead, this.x, this.y, this.width, this.height);
+		}
+		else if (this.image) {
+			ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+		}
+	}
+
+	update(dt, keysDown, speedgame) {
+
+		if(isKonamiCode){
+			this.fireSpeed = 50;
+		}
+
+		//movement
+		if (37 in keysDown || 65 in keysDown) {
+			this.x -= this.speed * dt * speedgame;
+			if (this.x < 0) {
+				this.x = 0;
+			}
+		}
+		if (39 in keysDown || 68 in keysDown) {
+			this.x += this.speed * dt * speedgame;
+			if (this.x + this.width > canvas.width) {
+				this.x = canvas.width - this.width;
+			}
+		}
+		//Shooting
+		if (32 in keysDown && this.canshoot) {
+			this.canshoot = false;
+			setTimeout(() => {
+				this.canshoot = true;
+			}, this.fireSpeed / speedgame);
+			bullets.push(new Bullet(this.x + this.width / 2, this.y, true));
+			sndShoot.play();
+		}
+	}
+}
+
+
+2024-05-19T13:19:57.532132-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 1136
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+//Sound JS
+//Path: js\sound.js
+
+let isSoundBGTone = true;
+let toneIterator = 0;
+
+var sndTone1 = new Audio("./sounds/fastinvader1.wav");
+sndTone1.volume = 0.3;
+var sndTone2 = new Audio("./sounds/fastinvader2.wav");
+sndTone2.volume = 0.3;
+var sndTone3 = new Audio("./sounds/fastinvader3.wav");
+sndTone3.volume = 0.3;
+var sndTone4 = new Audio("./sounds/fastinvader4.wav");
+sndTone4.volume = 0.3;
+
+var sndEnemyKilled = new Audio("./sounds/invaderkilled.wav");
+sndEnemyKilled.volume = 0.05;
+
+var sndShoot = new Audio("./sounds/shoot.wav");
+sndShoot.volume = 0.1;
+
+var sndAmongUsSaucer = new Audio("./sounds/amongUsImpostor.mp3");
+sndAmongUsSaucer.volume = 0.05;
+
+var sndSaucer = new Audio("./sounds/ufo_lowpitch.wav");
+sndSaucer.volume = 0.1;
+
+class sound {
+	constructor(src) {
+		this.sound = document.createElement("audio");
+		this.sound.src = src;
+		this.sound.setAttribute("preload", "auto");
+		this.sound.setAttribute("controls", "none");
+		this.sound.style.display = "none";
+		document.body.appendChild(this.sound);
+	}
+	play() {
+		this.sound.play();
+	}
+	stop() {
+		this.sound.pause();
+	}
+	volume(vol) {
+		this.sound.volume = vol;
+	}
+}
+
+
+
+2024-05-19T13:19:57.533109-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 4370
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+//Aliens JS
+//Path: js\aliens.js
+//Space invaders aliens.js
+
+
+let direction = 1;
+let needToGoDown = false;
+let isBellowCanvas = false;
+
+
+class Alien {
+	constructor(x, y, width, height, score, animFrame1, animFrame2) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.active = true;
+		this.speed = 20;
+		this.scoreWhenDestroyed = score;
+		this.xsmooth = x;
+		this.animFrame = 1;
+		this.animFrame1 = new Image();
+		this.animFrame1.src = animFrame1;
+		this.animFrame2 = new Image();
+		this.animFrame2.src = animFrame2;
+		this.canmoove = true;
+		this.isAnimating = true;
+
+	}
+	render() {
+		if (this.animFrame1 && this.animFrame2 && this.active) {
+			//Will have to change its draw function to animate the player
+			if (this.animFrame == 1) {
+				ctx.drawImage(this.animFrame1, this.x, this.y, this.width, this.height);
+			}
+			else {
+				ctx.drawImage(this.animFrame2, this.x, this.y, this.width, this.height);
+			}
+		}
+	}
+	updateImage() {
+		//Animation frame will have to wait for a certain amount of time before changing
+		if (this.animFrame == 1) {
+			this.animFrame = 2;
+		}
+		else {
+			this.animFrame = 1;
+		}
+	}
+
+	start() {
+	}
+
+	update(dt, speedgame) {
+		
+
+		if (this.isAnimating) {
+			this.isAnimating = false;
+			setTimeout(() => {
+				this.x = this.xsmooth;
+				this.updateImage();
+				this.isAnimating = true;
+			}, 1000 / speedgame);
+
+		}
+
+		if (this.active) {
+			this.move(dt, speedgame);
+		}
+
+	}
+
+	toGoDown() {
+		this.y += this.height;
+		this.xsmooth = this.x;
+	}
+
+	move(dt, speedgame) {
+
+
+		// if we are going to the right and we reach the right edge of the screen, change direction and go down one "level"
+		if (this.xsmooth + this.width >= canvas.width && direction == 1) {
+			direction = -1;
+			needToGoDown = true;
+		}
+		// if we are going to the left and we reach the left edge of the screen, change direction and go down one "level"
+		if (this.xsmooth <= 0 && direction == -1) {
+			direction = 1;
+			needToGoDown = true;
+		}
+
+		//Check if the alien is below the canvas
+		if (this.y + this.height >= canvas.height) {
+			//Game over
+			isBellowCanvas = true;
+		}
+
+		// move the alien
+		this.xsmooth += this.speed * direction * dt * speedgame * speedgame;
+		
+			
+
+	}
+
+
+}
+
+class AlienExplosion {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+		this.width = 48;
+		this.height = 24;
+
+		this.image = new Image();
+		this.image.src = "./images/Explosion.png";
+
+		this.time = 0.5;
+		this.active = true;
+
+
+		setTimeout(function () {
+			this.active = false;
+		}
+			.bind(this), 50);
+	}
+
+	render() {
+		ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+	}
+}
+
+
+function createAliens() {
+
+	for (let i = 0; i < 11; i++) {
+		var xpos = i * 60;
+		var ypos = 60;
+
+		aliensMatrix[4][i] = new Alien(xpos, ypos + 160, 48, 24, 10, "./images/BottomEnemy0.png", "./images/BottomEnemy1.png");
+		aliensMatrix[3][i] = new Alien(xpos, ypos + 120, 48, 24, 10, "./images/BottomEnemy0.png", "./images/BottomEnemy1.png");
+
+		aliensMatrix[2][i] = new Alien(xpos, ypos + 80, 48, 24, 20, "./images/MidEnemy0.png", "./images/MidEnemy1.png");
+		aliensMatrix[1][i] = new Alien(xpos, ypos + 40, 48, 24, 20, "./images/MidEnemy0.png", "./images/MidEnemy1.png");
+
+		aliensMatrix[0][i] = new Alien(xpos, ypos, 48, 24, 40, "./images/TopEnemy0.png", "./images/TopEnemy1.png");
+
+	}
+
+	//Start all the aliens
+	for (let i = 0; i < aliensMatrix.length; i++) {
+		for (let j = 0; j < aliensMatrix[i].length; j++) {
+			aliensMatrix[i][j].start();
+		}
+	}
+
+
+};
+
+function AlienShoot(aliensMatrix) {
+	if (AlienCanShoot && !isAliensMatrixClear(aliensMatrix)) {
+		AlienCanShoot = false;
+		var alien = getRandomAlien(aliensMatrix);
+
+		if (alien != null) {
+			bullets.push(new Bullet(alien.x + alien.width / 2, alien.y + alien.height, false));
+		}
+		setTimeout(function () {
+			AlienCanShoot = true;
+		}, 1000 / (speedgame * level/2) );
+	}
+}
+
+function getRandomAlien(aliensMatrix, counter = 0) {
+	// Set a maximum number of tries
+	const maxTries = 100;
+
+	randomAlien = null;
+	randomColumn = Math.floor(Math.random() * 10);
+
+	for (let i = 0; i < aliensMatrix.length; i++) {
+		if (aliensMatrix[i][randomColumn].active) {
+			randomAlien = aliensMatrix[i][randomColumn];
+		}
+	}
+
+	if (randomAlien == null && counter < maxTries) {
+		// Increase the counter and call the function again
+		randomAlien = getRandomAlien(aliensMatrix, counter + 1);
+	}
+	return randomAlien;
+}
+
+
+
+2024-05-19T13:19:57.533261-Client connected from /0:0:0:0:0:0:0:1:57676
+2024-05-19T13:19:57.533671-Client connected from /0:0:0:0:0:0:0:1:57677
+2024-05-19T13:19:57.533980-Client connected from /0:0:0:0:0:0:0:1:57678
+2024-05-19T13:19:57.534143-Client connected from /0:0:0:0:0:0:0:1:57679
+2024-05-19T13:19:57.534974-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 3092
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+class Saucer {
+	constructor() {
+        this.x = 0;
+        this.y = 0;
+        this.mode = 0;
+        this.score = 0;
+        this.width = 64;
+        this.height = 32;
+        this.active = false;
+        this.speed = 250;
+        this.amongus = false;
+        this.image = new Image();
+        this.image.src = "images/Saucer.png";
+        this.image2 = new Image();
+        this.image2.src = "images/AmoSaucer.png";
+        this.image.onload = () => {
+        };
+        this.image2.onload = () => {
+        };
+    }
+
+    possibleRequestChangeSkin() {
+        if(getRandomIntInclusive(1,2) == 2) {
+            console.log("amogus");
+            this.amongus = true;
+        }
+        else{
+            console.log("normal");
+            this.amongus = false;
+        }
+    }
+
+    render() {
+        if (this.active && !this.amongus) {
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        }
+        else if (this.active && this.amongus) {
+            ctx.drawImage(this.image2, this.x, this.y, this.width, this.height);
+        }
+    }
+
+    update(dt, speedgame) {
+        if (this.active)
+        this.move(dt, speedgame);
+    }
+
+    move(dt, speedgame) {
+        if (this.mode == 0) {
+            this.x -= this.speed * dt * speedgame;
+            if (this.x < -this.width ) {
+                this.active = false;
+                          
+            }        
+        }
+        else {
+            this.x += this.speed * dt * speedgame;
+            if (this.x > canvas.width + this.width) {
+                this.active = false;
+            }
+        }
+    }
+
+    setParameters (x, y, mode, score) {
+        this.x = x;
+        this.y = y;
+        this.mode = mode;
+        this.score = score;
+        this.active = true;
+    }
+
+    SaucerUpdateAndInstantiate(dt, speedgame, saucerspawn) {
+        if (!saucerspawn) {
+            if(this.amongus) sndAmongUsSaucer.play();
+            else sndSaucer.play();
+            saucerspawned = true;
+            var timer = getRandomIntInclusive(10000, 15000);
+            setTimeout(() => {
+                this.possibleRequestChangeSkin();
+                if (getRandomBinary() == 0){
+                    this.setParameters(canvas.width, this.height + 10, 0, getRandomIntInclusive(50, 500));
+                }
+                else{
+                    this.setParameters(-this.width, this.height + 10, 1, getRandomIntInclusive(50, 500));
+                }
+
+                
+
+            }, timer);
+
+            setTimeout(() => {
+                saucerspawned = false;
+            }, timer);
+        }
+        if (saucerspawn && this.active == true) {
+            this.update(dt, speedgame);
+        }
+    };
+}
+
+class SaucerExplosion {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+		this.width = 64;
+		this.height = 32;
+
+		this.image = new Image();
+		this.image.src = "./images/Explosion.png";
+
+		this.time = 0.5;
+		this.active = true;
+
+
+		setTimeout(function () {
+			this.active = false;
+		}
+			.bind(this), 50);
+	}
+
+	render() {
+		ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+	}
+}
+
+2024-05-19T13:19:57.539770-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 10857
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+//Collision JS
+//Path: js\collision.js
+//Space invaders collision.js
+function collision(first, second) {
+    return !(first.x > second.x + second.width ||
+        first.x + first.width < second.x ||
+        first.y > second.y + second.height ||
+        first.y + first.height < second.y);
+}
+
+function checkCollisionBetweenBulletsAndAliens(aliensMatrix, bullets) {
+    //Check collision between bullets and aliens
+    for (let i = 0; i < aliensMatrix.length; i++) {
+        for (let j = 0; j < aliensMatrix[i].length; j++) {
+            if (aliensMatrix[i][j].active) {
+                for (let k = 0; k < bullets.length; k++) {
+                    if (collision(aliensMatrix[i][j], bullets[k]) && bullets[k].mode) {
+                        aliensMatrix[i][j].active = false;
+                        bullets.splice(k, 1);
+                        speedgame += 0.01;
+                        player.score += aliensMatrix[i][j].scoreWhenDestroyed;
+                        alienExplosion.push(new AlienExplosion(aliensMatrix[i][j].x, aliensMatrix[i][j].y));
+                        sndEnemyKilled.play();
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+function checkCollisionBetweenBulletsAndPlayer(player, bullets) {
+    //Check collision between bullets and player
+    for (let i = 0; i < bullets.length; i++) {
+        if (collision(player, bullets[i]) && !bullets[i].mode) {
+            bullets.splice(i, 1);
+            player.lives--;
+            if (player.lives == 0) {
+                player.active = false;
+            }
+        }
+    }
+}
+
+function checkCollisionBetweenBulletsAndCover(cover, bullets) {
+    //Check collision between bullets and cover
+
+    for (let i = 0; i < cover.length; i++) {
+        for (let j = 0; j < cover[i].coverFragments.length; j++) {
+            for (let k = 0; k < cover[i].coverFragments[j].length; k++) {
+                if (cover[i].coverFragments[j][k] != null && cover[i].coverFragments[j][k].active) {
+                        for (let l = 0; l < bullets.length; l++) {
+                            if (collision(cover[i].coverFragments[j][k], bullets[l])) {
+                                destroyNearbyCovers(cover, i, j, k);
+                                bullets.splice(l, 1);
+                            }
+                        }
+                    
+                }
+            }
+        }
+    }
+}
+
+function destroyNearbyCovers(cover, i, x, y) {
+    cover[i].coverFragments[x][y].active = false;
+    if (x-3 >= 0 && y - 4 >= 0) {
+        if (cover[i].coverFragments[x - 3][y - 4] != null) {
+            cover[i].coverFragments[x - 3][y - 4].active = false;
+        }
+    }
+    if (x >= 0 && y - 4 >= 0) {
+        if (cover[i].coverFragments[x][y - 4] != null) {
+            cover[i].coverFragments[x][y - 4].active = false;
+        }
+    }
+    if (x+1 < 18 && y - 4 >= 0) {
+        if (cover[i].coverFragments[x+1][y - 4] != null) {
+            cover[i].coverFragments[x+1][y - 4].active = false;
+        }
+    }
+    if (x+4 < 18 && y - 4 >= 0) {
+        if (cover[i].coverFragments[x+4][y - 4] != null) {
+            cover[i].coverFragments[x+4][y - 4].active = false;
+        }
+    }
+
+    if (x-1 >= 0 && y - 3 >= 0) {
+        if (cover[i].coverFragments[x - 1][y - 3] != null) {
+            cover[i].coverFragments[x - 1][y - 3].active = false;
+        }
+    }
+    if (x >= 0 && y - 3 >= 0) {
+        if (cover[i].coverFragments[x][y - 3] != null) {
+            cover[i].coverFragments[x][y - 3].active = false;
+        }
+    }
+    if (x+1 < 18 && y - 3 >= 0) {
+        if (cover[i].coverFragments[x+1][y - 3] != null) {
+            cover[i].coverFragments[x+1][y - 3].active = false;
+        }
+    }
+    if (x+2 < 18 && y - 3 >= 0) {
+        if (cover[i].coverFragments[x+2][y - 3] != null) {
+            cover[i].coverFragments[x+2][y - 3].active = false;
+        }
+    }
+
+    if (x-2 >= 0 && y - 2 >= 0) {
+        if (cover[i].coverFragments[x - 2][y - 2] != null) {
+            cover[i].coverFragments[x - 2][y - 2].active = false;
+        }
+    }
+    if (x-1 >= 0 && y - 2 >= 0) {
+        if (cover[i].coverFragments[x - 1][y - 2] != null) {
+            cover[i].coverFragments[x - 1][y - 2].active = false;
+        }
+    }
+    if (x >= 0 && y - 2 >= 0) {
+        if (cover[i].coverFragments[x][y - 2] != null) {
+            cover[i].coverFragments[x][y - 2].active = false;
+        }
+    }
+    if (x+1 < 18 && y - 2 >= 0) {
+        if (cover[i].coverFragments[x+1][y - 2] != null) {
+            cover[i].coverFragments[x+1][y - 2].active = false;
+        }
+    }
+    if (x+2 < 18 && y - 2 >= 0) {
+        if (cover[i].coverFragments[x+2][y - 2] != null) {
+            cover[i].coverFragments[x+2][y - 2].active = false;
+        }
+    }
+    if (x+3 < 18 && y - 2 >= 0) {
+        if (cover[i].coverFragments[x+3][y - 2] != null) {
+            cover[i].coverFragments[x+3][y - 2].active = false;
+        }
+    }
+
+    if (x-3 >= 0 && y - 1 >= 0) {
+        if (cover[i].coverFragments[x - 3][y - 1] != null) {
+            cover[i].coverFragments[x - 3][y - 1].active = false;
+        }
+    }
+    if (x-1 >= 0 && y - 1 >= 0) {
+        if (cover[i].coverFragments[x - 1][y - 1] != null) {
+            cover[i].coverFragments[x - 1][y - 1].active = false;
+        }
+    }
+    if (x >= 0 && y - 3 >= 0) {
+        if (cover[i].coverFragments[x][y - 1] != null) {
+            cover[i].coverFragments[x][y - 1].active = false;
+        }
+    }
+    if (x+1 < 18 && y - 3 >= 0) {
+        if (cover[i].coverFragments[x+1][y - 1] != null) {
+            cover[i].coverFragments[x+1][y - 1].active = false;
+        }
+    }
+    if (x+2 < 18 && y - 3 >= 0) {
+        if (cover[i].coverFragments[x+2][y - 1] != null) {
+            cover[i].coverFragments[x+2][y - 1].active = false;
+        }
+    }
+
+    if (x-1 >= 0 && y >= 0) {
+        if (cover[i].coverFragments[x - 1][y] != null) {
+            cover[i].coverFragments[x - 1][y].active = false;
+        }
+    }
+    if (x >= 0 && y >= 0) {
+        if (cover[i].coverFragments[x][y] != null) {
+            cover[i].coverFragments[x][y].active = false;
+        }
+    }
+    if (x+1 < 18 && y >= 0) {
+        if (cover[i].coverFragments[x+1][y] != null) {
+            cover[i].coverFragments[x+1][y].active = false;
+        }
+    }
+    if (x+2 < 18 && y>= 0) {
+        if (cover[i].coverFragments[x+2][y] != null) {
+            cover[i].coverFragments[x+2][y].active = false;
+        }
+    }
+    if (x+4 < 18 && y>= 0) {
+        if (cover[i].coverFragments[x+4][y] != null) {
+            cover[i].coverFragments[x+4][y].active = false;
+        }
+    }
+
+    if (x-2 >= 0 && y + 1 < 13) {
+        if (cover[i].coverFragments[x - 2][y + 1] != null) {
+            cover[i].coverFragments[x - 2][y + 1].active = false;
+        }
+    }
+    if (x-1 >= 0 && y + 1 < 13) {
+        if (cover[i].coverFragments[x - 1][y + 1] != null) {
+            cover[i].coverFragments[x - 1][y + 1].active = false;
+        }
+    }
+    if (x >= 0 && y + 1 < 13) {
+        if (cover[i].coverFragments[x][y + 1] != null) {
+            cover[i].coverFragments[x][y + 1].active = false;
+        }
+    }
+    if (x+1 < 18 && y + 1 < 13) {
+        if (cover[i].coverFragments[x+1][y + 1] != null) {
+            cover[i].coverFragments[x+1][y + 1].active = false;
+        }
+    }
+    if (x+2 < 18 && y + 1 < 13) {
+        if (cover[i].coverFragments[x+2][y + 1] != null) {
+            cover[i].coverFragments[x+2][y + 1].active = false;
+        }
+    }
+    
+    if (x-1 >= 0 && y + 2 < 13) {
+        if (cover[i].coverFragments[x - 1][y + 2] != null) {
+            cover[i].coverFragments[x - 1][y + 2].active = false;
+        }
+    }
+    if (x >= 0 && y + 2 < 13) {
+        if (cover[i].coverFragments[x][y + 2] != null) {
+            cover[i].coverFragments[x][y + 2].active = false;
+        }
+    }
+    if (x+1 < 18 && y + 2 < 13) {
+        if (cover[i].coverFragments[x+1][y + 2] != null) {
+            cover[i].coverFragments[x+1][y + 2].active = false;
+        }
+    }
+    if (x+2 < 18 && y + 2 < 13) {
+        if (cover[i].coverFragments[x+2][y + 2] != null) {
+            cover[i].coverFragments[x+2][y + 2].active = false;
+        }
+    }
+    if (x+3 < 18 && y + 2 < 13) {
+        if (cover[i].coverFragments[x+3][y + 2] != null) {
+            cover[i].coverFragments[x+3][y + 2].active = false;
+        }
+    }
+
+    if (x-3 >= 0 && y + 3 < 13) {
+        if (cover[i].coverFragments[x - 3][y + 3] != null) {
+            cover[i].coverFragments[x - 3][y + 3].active = false;
+        }
+    }
+    if (x >= 0 && y + 3 < 13) {
+        if (cover[i].coverFragments[x][y + 3] != null) {
+            cover[i].coverFragments[x][y + 3].active = false;
+        }
+    }
+    if (x+1 < 18 && y + 3 < 13) {
+        if (cover[i].coverFragments[x+1][y + 3] != null) {
+            cover[i].coverFragments[x+1][y + 3].active = false;
+        }
+    }
+    if (x+4 < 18 && y + 3 < 13) {
+        if (cover[i].coverFragments[x+4][y + 3] != null) {
+            cover[i].coverFragments[x+4][y + 3].active = false;
+        }
+    }
+}
+
+function checkCollisionBetweenPlayerAndAliens(player, aliensMatrix) {
+    //Check collision between player and aliens
+    for (let i = 0; i < aliensMatrix.length; i++) {
+        for (let j = 0; j < aliensMatrix[i].length; j++) {
+            if (collision(player, aliensMatrix[i][j])) {
+                player.lives = 0;
+            }
+        }
+    }
+}
+
+function checkCollisionBetweenAliensAndCover(cover, aliensMatrix) {
+    //Check collision between aliens and cover
+    for (let i = 0; i < cover.length; i++) {
+        for (let j = 0; j < cover[i].coverFragments.length; j++) {
+            for (let k = 0; k < cover[i].coverFragments[j].length; k++) {
+                if (cover[i].coverFragments[j][k] != null) {
+                    if (cover[i].coverFragments[j][k].active) {
+                        for (let l = 0; l < aliensMatrix.length; l++) {
+                            for (let m = 0; m < aliensMatrix[l].length; m++) {
+                                if (collision(cover[i].coverFragments[j][k], aliensMatrix[l][m])) {
+                                    cover[i].coverFragments[j][k].active = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function checkCollisionBetweenSaucerAndBullet(saucer, bullets) {
+    //Check collision between saucer and bullet
+    if(saucer.active){
+        for (let i = 0; i < bullets.length; i++) {
+            if (collision(saucer, bullets[i])) {
+                bullets.splice(i, 1);
+                saucer.active = false;
+                player.score += saucer.score;
+                alienExplosion.push(new SaucerExplosion(saucer.x, saucer.y));
+                console.log ("Saucer destroyed: " + saucer.score + " points");
+                sndEnemyKilled.play();
+            }
+        }
+    }
+}
+
+2024-05-19T13:19:57.540882-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 7309
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+//Space invaders game.js
+var canvas = document.createElement("canvas"); //Create canvas element
+var ctx = canvas.getContext("2d"); //Create 2d context
+canvas.width = window.innerWidth; //Set canvas width and height
+canvas.height = window.innerHeight;
+canvas.style.position = "absolute"; //Set canvas position
+document.body.appendChild(canvas); //Add canvas to body
+
+//Game variables
+var gameOver = false
+var imgBackground = new Image();
+imgBackground.src = "./images/background.png";
+let level = 0;
+
+paintBackground();
+
+var update = function (dt) {
+
+	//Update player
+
+	player.update(dt, keysDown, speedgame);
+
+	//Update bullets
+	for (var i = 0; i < bullets.length; i++) {
+		bullets[i].update(dt, speedgame);
+		if (bullets[i].y < 0 || bullets[i].y > canvas.height) {
+			bullets.splice(i, 1);
+		}
+	}
+
+	//Update aliens using
+	for (var i = 0; i < aliensMatrix.length; i++) {
+		for (var j = 0; j < aliensMatrix[i].length; j++) {
+			aliensMatrix[i][j].update(dt, speedgame);
+		}
+	}
+
+	if (needToGoDown) {
+		for (var i = 0; i < aliensMatrix.length; i++) {
+			for (var j = 0; j < aliensMatrix[i].length; j++) {
+				aliensMatrix[i][j].toGoDown();
+
+			}
+		}
+		needToGoDown = false;
+	}
+
+	//Erase from the alienExplosion array the aliens that are not active
+	for (var i = 0; i < alienExplosion.length; i++) {
+		if (!alienExplosion[i].active) {
+			alienExplosion.splice(i, 1);
+		}
+	}
+
+	if (isSoundBGTone) {
+		isSoundBGTone = false;
+
+		//Play sound
+		if (toneIterator == 0) {
+			sndTone1.play();
+		}
+		else if (toneIterator == 1) {
+			sndTone2.play();
+		}
+		else if (toneIterator == 2) {
+			sndTone3.play();
+		}
+		else if (toneIterator == 3) {
+			sndTone4.play();
+		}
+		else {
+			sndTone1.play();
+		}
+
+		toneIterator++;
+		if (toneIterator > 3) {
+			toneIterator = 0;
+		}
+
+
+		setTimeout(() => {
+
+			isSoundBGTone = true;
+		}, 1000 / speedgame);
+		
+	}
+
+
+    checkCollisionBetweenBulletsAndAliens(aliensMatrix, bullets);
+    checkCollisionBetweenBulletsAndPlayer(player, bullets);
+    checkCollisionBetweenBulletsAndCover(covers, bullets);
+    checkCollisionBetweenPlayerAndAliens(player, aliensMatrix);
+    checkCollisionBetweenAliensAndCover(covers, aliensMatrix);
+	checkCollisionBetweenSaucerAndBullet(saucer, bullets);
+    AlienShoot(aliensMatrix);
+	saucer.SaucerUpdateAndInstantiate(dt , speedgame , saucerspawned);
+
+
+};
+
+function paintBackground() {
+	//Use image as background
+	ctx.drawImage(imgBackground, 0, 0, canvas.width, canvas.height);
+};
+
+function getRandomIntInclusive(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+}
+
+function getRandomBinary() {
+	return Math.round(Math.random());
+}
+
+var StartNewGame = function () {
+	bullets = [];
+	level += 1;
+	if (player.lives<3)	player.lives++;
+	player.x = 50;
+	player.y = canvas.height - 120;
+	createCovers(covers);
+	createAliens();
+};
+
+//Start game
+var start = function () {
+	player.lives = 3;
+	level = 0;
+	player.score = 0;
+	speedgame = 1;
+	StartNewGame();
+};
+
+var keysDown = {};
+var keysRecord = [];
+var isKonamiCode = false;
+
+addEventListener("keydown", function (e) {
+	keysDown[e.keyCode] = true;
+	
+	//Konami code easter egg. Only start recording if the user pressed the up button. Erase the keysRecord if the combination is not correct to optimize.
+	if (keysRecord.length == 0 && e.keyCode == 38) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 1 && e.keyCode == 38) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 2 && e.keyCode == 40) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 3 && e.keyCode == 40) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 4 && e.keyCode == 37) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 5 && e.keyCode == 39) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 6 && e.keyCode == 37) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 7 && e.keyCode == 39) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 8 && e.keyCode == 66) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 9 && e.keyCode == 65) {
+		keysRecord.push(e.keyCode);
+	}
+	else if (keysRecord.length == 10 && e.keyCode == 13) {
+		keysRecord.push(e.keyCode);
+	}
+	else {
+		keysRecord = [];
+		isKonamiCode = false;
+	}
+
+	if (keysRecord.length == 11) {
+		keysRecord = [];
+		isKonamiCode = true;
+
+	}
+}, false);
+
+addEventListener("keyup", function (e) {
+	delete keysDown[e.keyCode];
+}, false);
+
+//Render
+var render = function () {
+
+	//Clear canvas
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	paintBackground();
+
+	//Render player
+	player.render();
+
+	//Render bullets
+	for (var i = 0; i < bullets.length; i++) {
+		bullets[i].render();
+	}
+	//Render aliensMatrix
+	for (var i = 0; i < aliensMatrix.length; i++) {
+		for (var j = 0; j < aliensMatrix[i].length; j++) {
+			if (aliensMatrix[i][j].active)
+				aliensMatrix[i][j].render();
+		}
+	}
+
+	//Render alienExplosion
+	for (var i = 0; i < alienExplosion.length; i++) {
+		alienExplosion[i].render();
+	}
+
+	//Render covers
+	for (var i = 0; i < covers.length; i++) {
+		covers[i].render();
+	}
+
+	//Draw score top left
+	ctx.font = "30px Arial";
+	ctx.fillStyle = "white";
+	ctx.textAlign = "left";
+	ctx.fillText("Score: " + player.score, 20, 30);
+
+	//Draw lives top right
+	ctx.font = "30px Arial";
+	ctx.fillStyle = "white";
+	ctx.textAlign = "right";
+	ctx.fillText("Lives: " + player.lives, canvas.width - 20, 30);
+
+	//Draw level in the middle
+	ctx.font = "30px Arial";
+	ctx.fillStyle = "white";
+	ctx.textAlign = "center";
+	ctx.fillText("Level: " + level, canvas.width / 2, 30);
+
+	// Draw saucer
+	saucer.render();
+};
+
+// The main game loop
+var main = function () {
+	var now = Date.now();
+	var delta = now - then;
+
+	if (!gameOver) {
+		update(delta / 1000);
+		render();
+
+		//Game Win
+		if (isAliensMatrixClear(aliensMatrix)) {
+			StartNewGame();
+			speedgame -= 0.4;
+		}
+
+		//Game Over
+		if (player.lives <= 0 || isBellowCanvas) {
+			clearAlienMatrix(aliensMatrix);
+			bullets = [];
+			gameOver = true;
+
+			render();
+
+
+			//Draw Game Over
+			ctx.font = "80px Arial";
+			ctx.fillStyle = "white";
+			ctx.textAlign = "center";
+			ctx.fillText("Game Over", canvas.width / 2, canvas.height / 2);
+
+			//Show the player score
+			ctx.font = "50px Arial";
+			ctx.fillStyle = "white";
+			ctx.textAlign = "center";
+			ctx.fillText("Score: " + player.score, canvas.width / 2, canvas.height / 2 + 80);
+
+			//Wait 10 seconds to restart the game
+			setTimeout(function () {
+				gameOver = false;
+				isBellowCanvas = false;
+				start();
+			}, 10000);
+		}
+
+	}
+
+
+	then = now;
+
+	requestAnimationFrame(main);
+};
+
+// Cross-browser support for requestAnimationFrame
+var w = window;
+requestAnimationFrame = w.requestAnimationFrame ||
+	w.webkitRequestAnimationFrame || w.msRequestAnimationFrame
+	|| w.mozRequestAnimationFrame;
+
+window.addEventListener('resize', function () {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+});
+
+
+//Game objects
+var player = new Player(50, canvas.height - 120, 4);
+var bullets = [];
+var aliensMatrix = createMatrix(5, 11);
+var AlienCanShoot = true;
+var speedgame = 1;
+var alienExplosion = [];
+var covers = [];
+var saucer = new Saucer();
+var saucerspawned = false;
+
+
+//Lets play
+var then = Date.now();
+start();
+main();
+
+
+
+2024-05-19T13:19:57.541150-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: application/javascript
+Content-Length: 528
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+//Bullets JS
+//Path: js\bullets.js
+//Space invaders bullets.js
+class Bullet {
+    constructor(x, y, mode) {
+        this.x = x;
+        this.y = y;
+        this.width = 3;
+        this.height = 10;
+        this.mode = mode;
+        this.speed = 400;
+    }
+    render() {
+        ctx.fillStyle = "white";
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    update(dt, speedgame) {
+        if (this.mode) this.y -= this.speed * dt * speedgame * 2;
+        else this.y += this.speed * dt * speedgame;
+    }
+}
+
+
+
+2024-05-19T13:19:57.549251-Client connected from /0:0:0:0:0:0:0:1:57680
+2024-05-19T13:19:57.549861-Client connected from /0:0:0:0:0:0:0:1:57681
+2024-05-19T13:19:57.553247-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 409133
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.556022-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 160
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.556459-Client connected from /0:0:0:0:0:0:0:1:57682
+2024-05-19T13:19:57.558568-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 190
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.559625-Client connected from /0:0:0:0:0:0:0:1:57683
+2024-05-19T13:19:57.560249-Client connected from /0:0:0:0:0:0:0:1:57684
+2024-05-19T13:19:57.561827-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 273
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.562198-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 339
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.563518-Client connected from /0:0:0:0:0:0:0:1:57685
+2024-05-19T13:19:57.563716-Client connected from /0:0:0:0:0:0:0:1:57686
+2024-05-19T13:19:57.564858-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 185
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.564905-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 186
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.566680-Client connected from /0:0:0:0:0:0:0:1:57687
+2024-05-19T13:19:57.567114-Client connected from /0:0:0:0:0:0:0:1:57688
+2024-05-19T13:19:57.567754-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 183
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.568683-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 185
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.569131-Client connected from /0:0:0:0:0:0:0:1:57689
+2024-05-19T13:19:57.570019-Client connected from /0:0:0:0:0:0:0:1:57690
+2024-05-19T13:19:57.570713-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 182
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.570742-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 180
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.580990-Client connected from /0:0:0:0:0:0:0:1:57691
+2024-05-19T13:19:57.581396-Client connected from /0:0:0:0:0:0:0:1:57692
+2024-05-19T13:19:57.582459-Client connected from /0:0:0:0:0:0:0:1:57693
+2024-05-19T13:19:57.582970-Client connected from /0:0:0:0:0:0:0:1:57694
+2024-05-19T13:19:57.583821-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: audio/x-wav
+Content-Length: 3421
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.584629-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: audio/x-wav
+Content-Length: 1142
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.584711-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: audio/x-wav
+Content-Length: 1026
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.586782-Client connected from /0:0:0:0:0:0:0:1:57695
+2024-05-19T13:19:57.588480-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: audio/x-wav
+Content-Length: 1098
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.589046-Client connected from /0:0:0:0:0:0:0:1:57696
+2024-05-19T13:19:57.589996-Client connected from /0:0:0:0:0:0:0:1:57697
+2024-05-19T13:19:57.590623-Client connected from /0:0:0:0:0:0:0:1:57698
+2024-05-19T13:19:57.591327-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: audio/x-wav
+Content-Length: 4124
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.591434-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: audio/x-wav
+Content-Length: 1086
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.592639-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: audio/mpeg
+Content-Length: 70639
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:19:57.593616-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:19:57 GMT
+Server: DJGI/1.0.0
+Content-Type: audio/x-wav
+Content-Length: 25849
+Set-Cookie: cookie1=ma366xrz; Max-Age=27; HttpOnly; Date=2024-05-19T13:19:31.876788
+Set-Cookie: cookie2=ma367xrz; Max-Age=25; HttpOnly; Date=2024-05-19T13:19:31.876810
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
+2024-05-19T13:20:00.264195-Client connected from /0:0:0:0:0:0:0:1:57700
+2024-05-19T13:20:00.267154-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 11:20:00 GMT
+Server: DJGI/1.0.0
+Content-Type: image/png
+Content-Length: 172
+Set-Cookie: cookie4=ma369xrz; Max-Age=60; HttpOnly; Date=2024-05-19T13:20:00.266503
+Set-Cookie: cookie5=ma370xrz; Max-Age=20; HttpOnly; Date=2024-05-19T13:20:00.267040
+Set-Cookie: cookie3=ma368xrz; Max-Age=44; HttpOnly; Date=2024-05-19T13:19:31.876819
+
+
