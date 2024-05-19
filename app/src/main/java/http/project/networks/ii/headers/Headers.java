@@ -68,36 +68,7 @@ public abstract class Headers {
         format.setTimeZone(TimeZone.getTimeZone("GMT"));
         return format.format(new Date());
     }
-/* 
-    //use it only for client cookies
-    public void addCookieToClient(Cookie cookie) {
-        String cookieValue = getValue(HttpHeaders.COOKIE);
-        if(cookieValue != null) {
-            StringBuilder newCookie = new StringBuilder(cookieValue);
-            newCookie.append("; ");
-            newCookie.append(cookie.toString());
-            setValue(HttpHeaders.COOKIE, newCookie.toString());
-        } else {
-            addHeaderToHeaders(HttpHeaders.COOKIE, cookie.toString());
-        }
-    }
-
-    //Use it only for client cookies
-    public void removeCookieFromClient(Cookie cookie) {
-        String cookieValue = getValue(HttpHeaders.COOKIE);
-        if(cookieValue != null) {
-            String[] cookies = cookieValue.split("; ");
-            StringBuilder newCookie = new StringBuilder();
-            for (String c : cookies) {
-                if (!c.equals(cookie.toString())) {
-                    newCookie.append(c);
-                    newCookie.append("; ");
-                }
-            }
-            setValue(HttpHeaders.COOKIE, newCookie.toString());
-        }
-    }
-*/
+    
     public String toString() {
         StringBuilder headersString = new StringBuilder();
         for (String header : this.myHeaders) {

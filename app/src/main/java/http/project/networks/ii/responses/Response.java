@@ -1,5 +1,6 @@
 package http.project.networks.ii.responses;
 
+import http.project.networks.ii.headers.ResponseHeaders;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.HttpBody;

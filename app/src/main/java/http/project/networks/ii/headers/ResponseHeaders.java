@@ -1,6 +1,5 @@
-package http.project.networks.ii.responses;
+package http.project.networks.ii.headers;
 
-import http.project.networks.ii.headers.Headers;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 
 public class ResponseHeaders extends Headers {

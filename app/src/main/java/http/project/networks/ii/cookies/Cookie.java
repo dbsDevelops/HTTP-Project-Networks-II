@@ -37,7 +37,9 @@ public class Cookie {
         count++; //Increment the count in a way that is difficol to guess
     }
 
-    //Constructor for the Parse cookie
+    /**
+     * Constructor for the used for parse cookie 
+     */
     public Cookie(int id, String value, int maxAge, boolean secure, LocalDateTime timeStartCookie) {
         this.id = id;
         this.name= "cookie"+id;
