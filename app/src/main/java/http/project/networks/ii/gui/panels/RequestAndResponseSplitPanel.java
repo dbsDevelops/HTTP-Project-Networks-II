@@ -23,7 +23,8 @@ public class RequestAndResponseSplitPanel extends JSplitPane {
         this.sendRequestButton = new SendRequestButton(this.getRequestControlsPanel().getMethodField(), 
                                                         this.getRequestControlsPanel().getHostField(), 
                                                         this.getRequestControlsPanel().getPortField(), 
-                                                        this.getRequestControlsPanel().getBodyTypeField(), 
+                                                        this.getRequestControlsPanel().getBodyTypeField(),
+                                                        this.getRequestControlsPanel().getBodyField(), 
                                                         this.getRequestControlsPanel().getHeadersDialog(),
                                                         this.getResponsePanel());
         getRequestControlsPanel().add(sendRequestButton);

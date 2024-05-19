@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
 import http.project.networks.ii.gui.dialogs.HeadersDialog;
+import http.project.networks.ii.gui.fields.BodyField;
 import http.project.networks.ii.gui.fields.BodyTypeField;
 import http.project.networks.ii.gui.fields.HostField;
 import http.project.networks.ii.gui.fields.MethodField;
@@ -27,6 +28,7 @@ public class SendRequestButton extends JButton {
     private transient HostField hostField;
     private transient PortField portField;
     private transient BodyTypeField bodyTypeField;
+    private transient BodyField bodyField;
     private HeadersDialog headersDialog;
     private ResponsePanel responsePanel;
     
@@ -40,12 +42,13 @@ public class SendRequestButton extends JButton {
      * @param headersDialog dialog for entering headers
      * @param responsePanel panel for displaying the response
      */
-    public SendRequestButton(MethodField methodField, HostField hostField, PortField portField, BodyTypeField bodyTypeField, HeadersDialog headersDialog, ResponsePanel responsePanel) {
+    public SendRequestButton(MethodField methodField, HostField hostField, PortField portField, BodyTypeField bodyTypeField, BodyField bodyField, HeadersDialog headersDialog, ResponsePanel responsePanel) {
         super(GuiUtils.SEND_STRING);
         this.methodField = methodField;
         this.hostField = hostField;
         this.portField = portField;
         this.bodyTypeField = bodyTypeField;
+        this.bodyField = bodyField;
         this.headersDialog = headersDialog;
         this.responsePanel = responsePanel;
         this.addActionListener(new ActionListener() {
@@ -70,7 +73,7 @@ public class SendRequestButton extends JButton {
             String protocolVersion = "HTTP/1.1";
             HttpBodyType bodyType = bodyTypeField.getSelectedBodyType();
             System.out.println("Body type: " + bodyType.toString());
-            String bodyContent = ""; // Modify this line to get the body content from the bodyField
+            String bodyContent = bodyField.getBodyContent(); // Modify this line to get the body content from the bodyField
             System.out.println("Headers:\n" + this.headersDialog.getHeaders().toString());
             Request request = new Request(method, url, protocolVersion, this.headersDialog.getHeaders(), bodyType, bodyContent);
             //System.out.println(request.toString());

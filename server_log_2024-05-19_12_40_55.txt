@@ -1,0 +1,50 @@
+2024-05-19T12:40:55.609524-Server is running on port: 443
+2024-05-19T12:42:05.283313-Client connected from /127.0.0.1:53875
+2024-05-19T12:42:05.306903-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 10:42:05 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 1283
+Set-Cookie: cookie4=ma369xrz; Max-Age=38; HttpOnly; Date=2024-05-19T12:42:05.305971
+Set-Cookie: cookie5=ma370xrz; Max-Age=28; HttpOnly; Date=2024-05-19T12:42:05.306472
+Set-Cookie: cookie6=ma371xrz; Max-Age=42; HttpOnly; Date=2024-05-19T12:42:05.306502
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whimsical World of Señoras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Whimsical World of Señoras Lapuente & Lasheras!</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#story">Epic Saga</a></li>
+            <li><a href="#recipes">Magical Recipes</a></li>
+            <li><a href="https://youtu.be/qaLTbmgwUQ8?si=sJopucLrzPkPoYRK">Mystical Advice (Fake URL)</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="story">
+            <h2>The Epic Saga</h2>
+            <p>Join our heroes, Señora Lapuente and Señora Lasheras, in a whimsical tale of laughter, mystery, and fake mustaches!</p>
+            <img src="juan.jpg" alt="juangpt">
+        </section>
+        <section id="recipes">
+            <h2>Magical Recipes</h2>
+            <p>Feast your eyes on the most fantastical, never-before-seen recipes straight from the kitchens of our señoras. Unicorn toast, anyone?</p>
+            <img src="baquero.jpeg" alt="baquerogpt">
+        </section>
+    </main>
+    <footer>
+        <p>🌈 &copy; 2024 The Whimsical World of Señoras. All rights reserved, even the imaginary ones!</p>
+    </footer>
+</body>
+</html>
+
+

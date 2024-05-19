@@ -17,7 +17,7 @@ public class GuiUtils {
     public static final String BODY_TYPE_STRING = "Body type";
     public static final String METHOD_STRING = "Method";
 
-    public static final int ROWS = 5;
+    public static final int ROWS = 6;
     public static final int COLUMNS = 2;
     public static final int BORDER_WIDTH = 5;
     public static final int DIALOG_WIDTH = 800;
