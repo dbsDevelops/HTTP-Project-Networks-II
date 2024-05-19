@@ -18,6 +18,9 @@ import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.Verbs;
 import http.project.networks.ii.client.GreetClient;
 
+/**
+ * A button to send a request from the HTTP client
+ */
 public class SendRequestButton extends JButton {
 
     private transient MethodField methodField;
@@ -28,6 +31,15 @@ public class SendRequestButton extends JButton {
     private ResponsePanel responsePanel;
     
 
+    /**
+     * Create a new SendRequestButton
+     * @param methodField field for selecting the method
+     * @param hostField field for entering the host
+     * @param portField field for entering the port
+     * @param bodyTypeField field for selecting the body type
+     * @param headersDialog dialog for entering headers
+     * @param responsePanel panel for displaying the response
+     */
     public SendRequestButton(MethodField methodField, HostField hostField, PortField portField, BodyTypeField bodyTypeField, HeadersDialog headersDialog, ResponsePanel responsePanel) {
         super(GuiUtils.SEND_STRING);
         this.methodField = methodField;
@@ -44,6 +56,9 @@ public class SendRequestButton extends JButton {
         });
     }
 
+    /**
+     * Method which sends the request once the SendRequestButton is clicked
+     */
     public void sendRequest() {
         try {
             GreetClient greetClient = new GreetClient();

@@ -15,6 +15,9 @@ import http.project.networks.ii.gui.extra_headers.HttpExtraHeaders;
 import http.project.networks.ii.gui.utils.GuiUtils;
 import http.project.networks.ii.headers.RequestHeaders;
 
+/**
+ * A dialog for the user to add extra headers to the request
+ */
 public class HeadersDialog extends JDialog {
     private static final int NUMBER_OF_HEADERS = HttpExtraHeaders.values().length;
     private static final int NUMBER_OF_FIELDS = 1;
@@ -25,6 +28,9 @@ public class HeadersDialog extends JDialog {
     private ArrayList<JTextField> headerTextFields = new ArrayList<>();
     private transient RequestHeaders headers = new RequestHeaders();
 
+    /**
+     * Create a new HeadersDialog
+     */
     public HeadersDialog() {
         super();
         this.setTitle(GuiUtils.ADD_HEADERS_STRING);
@@ -50,22 +56,29 @@ public class HeadersDialog extends JDialog {
 
             @Override
             public void windowIconified(java.awt.event.WindowEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
             }
 
             @Override
             public void windowDeiconified(java.awt.event.WindowEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
             }
 
             @Override
             public void windowActivated(java.awt.event.WindowEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
             }
 
             @Override
             public void windowDeactivated(java.awt.event.WindowEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
             }
         });
     }
 
+    /**
+     * Initialise the UI of the dialog
+     */
     private void initUI() {
         for (HttpExtraHeaders header : HttpExtraHeaders.values()) {
             JPanel rowPanel = new JPanel();
@@ -89,6 +102,10 @@ public class HeadersDialog extends JDialog {
         }
     }
 
+    /**
+     * Get the selected headers from the dialog
+     * @return the selected headers
+     */
     public RequestHeaders getSelectedHeaders() {
         RequestHeaders requestHeaders = new RequestHeaders();
         for (int headerIndex = 0; headerIndex < NUMBER_OF_HEADERS; headerIndex++) {
@@ -100,6 +117,10 @@ public class HeadersDialog extends JDialog {
         return requestHeaders;
     }
 
+    /**
+     * Get the headers as a RequestHeaders object from the dialog
+     * @return the headers
+     */
     public RequestHeaders getHeaders() {
         return headers;
     }

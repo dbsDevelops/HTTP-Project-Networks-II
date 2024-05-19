@@ -3,6 +3,9 @@ package http.project.networks.ii.gui.extra_headers;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Enum for the extra headers that can be added to a request
+ */
 public enum HttpExtraHeaders {
     ACCEPT_CHARSET("Accept-Charset"),
     ACCEPT_ENCODING("Accept-Encoding"),
@@ -32,14 +35,26 @@ public enum HttpExtraHeaders {
 
     private String header;
 
+    /**
+     * Create a new HttpExtraHeaders
+     * @param header The header
+     */
     HttpExtraHeaders(String header) {
         this.header = header;
     }
 
+    /**
+     * Get the header
+     * @return The header
+     */
     public String getHeader() {
         return this.header;
     }
 
+    /**
+     * Get the headers as a list of String
+     * @return The headers
+     */
     public static List<String> getHeaders() {
         List<String> headers = new ArrayList<>();
         for (HttpExtraHeaders header : HttpExtraHeaders.values()) {
@@ -48,6 +63,11 @@ public enum HttpExtraHeaders {
         return headers;
     }
 
+    /**
+     * Parse a header from a string
+     * @param header The header
+     * @return The HttpExtraHeaders
+     */
     public static HttpExtraHeaders parse(String header) {
         for (HttpExtraHeaders headerType : HttpExtraHeaders.values()) {
             if (headerType.getHeader().equals(header)) {

@@ -1,5 +1,8 @@
 package http.project.networks.ii.gui.utils;
 
+/**
+ * A class to store the strings used in the GUI
+ */
 public class GuiUtils {
 
     public static final String HOST_STRING = "Host ";
@@ -20,7 +23,11 @@ public class GuiUtils {
     public static final int DIALOG_WIDTH = 800;
     public static final int DIALOG_HEIGHT = 600;
 
-    public GuiUtils() {
+    /**
+     * Private constructor to prevent instantiation
+     * This class is only used for static methods
+     */
+    private GuiUtils() {
         // Constructor is empty because this class is only used for static methods
     }
 }
