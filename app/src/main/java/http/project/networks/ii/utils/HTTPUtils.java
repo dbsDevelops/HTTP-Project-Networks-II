@@ -77,7 +77,9 @@ public class HTTPUtils {
     public static final String RESPONSE = "Response: \n";
     public static final String ESTIMATED_RESPONSE_SIZE = "Estimated response size: ";
 
-    //To map extensions and create a new body depending on the extension that the file has
+    /**
+     * This HashMap contains all the file extensions as keys, that maps to the corresponding HttpBodyType header as value
+     */
     private static final Map<String, HttpBodyType> extensionToTypeMap = new HashMap<String, HttpBodyType>();
     
     static {
@@ -104,8 +106,8 @@ public class HTTPUtils {
     
     /**
      * This method is used to automatically select with the desired url the port where the client wants to communicate
-     * @param url the url where the information is going to be sent by the client
-     * @return the port where the url is pointing to. If somthing goes wrong, -1 will be returned
+     * @param url The url where the information is going to be sent by the client
+     * @return The port where the url is pointing to. If somthing goes wrong, -1 will be returned
      */
     public static int selectPortBasedOnProtocol(URL url) {
         int port = -1; // Valor predeterminado si algo va mal
@@ -127,11 +129,12 @@ public class HTTPUtils {
     }
 
     /**
-     * This method is used to create a request body from a file
-     * @param localPath the local path where the file is located
-     * @param filePath the path of the file
-     * @return the request body created from the file
-     * @throws IOException if the file is not found
+     * Method that resolves a path, takes care of determining the file type and constructing an appropriate body 
+     * and then including that body in a response.
+     * @param localPath Path where the static resources are located inside the local device
+     * @param filePath Path obtained from te request, that contains the final file/directory
+     * @return A constructed body with his Body type correctly assigned
+     * @throws IOException
      */
     public static HttpRequestBody createRequestBodyFromFile(String localPath, String filePath) throws IOException {
         String filePathString = localPath + filePath;
@@ -140,6 +143,12 @@ public class HTTPUtils {
             return null;
         }
         if(path.toFile().isDirectory()) {
+            if(path.resolve("index.html").normalize().toFile().exists()) {
+                path = path.resolve("index.html").normalize();
+                System.out.println("Path: " + path);
+                String content = Files.readString(path);
+                return new HttpRequestBody(HttpBodyType.HTML, content);
+            }
             String html = buildDirectoryHtml(localPath, filePath);
             return new HttpRequestBody(HttpBodyType.HTML, html);
         } else {
@@ -155,29 +164,33 @@ public class HTTPUtils {
     }
 
     /**
-     * This method is used to build the html of a directory
-     * @param localPath the local path where the directory is located
-     * @param filePath the path of the directory
-     * @return the html of the directory
-     * @throws IOException if the directory is not found
+     * Method that auto-generates an html code with all the entries of a directory for its later encapsulation inside a body.
+     * @param localPath Path where the static resources are located inside the local device
+     * @param dirPath Directory path that we want to generate the html
+     * @return
+     * @throws IOException
      */
-    private static String buildDirectoryHtml(String localPath, String filePath) throws IOException {
-        Path directoryPath = Paths.get(localPath, filePath).normalize();
+    private static String buildDirectoryHtml(String localPath, String dirPath) throws IOException {
+        Path directoryPath = Paths.get(localPath, dirPath).normalize();
         StringBuilder htmlBuilder = new StringBuilder();
         htmlBuilder.append("<html><head><title>Index of ");
-        htmlBuilder.append(filePath);
+        htmlBuilder.append(dirPath);
         htmlBuilder.append("</title></head><body><h1>Index of ");
-        htmlBuilder.append(filePath);
+        htmlBuilder.append(dirPath);
         htmlBuilder.append("</h1><ul>");
 
         // List files and directories
         try (Stream<Path> stream = Files.list(directoryPath)) {
             for (Path entry : stream.collect(Collectors.toList())) {
                 String fileName = entry.getFileName().toString();
-                Path relativeFilePath = Paths.get(filePath, fileName);
+                Path relativeFilePath = Paths.get(dirPath, fileName);
 
                 htmlBuilder.append("<li><a href=\"");
-                htmlBuilder.append(relativeFilePath.toString());
+                if(relativeFilePath.toFile().isDirectory()) {
+                    htmlBuilder.append(relativeFilePath.toString() + "/");
+                } else {
+                    htmlBuilder.append(relativeFilePath.toString());
+                }
                 htmlBuilder.append("\">");
                 htmlBuilder.append(fileName);
                 htmlBuilder.append("</a></li>");

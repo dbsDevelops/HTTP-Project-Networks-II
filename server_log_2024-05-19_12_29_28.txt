@@ -1,0 +1,178 @@
+2024-05-19T12:29:28.027239-Server is running on port: 80
+2024-05-19T12:29:37.846453-Client connected from /0:0:0:0:0:0:0:1:55455
+2024-05-19T12:29:37.884904-Client connected from /0:0:0:0:0:0:0:1:55456
+2024-05-19T12:29:37.909013-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/html
+Content-Length: 713
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SussYnvaders</title>
+    <link rel="icon" href="images/Sussy.ico" type="image/x-icon" />
+</head>
+    <body>
+        <!--Style Scripts-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+        <!--Javascript Scripts-->
+        <script src="js/covers.js"></script>
+        <script src="js/matrix.js"></script>
+        <script src="js/sound.js"></script>
+        <script src="js/player.js"></script>
+        <script src="js/aliens.js"></script>
+        <script src="js/saucerAlien.js"></script>
+        <script src="js/bullets.js"></script>
+        <script src="js/collision.js"></script>
+        <script src="js/game.js"></script>
+
+    </body>
+</html>
+
+2024-05-19T12:29:37.914653-Client connected from /0:0:0:0:0:0:0:1:55457
+2024-05-19T12:29:37.916003-Client connected from /0:0:0:0:0:0:0:1:55458
+2024-05-19T12:29:37.916742-Client connected from /0:0:0:0:0:0:0:1:55459
+2024-05-19T12:29:37.916802-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.917010-Client connected from /0:0:0:0:0:0:0:1:55460
+2024-05-19T12:29:37.917285-Client connected from /0:0:0:0:0:0:0:1:55461
+2024-05-19T12:29:37.917493-Client connected from /0:0:0:0:0:0:0:1:55462
+2024-05-19T12:29:37.917682-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.918014-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.918121-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.918353-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.919354-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.920443-Client connected from /0:0:0:0:0:0:0:1:55463
+2024-05-19T12:29:37.921154-Client connected from /0:0:0:0:0:0:0:1:55464
+2024-05-19T12:29:37.921365-Client connected from /0:0:0:0:0:0:0:1:55465
+2024-05-19T12:29:37.921502-Client connected from /0:0:0:0:0:0:0:1:55466
+2024-05-19T12:29:37.921896-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.922560-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.922752-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+
+2024-05-19T12:29:37.922722-Response: 
+HTTP/1.1 404 Not Found
+Connection: close
+Date: Sun, 19 May 2024 10:29:37 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 9
+Set-Cookie: cookie1=ma366xrz; Max-Age=33; HttpOnly; Date=2024-05-19T12:29:27.993803
+Set-Cookie: cookie2=ma367xrz; Max-Age=27; HttpOnly; Date=2024-05-19T12:29:27.993819
+Set-Cookie: cookie3=ma368xrz; Max-Age=55; HttpOnly; Date=2024-05-19T12:29:27.993830
+
+Not found
+

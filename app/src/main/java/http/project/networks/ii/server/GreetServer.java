@@ -159,7 +159,7 @@ public class GreetServer {
 
         // Write the output to the client
         byte[] responseBytes = responseStr.getBytes(StandardCharsets.UTF_8);
-        //If the body has binary content, we sent it directly
+        //If the body has no binary content, we sent it directly
         if(response.getBodyContent() == null && response.getBinaryContent() != null
         && !request.getMethod().equals(Verbs.HEAD)) {
             responseBytes = concatByteArrays(responseBytes, response.getBinaryContent());
@@ -212,11 +212,24 @@ public class GreetServer {
             }            
             else {
                 try {
-                    HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
-                    if(body != null) {
+                    String auxPathString = staticFiles.toString() + urlPath;
+                    Path auxPath = Paths.get(auxPathString);
+                    //We try to find the index.html in a directory
+                    if (auxPathString.endsWith("/") && auxPath.toFile().isDirectory()) {
+                        HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
+                        return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
+                    } else if (!auxPathString.endsWith("/") && auxPath.toFile().isDirectory()){
+                        auxPathString = auxPathString + "/";
+                        auxPath = Paths.get(auxPathString);
+                        HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
                         return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                     } else {
-                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.NOT_FOUND));
+                        HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
+                        if(body != null) {
+                            return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
+                        } else {
+                            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.NOT_FOUND));
+                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -229,7 +242,6 @@ public class GreetServer {
                     HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), "/index.html");
                     return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                 } else {
-                    //TODO generate default server html
                     return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "This is the DJGI/1.0.0 server main page"));
                 }
                 
