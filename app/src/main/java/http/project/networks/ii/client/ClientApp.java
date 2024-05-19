@@ -58,6 +58,9 @@ public class ClientApp {
 
         app.testGET("https://localhost/teachers/");
 
+        // ¡This test wait 30 seconds before sending the same request, comment it if you want to test the other methods!
+        app.testCookiesExpiration("https://localhost/teachers/project",30000);
+
     }
 
 
@@ -227,6 +230,45 @@ public class ClientApp {
             System.out.println(request.toString());
             client.sendRequest(url, request);
         } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    void testCookiesExpiration(String urlPath, long miliseconds) {
+        try {
+            Verbs method = null;                                                           //Method to send the request
+            URL url = null;                     //URL to send the request
+            String protocolVersion = null;                                                 //Protocol version  
+            RequestHeaders headers = null;                                          //Headers
+            HttpBodyType bodyType = null;                                            //Body type
+            String bodyContent = null;  
+            GreetClient client = null;
+            Request request = null;                                //Body content
+
+            method = Verbs.GET;                                                           //Method to send the request
+            url = new URL(urlPath);                     //URL to send the request
+            protocolVersion = "HTTP/1.1";                                                 //Protocol version
+            headers = new RequestHeaders(url);                                          //Headers
+            bodyType = HttpBodyType.RAW;                                            //Body type
+            bodyContent = "";                                      //Body content
+
+            client = new GreetClient(cachedData);
+            //Send the request 1
+            request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
+            System.out.println(request.toString());
+            client.sendRequest(url, request);
+
+            //Send the request 2
+            System.out.println("\n\n--> Waiting 30 seconds to send last request for cookies expiration test\n\n");
+            Thread.sleep(miliseconds);
+            request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
+            System.out.println(request.toString());
+            client.sendRequest(url, request);
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

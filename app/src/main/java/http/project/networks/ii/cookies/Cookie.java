@@ -113,6 +113,8 @@ public class Cookie {
     }
 
     public boolean equals(Cookie cookie) {
-        return this.value.equals(cookie.value);
+        return this.id == cookie.getId() && this.value.equals(cookie.getValue())
+         && this.maxAge == cookie.getMaxAge() && this.secure == cookie.secure &&
+          this.timeStartCookie.equals(cookie.getTimeStartCookie());
     }
 }
