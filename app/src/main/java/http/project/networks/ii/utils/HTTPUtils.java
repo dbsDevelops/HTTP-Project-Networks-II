@@ -203,6 +203,7 @@ public class HTTPUtils {
 
     /**
      * This method is used to check if a cookie is expired
+     * Compare the time when the cookie was created with the current time
      * @param cookie the cookie to check
      * @return true if the cookie is expired, false otherwise
      */
@@ -213,9 +214,11 @@ public class HTTPUtils {
         return false;
     }
 
+
     /**
      * This method is used to check if a cookie exists in the server
-     * @param request the request to check
+     * Compare the cookie with the cookies in the request headers to check if it exists
+     * @param request the request of the client to check 
      * @param cookie the cookie to check
      * @return true if the cookie exists, false otherwise
      */
