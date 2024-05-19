@@ -29,6 +29,14 @@ public class ClientHello {
     private byte[] serverRandom;
     public SecretKey symmetricKey;
 
+        /**
+     * Constructor for the client TLS handshake´
+     * The socket is created with the server name and port from GreetClient
+     * @param serverName
+     * @param port
+     * @param tlsShared
+     * @throws IOException
+     */
     public ClientHello(String serverName, int port, TlsShared tlsShared) throws IOException {
         socket = new Socket(serverName, port);
         out = new DataOutputStream(socket.getOutputStream());
@@ -40,6 +48,12 @@ public class ClientHello {
         this.serverRandom = new byte[32];
     }
 
+    /**
+     * Send the client hello message to the server
+     * The client hello message contains the TLS version, the client random, and the cipher suite
+     * The cipher suite is the symmetric encryption algorithm to be used
+     * @throws IOException
+     */
     public void sendClientHello() throws IOException {
         // TLS version (3.3 for TLSv1.3)
         out.writeByte(3);
@@ -56,6 +70,12 @@ public class ClientHello {
         out.flush();
     }
 
+    /**
+     * Validate the certificate received from the server
+     * The certificate is validated by checking if it is expired or not yet valid
+     * The certificate is also verified by the public key
+     * @throws IOException
+     */
     public void validateCertificateFromServer() {
         try {
             // Read TLS version
@@ -101,6 +121,11 @@ public class ClientHello {
                 }
     }
 
+    /**
+     * Send the pre-master secret to the server ciphered with the server's certificate public key and generate the symmetric key
+     * The pre-master secret is generated randomly and ciphered with the server's public key
+     * @throws Exception
+     */
     public void sendPremasterSecret() throws Exception {
         // Generate pre-master secret
         byte[] preMasterSecret = new byte[48];
@@ -123,6 +148,7 @@ public class ClientHello {
         //System.out.println("\nSymmetric key: " + Hex.encodeHexString(this.symmetricKey.getEncoded()));
     }
     
+    /* 
     public static void main(String[] args) { 
         try {
             TlsShared tlsShared = new TlsShared();
@@ -137,6 +163,6 @@ public class ClientHello {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
     }
+    */
 }

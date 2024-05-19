@@ -29,6 +29,15 @@ public class ServerHello {
     private TlsShared tlsShared;
     public SecretKey symmetricKey;
 
+    /**
+     * Constructor for the server TLS handshake
+     * The socket is created with the server name and port from GreetClient
+     * @param port
+     * @param certificate
+     * @param tlsShared
+     * @param s
+     * @throws IOException
+     */
     public ServerHello(int port, Certificate certificate, TlsShared tlsShared, Socket s) throws IOException {
         this.socket = s;
         out = new DataOutputStream(socket.getOutputStream());
@@ -40,6 +49,14 @@ public class ServerHello {
         this.serverRandom = new byte[32];
     }
 
+    /**
+     * Process the client hello message and send the server hello message
+     * The server hello message contains the TLS version, the server random, the cipher suite, and the certificate
+     * The cipher suite is the symmetric encryption algorithm to be used
+     * @throws IOException
+     * @throws InvalidKeyException
+     * @throws CertificateException
+     */
     public void processClientAndServer() throws IOException, InvalidKeyException,
              CertificateException{
                 //1. CLIENT HELLO
@@ -85,6 +102,13 @@ public class ServerHello {
         //System.out.println("ServerHello: Sent ServerHello with cipher suite " + cipherSuite);
     }
 
+    /**
+     * Receive the pre-master secret from the client
+     * The pre-master secret is encrypted with the server's public key
+     * The pre-master secret is decrypted with the server's private key using RSA and the private_key.der file for the Kp
+     * The symmetric key is generated from the pre-master secret
+     * @throws Exception
+     */
     public void receivePremasterSecret() throws Exception {
         int length = in.readInt();
         byte[] preMasterSecretCiphered = new byte[length];
@@ -131,6 +155,7 @@ public class ServerHello {
         return kf.generatePrivate(spec);
     }
 
+    /* 
     public static void main(String[] args) {
         try {
             TlsShared tlsShared = new TlsShared();
@@ -156,4 +181,5 @@ public class ServerHello {
             e.printStackTrace();
         }
     }
+    */
 }

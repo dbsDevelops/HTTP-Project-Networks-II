@@ -18,6 +18,15 @@ public class TlsShared {
     private byte[] serverRandom;
     private SecretKey symmetricKey;
 
+    /**
+     * Generate the symmetric key from the pre-master secret
+     * The symmetric key is used for encryption and decryption of the application data in the TLS connection
+     * The symmetric key is generated using the pre-master secret, the server random, and the client random
+     * The symmetric key is generated using the PBKDF2 key derivation function with HMAC-SHA256 as the PRF
+     * The symmetric key is 256 bits long
+     * @param preMasterSecret
+     * @throws Exception
+     */
     void generateSymmetricKey(byte[] preMasterSecret) throws Exception {
         byte[] seed = concatenate(serverRandom, clientRandom);
         //pbkdf2(preMasterSecret, seed, 2048, 256);
