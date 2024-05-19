@@ -3,6 +3,9 @@ package http.project.networks.ii.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An enum for the headers of an HTTP request
+ */
 public enum HttpRequestHeaders {
     ACCEPT("Accept"),
     ACCEPT_CHARSET("Accept-Charset"),
@@ -41,14 +44,26 @@ public enum HttpRequestHeaders {
 
     private String header;
 
+    /**
+     * Create a new HttpRequestHeaders
+     * @param header The header
+     */
     HttpRequestHeaders(String header) {
         this.header = header;
     }
 
+    /**
+     * Get the header
+     * @return The header
+     */
     public String getHeader() {
         return this.header;
     }
 
+    /**
+     * Get the headers as a list of String
+     * @return The headers
+     */
     public static List<String> getHeaders() {
         List<String> headers = new ArrayList<>();
         for (HttpRequestHeaders header : HttpRequestHeaders.values()) {
@@ -57,6 +72,11 @@ public enum HttpRequestHeaders {
         return headers;
     }
 
+    /**
+     * Parse a header from a string
+     * @param header The header
+     * @return The HttpRequestHeaders
+     */
     public static HttpRequestHeaders parse(String header) {
         for (HttpRequestHeaders headerType : HttpRequestHeaders.values()) {
             if (headerType.getHeader().equals(header)) {

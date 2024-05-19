@@ -5,13 +5,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * A logger for the application
+ */
 public class Logger {
 
     public static final int INFO = 0;
@@ -34,6 +36,10 @@ public class Logger {
     private OutputStreamWriter outputStreamWriter;
 
 
+    /**
+     * Create a new Logger
+     * @param logPath the path to the log file
+     */
     public Logger(String logPath) {
         this.logPath = logPath;
         simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
@@ -42,12 +48,16 @@ public class Logger {
             this.fileOutputStream = new FileOutputStream(logPath + dateText + LOG_FILE_EXTENSION, true);
             this.outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             log(e.getMessage(), ERROR);
         }
     }
 
+    /**
+     * Log a message
+     * @param message the message
+     * @param type the type of the message
+     */
     public void log(String message, int type) {
         try {
             if(type == ERROR) {
@@ -61,23 +71,27 @@ public class Logger {
                 outputStreamWriter.flush();
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             log(e.getMessage(), ERROR);
         }
     }
 
+    /**
+     * Close the logger
+     */
     public void close() {
         try {
             outputStreamWriter.close();
             fileOutputStream.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             log(e.getMessage(), ERROR);
         }
     }
 
+    /**
+     * Clear the log
+     */
     public void clear() {
         try {
             this.fileOutputStream = new FileOutputStream(System.getProperty(USER_DIR_PROPERTY) + DIRECTORY_PATH + logPath + dateText + LOG_FILE_EXTENSION);
@@ -88,10 +102,18 @@ public class Logger {
         }
     }
 
+    /**
+     * Get the path to the log file
+     * @return the path to the log file
+     */
     public String getLogPath() {
         return logPath;
     }
 
+    /**
+     * Set the path to the log file
+     * @param logPath the path to the log file
+     */
     public void setLogPath(String logPath) {
         this.logPath = logPath;
     }

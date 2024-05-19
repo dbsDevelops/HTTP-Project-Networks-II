@@ -23,6 +23,9 @@ import javax.crypto.SecretKey; // Import the SecretKey class
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+/**
+ * A utility class for HTTP
+ */
 public class HTTPUtils {
 
     // Private constructor to avoid instantiation
@@ -123,6 +126,13 @@ public class HTTPUtils {
         return port;
     }
 
+    /**
+     * This method is used to create a request body from a file
+     * @param localPath the local path where the file is located
+     * @param filePath the path of the file
+     * @return the request body created from the file
+     * @throws IOException if the file is not found
+     */
     public static HttpRequestBody createRequestBodyFromFile(String localPath, String filePath) throws IOException {
         String filePathString = localPath + filePath;
         Path path = Paths.get(filePathString);
@@ -144,6 +154,13 @@ public class HTTPUtils {
         }
     }
 
+    /**
+     * This method is used to build the html of a directory
+     * @param localPath the local path where the directory is located
+     * @param filePath the path of the directory
+     * @return the html of the directory
+     * @throws IOException if the directory is not found
+     */
     private static String buildDirectoryHtml(String localPath, String filePath) throws IOException {
         Path directoryPath = Paths.get(localPath, filePath).normalize();
         StringBuilder htmlBuilder = new StringBuilder();
@@ -171,6 +188,11 @@ public class HTTPUtils {
         return htmlBuilder.toString();
     }
 
+    /**
+     * This method is used to check if a cookie is expired
+     * @param cookie the cookie to check
+     * @return true if the cookie is expired, false otherwise
+     */
     public static Boolean isExpiredCookie(Cookie cookie){
         if(Duration.between(cookie.getTimeStartCookie(), LocalDateTime.now()).getSeconds() > cookie.getMaxAge()){
             return true;
@@ -178,6 +200,12 @@ public class HTTPUtils {
         return false;
     }
 
+    /**
+     * This method is used to check if a cookie exists in the server
+     * @param request the request to check
+     * @param cookie the cookie to check
+     * @return true if the cookie exists, false otherwise
+     */
     public static boolean existServerCookie(Request request, Cookie cookie) {
         for(String header: request.getRequestHeadersObject().getHeaders()) {
             if(header.startsWith(HttpRequestHeaders.SET_COOKIE.getHeader())) {
@@ -189,11 +217,21 @@ public class HTTPUtils {
         return false;
     }
 
+    /**
+     * This method is used to determine the body type of a file
+     * @param path the path of the file
+     * @return the body type of the file
+     */
     private static HttpBodyType determineBodyType(Path path) {
         String extension = getFileExtension(path);
         return extensionToTypeMap.getOrDefault(extension, HttpBodyType.RAW);
     }
 
+    /**
+     * This method is used to check if a body type is binary
+     * @param type the body type to check
+     * @return true if the body type is binary, false otherwise
+     */
     private static boolean isBinaryType(HttpBodyType type) {
         return type == HttpBodyType.PNG || type == HttpBodyType.JPEG || type == HttpBodyType.GIF ||
                type == HttpBodyType.SVG || type == HttpBodyType.PDF || type == HttpBodyType.ZIP ||
@@ -201,6 +239,11 @@ public class HTTPUtils {
                type == HttpBodyType.MP4 || type == HttpBodyType.MPEG || type == HttpBodyType.WAV;
     }
 
+    /**
+     * This method is used to get the extension of a file
+     * @param path the path of the file
+     * @return the extension of the file
+     */
     private static String getFileExtension(Path path) {
         String fileName = path.getFileName().toString();
         int dotIndex = fileName.lastIndexOf('.');
@@ -208,6 +251,13 @@ public class HTTPUtils {
         return fileName.substring(dotIndex + 1).toLowerCase();
     }
 
+    /**
+     * This method is used to encrypt a message
+     * @param message the message to encrypt
+     * @param symmetricKey the symmetric key to use
+     * @return the encrypted message
+     * @throws Exception if the encryption fails
+     */
     public static String encryptMessage(byte[] message, SecretKey symmetricKey) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         SecretKeySpec secretKey = new SecretKeySpec(symmetricKey.getEncoded(), "AES");
@@ -217,6 +267,13 @@ public class HTTPUtils {
         return Base64.getEncoder().encodeToString(encryptedMessage); //To avoid socket issues
     }
 
+    /**
+     * This method is used to decrypt a message
+     * @param encryptedMessage the message to decrypt
+     * @param symmetricKey the symmetric key to use
+     * @return the decrypted message
+     * @throws Exception if the decryption fails
+     */
     public static String decryptMessage(byte[] encryptedMessage, SecretKey symmetricKey) throws Exception {
         byte[] bytes = Base64.getDecoder().decode(encryptedMessage);
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
