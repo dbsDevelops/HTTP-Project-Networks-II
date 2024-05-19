@@ -20,13 +20,19 @@ public class Cookie {
     private boolean secure;
     private LocalDateTime timeStartCookie;
 
+    /**
+     * Constructor for the Cookie class
+     * The cookie is created with a random name, value, and expiration time
+     * The expiration time is between 20 and 60 seconds
+     * The cookie is not HTTPS by default but it can be set to secure with the setSecure method if TLS is used
+     */
     public Cookie() {
         Random random = new Random();
         this.name = "cookie"+count;
         this.id = count;
         this.value = "ma" + (count+365) + "xrz";
         this.maxAge = MIN_EXPIRATION + random.nextInt(MAX_EXPIRATION - MIN_EXPIRATION + 1);
-        this.secure = false; //No TLS de momento
+        this.secure = false; //By default the cookie is not secure
         this.timeStartCookie = LocalDateTime.now();
         count++; //Increment the count in a way that is difficol to guess
     }
@@ -39,6 +45,10 @@ public class Cookie {
         this.maxAge = maxAge;
         this.secure = secure;
         this.timeStartCookie = timeStartCookie;
+    }
+
+    public void setSecure(boolean secure) {
+        this.secure = secure;
     }
 
     public String getName() {

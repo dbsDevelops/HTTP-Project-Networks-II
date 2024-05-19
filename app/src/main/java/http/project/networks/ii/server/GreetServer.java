@@ -98,7 +98,7 @@ public class GreetServer {
 
     public void handleClientConnection() {
         try {
-            if(this.port == 443) {
+            if(this.port == HTTPUtils.HTTPS_PORT) {
                 CertificateFactory factory = CertificateFactory.getInstance("X.509");
                 Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
                 InputStream is = new FileInputStream(path.toFile());
@@ -107,6 +107,11 @@ public class GreetServer {
                 serverHello.processClientAndServer();
                 is.close();
                 serverHello.receivePremasterSecret();
+                
+                //Cookies are secure now that we are using HTTPS
+                for(int i=0; i<3;i++) {
+                    this.cookies.get(i).setSecure(true);
+                }
             }
             Socket clientSocket = serverSocket.accept();
             clientSocket.setKeepAlive(true);
@@ -252,7 +257,14 @@ public class GreetServer {
         }
     }
 
-    //Guarantees that the cookies are updated and the client will always have cookies
+    /**
+     * This method is used to handle the cookies. Guarantees that the cookies are updated and the client will always have cookies.
+     *  It checks if the cookies are expired or if they are not in the request.
+     *  If they are expired, it creates a new cookie with the same id and a new value.
+     *  If they are not in the request, it adds them to the response.
+     * @param request
+     * @param response
+     */
     public void handleCookies(Request request, Response response) {
         List<Cookie> cookiesToRemove = new ArrayList<>();
         List<Cookie> cookiesToAdd = new ArrayList<>();
@@ -274,6 +286,9 @@ public class GreetServer {
 
         for(Cookie cookie : cookiesToAdd) {
             this.cookies.add(cookie);
+            if(this.port == HTTPUtils.HTTPS_PORT) {
+                cookie.setSecure(true);
+            }
         }
     }
 
