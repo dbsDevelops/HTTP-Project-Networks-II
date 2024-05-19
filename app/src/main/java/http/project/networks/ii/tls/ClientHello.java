@@ -73,7 +73,6 @@ public class ClientHello {
      * Validate the certificate received from the server
      * The certificate is validated by checking if it is expired or not yet valid
      * The certificate is also verified by the public key
-     * @throws IOException
      */
     public void validateCertificateFromServer() {
         try {

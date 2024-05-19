@@ -48,7 +48,7 @@ public class BodyField {
 
     /**
      * Set the body content
-     * @param bodyContent the body content
+     * @param bodyContentLabel the body content
      */
     public void setBodyContentLabel(JLabel bodyContentLabel) {
         this.bodyContentLabel = bodyContentLabel;
@@ -56,7 +56,7 @@ public class BodyField {
 
     /**
      * Set the body content
-     * @param bodyContent the body content
+     * @param bodyContentTextArea the body content
      */
     public void setBodyContentTextArea(JTextArea bodyContentTextArea) {
         this.bodyContentTextArea = bodyContentTextArea;
