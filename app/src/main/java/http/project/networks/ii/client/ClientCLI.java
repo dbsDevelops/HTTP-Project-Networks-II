@@ -14,6 +14,13 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 
+/**
+ * Class corresponding to the .jar generated during the construction of the project with gradle, called ClientCLI.jar. We 
+ * give credits to curl, as we have been inspired by it to make the CLI.
+ * This class is very similar to the usual command line clients (like curl), as it will be in charge of passing the arguments 
+ * passed by the user for later interpretation. After that, it will send a request to the server for the indicated URL and will 
+ * be in charge of processing and displaying the server's response.
+ */
 public class ClientCLI {
     public static void main(String[] args) {
         OptionParser parser = new OptionParser();

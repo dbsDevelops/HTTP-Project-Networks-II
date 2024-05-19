@@ -45,6 +45,15 @@ public class GreetClient {
         //this.logger = new Logger("client");
     }
 
+    /**
+     * Method that is responsible for sending a request and reading and handling a response that has been sent from the 
+     * server. The method is able to identify whether or not the request needs to be encrypted and the response decrypted, 
+     * depending on whether it is a TLS request or not. 
+     * If the selected operation port is TLS, it will initiate the negotiation with the TLS handshake server, in order to 
+     * form a symmetric key.
+     * @param url URL where you want to send the request
+     * @param request Request to be sent to the server
+     */
     public void sendRequest(URL url, Request request) {
         this.url = url;
         this.host = url.getHost();
@@ -88,6 +97,14 @@ public class GreetClient {
         }
     }
 
+    /**
+     * Method that is in charge of reading and processing the response from the server, in order to cache the body data and 
+     * manage the cookies that the client has to use in future requests, if the same instance of the class persists.
+     * @param is The input stream coming from the client socket, to read the response coming from the server.
+     * @param isTls To indicate whether TLS is being used or not, to know if it has to decrypt and read the request in one 
+     * way (multiple lines) or another (base64 encoded line that is encrypted with the symmetric key of the server).
+     * @throws Exception If an error occurs, it will throw exceptions (either read or decrypt).
+     */
     private void readAndProcessResponse(InputStream is, boolean isTls) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         StringBuilder responseRaw = new StringBuilder();
@@ -113,6 +130,12 @@ public class GreetClient {
         processResponse(responseRaw.toString());
     }
 
+    /**
+     * Method that is in charge of walking the server response and managing the caching of data and if the client 
+     * has to use the cookies coming from the server.
+     * @param responseStr The text string corresponding to the response coming from the server
+     * @throws IOException If there is an error in the read and walk response, this exception will be thrown.
+     */
     private void processResponse(String responseStr) throws IOException {
         Response response = Response.parse(responseStr, this.port);
         this.response.setLength(RESET_RESPONSE);
@@ -153,6 +176,11 @@ public class GreetClient {
         }
     }
 
+    /**
+     * Method that determines whether the header is a set cookie header or not.
+     * @param field Line corresponding to the header
+     * @return True if it is a cookie-setting header, false otherwise.
+     */
     private boolean isCookieField(String field) {
         if (field != null) {
             return field.startsWith(HttpRequestHeaders.SET_COOKIE.getHeader());
@@ -160,6 +188,10 @@ public class GreetClient {
         return false;
     }
 
+    /**
+     * Method that takes care of adding the cookies sent by the server to be used by the client in future requests.
+     * @param cookieLine Cookie setting line
+     */
     private void addServerCookiesToClient(String cookieLine) {
         String cookieValue = cookieLine.substring(HttpRequestHeaders.SET_COOKIE.getHeader().length() + 2);
         StringBuilder cookiesValue = new StringBuilder();

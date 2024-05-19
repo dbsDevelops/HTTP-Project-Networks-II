@@ -21,6 +21,9 @@ import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.Verbs;
 
+/**
+ * Class that is responsible for testing the server behaviour for all types of requests. 
+ */
 public class ClientApp {
     CachedData cachedData = new CachedData();
     public static void main(String[] args) {
