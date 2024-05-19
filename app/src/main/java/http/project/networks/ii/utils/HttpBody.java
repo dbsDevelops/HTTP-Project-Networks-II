@@ -10,8 +10,8 @@ public class HttpBody {
 
     /**
      * Create a new HttpRequestBody
-     * @param type the type of the body
-     * @param content the content of the body
+     * @param type The type of the body
+     * @param content The content of the body
      */
     public HttpBody(HttpBodyType type, String content) {
         this.type = type;
@@ -21,8 +21,8 @@ public class HttpBody {
 
     /**
      * Create a new HttpRequestBody
-     * @param type the type of the body
-     * @param binaryContent the binary content of the body
+     * @param type The type of the body
+     * @param binaryContent The binary content of the body
      */
     public HttpBody(HttpBodyType type, byte[] binaryContent) {
         this.type = type;
@@ -32,39 +32,35 @@ public class HttpBody {
 
     /**
      * Set the type of the body
-     * @param type the type of the body
+     * @param type The type of the body
      */
     public void setType(HttpBodyType type) {
         this.type = type;
     }  
 
     /**
-     * Set the content of the body
-     * @param content the content of the body
+     * Get the type of the body
      */
     public HttpBodyType getType() {
         return this.type;
     }
 
     /**
-     * Set the content of the body
-     * @param content the content of the body
+     * Get the string content of the body
      */
     public String getStringContent() {
         return this.content;
     }
 
     /**
-     * Set the content of the body
-     * @param content the content of the body
+     * Get the binary content of the body
      */
     public byte[] getBinaryContent() {
         return binaryContent;
     }
 
     /**
-     * Set the content of the body
-     * @param content the content of the body
+     * Get the content lenght of the body
      */
     public int getContentLength() {
         return binaryContent != null ? binaryContent.length : content.length();
@@ -72,7 +68,6 @@ public class HttpBody {
 
     /**
      * Return the body as a string
-     * @param content the content of the body as a String
      */
     public String toString() {
         return this.type.getBodyType();

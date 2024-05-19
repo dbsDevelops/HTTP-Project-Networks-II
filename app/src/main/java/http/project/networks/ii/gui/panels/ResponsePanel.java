@@ -56,7 +56,6 @@ public class ResponsePanel extends JScrollPane {
 
     /**
      * Get the response
-     * @return the response
      */
     public void appendResponse(String response) {
         responseTextArea.append(response);

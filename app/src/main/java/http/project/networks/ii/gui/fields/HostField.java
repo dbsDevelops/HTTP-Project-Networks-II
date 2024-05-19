@@ -24,7 +24,7 @@ public class HostField {
 
     /**
      * Get the label for the host
-     * @return the label for the host
+     * @return The label for the host
      */
     public JLabel getHostLabel() {
         return hostLabel;
@@ -32,7 +32,7 @@ public class HostField {
 
     /**
      * Get the text field for the host
-     * @return the text field for the host
+     * @return The text field for the host
      */
     public JTextField getHostTextField() {
         return hostTextField;
@@ -48,7 +48,7 @@ public class HostField {
 
     /**
      * Set the host
-     * @param host the host
+     * @param hostLabel The host
      */
     public void setHostLabel(JLabel hostLabel) {
         this.hostLabel = hostLabel;
@@ -56,7 +56,7 @@ public class HostField {
 
     /**
      * Set the host
-     * @param host the host
+     * @param hostTextField The host
      */
     public void setHostTextField(JTextField hostTextField) {
         this.hostTextField = hostTextField;

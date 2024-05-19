@@ -48,7 +48,7 @@ public class PortField {
 
     /**
      * Set the port
-     * @param port the port
+     * @param portLabel the port label
      */
     public void setPortLabel(JLabel portLabel) {
         this.portLabel = portLabel;
@@ -56,7 +56,7 @@ public class PortField {
 
     /**
      * Set the port
-     * @param port the port
+     * @param portTextField the port text field
      */
     public void setPortTextField(JTextField portTextField) {
         this.portTextField = portTextField;
