@@ -3,6 +3,7 @@ package http.project.networks.ii.client;
 import http.project.networks.ii.headers.RequestHeaders;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.utils.HttpBodyType;
+import http.project.networks.ii.utils.HttpRequestHeaders;
 import http.project.networks.ii.utils.Verbs;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -54,7 +55,15 @@ public class ClientCLI {
             }
 
             Verbs verb = Verbs.valueOf(method.toUpperCase());
-            HttpBodyType bodyType = HttpBodyType.JSON;  // Default, adjust based on actual data type
+            String contentType = requestHeaders.getValue(HttpRequestHeaders.CONTENT_TYPE);
+            HttpBodyType bodyType;
+            //If no body type header specified, supposed as raw body content
+            if(contentType != null) {
+                bodyType = HttpBodyType.parse(contentType);
+            } else {
+                bodyType = HttpBodyType.RAW;
+            }
+            
             Request request = new Request(verb, url, "HTTP/1.1", requestHeaders, bodyType, data != null ? data : "");
             
             client.sendRequest(url, request);
