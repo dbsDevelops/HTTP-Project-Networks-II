@@ -6,7 +6,7 @@ import java.net.URL;
 import http.project.networks.ii.headers.RequestHeaders;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
-import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 import http.project.networks.ii.utils.Verbs;
 
@@ -17,7 +17,7 @@ public class Request {
     protected URL url;
     protected String protocolVersion;
     protected RequestHeaders headers; 
-    protected HttpRequestBody body; 
+    protected HttpBody body; 
 
     public Request(Verbs method,URL url, String protocolVersion , RequestHeaders headers, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
@@ -25,9 +25,9 @@ public class Request {
         this.protocolVersion = protocolVersion;
         this.headers = headers;
         if(this.method == Verbs.GET || this.method == Verbs.HEAD) {
-            this.body = new HttpRequestBody(HttpBodyType.RAW, "");
+            this.body = new HttpBody(HttpBodyType.RAW, "");
         } else { //POST, PUT, DELETE
-            this.body = new HttpRequestBody(bodyType, bodyContent);
+            this.body = new HttpBody(bodyType, bodyContent);
             //Set the new values for the headers content-length and content-type
             if(this.headers.getValue(HttpRequestHeaders.CONTENT_LENGTH) == null) { //If the header does not exists, we add it, else we didn't add it
                 this.headers.addHeaderToHeaders(HttpRequestHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
@@ -75,7 +75,7 @@ public class Request {
         return this.headers.toString();
     }
 
-    public HttpRequestBody getBody() {
+    public HttpBody getBody() {
         return this.body;
     }
 
@@ -99,7 +99,7 @@ public class Request {
         this.headers = headers;
     }
 
-    public void setBody(HttpRequestBody body) {
+    public void setBody(HttpBody body) {
         this.body = body;
     }
 

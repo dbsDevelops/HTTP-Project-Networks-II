@@ -2,15 +2,15 @@ package http.project.networks.ii.responses;
 
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
-import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 
 public class Response {
     private String statusCodeAndDescription;
     protected ResponseHeaders responseHeaders;
-    private HttpRequestBody body;
+    private HttpBody body;
 
-    public Response(String statusCodeAndDescription, HttpRequestBody body) {
+    public Response(String statusCodeAndDescription, HttpBody body) {
         this.statusCodeAndDescription = statusCodeAndDescription;
         this.responseHeaders = new ResponseHeaders();
         this.body = body;
@@ -121,12 +121,12 @@ public class Response {
             }
         }
 
-        HttpRequestBody body;
+        HttpBody body;
         if (bodyType == HttpBodyType.RAW) {
-            body = new HttpRequestBody(bodyType, bodyContent);
+            body = new HttpBody(bodyType, bodyContent);
         } else {
             binaryContent = bodyContent.getBytes(); // Simple conversion for demonstration
-            body = new HttpRequestBody(bodyType, binaryContent);
+            body = new HttpBody(bodyType, binaryContent);
         }
 
         Response response = new Response(statusCodeAndDescription, body);

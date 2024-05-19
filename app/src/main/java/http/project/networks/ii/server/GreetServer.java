@@ -23,7 +23,7 @@ import http.project.networks.ii.tls.ServerHello;
 import http.project.networks.ii.tls.TlsShared;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
-import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 import http.project.networks.ii.utils.Verbs;
 
@@ -262,39 +262,39 @@ public class GreetServer {
                     Path auxPath = Paths.get(auxPathString);
                     //We try to find the index.html in a directory
                     if (auxPathString.endsWith("/") && auxPath.toFile().isDirectory()) {
-                        HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
+                        HttpBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
                         return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                     } else if (!auxPathString.endsWith("/") && auxPath.toFile().isDirectory()){
                         auxPathString = auxPathString + "/";
                         auxPath = Paths.get(auxPathString);
-                        HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
+                        HttpBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
                         return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                     } else {
-                        HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
+                        HttpBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
                         if(body != null) {
                             return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                         } else {
-                            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.NOT_FOUND));
+                            return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.NOT_FOUND));
                         }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
+                return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
             }
         } else {
             try {
                 if(staticFiles.resolve("index.html").toFile().exists()) {
-                    HttpRequestBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), "/index.html");
+                    HttpBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), "/index.html");
                     return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                 } else {
-                    return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "This is the DJGI/1.0.0 server main page"));
+                    return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpBody(HttpBodyType.RAW, "This is the DJGI/1.0.0 server main page"));
                 }
                 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
+            return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
         }
     }
 

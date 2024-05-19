@@ -9,14 +9,14 @@ import http.project.networks.ii.responses.Response;
 import http.project.networks.ii.server.ServerStatusCodes;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
-import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpBody;
 
 public class RequestPOST implements RequestCommand {
     private final String path;
     private final TeachersClass teachers;
-    private final HttpRequestBody body;
+    private final HttpBody body;
 
-    public RequestPOST(String path, TeachersClass teachers, HttpRequestBody body) {
+    public RequestPOST(String path, TeachersClass teachers, HttpBody body) {
         this.path = path;
         this.teachers = teachers;
         this.body = body;
@@ -29,10 +29,10 @@ public class RequestPOST implements RequestCommand {
         }
 
 
-        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
     }
 
-    private Response processBodyTeachers(HttpRequestBody body) {
+    private Response processBodyTeachers(HttpBody body) {
         if (body.getType() == HttpBodyType.JSON) {
             Gson gson = new Gson();
             TeachersClass data = gson.fromJson(body.getStringContent(), TeachersClass.class);
@@ -42,8 +42,8 @@ public class RequestPOST implements RequestCommand {
             for (Project project : data.getProjects()) {
                 this.teachers.addProject(project);
             }
-            return new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED));
+            return new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED));
         }
-        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+        return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
     }
 }

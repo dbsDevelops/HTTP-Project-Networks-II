@@ -6,7 +6,7 @@ import http.project.networks.ii.responses.Response;
 import http.project.networks.ii.server.ServerStatusCodes;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
-import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 
 public class APITeachers {
@@ -102,6 +102,6 @@ public class APITeachers {
     }
 
     private Response methodNotAllowedResponse() {
-        return new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.METHOD_NOT_ALLOWED));
+        return new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.METHOD_NOT_ALLOWED));
     }
 }

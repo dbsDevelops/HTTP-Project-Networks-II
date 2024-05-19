@@ -136,7 +136,7 @@ public class HTTPUtils {
      * @return A constructed body with his Body type correctly assigned
      * @throws IOException
      */
-    public static HttpRequestBody createRequestBodyFromFile(String localPath, String filePath) throws IOException {
+    public static HttpBody createRequestBodyFromFile(String localPath, String filePath) throws IOException {
         String filePathString = localPath + filePath;
         Path path = Paths.get(filePathString);
         if(!path.toFile().exists()) {
@@ -147,18 +147,18 @@ public class HTTPUtils {
                 path = path.resolve("index.html").normalize();
                 System.out.println("Path: " + path);
                 String content = Files.readString(path);
-                return new HttpRequestBody(HttpBodyType.HTML, content);
+                return new HttpBody(HttpBodyType.HTML, content);
             }
             String html = buildDirectoryHtml(localPath, filePath);
-            return new HttpRequestBody(HttpBodyType.HTML, html);
+            return new HttpBody(HttpBodyType.HTML, html);
         } else {
             HttpBodyType type = determineBodyType(path);
             if (isBinaryType(type)) {
                 byte[] data = Files.readAllBytes(path);
-                return new HttpRequestBody(type, data);
+                return new HttpBody(type, data);
             } else {
                 String content = Files.readString(path);
-                return new HttpRequestBody(type, content);
+                return new HttpBody(type, content);
             }
         }
     }

@@ -3,7 +3,7 @@ package http.project.networks.ii.utils;
 /**
  * A class for the body of an HTTP request
  */
-public class HttpRequestBody {
+public class HttpBody {
     private HttpBodyType type;
     private String content;
     private byte[] binaryContent;
@@ -13,7 +13,7 @@ public class HttpRequestBody {
      * @param type the type of the body
      * @param content the content of the body
      */
-    public HttpRequestBody(HttpBodyType type, String content) {
+    public HttpBody(HttpBodyType type, String content) {
         this.type = type;
         this.content = content;
         this.binaryContent = null;
@@ -24,7 +24,7 @@ public class HttpRequestBody {
      * @param type the type of the body
      * @param binaryContent the binary content of the body
      */
-    public HttpRequestBody(HttpBodyType type, byte[] binaryContent) {
+    public HttpBody(HttpBodyType type, byte[] binaryContent) {
         this.type = type;
         this.binaryContent = binaryContent;
         this.content = null;

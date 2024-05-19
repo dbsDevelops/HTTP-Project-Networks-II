@@ -7,7 +7,7 @@ import http.project.networks.ii.responses.Response;
 import http.project.networks.ii.server.ServerStatusCodes;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
-import http.project.networks.ii.utils.HttpRequestBody;
+import http.project.networks.ii.utils.HttpBody;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -45,7 +45,7 @@ public class RequestConditionalGet implements RequestCommand {
                     
                 } else {
                     // Resource has not been modified since the specified date
-                    return new Response(ServerStatusCodes.NOT_MODIFIED_304.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, "Resource has not been modified"));
+                    return new Response(ServerStatusCodes.NOT_MODIFIED_304.getStatusString(), new HttpBody(HttpBodyType.RAW, "Resource has not been modified"));
                 }
             }
 
@@ -56,7 +56,7 @@ public class RequestConditionalGet implements RequestCommand {
             }
 
         }
-        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpRequestBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
+        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
     }    
     
     private LocalDateTime getLastModifiedDateOfResource(String path) {
