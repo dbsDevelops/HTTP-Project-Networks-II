@@ -1,0 +1,15 @@
+2024-05-20T09:54:34.309350200-Server is running on port: 443
+2024-05-20T09:55:11.164771300-Client connected from /127.0.0.1:2450
+2024-05-20T09:55:11.263731400-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Mon, 20 May 2024 07:55:11 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 884
+Set-Cookie: cookie4=ma369xrz; Max-Age=30; HttpOnly; Date=2024-05-20T09:55:11.259731
+Set-Cookie: cookie5=ma370xrz; Max-Age=46; HttpOnly; Date=2024-05-20T09:55:11.261733500
+Set-Cookie: cookie6=ma371xrz; Max-Age=46; HttpOnly; Date=2024-05-20T09:55:11.261733500
+
+[{"name":"Project_1","description":"Description_1","teacher":"Teacher_1","student":"Student_1","grade":"A","status":"Completed","lastModified":"2024-05-20T09:54:34.259164300"},{"name":"Project_2","description":"Description_2","teacher":"Teacher_2","student":"Student_2","grade":"B","status":"In_Progress","lastModified":"2024-05-20T09:54:34.259164300"},{"name":"Project_3","description":"Description_3","teacher":"Teacher_3","student":"Student_3","grade":"C","status":"In_Progress","lastModified":"2024-05-20T09:54:34.259164300"},{"name":"Project_4","description":"Description_4","teacher":"Teacher_4","student":"Student_4","grade":"D","status":"In_Progress","lastModified":"2024-05-20T09:54:34.259164300"},{"name":"Project_5","description":"Description_5","teacher":"Teacher_5","student":"Student_5","grade":"E","status":"In_Progress","lastModified":"2024-05-20T09:54:34.259164300"}]
+
