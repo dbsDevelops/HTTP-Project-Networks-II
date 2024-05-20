@@ -1,5 +1,8 @@
 package http.project.networks.ii.server;
 
+/**
+ * This enum represents the status codes of the server.
+ */
 public enum ServerStatusCodes {
     CONTINUE_100("100 Continue"), 
     SWITCHING_PROTOCOLS_101("101 Switching Protocols"), 
@@ -79,14 +82,26 @@ public enum ServerStatusCodes {
 
     private String statusString;
 
+    /**
+     * Constructor of the enum ServerStatusCodes.
+     * @param string The status string of the server.
+     */
     ServerStatusCodes(String string) {
         this.statusString = string;
     }
 
+    /**
+     * This method returns the status string of the server.
+     * @return The status string of the server.
+     */
     public String getStatusString() {
         return this.statusString;
     }
 
+    /**
+     * This method returns the status code of the server.
+     * @return The status code of the server.
+     */
     public String getMessageString() {
         StringBuilder message = new StringBuilder();
         String[] parts = this.statusString.split(" ");

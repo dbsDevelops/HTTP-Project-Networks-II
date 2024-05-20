@@ -23,6 +23,11 @@ import http.project.networks.ii.utils.HttpBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 import http.project.networks.ii.utils.Verbs;
 
+/**
+ * This class represents the server that will be listening to the client connections. It will be responsible for 
+ * managing the requests and responses that are sent and received, respectively. The server will be running until 
+ * an interrupt signal is received or the terminal that runs the program is closed.
+ */
 public class GreetServer {
 
     private volatile boolean running = true; // Used to check if server is running and warn rest of the threads
@@ -35,7 +40,11 @@ public class GreetServer {
     private Logger logger;
     int port;
 
-    // Singleton pattern
+    /**
+     * Constructor of the class GreetServer
+     * @param staticFilesPath The path where the static files are located.
+     * @param port The port where the server will be listening to the client connections.
+     */
     public GreetServer(String staticFilesPath, int port) {
         this.apiTeachers = new APITeachers();
         this.apiTeachers.initialiseTeachersMockData();
@@ -53,10 +62,18 @@ public class GreetServer {
         this.port = port;
     }
 
+    /**
+     * Method that returns the logger of the server.
+     * @return The logger of the server.
+     */
     public Logger getLogger() {
         return logger;
     }
 
+    /**
+     * Method that sets the logger of the server.
+     * @param logger The logger of the server.
+     */
     public void setLogger(Logger logger) {
         this.logger = logger;
     }   

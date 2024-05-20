@@ -2,6 +2,9 @@ package http.project.networks.ii.server;
 
 import http.project.networks.ii.utils.HTTPUtils;
 
+/**
+ * This class represents the server application. It creates two threads, one for the HTTPS server and one for the HTTP server.
+ */
 public class ServerApp {
 
     public static void main(String[] args) {
