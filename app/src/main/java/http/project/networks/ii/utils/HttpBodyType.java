@@ -26,6 +26,8 @@ public enum HttpBodyType {
     BZIP2("application/x-bzip2"),
     MP4("video/mp4"),
     MPEG("audio/mpeg"),
+    WASM("application/wasm"),
+    DATA("application/octet-stream"),
     WAV("audio/x-wav");
     
 
