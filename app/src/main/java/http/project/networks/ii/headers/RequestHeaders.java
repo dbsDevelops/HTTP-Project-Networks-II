@@ -4,13 +4,22 @@ import java.net.URL;
 
 import http.project.networks.ii.utils.HttpRequestHeaders;
 
+/**
+ * This class represents the headers of the request. It contains the headers of the request.
+ */
 public class RequestHeaders extends Headers {
 
-    //Empty constructor for the Server parse
+    /**
+     * Empty constructor of the class RequestHeaders to parse
+     */
     public RequestHeaders() {
         super();
     }
 
+    /**
+     * Constructor of the class RequestHeaders.
+     * @param url The URL of the request.
+     */
     public RequestHeaders(URL url) {
         super();
         // ADDING BASIC HEADERS FOR THE REQUEST MANUALLY

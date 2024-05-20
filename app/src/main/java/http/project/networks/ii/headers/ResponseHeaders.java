@@ -2,6 +2,9 @@ package http.project.networks.ii.headers;
 
 import http.project.networks.ii.utils.HttpRequestHeaders;
 
+/**
+ * This class represents the headers of the response. It contains the headers of the response.
+ */
 public class ResponseHeaders extends Headers {
 
     /**
