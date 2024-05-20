@@ -12,7 +12,9 @@ public enum HttpBodyType {
     XML("application/xml"),
     HTML("text/html"),
     JAVASCRIPT("application/javascript"),
+    PHP("application/x-httpd-php"),
     CSS("text/css"),
+    ICO("image/x-icon"),
     PNG("image/png"),
     JPEG("image/jpeg"),
     GIF("image/gif"),
@@ -25,6 +27,7 @@ public enum HttpBodyType {
     MP4("video/mp4"),
     MPEG("audio/mpeg"),
     WAV("audio/x-wav");
+    
 
     private String bodyType;
 

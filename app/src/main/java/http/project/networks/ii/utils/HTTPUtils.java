@@ -102,6 +102,8 @@ public class HTTPUtils {
         extensionToTypeMap.put("mp4", HttpBodyType.MP4);
         extensionToTypeMap.put("mp3", HttpBodyType.MPEG);
         extensionToTypeMap.put("wav", HttpBodyType.WAV);
+        extensionToTypeMap.put("php", HttpBodyType.PHP);
+        extensionToTypeMap.put("ico", HttpBodyType.ICO);
     }
     
     /**
@@ -252,7 +254,8 @@ public class HTTPUtils {
         return type == HttpBodyType.PNG || type == HttpBodyType.JPEG || type == HttpBodyType.GIF ||
                type == HttpBodyType.SVG || type == HttpBodyType.PDF || type == HttpBodyType.ZIP ||
                type == HttpBodyType.TAR || type == HttpBodyType.GZIP || type == HttpBodyType.BZIP2 || 
-               type == HttpBodyType.MP4 || type == HttpBodyType.MPEG || type == HttpBodyType.WAV;
+               type == HttpBodyType.MP4 || type == HttpBodyType.MPEG || type == HttpBodyType.WAV ||
+               type == HttpBodyType.ICO;
     }
 
     /**
