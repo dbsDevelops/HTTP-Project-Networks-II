@@ -10,6 +10,9 @@ import http.project.networks.ii.utils.HttpBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 import http.project.networks.ii.utils.Verbs;
 
+/**
+ * This class represents a HTTP request. It contains the method, the URL, the protocol version, the headers and the body of the request.
+ */
 public class Request {
     public static final String END_LINE = "\r\n";
     public static final String WHITE_SPACE = " ";
@@ -19,6 +22,15 @@ public class Request {
     protected RequestHeaders headers; 
     protected HttpBody body; 
 
+    /**
+     * Constructor of the class Request.
+     * @param method The method of the request.
+     * @param url The URL of the request.
+     * @param protocolVersion The protocol version of the request.
+     * @param headers The headers of the request.
+     * @param bodyType The type of the body of the request.
+     * @param bodyContent The content of the body of the request.
+     */
     public Request(Verbs method,URL url, String protocolVersion , RequestHeaders headers, HttpBodyType bodyType, String bodyContent) {
         this.method = method;
         this.url = url;
@@ -36,6 +48,11 @@ public class Request {
         }
     }
 
+    /**
+     * This method returns the string representation of the request.
+     * @return The string representation of the request.
+     */
+    @Override
     public String toString() {
         StringBuilder request = new StringBuilder();
         request.append(getMethodName());
@@ -51,58 +68,114 @@ public class Request {
         return request.toString();
     }
 
+    /**
+     * This method returns the method of the request.
+     * @return The method of the request.
+     */
     public Verbs getMethod() {
         return this.method;
     }
 
+    /**
+     * This method returns the method of the request as a string.
+     * @return The method of the request as a string.
+     */
     public String getMethodName() {
         return this.method.toString();
     }
 
+    /**
+     * This method returns the URL of the request.
+     * @return The URL of the request.
+     */
     public URL getUrl() {
         return this.url;
     }
 
+    /**
+     * This method returns the protocol version of the request.
+     * @return The protocol version of the request.
+     */
     public String getProtocolVersion() {
         return this.protocolVersion;
     }
 
+    /**
+     * This method returns the headers of the request.
+     * @return The headers of the request.
+     */
     public RequestHeaders getRequestHeadersObject() {
         return this.headers;
     }
 
+    /**
+     * This method returns the headers of the request as a string.
+     * @return The headers of the request as a string.
+     */
     public String getHeaders() {
         return this.headers.toString();
     }
 
+    /**
+     * This method returns the body of the request.
+     * @return The body of the request.
+     */
     public HttpBody getBody() {
         return this.body;
     }
 
+    /**
+     * This method returns the content of the body of the request.
+     * @return The content of the body of the request.
+     */
     public String getBodyContent() {
         return this.body.getStringContent();
     }
 
+    /**
+     * This method sets the method of the request.
+     * @param method The method of the request.
+     */
     public void setMethod(Verbs method) {
         this.method = method;
     }
 
+    /**
+     * This method sets the URL of the request.
+     * @param url The URL of the request.
+     */
     public void setUrl(URL url) {
         this.url = url;
     }
 
+    /**
+     * This method sets the protocol version of the request.
+     * @param protocolVersion The protocol version of the request.
+     */
     public void setProtocolVersion(String protocolVersion) {
         this.protocolVersion = protocolVersion;
     }
 
+    /**
+     * This method sets the headers of the request.
+     * @param headers The headers of the request.
+     */
     public void setHeaders(RequestHeaders headers) {
         this.headers = headers;
     }
 
+    /**
+     * This method sets the body of the request.
+     * @param body The body of the request.
+     */
     public void setBody(HttpBody body) {
         this.body = body;
     }
 
+    /**
+     * This method check if the connection needs to keep alive.
+     * @return True if the connection needs to keep alive, false otherwise.
+     */
     public boolean isConnectionAlive() {
         if(this.headers.getValue(HttpRequestHeaders.CONNECTION) == null) { //We first check if null, to avoid conflicts with equals
             return true;
@@ -114,10 +187,20 @@ public class Request {
         
     }
 
+    /**
+     * This method adds a cookie to the headers of the request.
+     * @param cookiesClient The cookie to add to the headers of the request.
+     */
     public void addCookies(String cookiesClient) {
         this.headers.getHeaders().add(cookiesClient);
     }
 
+    /**
+     * This method parses a string to a request.
+     * @param request The string to parse to a request.
+     * @param port The port of the request.
+     * @return The request parsed from the string.
+     */
     public static Request parse(String request, int port) {
         String[] lines;
         if(port == HTTPUtils.HTTPS_PORT) {
