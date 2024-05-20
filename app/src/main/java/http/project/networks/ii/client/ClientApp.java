@@ -35,28 +35,28 @@ public class ClientApp {
 
         String gsonTeacher = gson.toJson(teachers);
 
-        app.testGET("https://localhost/teachers/project");
+        app.testGET("http://localhost/teachers/project");
 
-        app.testPOST("http://localhost/teachers", gsonTeacher);
+        app.testPOST("https://localhost/teachers", gsonTeacher);
 
-        // teacher.setPassRate(3.3f);
+        teacher.setPassRate(3.3f);
 
-        // gsonTeacher = gson.toJson(teachers);
+        gsonTeacher = gson.toJson(teachers);
 
-        // app.testPUT("https://localhost/teachers", gsonTeacher);
+        app.testPUT("https://localhost/teachers", gsonTeacher);
 
-        // app.testDELETE("https://localhost/teachers/teacher/Teacher_1");
+        app.testDELETE("https://localhost/teachers/teacher/Teacher_1");
 
-        // String Url = "https://localhost/teachers/project";
+        String Url = "https://localhost/teachers/project";
 
-        // app.testConditionalGET(Url, "Sat, 3 Jun 2023 11:05:30 GMT");
+        app.testConditionalGET(Url, "Sat, 3 Jun 2023 11:05:30 GMT");
 
-        // app.testConditionalGET(Url, "Sat, 3 Jun 2028 11:05:30 GMT");
+        app.testConditionalGET(Url, "Sat, 3 Jun 2028 11:05:30 GMT");
 
 
-        // app.testGET("https://localhost/teachers/");
+        app.testGET("https://localhost/teachers/");
 
-        // // ¡This test wait 30 seconds before sending the same request, comment it if you want to test the other methods!
+        // ¡This test wait 30 seconds before sending the same request, comment it if you want to test the other methods!
         app.testCookiesExpiration("https://localhost/teachers/project",30000);
 
     }
