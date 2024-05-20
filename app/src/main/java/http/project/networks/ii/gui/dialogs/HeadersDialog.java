@@ -56,22 +56,22 @@ public class HeadersDialog extends JDialog {
 
             @Override
             public void windowIconified(java.awt.event.WindowEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                //throw new UnsupportedOperationException("Not supported yet.");
             }
 
             @Override
             public void windowDeiconified(java.awt.event.WindowEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                //throw new UnsupportedOperationException("Not supported yet.");
             }
 
             @Override
             public void windowActivated(java.awt.event.WindowEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                //throw new UnsupportedOperationException("Not supported yet.");
             }
 
             @Override
             public void windowDeactivated(java.awt.event.WindowEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                //throw new UnsupportedOperationException("Not supported yet.");
             }
         });
     }
