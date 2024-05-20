@@ -11,27 +11,48 @@ import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.HttpBody;
 
+/**
+ * The {@code RequestPOST} class handles HTTP POST requests for creating new resources.
+ * It implements the {@link RequestCommand} interface.
+ */
 public class RequestPOST implements RequestCommand {
     private final String path;
     private final TeachersClass teachers;
     private final HttpBody body;
 
+    /**
+     * Constructs a {@code RequestPOST} instance.
+     *
+     * @param path     the path of the resource to be created.
+     * @param teachers an instance of {@link TeachersClass} containing the teacher data.
+     * @param body     the HTTP body containing the data for creating the resource.
+     */
     public RequestPOST(String path, TeachersClass teachers, HttpBody body) {
         this.path = path;
         this.teachers = teachers;
         this.body = body;
     }
 
+    /**
+     * Executes the POST request by processing the specified path and creating the resource.
+     *
+     * @return a {@link Response} object representing the result of the request processing.
+     */
     @Override
     public Response execute() {
         if (path.equals(HTTPUtils.TEACHERS_PATH)) {
             return processBodyTeachers(body);
         }
 
-
         return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
     }
 
+    /**
+     * Processes the body of the POST request for creating teachers and projects.
+     *
+     * @param body the HTTP body containing the data for creating the resource.
+     * @return a {@link Response} object representing the result of the request processing.
+     */
     private Response processBodyTeachers(HttpBody body) {
         if (body.getType() == HttpBodyType.JSON) {
             Gson gson = new Gson();

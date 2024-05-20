@@ -25,7 +25,7 @@ public class ServerApp {
         httpsThread.start();
         httpThread.start();
 
-        // Optionally, join the threads if you need the main thread to wait for them to finish
+        // Wait for the threads to finish
         try {
             httpsThread.join();
             httpThread.join();

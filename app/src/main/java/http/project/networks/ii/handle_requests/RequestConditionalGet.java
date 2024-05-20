@@ -13,17 +13,35 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * The {@code RequestConditionalGet} class handles HTTP GET requests with support for conditional
+ * headers such as "If-Modified-Since". It implements the {@link RequestCommand} interface.
+ */
 public class RequestConditionalGet implements RequestCommand {
     private final String path;
     private final TeachersClass teachers;
     private final List<String> headers;
 
+    /**
+     * Constructs a {@code RequestConditionalGet} instance.
+     *
+     * @param path     the path of the requested resource.
+     * @param teachers an instance of {@link TeachersClass} containing the teacher data.
+     * @param headers  a list of HTTP headers included in the request.
+     */
     public RequestConditionalGet(String path, TeachersClass teachers, List<String> headers) {
         this.path = path;
         this.teachers = teachers;
         this.headers = headers;
     }
 
+    /**
+     * Executes the conditional GET request. If the "If-Modified-Since" header is present and
+     * the resource has not been modified since the specified date, a 304 Not Modified response
+     * is returned. Otherwise, the resource is fetched and returned.
+     *
+     * @return a {@link Response} object representing the result of the request processing.
+     */
     @Override
     public Response execute() {
         if (path != null && !path.isEmpty()) {
@@ -49,7 +67,6 @@ public class RequestConditionalGet implements RequestCommand {
                 }
             }
 
-
             // If no conditional headers or conditions are met, return the resource
             if(path.startsWith(HTTPUtils.TEACHERS_PATH)){
                 return new RequestGET(path, teachers).execute();
@@ -58,19 +75,29 @@ public class RequestConditionalGet implements RequestCommand {
         }
         return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_NOT_FOUND));
     }    
-    
-    private LocalDateTime getLastModifiedDateOfResource(String path) {
 
-        //read the path and get the last modified date of the resource
+    /**
+     * Retrieves the last modified date of the resource specified by the given path.
+     *
+     * @param path the path of the requested resource.
+     * @return a {@link LocalDateTime} object representing the last modified date of the resource, or null if the date cannot be determined.
+     */
+    private LocalDateTime getLastModifiedDateOfResource(String path) {
+        // Read the path and get the last modified date of the resource
 
         if (path.startsWith(HTTPUtils.TEACHERS_PATH)) {
             return teachersGetLastModifiedDate(path);
         }
 
-
         return null;
     }
 
+    /**
+     * Finds the value of a specific header from the list of headers.
+     *
+     * @param headerName the name of the header to find.
+     * @return the value of the header, or null if the header is not found.
+     */
     private String findHeader(String headerName) {
         for (String header : headers) {
             if (header.startsWith(headerName + ":")) {
@@ -80,13 +107,18 @@ public class RequestConditionalGet implements RequestCommand {
         return null;
     }
 
-    private LocalDateTime teachersGetLastModifiedDate(String path){
-
-        if(path.equals(HTTPUtils.TEACHERS_PATH)){
+    /**
+     * Retrieves the last modified date of a resource in the teachers API based on the given path.
+     *
+     * @param path the path of the requested resource.
+     * @return a {@link LocalDateTime} object representing the last modified date of the resource, or null if the date cannot be determined.
+     */
+    private LocalDateTime teachersGetLastModifiedDate(String path) {
+        if (path.equals(HTTPUtils.TEACHERS_PATH)) {
             return teachers.getLastModified();
         }
 
-        //see if the path is a subpath of teachers
+        // See if the path is a subpath of teachers
         if (path.startsWith(HTTPUtils.TEACHERS_PATH)) {
             String[] pathParts = path.split("/");
             if (pathParts.length == 3) {
@@ -96,22 +128,18 @@ public class RequestConditionalGet implements RequestCommand {
                 if (pathParts[2].equals("teacher")) {
                     Teacher teacher = teachers.getTeacher(pathParts[3]);
                     if (teacher != null) {
-                        return teacher.getLastModified();    
-                    }
-                    else {
+                        return teacher.getLastModified();
+                    } else {
                         return null;
                     }
-                }
-                else if (pathParts[2].equals("project")) {
+                } else if (pathParts[2].equals("project")) {
                     Project project = teachers.getProject(pathParts[3]);
                     if (project != null) {
                         return project.getLastModified();
-                    }
-                    else {
+                    } else {
                         return null;
                     }
-                }
-                else {
+                } else {
                     return null;
                 }
             }
@@ -119,6 +147,4 @@ public class RequestConditionalGet implements RequestCommand {
 
         return null;
     }
-
-    
 }
