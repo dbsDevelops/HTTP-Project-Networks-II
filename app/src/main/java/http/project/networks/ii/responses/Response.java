@@ -6,11 +6,19 @@ import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.HttpBody;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 
+/**
+ * This class represents a HTTP response. It contains the status code and description, the headers and the body of the response.
+ */
 public class Response {
     private String statusCodeAndDescription;
     protected ResponseHeaders responseHeaders;
     private HttpBody body;
 
+    /**
+     * Constructor of the class Response.
+     * @param statusCodeAndDescription The status code and description of the response.
+     * @param body The body of the response.
+     */
     public Response(String statusCodeAndDescription, HttpBody body) {
         this.statusCodeAndDescription = statusCodeAndDescription;
         this.responseHeaders = new ResponseHeaders();
@@ -22,22 +30,42 @@ public class Response {
         }
     }
 
+    /**
+     * This method returns the status code and description of the response.
+     * @return The status code and description of the response.
+     */
     public String getStatusCodeAndDescription() {
         return this.statusCodeAndDescription;
     }
 
+    /**
+     * This method returns the headers of the response.
+     * @return The headers of the response.
+     */
     public ResponseHeaders getResponseHeaders() {
         return this.responseHeaders;
     }
 
+    /**
+     * This method returns the body of the response.
+     * @return The body of the response.
+     */
     public String getBodyContent() {
         return this.body.getStringContent();
     }
 
+    /**
+     * This method returns the binary content of the body of the response.
+     * @return The binary content of the body of the response.
+     */
     public byte[] getBinaryContent() {
         return this.body.getBinaryContent();
     }
 
+    /**
+     * This method returns the string representation of the status line and headers, not the body.
+     * @return The string representation of the response.
+     */
     public String headTypeResponse() {
         StringBuilder response = new StringBuilder();
         response.append("HTTP/1.1 " + statusCodeAndDescription);
@@ -47,6 +75,10 @@ public class Response {
         return response.toString();
     }
 
+    /**
+     * This method returns the string representation of the response.
+     * @return The string representation of the response.
+     */
     @Override
     public String toString() {
         StringBuilder response = new StringBuilder();
@@ -61,6 +93,13 @@ public class Response {
         return response.toString();
     }
 
+    /**
+     * This method parses a HTTP response string and returns a Response object.
+     * @param httpResponse The HTTP response string.
+     * @param port The port of the server.
+     * @return The Response object.
+     * @throws IllegalArgumentException If the HTTP response string is null or empty, or if the format is invalid.
+     */
     public static Response parse(String httpResponse, int port) throws IllegalArgumentException {
         if (httpResponse == null || httpResponse.isEmpty()) {
             throw new IllegalArgumentException("The HTTP response string cannot be null or empty");
