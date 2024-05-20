@@ -251,7 +251,7 @@ public class ClientApp {
             bodyType = HttpBodyType.RAW;                                            //Body type
             bodyContent = "";                                      //Body content
 
-            client = new GreetClient(cachedData);
+            client = new GreetClient();
             //Send the request 1
             request = new Request(method, url, protocolVersion, headers, bodyType, bodyContent);
             System.out.println(request.toString());
