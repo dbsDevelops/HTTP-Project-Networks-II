@@ -25,6 +25,10 @@ public class Cookie {
      * The cookie is created with a random name, value, and expiration time
      * The expiration time is between 20 and 60 seconds
      * The cookie is not HTTPS by default but it can be set to secure with the setSecure method if TLS is used
+     * The time when the cookie was created is stored in the timeStartCookie variable
+     * The count is used to generate a unique id for the cookie
+     * The count is incremented each time a cookie is created
+     * @return the cookie object
      */
     public Cookie() {
         Random random = new Random();
@@ -38,7 +42,13 @@ public class Cookie {
     }
 
     /**
-     * Constructor for the used for parse cookie 
+     * Constructor for the used for parse cookie
+     * @param id the id of the cookie
+     * @param value the value of the cookie
+     * @param maxAge the expiration time of the cookie
+     * @param secure if the cookie is secure
+     * @param timeStartCookie the time when the cookie was created
+     * @return the cookie object 
      */
     public Cookie(int id, String value, int maxAge, boolean secure, LocalDateTime timeStartCookie) {
         this.id = id;
@@ -73,6 +83,12 @@ public class Cookie {
         return this.maxAge;
     }
 
+    /**
+     * Parse a cookie string to get the cookie object
+     * The cookie string is in the format "cookie1=value; Max-Age=20; Secure; HttpOnly; Date=2021-06-01T12:00:00"
+     * @param cookie the cookie string
+     * @return the cookie object
+     */
     public static Cookie parse(String cookie) {
         String[] parts = cookie.split("; ");
         int id = 0; //Invalid cookie (always starting in 1)
@@ -99,6 +115,10 @@ public class Cookie {
         return new Cookie(id,value,maxAge,secure,timeStartCookie);
     }
 
+    /**
+     * Get the string representation of the cookie
+     * @return the string representation of the cookie
+     */
     public String toString() {
         StringBuilder cookie = new StringBuilder();
         cookie.append(name+"=");
@@ -114,6 +134,11 @@ public class Cookie {
         return cookie.toString(); 
     }
 
+    /**
+     * Check if two cookies are equal by comparing their id, value, expiration time, secure flag, and start time
+     * @param cookie the cookie to compare
+     * @return true if the cookies are equal, false otherwise
+     */
     public boolean equals(Cookie cookie) {
         return this.id == cookie.getId() && this.value.equals(cookie.getValue())
          && this.maxAge == cookie.getMaxAge() && this.secure == cookie.secure &&

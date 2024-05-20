@@ -22,6 +22,11 @@ public abstract class Headers {
         return this.myHeaders;
     }
 
+    /**
+     * Add the header to the headers list of the request headers using the HttpRequestHeaders enum type
+     * @param headerType
+     * @param headerValue
+     */
     public void addHeaderToHeaders(HttpRequestHeaders headerType, String headerValue) {
         String header = headerType.getHeader() + ": " + headerValue;
         this.myHeaders.add(header);
@@ -32,16 +37,31 @@ public abstract class Headers {
         this.myHeaders.add(header);
     }
 
+    /**
+     * Add the header string to the headers list of the request headers
+     * @param headerType
+     * @param headerValue
+     */
     public void addHeaderToHeaders(String headerType, String headerValue) {
         String header = headerType + ": " + headerValue;
         this.myHeaders.add(header);
     }
 
+    /**
+     * Remove the header from the headers
+     * @param headerType
+     * @param headerValue
+     */
     public void removeHeader(HttpRequestHeaders headerType, String headerValue) {
         String header = headerType.getHeader() + ": " + headerValue;
         this.myHeaders.remove(header);
     }
 
+    /**
+     * Get the value of the header type
+     * @param headerType
+     * @return the value of the header type
+     */
     public String getValue(HttpRequestHeaders headerType) {
         for (String header : this.myHeaders) {
             String[] parts = header.split(": ", 2);

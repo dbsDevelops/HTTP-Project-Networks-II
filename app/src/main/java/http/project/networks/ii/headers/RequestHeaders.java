@@ -22,6 +22,11 @@ public class RequestHeaders extends Headers {
         addHeaderToHeaders(HttpRequestHeaders.DATE, getCurrentTime());
     }
 
+    /**
+     * Parse the headers string to get the RequestHeaders object from it
+     * @param headersString
+     * @return the RequestHeaders object
+     */
     public static RequestHeaders parse(String headersString) {
         String[] headers = headersString.split("\r\n");
         RequestHeaders requestHeaders = new RequestHeaders();

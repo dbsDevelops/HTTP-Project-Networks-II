@@ -57,7 +57,7 @@ public class ClientApp {
         // app.testGET("https://localhost/teachers/");
 
         // // ¡This test wait 30 seconds before sending the same request, comment it if you want to test the other methods!
-        // app.testCookiesExpiration("https://localhost/teachers/project",30000);
+        app.testCookiesExpiration("https://localhost/teachers/project",30000);
 
     }
 
