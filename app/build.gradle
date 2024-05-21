@@ -66,6 +66,20 @@ task jarClientCLI(type: Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
+task jarClientGUI(type: Jar) {
+    archiveBaseName.set('ClientGUI')
+    manifest {
+        attributes(
+            'Main-Class': 'http.project.networks.ii.gui.ClientGui'
+        )
+    }
+    from sourceSets.main.output
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 javadoc {
     source = sourceSets.main.allJava
     classpath += configurations.runtimeClasspath
@@ -77,4 +91,4 @@ javadoc {
     options.links("https://docs.oracle.com/javase/8/docs/api/")
 }
 
-build.dependsOn jarServerDocker, jarClientCLI
+build.dependsOn jarServerDocker, jarClientCLI, jarClientGUI
