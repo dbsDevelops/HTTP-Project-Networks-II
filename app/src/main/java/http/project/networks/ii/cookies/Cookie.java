@@ -150,10 +150,10 @@ public class Cookie {
         cookie.append(value);
         cookie.append("; "+MAX_AGE+"=");
         cookie.append(maxAge);
+        cookie.append("; "+HTTP_ONLY);
         if (secure) { //If the cookie is HTTPS only
             cookie.append("; "+SECURE);
         }
-        cookie.append("; "+HTTP_ONLY);
         cookie.append("; "+DATE+"=");
         cookie.append(this.timeStartCookie.toString()); // Add the start date of the cookie
         return cookie.toString(); 

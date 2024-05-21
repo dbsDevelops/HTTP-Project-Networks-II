@@ -39,16 +39,16 @@ public class ClientApp {
 
         String gsonTeacher = gson.toJson(teachers);
 
-        app.testGET("http://localhost/teachers/project");
+        //app.testGET("http://localhost/teachers/project");
 
-        app.testPOST("https://localhost/teachers", gsonTeacher);
+        //app.testPOST("https://localhost/teachers", gsonTeacher);
 
         teacher.setPassRate(3.3f);
 
         gsonTeacher = gson.toJson(teachers);
 
 
-        app.testPUT("https://localhost/teachers", "{\"teachers\": [{\"name\":\"Teacher_1\",\"}]}");
+        //app.testPUT("https://localhost/teachers", "{\"teachers\": [{\"name\":\"Teacher_1\",\"}]}");
 
         //app.testDELETE("https://localhost/teachers/teacher/Teacher_1");
 
@@ -62,7 +62,7 @@ public class ClientApp {
         // app.testGET("https://localhost/teachers/");
 
         // // ¡This test wait 30 seconds before sending the same request, comment it if you want to test the other methods!
-        // app.testCookiesExpiration("https://localhost/teachers/project",30000);
+        app.testCookiesExpiration("https://localhost/teachers/project",30000);
 
     }
 

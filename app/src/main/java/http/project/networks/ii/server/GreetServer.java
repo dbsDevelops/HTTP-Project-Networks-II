@@ -57,7 +57,7 @@ public class GreetServer {
         }
         System.out.println(this.staticFiles.toString());
         this.cookies = new ArrayList<>();
-        this.port = port;
+        this.port = port; 
         for(int i=0; i<3;i++) {
             if(this.port == HTTPUtils.HTTPS_PORT) {
                 Cookie cookie = new Cookie();
@@ -67,6 +67,7 @@ public class GreetServer {
                 cookies.add(new Cookie());
             }
         }
+        
         this.logger = new Logger("server_log_");
     }
 
@@ -320,6 +321,9 @@ public class GreetServer {
         for(Cookie cookie : this.cookies) {
             if(HTTPUtils.isExpiredCookie(cookie)) { //Cookie is expired
                 Cookie newCookie = new Cookie();
+                if(this.port == HTTPUtils.HTTPS_PORT) {
+                    newCookie.setSecure(true);
+                }
                 cookiesToRemove.add(cookie);
                 cookiesToAdd.add(newCookie);
                 response.getResponseHeaders().removeHeader(HttpRequestHeaders.SET_COOKIE, cookie.toString());
@@ -335,9 +339,6 @@ public class GreetServer {
 
         for(Cookie cookie : cookiesToAdd) {
             this.cookies.add(cookie);
-            if(this.port == HTTPUtils.HTTPS_PORT) {
-                cookie.setSecure(true);
-            }
         }
     }
 
