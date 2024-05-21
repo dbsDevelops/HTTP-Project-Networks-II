@@ -5,4 +5,4 @@
 build
 
 .vscode
-/app/src/main/java/http/project/networks/ii/static_resources/javadocs
+app/src/main/java/http/project/networks/ii/static_resources/javadocs
