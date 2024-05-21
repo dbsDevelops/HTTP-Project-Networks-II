@@ -40,9 +40,9 @@ public class RequestHeaders extends Headers {
         String[] headers = headersString.split("\r\n");
         RequestHeaders requestHeaders = new RequestHeaders();
         for (String header : headers) {
-            String[] parts = header.split(": ", 2);
+            String[] parts = header.split(":", 2);
             if (parts.length == 2) {
-                requestHeaders.addHeaderToHeaders(parts[0], parts[1]);
+                requestHeaders.addHeaderToHeaders(parts[0].trim(), parts[1].trim());
             }
         }
         return requestHeaders;
