@@ -877,7 +877,7 @@ https://trello.com/b/RvijUP3N/http
 
 ## Technical Report
 Decisions made, challenges overcome, group task distribution, and work methodology.
-[Technical Report](Http_Project_Memory_DanielJuanIvanGerman.pdf)
+[Technical Report](Http_Project_Memory_DanielJuanGermanIvan.pdf)
 
 ## Teacher's Github
 https://github.com/pitazzo/usj-http-project
