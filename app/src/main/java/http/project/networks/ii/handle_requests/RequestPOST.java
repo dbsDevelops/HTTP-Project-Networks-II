@@ -56,18 +56,32 @@ public class RequestPOST implements RequestCommand {
     private Response processBodyTeachers(HttpBody body) {
         if (body.getType() == HttpBodyType.JSON) {
             Gson gson = new Gson();
-            TeachersClass data = gson.fromJson(body.getStringContent(), TeachersClass.class);
-            if (data == null) {
+
+            try {
+                TeachersClass data = gson.fromJson(body.getStringContent(), TeachersClass.class);
+                if (data == null) {
+                    return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+                }
+
+                if (data.getClass() != TeachersClass.class) {
+                    return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+                }
+                if (data.getTeachers() == null || data.getProjects() == null) {
+                    return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+                }
+
+                for (Teacher teacher : data.getTeachers()) {
+                    this.teachers.addTeacher(teacher);
+                }
+                for (Project project : data.getProjects()) {
+                    this.teachers.addProject(project);
+                }
+                return new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED));
+            } catch (Exception e) {
                 return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
             }
-            for (Teacher teacher : data.getTeachers()) {
-                this.teachers.addTeacher(teacher);
-            }
-            for (Project project : data.getProjects()) {
-                this.teachers.addProject(project);
-            }
-            return new Response(ServerStatusCodes.CREATED_201.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.RESOURCE_CREATED));
         }
         return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+
     }
 }

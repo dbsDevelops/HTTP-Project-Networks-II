@@ -1,0 +1,3 @@
+[31m2024-05-21T12:48:26.010693500-Could not listen on port 443: Address already in use: bind
+[0m[31m2024-05-21T12:48:26.010693500-Could not listen on port 80: Address already in use: bind
+[0m

@@ -56,23 +56,35 @@ public class RequestPUT implements RequestCommand {
     private Response processBodyTeachers(HttpBody body) {
         if (body.getType() == HttpBodyType.JSON) {
             Gson gson = new Gson();
-            TeachersClass updatedData = gson.fromJson(body.getStringContent(), TeachersClass.class);
-            if (updatedData == null) {
+            try {
+                TeachersClass data = gson.fromJson(body.getStringContent(), TeachersClass.class);
+                if (data == null) {
+                    return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+                }
+
+                if (data.getClass() != TeachersClass.class) {
+                    return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+                }
+                if (data.getTeachers() == null || data.getProjects() == null) {
+                    return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+                }
+                for (Teacher teacher : data.getTeachers()) {
+                    boolean updated = teachers.updateTeacher(teacher);
+                    if (!updated) {
+                        // Teacher with the given ID not found
+                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, "Teacher with ID " + teacher.getId() + " not found"));
+                    }
+                }
+                for (Project project : data.getProjects()) {
+                    boolean updated = teachers.updateProject(project);
+                    if (!updated) {
+                        // Project with the given ID not found
+                        return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, "Project with ID " + project.getId() + " not found"));
+                    }
+                }
+            }
+            catch (Exception e) {
                 return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
-            }
-            for (Teacher teacher : updatedData.getTeachers()) {
-                boolean updated = teachers.updateTeacher(teacher);
-                if (!updated) {
-                    // Teacher with the given ID not found
-                    return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, "Teacher with ID " + teacher.getId() + " not found"));
-                }
-            }
-            for (Project project : updatedData.getProjects()) {
-                boolean updated = teachers.updateProject(project);
-                if (!updated) {
-                    // Project with the given ID not found
-                    return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, "Project with ID " + project.getId() + " not found"));
-                }
             }
 
             return new Response(ServerStatusCodes.OK_200.getStatusString(), new HttpBody(HttpBodyType.RAW, "Data updated successfully"));

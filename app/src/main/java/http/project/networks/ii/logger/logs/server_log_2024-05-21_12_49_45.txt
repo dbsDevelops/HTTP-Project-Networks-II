@@ -1,0 +1,115 @@
+2024-05-21T12:49:45.492737100-Server is running on port: 80
+2024-05-21T12:49:45.492737100-Server is running on port: 443
+2024-05-21T12:49:51.297744300-Client connected from /127.0.0.1:59097
+2024-05-21T12:49:51.390038-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Tue, 21 May 2024 10:49:51 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 884
+Set-Cookie: cookie1=ma366xrz; Max-Age=57; HttpOnly; Date=2024-05-21T12:49:45.445832600
+Set-Cookie: cookie2=ma367xrz; Max-Age=23; HttpOnly; Date=2024-05-21T12:49:45.445832600
+Set-Cookie: cookie3=ma368xrz; Max-Age=40; HttpOnly; Date=2024-05-21T12:49:45.445832600
+
+[{"name":"Project_1","description":"Description_1","teacher":"Teacher_1","student":"Student_1","grade":"A","status":"Completed","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_2","description":"Description_2","teacher":"Teacher_2","student":"Student_2","grade":"B","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_3","description":"Description_3","teacher":"Teacher_3","student":"Student_3","grade":"C","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_4","description":"Description_4","teacher":"Teacher_4","student":"Student_4","grade":"D","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_5","description":"Description_5","teacher":"Teacher_5","student":"Student_5","grade":"E","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"}]
+
+2024-05-21T12:49:51.687907900-Client connected from /127.0.0.1:59099
+2024-05-21T12:49:51.709650100-Response: 
+HTTP/1.1 201 Created
+Connection: close
+Date: Tue, 21 May 2024 10:49:51 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 16
+Set-Cookie: cookie1=ma366xrz; Max-Age=32; Secure; HttpOnly; Date=2024-05-21T12:49:45.445832600
+Set-Cookie: cookie5=ma370xrz; Max-Age=60; Secure; HttpOnly; Date=2024-05-21T12:49:45.445832600
+Set-Cookie: cookie6=ma371xrz; Max-Age=52; Secure; HttpOnly; Date=2024-05-21T12:49:45.445832600
+
+Resource created
+
+2024-05-21T12:49:51.739042500-Client connected from /127.0.0.1:59101
+2024-05-21T12:49:51.750554400-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Tue, 21 May 2024 10:49:51 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 25
+Set-Cookie: cookie1=ma366xrz; Max-Age=32; Secure; HttpOnly; Date=2024-05-21T12:49:45.445832600
+Set-Cookie: cookie5=ma370xrz; Max-Age=60; Secure; HttpOnly; Date=2024-05-21T12:49:45.445832600
+Set-Cookie: cookie6=ma371xrz; Max-Age=52; Secure; HttpOnly; Date=2024-05-21T12:49:45.445832600
+
+Data updated successfully
+
+2024-05-21T12:52:18.449145100-Client connected from /127.0.0.1:59133
+2024-05-21T12:52:18.457696800-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Tue, 21 May 2024 10:52:18 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 884
+Set-Cookie: cookie7=ma372xrz; Max-Age=23; HttpOnly; Date=2024-05-21T12:52:18.455694900
+Set-Cookie: cookie8=ma373xrz; Max-Age=41; HttpOnly; Date=2024-05-21T12:52:18.456695900
+Set-Cookie: cookie9=ma374xrz; Max-Age=33; HttpOnly; Date=2024-05-21T12:52:18.456695900
+
+[{"name":"Project_1","description":"Description_1","teacher":"Teacher_1","student":"Student_1","grade":"A","status":"Completed","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_2","description":"Description_2","teacher":"Teacher_2","student":"Student_2","grade":"B","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_3","description":"Description_3","teacher":"Teacher_3","student":"Student_3","grade":"C","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_4","description":"Description_4","teacher":"Teacher_4","student":"Student_4","grade":"D","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_5","description":"Description_5","teacher":"Teacher_5","student":"Student_5","grade":"E","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"}]
+
+2024-05-21T12:52:18.740117900-Client connected from /127.0.0.1:59135
+2024-05-21T12:52:18.750632700-Response: 
+HTTP/1.1 201 Created
+Connection: close
+Date: Tue, 21 May 2024 10:52:18 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 16
+Set-Cookie: cookie10=ma375xrz; Max-Age=24; HttpOnly; Date=2024-05-21T12:52:18.749631700
+Set-Cookie: cookie11=ma376xrz; Max-Age=43; HttpOnly; Date=2024-05-21T12:52:18.749631700
+Set-Cookie: cookie12=ma377xrz; Max-Age=23; HttpOnly; Date=2024-05-21T12:52:18.749631700
+
+Resource created
+
+2024-05-21T12:52:18.771968900-Client connected from /127.0.0.1:59137
+2024-05-21T12:52:18.781373400-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Tue, 21 May 2024 10:52:18 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 25
+Set-Cookie: cookie10=ma375xrz; Max-Age=24; Secure; HttpOnly; Date=2024-05-21T12:52:18.749631700
+Set-Cookie: cookie11=ma376xrz; Max-Age=43; Secure; HttpOnly; Date=2024-05-21T12:52:18.749631700
+Set-Cookie: cookie12=ma377xrz; Max-Age=23; Secure; HttpOnly; Date=2024-05-21T12:52:18.749631700
+
+Data updated successfully
+
+2024-05-21T12:52:56.333564900-Client connected from /127.0.0.1:59148
+2024-05-21T12:52:56.344140700-Response: 
+HTTP/1.1 200 OK
+Connection: close
+Date: Tue, 21 May 2024 10:52:56 GMT
+Server: DJGI/1.0.0
+Content-Type: application/json
+Content-Length: 884
+Set-Cookie: cookie13=ma378xrz; Max-Age=58; HttpOnly; Date=2024-05-21T12:52:56.339576
+Set-Cookie: cookie8=ma373xrz; Max-Age=41; HttpOnly; Date=2024-05-21T12:52:18.456695900
+Set-Cookie: cookie14=ma379xrz; Max-Age=31; HttpOnly; Date=2024-05-21T12:52:56.339576
+
+[{"name":"Project_1","description":"Description_1","teacher":"Teacher_1","student":"Student_1","grade":"A","status":"Completed","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_2","description":"Description_2","teacher":"Teacher_2","student":"Student_2","grade":"B","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_3","description":"Description_3","teacher":"Teacher_3","student":"Student_3","grade":"C","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_4","description":"Description_4","teacher":"Teacher_4","student":"Student_4","grade":"D","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"},{"name":"Project_5","description":"Description_5","teacher":"Teacher_5","student":"Student_5","grade":"E","status":"In_Progress","lastModified":"2024-05-21T12:49:45.440357400"}]
+
+2024-05-21T12:52:56.643744500-Client connected from /127.0.0.1:59150
+2024-05-21T12:52:56.657278400-Response: 
+HTTP/1.1 201 Created
+Connection: close
+Date: Tue, 21 May 2024 10:52:56 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 16
+Set-Cookie: cookie15=ma380xrz; Max-Age=43; HttpOnly; Date=2024-05-21T12:52:56.655288800
+Set-Cookie: cookie11=ma376xrz; Max-Age=43; Secure; HttpOnly; Date=2024-05-21T12:52:18.749631700
+Set-Cookie: cookie16=ma381xrz; Max-Age=34; HttpOnly; Date=2024-05-21T12:52:56.656277200
+
+Resource created
+
+2024-05-21T12:52:56.677037800-Client connected from /127.0.0.1:59152

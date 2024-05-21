@@ -47,21 +47,22 @@ public class ClientApp {
 
         gsonTeacher = gson.toJson(teachers);
 
-        app.testPUT("https://localhost/teachers", gsonTeacher);
 
-        app.testDELETE("https://localhost/teachers/teacher/Teacher_1");
+        app.testPUT("https://localhost/teachers", "{\"teachers\": [{\"name\":\"Teacher_1\",\"}]}");
 
-        String Url = "https://localhost/teachers/project";
+        //app.testDELETE("https://localhost/teachers/teacher/Teacher_1");
 
-        app.testConditionalGET(Url, "Sat, 3 Jun 2023 11:05:30 GMT");
+        //String Url = "https://localhost/teachers/project";
 
-        app.testConditionalGET(Url, "Sat, 3 Jun 2028 11:05:30 GMT");
+        // app.testConditionalGET(Url, "Sat, 3 Jun 2023 11:05:30 GMT");
+
+        // app.testConditionalGET(Url, "Sat, 3 Jun 2028 11:05:30 GMT");
 
 
-        app.testGET("https://localhost/teachers/");
+        // app.testGET("https://localhost/teachers/");
 
-        // ¡This test wait 30 seconds before sending the same request, comment it if you want to test the other methods!
-        app.testCookiesExpiration("https://localhost/teachers/project",30000);
+        // // ¡This test wait 30 seconds before sending the same request, comment it if you want to test the other methods!
+        // app.testCookiesExpiration("https://localhost/teachers/project",30000);
 
     }
 
