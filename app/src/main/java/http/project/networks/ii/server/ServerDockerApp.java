@@ -15,8 +15,36 @@ public class ServerDockerApp {
         if (staticFilesDir == null) {
             staticFilesDir = "/HTTP-Project-Networks-II/app/src/main/java/http/project/networks/ii/static_resources";
         }
-        GreetServer gs = new GreetServer(staticFilesDir, HTTPUtils.HTTP_PORT);
-        gs.initServer();
-    }
 
+        //To enclose into a runnable, the variable must be final
+        final String staticFilesDirFinal = staticFilesDir;
+
+        // Create a runnable for the HTTPS server
+        Runnable httpsServerTask = () -> {
+            GreetServer gshttps = new GreetServer(staticFilesDirFinal, HTTPUtils.HTTPS_PORT);
+            gshttps.initServer();
+        };
+
+        // Create a runnable for the HTTP server
+        Runnable httpServerTask = () -> {
+            GreetServer gshttp = new GreetServer(staticFilesDirFinal, HTTPUtils.HTTP_PORT);
+            gshttp.initServer();
+        };
+
+        // Create threads for each server task
+        Thread httpsThread = new Thread(httpsServerTask);
+        Thread httpThread = new Thread(httpServerTask);
+
+        // Start the threads
+        httpsThread.start();
+        httpThread.start();
+
+        // Wait for the threads to finish
+        try {
+            httpsThread.join();
+            httpThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
