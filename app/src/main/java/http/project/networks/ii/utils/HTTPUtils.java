@@ -171,7 +171,7 @@ public class HTTPUtils {
      * Method that auto-generates an html code with all the entries of a directory for its later encapsulation inside a body.
      * @param localPath Path where the static resources are located inside the local device
      * @param dirPath Directory path that we want to generate the html
-     * @return
+     * @return A string with the html code of the directory
      * @throws IOException
      */
     private static String buildDirectoryHtml(String localPath, String dirPath) throws IOException {
@@ -208,8 +208,8 @@ public class HTTPUtils {
     /**
      * This method is used to check if a cookie is expired
      * Compare the time when the cookie was created with the current time
-     * @param cookie the cookie to check
-     * @return true if the cookie is expired, false otherwise
+     * @param cookie The cookie to check
+     * @return True if the cookie is expired, false otherwise
      */
     public static Boolean isExpiredCookie(Cookie cookie){
         if(Duration.between(cookie.getTimeStartCookie(), LocalDateTime.now()).getSeconds() > cookie.getMaxAge()){
@@ -222,9 +222,9 @@ public class HTTPUtils {
     /**
      * This method is used to check if a cookie exists in the server
      * Compare the cookie with the cookies in the request headers to check if it exists
-     * @param request the request of the client to check 
-     * @param cookie the cookie to check
-     * @return true if the cookie exists, false otherwise
+     * @param request The request of the client to check 
+     * @param cookie The cookie to check
+     * @return True if the cookie exists, false otherwise
      */
     public static boolean existServerCookie(Request request, Cookie cookie) {
         for(String header: request.getRequestHeadersObject().getHeaders()) {
@@ -239,8 +239,8 @@ public class HTTPUtils {
 
     /**
      * This method is used to determine the body type of a file
-     * @param path the path of the file
-     * @return the body type of the file
+     * @param path The path of the file
+     * @return The body type of the file
      */
     private static HttpBodyType determineBodyType(Path path) {
         String extension = getFileExtension(path);
@@ -249,8 +249,8 @@ public class HTTPUtils {
 
     /**
      * This method is used to check if a body type is binary
-     * @param type the body type to check
-     * @return true if the body type is binary, false otherwise
+     * @param type The body type to check
+     * @return True if the body type is binary, false otherwise
      */
     private static boolean isBinaryType(HttpBodyType type) {
         return type == HttpBodyType.PNG || type == HttpBodyType.JPEG || type == HttpBodyType.GIF ||
@@ -262,8 +262,8 @@ public class HTTPUtils {
 
     /**
      * This method is used to get the extension of a file
-     * @param path the path of the file
-     * @return the extension of the file
+     * @param path The path of the file
+     * @return The extension of the file
      */
     private static String getFileExtension(Path path) {
         String fileName = path.getFileName().toString();
@@ -274,10 +274,10 @@ public class HTTPUtils {
 
     /**
      * This method is used to encrypt a message
-     * @param message the message to encrypt
-     * @param symmetricKey the symmetric key to use
-     * @return the encrypted message
-     * @throws Exception if the encryption fails
+     * @param message The message to encrypt
+     * @param symmetricKey The symmetric key to use
+     * @return The encrypted message
+     * @throws Exception If the encryption fails
      */
     public static String encryptMessage(byte[] message, SecretKey symmetricKey) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
@@ -290,10 +290,10 @@ public class HTTPUtils {
 
     /**
      * This method is used to decrypt a message
-     * @param encryptedMessage the message to decrypt
-     * @param symmetricKey the symmetric key to use
-     * @return the decrypted message
-     * @throws Exception if the decryption fails
+     * @param encryptedMessage The message to decrypt
+     * @param symmetricKey The symmetric key to use
+     * @return The decrypted message
+     * @throws Exception If the decryption fails
      */
     public static String decryptMessage(byte[] encryptedMessage, SecretKey symmetricKey) throws Exception {
         byte[] bytes = Base64.getDecoder().decode(encryptedMessage);

@@ -38,7 +38,7 @@ public class Logger {
 
     /**
      * Create a new Logger
-     * @param logPath the path to the log file
+     * @param logPath The path to the log file
      */
     public Logger(String logPath) {
         this.logPath = logPath;
@@ -55,8 +55,8 @@ public class Logger {
 
     /**
      * Log a message
-     * @param message the message
-     * @param type the type of the message
+     * @param message The message
+     * @param type The type of the message
      */
     public void log(String message, int type) {
         try {
@@ -104,7 +104,7 @@ public class Logger {
 
     /**
      * Get the path to the log file
-     * @return the path to the log file
+     * @return The path to the log file
      */
     public String getLogPath() {
         return logPath;
@@ -112,7 +112,7 @@ public class Logger {
 
     /**
      * Set the path to the log file
-     * @param logPath the path to the log file
+     * @param logPath The path to the log file
      */
     public void setLogPath(String logPath) {
         this.logPath = logPath;

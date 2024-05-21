@@ -74,7 +74,7 @@ public abstract class Headers {
 
     /**
      * Get the value of the header type
-     * @param headerType
+     * @param headerType The type of header where we want to get the value
      * @return A string the value of the header type
      */
     public String getValue(HttpRequestHeaders headerType) {

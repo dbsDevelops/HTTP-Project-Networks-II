@@ -24,17 +24,17 @@ public class RequestHeaders extends Headers {
         super();
         // ADDING BASIC HEADERS FOR THE REQUEST MANUALLY
         addHeaderToHeaders(HttpRequestHeaders.HOST, url.getHost());
-        addHeaderToHeaders(HttpRequestHeaders.ACCEPT, "/");
+        addHeaderToHeaders(HttpRequestHeaders.ACCEPT, "*/*");
         addHeaderToHeaders(HttpRequestHeaders.ACCEPT_LANGUAGE, "en-US,en;q=0.5");
         addHeaderToHeaders(HttpRequestHeaders.CONNECTION, "keep-alive");
-        addHeaderToHeaders(HttpRequestHeaders.USER_AGENT, "Mozilla/5.0");
+        addHeaderToHeaders(HttpRequestHeaders.USER_AGENT, "DJGI/1.0.0");
         addHeaderToHeaders(HttpRequestHeaders.DATE, getCurrentTime());
     }
 
     /**
      * Parse the headers string to get the RequestHeaders object from it
-     * @param headersString
-     * @return the RequestHeaders object
+     * @param headersString The headers string to parse
+     * @return The RequestHeaders object
      */
     public static RequestHeaders parse(String headersString) {
         String[] headers = headersString.split("\r\n");

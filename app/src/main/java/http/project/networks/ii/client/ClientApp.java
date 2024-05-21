@@ -21,6 +21,10 @@ import http.project.networks.ii.utils.Verbs;
  */
 public class ClientApp {
     CachedData cachedData = new CachedData();
+    /**
+     * Main method that is responsible for testing the server behaviour for all types of requests.
+     * @param args Arguments passed to the main method
+     */
     public static void main(String[] args) {
         ClientApp app = new ClientApp();
         //app.testGET("http://localhost/teachers/");

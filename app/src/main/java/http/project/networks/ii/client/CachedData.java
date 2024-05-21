@@ -19,8 +19,8 @@ public class CachedData {
     /**
      * Adds data to the cache.
      *
-     * @param key   the key to associate with the value.
-     * @param value the value to be cached.
+     * @param key The key to associate with the value.
+     * @param value The value to be cached.
      */
     public void addData(String key, String value) {
         this.cachedData.put(key, value);
@@ -29,8 +29,8 @@ public class CachedData {
     /**
      * Retrieves data from the cache based on the given key.
      *
-     * @param key the key of the data to retrieve.
-     * @return the value associated with the specified key, or {@code null} if the key is not found.
+     * @param key The key of the data to retrieve.
+     * @return The value associated with the specified key, or {@code null} if the key is not found.
      */
     public String getData(String key) {
         return this.cachedData.get(key);
@@ -39,7 +39,7 @@ public class CachedData {
     /**
      * Removes data from the cache based on the given key.
      *
-     * @param key the key of the data to remove.
+     * @param key The key of the data to remove.
      */
     public void removeData(String key) {
         this.cachedData.remove(key);
@@ -55,8 +55,8 @@ public class CachedData {
     /**
      * Checks if the cache contains the specified key.
      *
-     * @param key the key to check for.
-     * @return {@code true} if the cache contains the key, otherwise {@code false}.
+     * @param key The key to check for.
+     * @return {@code true} If the cache contains the key, otherwise {@code false}.
      */
     public boolean containsKey(String key) {
         return this.cachedData.containsKey(key);
@@ -65,8 +65,8 @@ public class CachedData {
     /**
      * Checks if the cache contains the specified value.
      *
-     * @param value the value to check for.
-     * @return {@code true} if the cache contains the value, otherwise {@code false}.
+     * @param value The value to check for.
+     * @return {@code true} If the cache contains the value, otherwise {@code false}.
      */
     public boolean containsValue(String value) {
         return this.cachedData.containsValue(value);
@@ -75,7 +75,7 @@ public class CachedData {
     /**
      * Checks if the cache is empty.
      *
-     * @return {@code true} if the cache is empty, otherwise {@code false}.
+     * @return {@code true} If the cache is empty, otherwise {@code false}.
      */
     public boolean isEmpty() {
         return this.cachedData.isEmpty();
@@ -84,7 +84,7 @@ public class CachedData {
     /**
      * Returns the size of the cache.
      *
-     * @return the number of key-value mappings in the cache.
+     * @return The number of key-value mappings in the cache.
      */
     public int size() {
         return this.cachedData.size();
@@ -93,7 +93,7 @@ public class CachedData {
     /**
      * Returns a string representation of the cache.
      *
-     * @return a string representation of the cache.
+     * @return A string representation of the cache.
      */
     public String toString() {
         return this.cachedData.toString();

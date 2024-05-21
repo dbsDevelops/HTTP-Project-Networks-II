@@ -40,6 +40,7 @@ public class HttpBody {
 
     /**
      * Get the type of the body
+     * @return The type of the body
      */
     public HttpBodyType getType() {
         return this.type;
@@ -47,6 +48,7 @@ public class HttpBody {
 
     /**
      * Get the string content of the body
+     * @return The string content of the body
      */
     public String getStringContent() {
         return this.content;
@@ -54,6 +56,7 @@ public class HttpBody {
 
     /**
      * Get the binary content of the body
+     * @return The binary content of the body
      */
     public byte[] getBinaryContent() {
         return binaryContent;
@@ -61,6 +64,7 @@ public class HttpBody {
 
     /**
      * Get the content lenght of the body
+     * @return The content length of the body
      */
     public int getContentLength() {
         return binaryContent != null ? binaryContent.length : content.length();
@@ -68,6 +72,7 @@ public class HttpBody {
 
     /**
      * Return the body as a string
+     * @return The body as a string
      */
     public String toString() {
         return this.type.getBodyType();

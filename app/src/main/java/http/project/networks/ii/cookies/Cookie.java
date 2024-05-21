@@ -3,6 +3,9 @@ package http.project.networks.ii.cookies;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+/**
+ * The {@code Cookie} class represents a simple cookie that can be used to store information on the client side.
+ */
 public class Cookie {
     private static final String COOKIE = "cookie";
     private static final String MAX_AGE = "Max-Age";
@@ -28,7 +31,6 @@ public class Cookie {
      * The time when the cookie was created is stored in the timeStartCookie variable
      * The count is used to generate a unique id for the cookie
      * The count is incremented each time a cookie is created
-     * @return the cookie object
      */
     public Cookie() {
         Random random = new Random();
@@ -48,7 +50,6 @@ public class Cookie {
      * @param maxAge the expiration time of the cookie
      * @param secure if the cookie is secure
      * @param timeStartCookie the time when the cookie was created
-     * @return the cookie object 
      */
     public Cookie(int id, String value, int maxAge, boolean secure, LocalDateTime timeStartCookie) {
         this.id = id;
@@ -59,26 +60,50 @@ public class Cookie {
         this.timeStartCookie = timeStartCookie;
     }
 
+    /**
+     * Set the secure value of the cookie
+     * @param secure {@code true} if the cookie is secure, {@code false} otherwise
+     */
     public void setSecure(boolean secure) {
         this.secure = secure;
     }
 
+    /**
+     * Get the name of the cookie
+     * @return the name of the cookie
+     */
     public String getName() {
         return this.name;
     }
     
+    /**
+     * Get the value of the cookie
+     * @return the value of the cookie
+     */
     public String getValue() {
         return this.value;
     }
 
+    /**
+     * Get the id of the cookie
+     * @return the id of the cookie
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * Get the time when the cookie was created
+     * @return the time when the cookie was created
+     */
     public LocalDateTime getTimeStartCookie() {
         return this.timeStartCookie;
     }
 
+    /**
+     * Get the expiration time of the cookie
+     * @return the expiration time of the cookie
+     */
     public int getMaxAge() {
         return this.maxAge;
     }

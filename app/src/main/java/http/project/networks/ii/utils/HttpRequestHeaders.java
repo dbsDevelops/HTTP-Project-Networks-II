@@ -75,7 +75,7 @@ public enum HttpRequestHeaders {
     /**
      * Parse a header from a string
      * @param header The header
-     * @return The HttpRequestHeaders
+     * @return The HttpRequestHeaders corresponding value to the header
      */
     public static HttpRequestHeaders parse(String header) {
         for (HttpRequestHeaders headerType : HttpRequestHeaders.values()) {

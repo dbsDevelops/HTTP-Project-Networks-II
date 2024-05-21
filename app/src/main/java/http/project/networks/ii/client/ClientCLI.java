@@ -22,6 +22,10 @@ import java.util.List;
  * be in charge of processing and displaying the server's response.
  */
 public class ClientCLI {
+    /**
+     * Main method of the class ClientCLI. It is in charge of interpreting the arguments passed by the user and sending the
+     * @param args The arguments passed by the user
+     */
     public static void main(String[] args) {
         OptionParser parser = new OptionParser();
         parser.acceptsAll(List.of("X", "request"), "HTTP method type").withRequiredArg().defaultsTo("GET");

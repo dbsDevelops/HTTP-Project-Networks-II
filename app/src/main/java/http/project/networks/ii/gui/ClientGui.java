@@ -31,6 +31,10 @@ public class ClientGui extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * The main method to run the GUI
+     * @param args The arguments to run the GUI
+     */
     public static void main(String[] args) {
         //Schedule a job for the event dispatching thread:
         //creating and showing this application's GUI.

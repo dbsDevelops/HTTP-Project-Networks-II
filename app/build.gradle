@@ -70,6 +70,7 @@ javadoc {
     source = sourceSets.main.allJava
     classpath += configurations.runtimeClasspath
     destinationDir = file("src/main/java/http/project/networks/ii/static_resources/javadocs")
+    options.addStringOption('Xdoclint:-missing', '-quiet')
     options.memberLevel = JavadocMemberLevel.PUBLIC
     options.author = true
     options.version = true

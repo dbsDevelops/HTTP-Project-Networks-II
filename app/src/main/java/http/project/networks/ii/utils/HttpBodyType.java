@@ -35,7 +35,7 @@ public enum HttpBodyType {
 
     /**
      * Create a new HttpBodyType
-     * @param bodyType the type of body
+     * @param bodyType The type of body
      */
     HttpBodyType(String bodyType) {
         this.bodyType = bodyType;
@@ -43,7 +43,7 @@ public enum HttpBodyType {
 
     /**
      * Get the type of body
-     * @return the type of body
+     * @return The type of body
      */
     public String getBodyType() {
         return this.bodyType;
@@ -51,8 +51,8 @@ public enum HttpBodyType {
 
     /**
      * Parse a string to get the corresponding HttpBodyType
-     * @param bodyType the string to parse
-     * @return the corresponding HttpBodyType
+     * @param bodyType The string to parse
+     * @return The corresponding HttpBodyType
      */
     public static HttpBodyType parse(String bodyType) {
         for (HttpBodyType type : HttpBodyType.values()) {

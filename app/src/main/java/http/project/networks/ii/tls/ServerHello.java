@@ -14,6 +14,9 @@ import java.nio.file.Files;
 import javax.crypto.SecretKey;
 import javax.crypto.Cipher;
 
+/**
+ * This class represents the server hello message and all server operations of the TLS handshake
+ */
 public class ServerHello {
     private Socket socket;
     private DataOutputStream out;
@@ -28,10 +31,10 @@ public class ServerHello {
     /**
      * Constructor for the server TLS handshake
      * The socket is created with the server name and port from GreetClient
-     * @param port
-     * @param certificate
-     * @param tlsShared
-     * @param s
+     * @param port The port number
+     * @param certificate The server certificate
+     * @param tlsShared The shared data between the client and the server
+     * @param s The socket
      * @throws IOException
      */
     public ServerHello(int port, Certificate certificate, TlsShared tlsShared, Socket s) throws IOException {
@@ -150,32 +153,4 @@ public class ServerHello {
         KeyFactory kf = KeyFactory.getInstance("RSA");
         return kf.generatePrivate(spec);
     }
-
-    /* 
-    public static void main(String[] args) {
-        try {
-            TlsShared tlsShared = new TlsShared();
-            CertificateFactory factory = CertificateFactory.getInstance("X.509");
-            Path path = Paths.get("app", "src", "main", "java", "http", "project", "networks", "ii", "tls", "certif.crt");
-            InputStream is = new FileInputStream(path.toFile());
-            Certificate certificate = factory.generateCertificate(is);
-            //ServerHello server = new ServerHello(443, certificate, tlsShared);
-            //System.out.println("CETIFICADOOOOOOOOOOOOOOOOOOOOOO: "+certificate.toString());
-            //server.processClientAndServer();
-            is.close();
-            //server.receivePremasterSecret();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CertificateEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (CertificateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-    */
 }

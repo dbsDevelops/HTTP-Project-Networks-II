@@ -7,7 +7,9 @@ import javax.crypto.SecretKey;
 
 import java.security.spec.KeySpec;
 
-
+/**
+ * This class represents the shared data and operations between the client and the server in the TLS handshake process
+ */
 public class TlsShared {
     private byte[] clientRandom;
     private byte[] serverRandom;

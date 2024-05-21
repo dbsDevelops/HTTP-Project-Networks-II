@@ -11,6 +11,9 @@ import http.project.networks.ii.tls.TlsShared;
 import http.project.networks.ii.utils.HTTPUtils;
 import http.project.networks.ii.utils.HttpRequestHeaders;
 
+/**
+ * The {@code GreetClient} class represents a simple HTTP client that sends requests to a server and processes the responses.
+ */
 public class GreetClient {
 
     private static final String SERVER_NOT_FOUND = "Server not found: ";
@@ -26,6 +29,10 @@ public class GreetClient {
     CachedData cachedData;
     URL url;
 
+    /**
+     * Constructor for the GreetClient class
+     * @param cachedData The cached data
+     */
     public GreetClient(CachedData cachedData) {
         this.host = "";
         this.clientCookies = null;
@@ -34,6 +41,9 @@ public class GreetClient {
         //this.logger = new Logger("client");
     }
 
+    /**
+     * Constructor for the GreetClient class
+     */
     public GreetClient() {
         this.host = "";
         this.clientCookies = null;
@@ -197,6 +207,10 @@ public class GreetClient {
         this.clientCookies += cookiesValue.toString();
     }
 
+    /**
+     * Method that returns the response string.
+     * @return The response string.
+     */
     public String getResponseString() {
         return this.response.toString();
     }

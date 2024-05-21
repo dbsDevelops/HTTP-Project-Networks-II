@@ -83,20 +83,6 @@ public class GreetServer {
      * signal is received or the terminal that runs the program is closed.
      */
     public void initServer() {
-        // try (ServerSocket serverSocket = new ServerSocket(port)) {
-        //     System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + port);
-        //     while (running) {
-        //         Socket clientSocket = serverSocket.accept();
-        //         System.out.println(HTTPUtils.CLIENT_CONNECTED);
-        //         ServerThread serverThread = new ServerThread(this, clientSocket);
-        //         serverThread.start();
-        //     }
-        // } catch (IOException e) {
-        //     if (!running) break; // Break the loop if server is supposed to stop
-        //     System.err.println(HTTPUtils.COULD_NOT_LISTEN_ON_PORT + port);
-        //     System.exit(-1);
-        // }
-        
         try {
             serverSocket = new ServerSocket(this.port);
             System.out.println(HTTPUtils.SERVER_IS_RUNNING_ON_PORT + this.port);
