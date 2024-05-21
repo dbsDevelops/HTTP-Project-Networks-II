@@ -57,11 +57,17 @@ public class GreetServer {
         }
         System.out.println(this.staticFiles.toString());
         this.cookies = new ArrayList<>();
+        this.port = port;
         for(int i=0; i<3;i++) {
-            cookies.add(new Cookie());
+            if(this.port == HTTPUtils.HTTPS_PORT) {
+                Cookie cookie = new Cookie();
+                cookie.setSecure(true);
+                cookies.add(cookie);
+            } else {
+                cookies.add(new Cookie());
+            }
         }
         this.logger = new Logger("server_log_");
-        this.port = port;
     }
 
     /**
