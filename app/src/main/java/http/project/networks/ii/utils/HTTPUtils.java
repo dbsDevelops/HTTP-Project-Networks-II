@@ -142,14 +142,13 @@ public class HTTPUtils {
      */
     public static HttpBody createRequestBodyFromFile(String localPath, String filePath) throws IOException {
         String filePathString = localPath + filePath;
-        Path path = Paths.get(filePathString);
-        if(!path.toFile().exists()) {
+        Path path = Paths.get(filePathString).normalize();
+        if (!Files.exists(path)) {
             return null;
         }
-        if(path.toFile().isDirectory()) {
-            if(path.resolve("index.html").normalize().toFile().exists()) {
+        if (Files.isDirectory(path)) {
+            if (Files.exists(path.resolve("index.html"))) {
                 path = path.resolve("index.html").normalize();
-                System.out.println("Path: " + path);
                 String content = Files.readString(path);
                 return new HttpBody(HttpBodyType.HTML, content);
             }

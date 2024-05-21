@@ -20,11 +20,20 @@ public class Response {
      * @param body The body of the response.
      */
     public Response(String statusCodeAndDescription, HttpBody body) {
+        this(statusCodeAndDescription, body, new ResponseHeaders());
+    }
+
+    /**
+     * Constructor of the class Response.
+     * @param statusCodeAndDescription The status code and description of the response.
+     * @param body The body of the response.
+     * @param headers The headers of the response.
+     */
+    public Response(String statusCodeAndDescription, HttpBody body, ResponseHeaders headers) {
         this.statusCodeAndDescription = statusCodeAndDescription;
-        this.responseHeaders = new ResponseHeaders();
+        this.responseHeaders = headers;
         this.body = body;
-        //For example, the response of the head method does not require a body
-        if(!body.equals(null)) {
+        if (body != null) {
             this.responseHeaders.addHeaderToHeaders(HttpRequestHeaders.CONTENT_TYPE, this.body.getType().getBodyType());
             this.responseHeaders.addHeaderToHeaders(HttpRequestHeaders.CONTENT_LENGTH, Integer.toString(this.body.getContentLength()));
         }

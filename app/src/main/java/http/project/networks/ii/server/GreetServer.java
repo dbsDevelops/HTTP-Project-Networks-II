@@ -1,6 +1,7 @@
 package http.project.networks.ii.server;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.*;
@@ -12,6 +13,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import http.project.networks.ii.api.teachers_api.APITeachers;
 import http.project.networks.ii.cookies.Cookie;
+import http.project.networks.ii.headers.ResponseHeaders;
 import http.project.networks.ii.logger.Logger;
 import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.responses.Response;
@@ -254,18 +256,20 @@ public class GreetServer {
                 try {
                     String auxPathString = staticFiles.toString() + urlPath;
                     Path auxPath = Paths.get(auxPathString);
-                    //We try to find the index.html in a directory
-                    if (auxPathString.endsWith("/") && auxPath.toFile().isDirectory()) {
-                        HttpBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
-                        return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
-                    } else if (!auxPathString.endsWith("/") && auxPath.toFile().isDirectory()){
-                        auxPathString = auxPathString + "/";
-                        auxPath = Paths.get(auxPathString);
-                        HttpBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
-                        return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
+                    if (Files.isDirectory(auxPath)) {
+                        // Check for the trailing slash and redirect if necessary
+                        if (!urlPath.endsWith("/")) {
+                            ResponseHeaders headers = new ResponseHeaders();
+                            headers.addHeaderToHeaders(HttpRequestHeaders.LOCATION, urlPath + "/");
+                            return new Response(ServerStatusCodes.MOVED_PERMANENTLY_301.getStatusString(), new HttpBody(HttpBodyType.RAW, ""), headers);
+                        }
+                        // Serve the file if it exists
+                        HttpBody htmlBody = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
+                        return new Response(ServerStatusCodes.OK_200.getStatusString(), htmlBody);
                     } else {
+                        // Serve the file if it exists
                         HttpBody body = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
-                        if(body != null) {
+                        if (body != null) {
                             return new Response(ServerStatusCodes.OK_200.getStatusString(), body);
                         } else {
                             return new Response(ServerStatusCodes.NOT_FOUND_404.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.NOT_FOUND));
@@ -273,8 +277,8 @@ public class GreetServer {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                    return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
                 }
-                return new Response(ServerStatusCodes.INTERNAL_SERVER_ERROR_500.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INTERNAL_SERVER_ERROR));
             }
         } else {
             try {

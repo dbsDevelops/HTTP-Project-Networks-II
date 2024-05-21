@@ -30,6 +30,7 @@ public enum HttpRequestHeaders {
     IF_RANGE("If-Range"),
     IF_UNMODIFIED_SINCE("If-Unmodified-Since"),
     MAX_FORWARDS("Max-Forwards"),
+    LOCATION("Location"),
     ORIGIN("Origin"),
     PRAGMA("Pragma"),
     PROXY_AUTHORIZATION("Proxy-Author"),
