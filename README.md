@@ -2,6 +2,13 @@
 
 This project is part of the Networks II course. It involves developing a low-level HTTP server using sockets in Java. The server can handle basic HTTP requests and serve static files, including HTML, CSS, and JavaScript.
 
+## Developed by
+
+- [Juan Ariza Onecha](https://github.com/JuanArizaCoding)
+- [Iván Royo Gutiérrez](https://github.com/ivanbisimbrero)
+- [Germán Aguilar Bobadilla](https://github.com/Ger1y1)
+- [Daniel Buxton Sierras](https://github.com/dbsDevelops)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
