@@ -251,7 +251,7 @@ public class HTTPUtils {
      * @param type The body type to check
      * @return True if the body type is binary, false otherwise
      */
-    private static boolean isBinaryType(HttpBodyType type) {
+    public static boolean isBinaryType(HttpBodyType type) {
         return type == HttpBodyType.PNG || type == HttpBodyType.JPEG || type == HttpBodyType.GIF ||
                type == HttpBodyType.SVG || type == HttpBodyType.PDF || type == HttpBodyType.ZIP ||
                type == HttpBodyType.TAR || type == HttpBodyType.GZIP || type == HttpBodyType.BZIP2 || 

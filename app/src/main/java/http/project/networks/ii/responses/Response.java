@@ -171,11 +171,11 @@ public class Response {
         }
 
         HttpBody body;
-        if (bodyType == HttpBodyType.RAW) {
-            body = new HttpBody(bodyType, bodyContent);
-        } else {
+        if (HTTPUtils.isBinaryType(bodyType)) {
             binaryContent = bodyContent.getBytes(); // Simple conversion for demonstration
             body = new HttpBody(bodyType, binaryContent);
+        } else {
+            body = new HttpBody(bodyType, bodyContent);
         }
 
         Response response = new Response(statusCodeAndDescription, body);
