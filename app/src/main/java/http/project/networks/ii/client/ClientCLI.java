@@ -35,7 +35,14 @@ public class ClientCLI {
 
         OptionSpec<String> urlSpec = parser.nonOptions("URL to request").ofType(String.class).describedAs("url");
 
-        OptionSet options = parser.parse(args);
+        OptionSet options;
+        try {
+            options = parser.parse(args);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage() + "\n");
+            printHelp(parser);
+            return;
+        }
 
         String method = (String) options.valueOf("request");
         String data = (String) options.valueOf("data");
