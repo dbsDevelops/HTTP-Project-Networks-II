@@ -130,11 +130,6 @@ public class TeachersClass {
         for (Teacher t : teachers) {
             if (t.getName().equals(teacher.getName())) {
                 teachers.set(teachers.indexOf(t), teacher);
-                try {
-                    Files.write(Paths.get(path), "Updated teacher: ".getBytes(), StandardOpenOption.APPEND);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 lastModifiedReset();
                 return true;
             }

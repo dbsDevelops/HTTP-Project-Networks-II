@@ -154,6 +154,7 @@ public class GreetClient {
             } else {
                 String data = cachedData.getData(url.toString());
                 System.out.println("Data from cache: \n" + data + "\n");
+                this.response.append("Data from cache: \n" + data + "\n");
             }
         }
 

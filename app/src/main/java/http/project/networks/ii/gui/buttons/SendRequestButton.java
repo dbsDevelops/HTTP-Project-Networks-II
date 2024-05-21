@@ -11,7 +11,6 @@ import http.project.networks.ii.gui.fields.BodyField;
 import http.project.networks.ii.gui.fields.BodyTypeField;
 import http.project.networks.ii.gui.fields.HostField;
 import http.project.networks.ii.gui.fields.MethodField;
-import http.project.networks.ii.gui.fields.PortField;
 import http.project.networks.ii.gui.panels.ResponsePanel;
 import http.project.networks.ii.gui.utils.GuiUtils;
 import http.project.networks.ii.requests.Request;
@@ -19,6 +18,7 @@ import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.Verbs;
 import http.project.networks.ii.client.GreetClient;
 import http.project.networks.ii.headers.RequestHeaders;
+import http.project.networks.ii.client.CachedData;
 
 /**
  * A button to send a request from the HTTP client
@@ -27,11 +27,11 @@ public class SendRequestButton extends JButton {
 
     private transient MethodField methodField;
     private transient HostField hostField;
-    private transient PortField portField;
     private transient BodyTypeField bodyTypeField;
     private transient BodyField bodyField;
     private HeadersDialog headersDialog;
     private ResponsePanel responsePanel;
+    private CachedData cachedData;
     
 
     /**
@@ -43,15 +43,15 @@ public class SendRequestButton extends JButton {
      * @param headersDialog dialog for entering headers
      * @param responsePanel panel for displaying the response
      */
-    public SendRequestButton(MethodField methodField, HostField hostField, PortField portField, BodyTypeField bodyTypeField, BodyField bodyField, HeadersDialog headersDialog, ResponsePanel responsePanel) {
+    public SendRequestButton(MethodField methodField, HostField hostField, BodyTypeField bodyTypeField, BodyField bodyField, HeadersDialog headersDialog, ResponsePanel responsePanel) {
         super(GuiUtils.SEND_STRING);
         this.methodField = methodField;
         this.hostField = hostField;
-        this.portField = portField;
         this.bodyTypeField = bodyTypeField;
         this.bodyField = bodyField;
         this.headersDialog = headersDialog;
         this.responsePanel = responsePanel;
+        this.cachedData = new CachedData();
         
         this.addActionListener(new ActionListener() {
             @Override
@@ -66,8 +66,7 @@ public class SendRequestButton extends JButton {
      */
     public void sendRequest() {
         try {
-            GreetClient greetClient = new GreetClient();
-            System.out.println("Port: " + portField.getPort());
+            GreetClient greetClient = new GreetClient(cachedData);
             URL url = new URL(hostField.getHost());
             RequestHeaders requestHeaders = new RequestHeaders(url);
             requestHeaders.getHeaders().addAll(this.headersDialog.getHeaders().getHeaders());

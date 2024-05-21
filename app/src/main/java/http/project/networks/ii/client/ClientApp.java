@@ -5,6 +5,12 @@ package http.project.networks.ii.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import com.google.gson.Gson;
 
@@ -30,35 +36,37 @@ public class ClientApp {
         //app.testGET("http://localhost/teachers/");
 
         // Test Teacher Class
+        String url = "https://localhost/teachers";
+
+        // // TEST GET & Conditional GET
+        app.testGET(url);
+        app.testConditionalGET(url, "Sat, 3 Jun 2028 11:05:30 GMT");
+
+        // TEST HEAD
+        app.testHEAD("https://localhost");
+
+        // TEST POST
         TeachersClass teachers = new TeachersClass();
         Project project = new Project("Project_6", "Description_1", "Teacher_6", "Student_1", "A", "Completed");
         Teacher teacher = new Teacher("Teacher_6", 0.9f, project);
         teachers.addTeacher(teacher);
         teachers.addProject(project);
-        Gson gson = new Gson();
-
+        Gson gson = new Gson(); 
         String gsonTeacher = gson.toJson(teachers);
+        app.testPOST(url, gsonTeacher);
 
-        app.testGET("http://localhost/teachers/project");
-
-        app.testPOST("https://localhost/teachers", gsonTeacher);
-
+        // TEST PUT
         teacher.setPassRate(3.3f);
 
         gsonTeacher = gson.toJson(teachers);
 
-        app.testPUT("https://localhost/teachers", gsonTeacher);
+        app.testPUT(url, gsonTeacher);
 
+        // TEST DELETE
         app.testDELETE("https://localhost/teachers/teacher/Teacher_1");
 
-        String Url = "https://localhost/teachers/project";
-
-        app.testConditionalGET(Url, "Sat, 3 Jun 2023 11:05:30 GMT");
-
-        app.testConditionalGET(Url, "Sat, 3 Jun 2028 11:05:30 GMT");
-
-
-        app.testGET("https://localhost/teachers/");
+        // TEST Conditional GET
+        app.testConditionalGET(url, "Sat, 3 Jun 2023 11:05:30 GMT");
 
         // // ¡This test wait 30 seconds before sending the same request, comment it if you want to test the other methods!
         app.testCookiesExpiration("https://localhost/teachers/project",30000);

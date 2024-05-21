@@ -13,7 +13,6 @@ import http.project.networks.ii.gui.fields.BodyField;
 import http.project.networks.ii.gui.fields.BodyTypeField;
 import http.project.networks.ii.gui.fields.HostField;
 import http.project.networks.ii.gui.fields.MethodField;
-import http.project.networks.ii.gui.fields.PortField;
 import http.project.networks.ii.gui.utils.GuiUtils;
 
 import java.awt.Dimension;
@@ -32,7 +31,6 @@ public class RequestControlsPanel extends JPanel {
     private static final int PANEL_HEIGHT = 300;
 
     private transient HostField hostField;
-    private transient PortField portField;
     private transient BodyTypeField bodyTypeField;
     private transient BodyField bodyField;
     private transient MethodField methodField;
@@ -47,7 +45,6 @@ public class RequestControlsPanel extends JPanel {
     public RequestControlsPanel() {
         super();
         this.hostField = new HostField();
-        this.portField = new PortField();
         this.bodyTypeField = new BodyTypeField();
         this.bodyField = new BodyField();
         this.methodField = new MethodField();
@@ -123,8 +120,8 @@ public class RequestControlsPanel extends JPanel {
      * Add text fields to the panel
      */
     private void addTextFields() {
-        JLabel[] textLabels = {hostField.getHostLabel(), portField.getPortLabel()};
-        JTextField[] textFields = {hostField.getHostTextField(), portField.getPortTextField()};
+        JLabel[] textLabels = {hostField.getHostLabel()};
+        JTextField[] textFields = {hostField.getHostTextField()};
         addLabelsAndTextFields(textLabels, textFields);
     }
 
@@ -191,14 +188,7 @@ public class RequestControlsPanel extends JPanel {
     public HostField getHostField() {
         return hostField;
     }
-
-    /**
-     * Get the port field
-     * @return the port field
-     */
-    public PortField getPortField() {
-        return portField;
-    }
+    
 
     /**
      * Get the body type field
@@ -247,14 +237,7 @@ public class RequestControlsPanel extends JPanel {
     public void setHostField(HostField hostField) {
         this.hostField = hostField;
     }
-
-    /**
-     * Set the port field
-     * @param portField the port field
-     */
-    public void setPortField(PortField portField) {
-        this.portField = portField;
-    }
+    
 
     /**
      * Set the body type field
