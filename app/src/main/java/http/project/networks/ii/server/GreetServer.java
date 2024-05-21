@@ -265,7 +265,7 @@ public class GreetServer {
                         if (!urlPath.endsWith("/")) {
                             ResponseHeaders headers = new ResponseHeaders();
                             headers.addHeaderToHeaders(HttpRequestHeaders.LOCATION, urlPath + "/");
-                            return new Response(ServerStatusCodes.MOVED_PERMANENTLY_301.getStatusString(), new HttpBody(HttpBodyType.RAW, ""), headers);
+                            return new Response(ServerStatusCodes.MOVED_PERMANENTLY_301.getStatusString(), new HttpBody(HttpBodyType.RAW, "The resource has been moved permanently"), headers);
                         }
                         // Serve the file if it exists
                         HttpBody htmlBody = HTTPUtils.createRequestBodyFromFile(staticFiles.toString(), urlPath);
