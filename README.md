@@ -53,13 +53,20 @@ The goal of this project is to create a simple HTTP server that can handle GET r
 3. Compile the project:
 
    ```sh
-   javac -d bin src/**/*.java
+   ./gradlew build
    ```
 
 4. Run the server:
 
+   Use docker to run the server (previous build the image):
+
    ```sh
-   java -cp bin http.project.networks.ii.server.GreetServer
+   docker run -p8080:80 -p4443:443 http-project-networks-ii
+   ```
+   And then the ClientCLI to make a request to the main page:
+
+   ```sh
+   java -jar app/build/libs/ClientCLI.jar "https://localhost:4443/"
    ```
 
 ## Usage
