@@ -32,17 +32,6 @@ public class RequestHeaders extends Headers {
     }
 
     /**
-     * Constructor of the class RequestHeaders to add arbitrary headers.
-     * @param headers the headers we want to arbitrarily add
-     */
-    public RequestHeaders(Headers headers) {
-        super();
-        for (String header : headers.getHeaders()) {
-            this.myHeaders.add(header);
-        }
-    }
-
-    /**
      * Parse the headers string to get the RequestHeaders object from it
      * @param headersString The headers string to parse
      * @return The RequestHeaders object

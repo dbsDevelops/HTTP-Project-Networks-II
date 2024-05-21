@@ -1,2 +1,0 @@
-2024-05-20T22:22:37.714795500-Server is running on port: 80
-2024-05-20T22:22:37.714795500-Server is running on port: 443

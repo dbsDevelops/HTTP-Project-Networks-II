@@ -18,6 +18,7 @@ import http.project.networks.ii.requests.Request;
 import http.project.networks.ii.utils.HttpBodyType;
 import http.project.networks.ii.utils.Verbs;
 import http.project.networks.ii.client.GreetClient;
+import http.project.networks.ii.headers.RequestHeaders;
 
 /**
  * A button to send a request from the HTTP client
@@ -51,6 +52,7 @@ public class SendRequestButton extends JButton {
         this.bodyField = bodyField;
         this.headersDialog = headersDialog;
         this.responsePanel = responsePanel;
+        
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,6 +69,8 @@ public class SendRequestButton extends JButton {
             GreetClient greetClient = new GreetClient();
             System.out.println("Port: " + portField.getPort());
             URL url = new URL(hostField.getHost());
+            RequestHeaders requestHeaders = new RequestHeaders(url);
+            requestHeaders.getHeaders().addAll(this.headersDialog.getHeaders().getHeaders());
             System.out.println("Host: " + hostField.getHost());
             Verbs method = methodField.getSelectedMethod();
             System.out.println("Method: " + method.toString());
@@ -75,7 +79,7 @@ public class SendRequestButton extends JButton {
             System.out.println("Body type: " + bodyType.toString());
             String bodyContent = bodyField.getBodyContentTextArea().getText(); 
             System.out.println("Headers:\n" + this.headersDialog.getHeaders().toString());
-            Request request = new Request(method, url, protocolVersion, this.headersDialog.getHeaders(), bodyType, bodyContent);
+            Request request = new Request(method, url, protocolVersion, requestHeaders, bodyType, bodyContent);
             //System.out.println(request.toString());
             responsePanel.appendResponse(request.toString());
             greetClient.sendRequest(url, request);
