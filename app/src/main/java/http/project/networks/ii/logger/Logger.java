@@ -29,7 +29,7 @@ public class Logger {
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_YELLOW = "\u001B[33m";
 
-    private String logPath;
+    private String logName;
     private SimpleDateFormat simpleDateFormat;
     String dateText;
     private FileOutputStream fileOutputStream;
@@ -38,14 +38,14 @@ public class Logger {
 
     /**
      * Create a new Logger
-     * @param logPath The path to the log file
+     * @param logName The path to the log file
      */
-    public Logger(String logPath) {
-        this.logPath = logPath;
+    public Logger(String logName) {
+        this.logName = logName;
         simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
         dateText = simpleDateFormat.format(new Date());
         try {
-            this.fileOutputStream = new FileOutputStream(DIRECTORY_PATH + "/" + logPath + dateText + LOG_FILE_EXTENSION, true);
+            this.fileOutputStream = new FileOutputStream(DIRECTORY_PATH + "/" + logName + dateText + LOG_FILE_EXTENSION, true);
             this.outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class Logger {
      */
     public void clear() {
         try {
-            this.fileOutputStream = new FileOutputStream(System.getProperty(USER_DIR_PROPERTY) + DIRECTORY_PATH + logPath + dateText + LOG_FILE_EXTENSION);
+            this.fileOutputStream = new FileOutputStream(System.getProperty(USER_DIR_PROPERTY) + DIRECTORY_PATH + logName + dateText + LOG_FILE_EXTENSION);
             this.outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -106,16 +106,16 @@ public class Logger {
      * Get the path to the log file
      * @return The path to the log file
      */
-    public String getLogPath() {
-        return logPath;
+    public String getLogName() {
+        return logName;
     }
 
     /**
      * Set the path to the log file
      * @param logPath The path to the log file
      */
-    public void setLogPath(String logPath) {
-        this.logPath = logPath;
+    public void setLogName(String logPath) {
+        this.logName = logPath;
     }
 
 }
