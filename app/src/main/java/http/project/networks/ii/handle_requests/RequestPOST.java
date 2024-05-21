@@ -57,6 +57,9 @@ public class RequestPOST implements RequestCommand {
         if (body.getType() == HttpBodyType.JSON) {
             Gson gson = new Gson();
             TeachersClass data = gson.fromJson(body.getStringContent(), TeachersClass.class);
+            if (data == null) {
+                return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
+            }
             for (Teacher teacher : data.getTeachers()) {
                 this.teachers.addTeacher(teacher);
             }
