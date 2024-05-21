@@ -32,6 +32,7 @@ The goal of this project is to create a simple HTTP server that can handle GET r
 -	Persistent Connection: Implemented to keep the connection alive between client and server.
 -	Client GUI: Developed a graphical user interface for the client.
 -	Multimedia Messages: Added support for multimedia message handling.
+-	Static Resources: Added support for static resources such as Videogame Webpages.
 -	Cookies Management: Implemented logic for managing cookies within the server.
 -	Conditional GET: Improved efficiency with conditional GET requests.
 -	Advanced CRUD: Enabled advanced Create, Read, Update, and Delete operations.
