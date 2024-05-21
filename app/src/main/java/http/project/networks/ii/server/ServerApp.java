@@ -7,6 +7,10 @@ import http.project.networks.ii.utils.HTTPUtils;
  */
 public class ServerApp {
 
+    /**
+     * Main method of the server application. It creates two threads, one for the HTTPS server and one for the HTTP server.
+     * @param args The arguments of the main method.
+     */
     public static void main(String[] args) {
         // Create a runnable for the HTTPS server
         Runnable httpsServerTask = () -> {

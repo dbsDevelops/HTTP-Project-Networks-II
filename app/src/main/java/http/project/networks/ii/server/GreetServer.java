@@ -254,6 +254,10 @@ public class GreetServer {
             }          
             else {
                 try {
+                    //If the method is not GET, HEAD or POST, we return a 405 Method Not Allowed
+                    if(request.getMethod().equals(Verbs.PUT) || request.getMethod().equals(Verbs.DELETE)) {
+                        return new Response(ServerStatusCodes.METHOD_NOT_ALLOWED_405.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.METHOD_NOT_ALLOWED));
+                    }
                     String auxPathString = staticFiles.toString() + urlPath;
                     Path auxPath = Paths.get(auxPathString);
                     if (Files.isDirectory(auxPath)) {
