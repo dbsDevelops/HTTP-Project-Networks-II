@@ -73,7 +73,7 @@ public class SendRequestButton extends JButton {
             String protocolVersion = "HTTP/1.1";
             HttpBodyType bodyType = bodyTypeField.getSelectedBodyType();
             System.out.println("Body type: " + bodyType.toString());
-            String bodyContent = bodyField.getBodyContent(); // Modify this line to get the body content from the bodyField
+            String bodyContent = bodyField.getBodyContentTextArea().getText(); 
             System.out.println("Headers:\n" + this.headersDialog.getHeaders().toString());
             Request request = new Request(method, url, protocolVersion, this.headersDialog.getHeaders(), bodyType, bodyContent);
             //System.out.println(request.toString());

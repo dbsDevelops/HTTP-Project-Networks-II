@@ -1,0 +1,16 @@
+2024-05-21T11:22:03.667520-Server is running on port: 80
+2024-05-21T11:22:03.667539-Server is running on port: 443
+2024-05-21T11:23:18.875308-Client connected from /127.0.0.1:49542
+2024-05-21T11:23:18.949738-Response: 
+HTTP/1.1 201 Created
+Connection: close
+Date: Tue, 21 May 2024 09:23:18 GMT
+Server: DJGI/1.0.0
+Content-Type: text/plain
+Content-Length: 16
+Set-Cookie: cookie7=ma372xrz; Max-Age=56; HttpOnly; Date=2024-05-21T11:23:18.949252
+Set-Cookie: cookie8=ma373xrz; Max-Age=33; HttpOnly; Date=2024-05-21T11:23:18.949555
+Set-Cookie: cookie9=ma374xrz; Max-Age=47; HttpOnly; Date=2024-05-21T11:23:18.949579
+
+Resource created
+
