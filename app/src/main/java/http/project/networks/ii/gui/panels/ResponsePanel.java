@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import http.project.networks.ii.gui.utils.GuiUtils;
+import http.project.networks.ii.utils.HTTPUtils;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
@@ -58,7 +59,7 @@ public class ResponsePanel extends JScrollPane {
      * Get the response
      */
     public void appendResponse(String response) {
-        responseTextArea.append(response);
+        responseTextArea.append(response + HTTPUtils.NEW_LINE_CHARACTER + HTTPUtils.NEW_LINE_CHARACTER);
     }
 
     /**
