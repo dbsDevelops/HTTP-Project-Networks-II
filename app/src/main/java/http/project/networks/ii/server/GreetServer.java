@@ -122,11 +122,6 @@ public class GreetServer {
                 serverHello.processClientAndServer();
                 is.close();
                 serverHello.receivePremasterSecret();
-                
-                //Cookies are secure now that we are using HTTPS
-                for(int i=0; i<3;i++) {
-                    this.cookies.get(i).setSecure(true);
-                }
             }
             Socket clientSocket = serverSocket.accept();
             clientSocket.setKeepAlive(true);
