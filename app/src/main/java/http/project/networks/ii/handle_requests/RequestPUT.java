@@ -58,14 +58,7 @@ public class RequestPUT implements RequestCommand {
             Gson gson = new Gson();
             try {
                 TeachersClass data = gson.fromJson(body.getStringContent(), TeachersClass.class);
-                if (data == null) {
-                    return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
-                }
-
-                if (data.getClass() != TeachersClass.class) {
-                    return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
-                }
-                if (data.getTeachers() == null || data.getProjects() == null) {
+                if (data.getTeachers().isEmpty() || data.getProjects().isEmpty()) {
                     return new Response(ServerStatusCodes.BAD_REQUEST_400.getStatusString(), new HttpBody(HttpBodyType.RAW, HTTPUtils.INVALID_REQUEST_BODY));
                 }
                 for (Teacher teacher : data.getTeachers()) {
