@@ -69,17 +69,17 @@ The goal of this project is to create a simple HTTP server that can handle GET r
    Use docker to run the server (previous build the image):
 
    ```sh
-   docker run -p8080:80 -p4443:443 http-project-networks-ii
+   docker run -p80:80 -p443:443 http-project-networks-ii
    ```
    And then the ClientCLI to make a request to the main page:
 
    ```sh
-   java -jar app/build/libs/ClientCLI.jar "https://localhost:4443/"
+   java -jar app/build/libs/ClientCLI.jar "https://localhost/"
    ```
 
 ## Usage
 
-After starting the server, you can make HTTP GET requests to it. For example, if you have an `index.html` file in the `static_resources` directory, you can access it by navigating to `http://localhost:8080/` in your web browser.
+After starting the server, you can make HTTP GET requests to it. For example, if you have an `index.html` file in the `static_resources` directory, you can access it by navigating to `http://localhost/` in your web browser.
 
 ### Example Requests
 
@@ -837,7 +837,7 @@ The `Dockerfile` contains a set of instructions to build a Docker image, it's at
    After building the image, you can run a container based on that image with the following command:
 
    ```sh
-   docker run -p8080:80 -p4443:443 http-project-networks-ii
+   docker run -p80:80 -p443:443 http-project-networks-ii
    ```
 
    This will run your application in a Docker container and map port 8080 of the container to port 8080 of your host machine.
@@ -875,7 +875,7 @@ Gradle is a build automation tool that you can use to compile and build your Jav
 2. **Run the Docker container**:
    
    ```sh
-   docker run -p8080:80 -p4443:443 http-project-networks-ii
+   docker run -p80:80 -p443:443 http-project-networks-ii
    ```
 
 By following these steps, you can configure, build, and run your Java project using Gradle and Docker. Be sure to customize the `build.gradle` and `Dockerfile` according to the specific needs of your project.
