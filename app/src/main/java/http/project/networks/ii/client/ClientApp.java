@@ -5,12 +5,6 @@ package http.project.networks.ii.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import com.google.gson.Gson;
 
